@@ -17,6 +17,7 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
+import { Outlet } from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -75,7 +76,7 @@ interface IProps {
     children?: React.ReactNode;
 }
 
-export const Layout: React.FC<IProps> = ({children}) => {
+export const FullLayout: React.FC<IProps> = ({children}) => {
 
     const theme = useTheme();
     const [open, setOpen] = useState(false);
@@ -160,6 +161,8 @@ export const Layout: React.FC<IProps> = ({children}) => {
             </Drawer>
             <Main open={open}>
                 <DrawerHeader />
+                <Outlet />
+                
                 <Typography paragraph>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
                 tempor incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus non
