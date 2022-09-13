@@ -2,6 +2,8 @@ import * as React from "react";
 import { useState, useEffect } from "react";
 import { GNB } from "./sidebar/GNB";
 
+import "simple-sample-scss-library/src/styles.css"
+import "../../App.css";
 
 import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -163,12 +165,16 @@ export const FullLayout: React.FC<IProps> = ({children}) => {
                 <DrawerHeader />
                 <Outlet />
                 
-                <Typography paragraph>
+                <div className="hello-pink">Lorem ipsum dolor sit ame</div>
+
+                <Typography paragraph  className="hello-bg">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
                 tempor incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus non
                 enim praesent elementum facilisis leo vel. Risus at ultrices mi tempus
                 imperdiet. Semper risus in hendrerit gravida rutrum quisque non tellus.
                 </Typography>
+
+                
                 
             </Main>
         </Box>
