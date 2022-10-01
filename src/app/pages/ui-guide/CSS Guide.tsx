@@ -9,7 +9,7 @@ const UiGuide: React.FC<IProps> = ({children}) => {
 
     return(
     <BasePage>
-        <h1>UI GUIDE!!</h1>
+        <h1>CSS Guide</h1>
 
 
 

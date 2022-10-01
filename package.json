@@ -13,6 +13,7 @@
     "@types/react-dom": "^18.0.6",
     "axios": "^0.27.2",
     "chart.js": "^3.9.1",
+    "cloud-portal-design-token": "^0.0.5",
     "primeicons": "^6.0.1",
     "primereact": "^8.6.1",
     "react": "^18.2.0",
