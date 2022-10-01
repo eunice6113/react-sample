@@ -6,10 +6,11 @@ interface IProps {
     children: React.ReactNode;
 }
 
-export const NoticeRegister: React.FC<IProps> = ({children}) => {
+const NoticeRegister: React.FC<IProps> = ({children}) => {
 
     return(
     <BasePage>
         <h1>notice register!!</h1>
     </BasePage>)
 }
+export default NoticeRegister;

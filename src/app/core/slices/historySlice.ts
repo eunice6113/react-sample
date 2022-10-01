@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import type { RootState } from '../../store';
+import type { RootState } from '../store';
 import axios from "axios";
 import { svyRepHis, svyRepHisResp } from '../models/svy'
 

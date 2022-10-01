@@ -6,10 +6,11 @@ interface IProps {
     children: React.ReactNode;
 }
 
-export const NoticeList: React.FC<IProps> = ({children}) => {
+const NoticeList: React.FC<IProps> = ({children}) => {
 
     return(
     <BaseListPage>
         <h1>notice list!!</h1>
     </BaseListPage>)
 }
+export default NoticeList;
