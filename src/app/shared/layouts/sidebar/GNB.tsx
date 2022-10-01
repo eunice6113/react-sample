@@ -9,7 +9,7 @@ export const GNB: React.FC<IProps> = ({children}) => {
 
     return(
     <>
-        <h1>this is GNB~!!</h1>
+        <h1 className="title">this is GNB~!!</h1>
         {children}
     </>
     )
