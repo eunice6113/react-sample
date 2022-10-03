@@ -11,7 +11,7 @@ export const BasePage: React.FC<IProps> = ({children}) => {
     
     return(<>
         <AdminPageTitle title='공지사항 관리' />
-        <div className="pa20">
+        <div className="pl20 pr20">
          {children}
         </div>
     </>)

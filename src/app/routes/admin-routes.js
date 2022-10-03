@@ -7,7 +7,7 @@ const BlankLayout = Loadable(lazy(() => import('../shared/layouts/BlankLayout'))
 const FullLayout = Loadable(lazy(() => import('../shared/layouts-admin/FullLayout')));
 
 /***** Pages ****/
-const NoticeList = Loadable(lazy(() => import('../pages/sample/NoticeList')));
+const NoticeList = Loadable(lazy(() => import('../pages-admin/mng/stm/ntc/NoticeList')));
 const NoticeRegister = Loadable(lazy(() => import('../pages/sample/NoticeRegister')));
 const NoticeDetail = Loadable(lazy(() => import('../pages/sample/NoticeDetail')));
 const NoticeEdit = Loadable(lazy(() => import('../pages/sample/NoticeEdit')));

@@ -1,6 +1,5 @@
 import * as React from "react";
-import { useState, useEffect } from "react";
-import { BaseListPage } from "../../shared/components/base/BaseListPage";
+import { BasePage } from "../../shared/components/base/BasePage";
 
 interface IProps {
     children: React.ReactNode;
@@ -9,8 +8,8 @@ interface IProps {
 const NoticeList: React.FC<IProps> = ({children}) => {
 
     return(
-    <BaseListPage>
+    <BasePage>
         <h1>notice list!!</h1>
-    </BaseListPage>)
+    </BasePage>)
 }
 export default NoticeList;

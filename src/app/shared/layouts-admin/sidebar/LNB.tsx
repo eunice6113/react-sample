@@ -8,7 +8,7 @@ interface IProps {
     children?: React.ReactNode;
 }
 
-const LNB: React.FC<IProps> = ({open, children}) => {
+const Lnb: React.FC<IProps> = ({open, children}) => {
 
     const items = [
         {
@@ -22,7 +22,7 @@ const LNB: React.FC<IProps> = ({open, children}) => {
             //         </a>
             //     );
             // },
-            expanded: true,
+            // expanded: true,
             items:[
                 {
                     label:'사용자 권한관리',
@@ -44,7 +44,7 @@ const LNB: React.FC<IProps> = ({open, children}) => {
                 },
                 {
                     label:'공지사항 관리',
-                    url: '',
+                    url: '/notice/list',
                 },
                 {
                     label:'자주 묻는 질문 관리',
@@ -129,4 +129,4 @@ const LNB: React.FC<IProps> = ({open, children}) => {
     </>
     )
 }
-export default LNB;
+export default Lnb;

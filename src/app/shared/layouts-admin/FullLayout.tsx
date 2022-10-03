@@ -1,10 +1,8 @@
 import * as React from 'react';
-import LNB from './sidebar/LNB';
 import { Link, Outlet } from 'react-router-dom';
-
 import Header from './header/Header';
 import './layout.css'
-import { open } from 'fs';
+import Lnb from './sidebar/Lnb';
 
 const FullLayout: React.FC = () => {
 
@@ -26,7 +24,7 @@ const FullLayout: React.FC = () => {
         
         <div className='mainContainer'>
             <div className='lnbContainer'>
-                <LNB open={naviOpen} />
+                <Lnb open={naviOpen} />
             </div>
             <div className='pageContainer'>
                 <Outlet />

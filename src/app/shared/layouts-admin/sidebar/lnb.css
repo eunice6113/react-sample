@@ -22,3 +22,9 @@
     padding: 10px !important;
     font-size: 16px;
 }
+
+.cldLnb .p-menuitem-text,
+.cldLnb .pi-chevron-down,
+.cldLnb .pi-chevron-right {
+    font-size: 13px;
+}

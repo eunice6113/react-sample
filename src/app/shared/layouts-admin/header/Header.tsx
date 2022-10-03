@@ -18,19 +18,22 @@ const Header: React.FC<IProps> = ({handleOpen, children}) => {
 
     return(
     <div className='customHeader'>
-        <Button className="menu p-button-text" icon="pi pi-bars"
-                onClick={handleOpen} />
+        <div className="headerInnerContents">
+            <Button className="menu p-button-text" icon="pi pi-bars"
+                    onClick={handleOpen} />
 
-        <Link to='/' className="">
-            <img className="ibkLogo" src={logo} alt='클라우드 포털 관리자' />
-            <span className="portalName">Cloud Portal 관리자</span>
-        </Link>
-        {/* {children} */}
-        <span className="accessInfo">최근 접속 {userAccessInfo}</span>
+            <Link to='/' className="">
+                <img className="ibkLogo" src={logo} alt='클라우드 포털 관리자' />
+                <span className="portalName">Cloud Portal 관리자</span>
+            </Link>
+            {/* {children} */}
+            <span className="accessInfo">최근 접속 {userAccessInfo}</span>
             <span className="profile">
                 <i className="pi pi-user" />
             </span>
             <span>{userName}</span>
+        </div>
+        
     </div>
     )
 }

@@ -2,6 +2,10 @@
   outline: none;
 }
 
+.p-datepicker {
+  width: 320px !important;
+}
+
 :root {
   --primary-color: var(--brand-primary) !important;
   --focus-ring: 0 0 0 0.2rem red !important;
@@ -27,11 +31,136 @@
   }
 }
 
+
+/* UI */
+.p-button {
+  color: #ffffff;
+  background: var(--brand-primary);
+  border: 1px solid var(--brand-primary);
+  height: 32px;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+  border-radius: 4px;
+  padding: 0 .7rem;
+  font-size: 13px;
+}
+.p-button.p-button-outlined {
+  color: var(--brand-primary);
+}
+.p-button:enabled:hover, .p-button:not(button):not(a):not(.p-disabled):hover {
+  background: var(--brand-primary);
+  color: #ffffff;
+  border-color: var(--brand-primary);
+}
+.p-button:enabled:active, .p-button:not(button):not(a):not(.p-disabled):active {
+  background: var(--brand-primary);
+  color: #ffffff;
+  border-color: var(--brand-primary);
+}
+.p-button.p-button-outlined {
+  background-color: transparent;
+  color: var(--brand-primary);
+  border: 1px solid;
+}
+.p-button.p-button-outlined:enabled:hover, .p-button.p-button-outlined:not(button):not(a):not(.p-disabled):hover {
+  background: rgba(99, 102, 241, 0.04);
+  color: var(--brand-primary);
+  border: 1px solid;
+}
+.p-button.p-button-outlined:enabled:active, .p-button.p-button-outlined:not(button):not(a):not(.p-disabled):active {
+  background: rgba(99, 102, 241, 0.16);
+  color: var(--brand-primary);
+  border: 1px solid;
+}
+.p-dropdown {
+  background: #ffffff;
+  border: 1px solid #ced4da;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+  border-radius: 4px;
+  height: 32px;
+}
+
+
+
+.p-inputtext {
+  padding: 0.2rem 0.7rem;
+  font-size: 13px !important;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+}
+
+.p-dropdown .p-dropdown-trigger {
+  width:2rem;
+}
+
+.searchBar {
+  display: flex;
+  margin: 30px 0;
+}
+.searchBar > * {
+  margin-right: 10px;
+
+}
+
+.searchBar > *:last-child {
+  margin-right: 0;
+}
+
+.searchBar .searchTxt {
+  height: 32px;
+  line-height: 32px;
+  flex: 1;
+}
+
+.searchBar .p-dropdown {
+  width: 150px;
+}
+.searchBar .p-calendar {
+  width: 120px;
+}
+
+.searchBar .searchBtn {
+  width: 60px;
+}
+
+.p-calendar {
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  height: 32px;
+}
+.p-calendar .p-inputtext {
+  border: 0 none;
+  padding: 0 0 0 0.7rem;
+}
+.p-calendar .p-button.p-button-icon-only {
+  width: 1.7rem;
+  height: 30px;
+}
+.p-calendar .p-button {
+  background: #fff;
+  color: var(--brand-primary);
+  border: 0 none;
+}
+
+
+.pageNm {
+  font-weight: bold;
+  color: var(--brand-primary);
+}
+
+.toolbar {
+  display: flex;
+
+}
+
+
+
 /*------권승주-------*/
 /* HTML Default */
-html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, article, aside, hgroup, header, footer, figure, figcaption, nav, section { margin:0; padding:0; border:0; font-size:100%; vertical-align:baseline; background:transparent; line-height:1.4em; box-sizing:border-box; font-weight:normal;}
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, article, aside, hgroup, header, footer, figure, figcaption, nav, section { 
+  margin:0; padding:0; border:0; font-size:100%; vertical-align:baseline; background:transparent; line-height:1.4em; box-sizing:border-box; font-weight:normal;}
 article, aside, hgroup, header, footer, figure, figcaption, nav, section { display: block; }
-body {padding:0;margin:0;box-sizing:border-box; font: 17px "NanumSquare", sans-serif; color:#575757;}
+body {padding:0;margin:0;box-sizing:border-box; font: 13px "NanumSquare", sans-serif; color:#575757;}
 h1, h2, h3, h4, h5, h6 { font-weight:600; } 
 ol, ul { list-style:none; }
 blockquote, q { quotes:none; }
@@ -65,7 +194,7 @@ input { font-family: 'NanumSquare', sans-serif;}
 }
 .heading h1{font-size: 24px; color: #333;}
 .css-f3jnds-MuiDataGrid-columnHeaders{background-color: #F4F4F4; text-align: center !important;}
-.css-1e2bxag-MuiDataGrid-root {font-size: 14px;}
+.css-1e2bxag-MuiDataGrid-root {font-size: 13px;}
 .table{
   border:1px solid #EAECF0;
 }
