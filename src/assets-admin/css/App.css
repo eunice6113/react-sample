@@ -1,0 +1,105 @@
+
+
+* {
+  outline: none;
+}
+
+
+.App {
+  text-align: center;
+}
+
+.title {
+  color: var(--brand-primary)
+}
+
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/*------권승주-------*/
+/* HTML Default */
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, article, aside, hgroup, header, footer, figure, figcaption, nav, section { margin:0; padding:0; border:0; font-size:100%; vertical-align:baseline; background:transparent; line-height:1.4em; box-sizing:border-box; font-weight:normal;}
+article, aside, hgroup, header, footer, figure, figcaption, nav, section { display: block; }
+body {padding:0;margin:0;box-sizing:border-box; font: 17px "NanumSquare", sans-serif; color:#575757;}
+h1, h2, h3, h4, h5, h6 { font-weight:600; } 
+ol, ul { list-style:none; }
+blockquote, q { quotes:none; }
+blockquote:before, blockquote:after,q:before, q:after { content:''; }
+table { border-collapse:collapse; border-spacing:0; table-layout:fixed; width:100%;}
+button { margin:0; padding:0; border:0; font:inherit; color:inherit; background:transparent; overflow:visible; cursor:pointer; line-height:1; }
+a:link, a:visited, a:hover, a,active, a:focus { text-decoration:none; cursor:pointer; color:#666;}
+legend, caption { display:none; }
+textarea { resize:vertical; font:inherit; overflow-y:auto; }
+input, select { color:inherit; font:inherit; vertical-align: middle;}
+address, i { font-style:normal; }
+table { border-collapse:collapse; table-layout:fixed; }
+img, select, input, button { vertical-align:middle; }
+em { font-style:normal; }
+input { font-family: 'NanumSquare', sans-serif;}
+
+#root{
+  padding:0 !important;
+  max-width: 1180px !important;
+  margin: 0 auto;
+}
+.textCenter{ text-align: center;}
+.mb{ margin-bottom: 30px;}
+.css-yfo96e{padding:0 !important;}
+/*notice*/
+.heading{
+  border-bottom: 1px solid #E6E6E6;
+  width: 100%;
+  padding:25px;
+  margin-bottom: 40px;
+}
+.heading h1{font-size: 24px; color: #333;}
+.css-f3jnds-MuiDataGrid-columnHeaders{background-color: #F4F4F4; text-align: center !important;}
+.css-1e2bxag-MuiDataGrid-root {font-size: 14px;}
+.table{
+  border:1px solid #EAECF0;
+}
+.table tr{border-bottom:1px solid #EAECF0;}
+.table th{
+   border-right:1px solid #EAECF0;
+   background-color: #F4F4F4;
+   height:45px;
+   width:180px;
+}
+.table td{
+  padding: 0 24px;
+  vertical-align: middle;
+}
+.css-1d3z3hw-MuiOutlinedInput-notchedOutline{height:32px; top:2px !important;}

@@ -1,0 +1,17 @@
+@import url(../../../../node_modules/sample-design-token/src/styles.css);
+
+.mainContainer {
+    display: flex;
+}
+
+.mainContainer .lnbContainer {
+    display: fixed;
+    top:0;
+    left:0;
+    background: #FFFFFF;
+    box-shadow: 4px 0px 4px rgba(0, 0, 0, 0.1);
+}
+
+.pageContainer {
+    padding: 10px;
+}

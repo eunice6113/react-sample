@@ -10,11 +10,13 @@ import "primeicons/primeicons.css";                                //icons
 // import "../node_modules/cloud-portal-design-token/src/styles.css"
 import "../node_modules/sample-design-token/src/styles.css"
 import './assets/css/App.css';
+import adminRoutes from './app/routes/admin-routes';
 
 function App() {
-  const routing = useRoutes(portalRoutes)
+  // const routing = useRoutes(portalRoutes)
+  const routing = useRoutes(adminRoutes)
 
-  window.document.body.classList.add('theme-dark')
+  // window.document.body.classList.add('theme-dark')
   
   return (
     <>
