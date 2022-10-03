@@ -3,6 +3,7 @@ import apiSlice from "./slices/apiSlice";
 import historySlice from "./slices/historySlice";
 import baseApiSlice from "./slices/base/baseApiSlice";
 import authSlice from "./slices/base/authSlice";
+import themeSelector from "./slices/themeSlice";
 
 export const store = configureStore({
     reducer: {
@@ -10,6 +11,7 @@ export const store = configureStore({
         auth: authSlice,
         sitems: apiSlice,
         history: historySlice,
+        theme: themeSelector,
     },
 })
 

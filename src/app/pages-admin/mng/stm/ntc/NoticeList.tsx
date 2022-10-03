@@ -44,12 +44,12 @@ const NoticeList: React.FC<IProps> = ({children}) => {
 
             <Calendar id="icon" dateFormat="yy-mm-dd" value={date1} onChange={(e) => setDate1(e.value)} showIcon />
             <Calendar id="icon" dateFormat="yy-mm-dd" value={date1} onChange={(e) => setDate1(e.value)} showIcon />
-            <Button className="searchBtn" label="조회" />
+            <Button className="cld-button primary " label="조회" />
         </div>
 
         <div className="toolbar">
             <p className="mb10">총 <span className="pageNm">{pages}</span>개</p>
-            <Button className="ml-auto p-button-outlined" label="신규등록" icon='pi pi-pencil' />
+            <Button className="ml-auto cld-button primary outline" label="신규등록" icon='pi pi-pencil' />
         </div>
 
         <table>

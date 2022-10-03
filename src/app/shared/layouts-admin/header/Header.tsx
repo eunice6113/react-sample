@@ -3,7 +3,7 @@ import * as React from "react";
 import { Link } from "react-router-dom";
 import logo from '../../../../assets/images/ibk-logo.png';
 import './header.css';
-
+import { InputSwitch } from 'primereact/inputswitch';
 
 interface IProps {
     handleOpen: React.MouseEventHandler<HTMLButtonElement>;
@@ -11,6 +11,21 @@ interface IProps {
 }
 
 const Header: React.FC<IProps> = ({handleOpen, children}) => {
+
+    const [theme, setTheme] = React.useState(false);
+    
+    const handleTheme = () => {
+        let switchTheme = !theme
+        setTheme(switchTheme)
+        console.log('theme', switchTheme)
+        if(switchTheme) {
+            window.document.body.classList.add('theme-dark')
+            window.document.body.classList.remove('theme-light')
+        } else {
+            window.document.body.classList.add('theme-light')
+            window.document.body.classList.remove('theme-dark')
+        }
+    }
 
     let userAccessInfo = `xxx.xxx.xxx.xxx YYYY.MM.DD HH:MM:SS`
 
@@ -27,6 +42,9 @@ const Header: React.FC<IProps> = ({handleOpen, children}) => {
                 <span className="portalName">Cloud Portal 관리자</span>
             </Link>
             {/* {children} */}
+
+            <InputSwitch className="ml10" checked={theme} onChange={handleTheme} />
+
             <span className="accessInfo">최근 접속 {userAccessInfo}</span>
             <span className="profile">
                 <i className="pi pi-user" />
