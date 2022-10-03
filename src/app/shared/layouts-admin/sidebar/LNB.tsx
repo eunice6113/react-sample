@@ -1,6 +1,7 @@
 import * as React from "react";
 import { PanelMenu } from 'primereact/panelmenu';
 import './lnb.css'
+import { classNames } from "primereact";
 
 interface IProps {
     open: boolean;
@@ -12,6 +13,16 @@ const LNB: React.FC<IProps> = ({open, children}) => {
     const items = [
         {
             label:'사용자 관리',
+            // template: (item, options) => {
+            //     return (
+            //         /* custom element */
+            //         <a className={options.className} target={item.target} onClick={options.onClick}>
+            //             <span className={classNames(options.iconClassName, 'pi pi-home')}></span>;
+            //             <span className={options.labelClassName}>{item.label}</span>;
+            //         </a>
+            //     );
+            // },
+            expanded: true,
             items:[
                 {
                     label:'사용자 권한관리',
@@ -25,6 +36,7 @@ const LNB: React.FC<IProps> = ({open, children}) => {
         },
         {
             label:'사이트 관리',
+            expanded: true,
             items:[
                 {
                     label:'메뉴 관리',
@@ -54,6 +66,7 @@ const LNB: React.FC<IProps> = ({open, children}) => {
         },
         {
             label:'설문 관리',
+            expanded: true,
             items:[
                 {
                     label:'설문 목록 관리',
@@ -76,6 +89,7 @@ const LNB: React.FC<IProps> = ({open, children}) => {
         },
         {
             label:'요청 관리',
+            expanded: true,
             items:[
                 {
                     label:'서비스그룹 요청 목록',
@@ -89,6 +103,7 @@ const LNB: React.FC<IProps> = ({open, children}) => {
         },
         {
             label:'운영 관리',
+            expanded: true,
             items:[
                 {
                     label:'자원 할당량 관리',
@@ -109,7 +124,7 @@ const LNB: React.FC<IProps> = ({open, children}) => {
     <>
     {
         open && 
-        <PanelMenu model={items} style={{ width: '22rem' }}/>
+        <PanelMenu className="cldLnb" model={items}/>
     }
     </>
     )

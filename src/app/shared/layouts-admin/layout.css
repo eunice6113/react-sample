@@ -2,6 +2,7 @@
 
 .mainContainer {
     display: flex;
+    width: 100%;
 }
 
 .mainContainer .lnbContainer {
@@ -13,5 +14,5 @@
 }
 
 .pageContainer {
-    padding: 10px;
+    width: 100%;
 }

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useState, useEffect } from "react";
+import AdminPageTitle from "../page-title/AdminPageTitle";
 
 interface IProps {
     children: React.ReactNode;
@@ -10,6 +10,9 @@ export const BasePage: React.FC<IProps> = ({children}) => {
     const app = 'this is app';
     
     return(<>
-        {children}
+        <AdminPageTitle title='공지사항 관리' />
+        <div className="pa20">
+         {children}
+        </div>
     </>)
 }
