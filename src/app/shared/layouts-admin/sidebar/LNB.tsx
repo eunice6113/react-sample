@@ -123,8 +123,7 @@ const Lnb: React.FC<IProps> = ({open, children}) => {
     return(
     <>
     {
-        open && 
-        <PanelMenu className="cldLnb" model={items}/>
+        <PanelMenu className={`cldLnb navi ${open ? 'open':'close'}`} model={items}/>
     }
     </>
     )

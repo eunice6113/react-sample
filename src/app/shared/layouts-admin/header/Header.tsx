@@ -37,7 +37,7 @@ const Header: React.FC<IProps> = ({handleOpen, children}) => {
             <Button className="menu p-button-text" icon="pi pi-bars"
                     onClick={handleOpen} />
 
-            <Link to='/' className="">
+            <Link to='/' className="logoTitle">
                 <img className="ibkLogo" src={logo} alt='클라우드 포털 관리자' />
                 <span className="portalName">Cloud Portal 관리자</span>
             </Link>

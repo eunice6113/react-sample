@@ -23,10 +23,10 @@ const FullLayout: React.FC = () => {
         <Header handleOpen={handleOpen} />
         
         <div className='mainContainer'>
-            <div className='lnbContainer'>
+            <div className={`lnbContainer navi ${naviOpen ? 'open':'close'}`}>
                 <Lnb open={naviOpen} />
             </div>
-            <div className='pageContainer'>
+            <div className={`pageContainer ${naviOpen ? 'open':'close'}`}>
                 <Outlet />
             </div>
         </div>

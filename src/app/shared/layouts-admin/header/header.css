@@ -19,6 +19,7 @@
 }
 
 .customHeader .menu {
+    margin-left: 10px;
     padding: 20px;
     color: #fff !important;
 }
@@ -29,6 +30,11 @@
 .customHeader .ibkLogo {
     margin-left:10px;
     width: 35px;
+}
+
+.customHeader .logoTitle {
+    display: flex;
+    align-items: center;
 }
 
 .customHeader .portalName {

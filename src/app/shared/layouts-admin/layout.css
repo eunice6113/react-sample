@@ -6,7 +6,10 @@
 }
 
 .mainContainer .lnbContainer {
-    display: fixed;
+    /* display: fixed; */
+    position: relative;
+    top:0;
+    left:0;
     top:0;
     left:0;
     background: #FFFFFF;
@@ -14,6 +17,10 @@
 }
 
 .pageContainer {
+    position: relative;
+    top:0;
+    left:0;
     width: 100%;
-    max-width: 1180px;
+    /* max-width: 1180px; */
+    max-width: 1440px;
 }
