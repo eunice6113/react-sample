@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import Header from './header/Header';
 import './layout.css'
-import Lnb from './sidebar/Lnb';
+import LNB from './sidebar/LNB';
 
 const FullLayout: React.FC = () => {
 
@@ -24,7 +24,7 @@ const FullLayout: React.FC = () => {
         
         <div className='mainContainer'>
             <div className={`lnbContainer navi ${naviOpen ? 'open':'close'}`}>
-                <Lnb open={naviOpen} />
+                <LNB open={naviOpen} />
             </div>
             <div className={`pageContainer ${naviOpen ? 'open':'close'}`}>
                 <Outlet />

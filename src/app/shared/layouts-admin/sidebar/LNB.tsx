@@ -1,6 +1,6 @@
 import * as React from "react";
 import { PanelMenu } from 'primereact/panelmenu';
-import './lnb.css'
+import './LNB.css'
 import { classNames } from "primereact";
 
 interface IProps {
@@ -8,7 +8,7 @@ interface IProps {
     children?: React.ReactNode;
 }
 
-const Lnb: React.FC<IProps> = ({open, children}) => {
+const LNB: React.FC<IProps> = ({open, children}) => {
 
     const items = [
         {
@@ -128,4 +128,4 @@ const Lnb: React.FC<IProps> = ({open, children}) => {
     </>
     )
 }
-export default Lnb;
+export default LNB;

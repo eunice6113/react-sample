@@ -2,9 +2,7 @@
   outline: none;
 }
 
-.p-datepicker {
-  width: 320px !important;
-}
+
 
 :root {
   --primary-color: var(--brand-primary) !important;
@@ -97,6 +95,8 @@
   color: var(--brand-primary);
   border: 1px solid;
 }
+
+/* p-dropdown */
 .p-dropdown {
   background: #ffffff;
   border: 1px solid #ced4da;
@@ -104,9 +104,19 @@
   border-radius: 4px;
   height: 32px;
 }
+.p-dropdown-panel .p-dropdown-items .p-dropdown-item {
+  padding: 0 15px;
+  font-size: 13px;
+}
+.p-dropdown .p-dropdown-trigger {
+  width:2rem;
+}
 
 
-
+.p-datepicker {
+  scale:0.8;
+  width: 320px !important;
+}
 .p-inputtext {
   padding: 0.2rem 0.7rem;
   font-size: 13px !important;
@@ -115,9 +125,7 @@
   align-items: center;
 }
 
-.p-dropdown .p-dropdown-trigger {
-  width:2rem;
-}
+
 
 .searchBar {
   display: flex;
@@ -125,19 +133,15 @@
 }
 .searchBar > * {
   margin-right: 10px;
-
 }
-
 .searchBar > *:last-child {
   margin-right: 0;
 }
-
 .searchBar .searchTxt {
   height: 32px;
   line-height: 32px;
   flex: 1;
 }
-
 .searchBar .p-dropdown {
   width: 150px;
 }
@@ -148,6 +152,7 @@
 .searchBar .searchBtn {
   width: 60px;
 }
+
 
 .p-calendar {
   border: 1px solid #ced4da;

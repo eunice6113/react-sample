@@ -1,0 +1,45 @@
+import { classNames, Dropdown, Ripple } from "primereact";
+
+export const paginator:any = {
+    layout: 'PrevPageLink PageLinks NextPageLink RowsPerPageDropdown CurrentPageReport',
+    'PrevPageLink': (options:any) => {
+        return (
+            <button type="button" className={options.className} onClick={options.onClick} disabled={options.disabled}>
+                <span className="p-3">Previous</span>
+                <Ripple />
+            </button>
+        )
+    },
+    'NextPageLink': (options:any) => {
+        return (
+            <button type="button" className={options.className} onClick={options.onClick} disabled={options.disabled}>
+                <span className="p-3">Next</span>
+                <Ripple />
+            </button>
+        )
+    },
+    'PageLinks': (options:any) => {
+        if ((options.view.startPage === options.page && options.view.startPage !== 0) || (options.view.endPage === options.page && options.page + 1 !== options.totalPages)) {
+            const className = classNames(options.className, { 'p-disabled': true });
+
+            return <span className={className} style={{ userSelect: 'none' }}>...</span>;
+        }
+
+        return (
+            <button type="button" className={options.className} onClick={options.onClick}>
+                {options.page + 1}
+                <Ripple />
+            </button>
+        )
+    },
+    'RowsPerPageDropdown': (options:any) => {
+        const dropdownOptions = [
+            { label: 10, value: 10 },
+            { label: 20, value: 20 },
+            { label: 50, value: 50 },
+            { label: 'All', value: options.totalRecords }
+        ];
+
+        return <Dropdown value={options.value} options={dropdownOptions} onChange={options.onChange} />;
+    },
+};

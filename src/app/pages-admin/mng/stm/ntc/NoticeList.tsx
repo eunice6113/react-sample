@@ -4,6 +4,10 @@ import { Dropdown } from 'primereact/dropdown';
 import { InputText } from 'primereact/inputtext';
 import { Calendar } from 'primereact/calendar';
 import { Button } from "primereact";
+import { DataTable } from 'primereact/datatable';
+import { Column } from 'primereact/column';
+import { paginator } from "../../../../shared/utils/table-paginator";
+import { CustomerService } from "../../../../shared/demo/customoer-service";
 
 interface IProps {
     children: React.ReactNode;
@@ -29,13 +33,24 @@ const NoticeList: React.FC<IProps> = ({children}) => {
         setSelect1(e.value);
     }
 
+
+    const [customers2, setCustomers2] = React.useState([]);
+    const [first1, setFirst1] = React.useState(0);
+    const [rows1, setRows1] = React.useState(10);
+
+    const customerService = new CustomerService();
+
+    const onCustomPage = (event:any) => {
+        setFirst1(event.first);
+        setRows1(event.rows);
+    }
+
     let pages = 50;
 
     return(
     <BasePage>
-        
         <div className="searchBar">
-            <Dropdown value={select1} options={cities} onChange={handleChange} 
+            <Dropdown className="cld-select" value={select1} options={cities} onChange={handleChange} 
                 optionLabel="name" placeholder="전체" />
             <Dropdown value={select2} options={cities} onChange={handleChange} 
                 optionLabel="name" placeholder="전체" />
@@ -44,7 +59,7 @@ const NoticeList: React.FC<IProps> = ({children}) => {
 
             <Calendar id="icon" dateFormat="yy-mm-dd" value={date1} onChange={(e) => setDate1(e.value)} showIcon />
             <Calendar id="icon" dateFormat="yy-mm-dd" value={date1} onChange={(e) => setDate1(e.value)} showIcon />
-            <Button className="cld-button primary " label="조회" />
+            <Button className="cld-button primary" label="조회" />
         </div>
 
         <div className="toolbar">
@@ -52,18 +67,14 @@ const NoticeList: React.FC<IProps> = ({children}) => {
             <Button className="ml-auto cld-button primary outline" label="신규등록" icon='pi pi-pencil' />
         </div>
 
-        <table>
-            <caption></caption>
-            <thead>
-
-            </thead>
-            <tbody>
-                <tr>
-                    <td></td>
-                </tr>
-            </tbody>
-        </table>
+        <DataTable value={customers2} paginator paginatorTemplate={paginator} first={first1} rows={rows1} onPage={onCustomPage} responsiveLayout="scroll">
+            <Column field="name" header="Name" style={{ width: '25%' }}></Column>
+            <Column field="country.name" header="Country" style={{ width: '25%' }}></Column>
+            <Column field="company" header="Company" style={{ width: '25%' }}></Column>
+            <Column field="representative.name" header="Representative" style={{ width: '25%' }}></Column>
+        </DataTable>
 
     </BasePage>)
 }
 export default NoticeList;
+

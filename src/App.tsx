@@ -8,7 +8,8 @@ import "primereact/resources/primereact.min.css";                  //core css
 import "primeicons/primeicons.css";                                //icons
 
 // import "../node_modules/cloud-portal-design-token/src/styles.css"
-import "../node_modules/sample-design-token/src/styles.css"
+// import "../node_modules/sample-design-token/src/styles.css"
+import "./assets-admin/css/token-rewrite.css";
 import './assets-admin/css/App.css';
 import adminRoutes from './app/routes/admin-routes';
 
