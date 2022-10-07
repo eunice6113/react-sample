@@ -146,7 +146,8 @@ export default LNB;
 CLPMNUM90900 메뉴 관리
 
 CLPNTCM91010 공지사항 관리
-CLPNTCM91020 공지사항 관리 상세
+CLPNTCM91020 공지사항 관리 상세/수정
+CLPNTCM91030 공지사항 관리 등록
 
 CLPQNAM91410 자주묻는질문 관리
 CLPQNAM91520 자주묻는질문 상세
@@ -225,7 +226,6 @@ CLPIASM00500 클라우드 서비스 소개
 CLPISCM00800 the fast cloud 서비스 신청
 CLPASCM01700 서비스 카탈로그 신청 화면
 CLPASCM08900 서비스 카탈로그 신청 장바구니
-
 
 CLPMNLM04010 매뉴얼 목록
 
