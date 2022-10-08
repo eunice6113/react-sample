@@ -2,6 +2,9 @@ import { lazy } from 'react';
 import { Navigate } from 'react-router-dom';
 import Loadable from '../shared/layouts/loader/Loadable';
 
+// import BlankLayout from '../shared/layouts/BlankLayout';
+// import FullLayout from '../shared/layouts-admin/FullLayout';
+
 //:::::::::::::::::::::::::::::::::::::::: Layouts ::::::::::::::::::::::::::::::::::::::::::
 
 const BlankLayout = Loadable(lazy(() => import('../shared/layouts/BlankLayout')));

@@ -1,4 +1,5 @@
 import * as React from "react";
+import { matchRoutes, useLocation, useMatch, useParams } from "react-router-dom";
 import AdminPageTitle from "../page-title/AdminPageTitle";
 
 interface IProps {
@@ -7,6 +8,10 @@ interface IProps {
 
 export const BasePage: React.FC<IProps> = ({children}) => {
 
+    const location = useLocation();
+    console.log(location.pathname);
+
+    const { id } = useParams();
     const app = 'this is app';
     
     return(<>

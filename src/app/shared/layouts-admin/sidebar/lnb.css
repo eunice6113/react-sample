@@ -28,3 +28,15 @@
 .cldLnb .pi-chevron-right {
     font-size: 13px;
 }
+
+.p-panelmenu .p-panelmenu-content .p-menuitem .p-menuitem-link:not(.p-disabled):hover {
+    background: #f4f4f5;
+    font-weight: bold;
+    border-radius: var(--borderRadius-sm) !important;
+}
+
+.cldLnb .selected a {
+    /* color: var(--brand-primary) !important; */
+    background-color: #E7EAEE;
+    border-radius: var(--borderRadius-sm) !important;
+}

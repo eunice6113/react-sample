@@ -2,6 +2,7 @@ import * as React from "react";
 import { PanelMenu } from 'primereact/panelmenu';
 import './lnb.css';
 import { classNames } from "primereact";
+import { useLocation } from "react-router-dom";
 
 interface IProps {
     open: boolean;
@@ -9,6 +10,12 @@ interface IProps {
 }
 
 const LNB: React.FC<IProps> = ({open, children}) => {
+    const location = useLocation();
+    const pathName = location.pathname;
+    const curLocation = location.pathname.split('/')[1];
+    console.log('curLocation', curLocation);
+
+    const getClsName = ( url:string ) => url === pathName ? 'selected' : '';
 
     const items = [
         {
@@ -22,96 +29,112 @@ const LNB: React.FC<IProps> = ({open, children}) => {
             //         </a>
             //     );
             // },
-            // expanded: true,
+            expanded: curLocation === 'usr',
             items:[
                 {
                     label:'사용자 권한관리',
-                    url: '/notice/list'
+                    url: '',
+                    className: 'selected'
                 },
                 {
                     label:'사용자 접속이력 관리',
-                    url: '/notice/list'
+                    url: '',
+                    className: 'selected'
                 },
             ]
         },
         {
             label:'사이트 관리',
-            expanded: true,
+            expanded: curLocation === 'stm',
             items:[
                 {
                     label:'메뉴 관리',
-                    url: '',
+                    url: '/stm/mnm',
+                    className: getClsName('/stm/mnm')
                 },
                 {
                     label:'공지사항 관리',
-                    url: '/notice/list',
+                    url: '/stm/ntc/list',
+                    className: getClsName('/stm/ntc/list')
                 },
                 {
                     label:'자주 묻는 질문 관리',
-                    url: '',
+                    url: '/stm/qna/list',
+                    className: getClsName('/stm/qna/list')
                 },
                 {
                     label:'건의 및 개선 관리',
-                    url: '',
+                    url: '/stm/faq/list',
+                    className: getClsName('/stm/faq/list')
                 },
                 {
                     label:'팝업 관리',
-                    url: '',
+                    url: '/stm/pop/list',
+                    className: getClsName('/stm/pop/list')
                 },
                 {
                     label:'소통공간 관리',
-                    url: '',
+                    url: '/stm/mnm/list',
+                    className: getClsName('/stm/mnm/list')
                 },
             ]
         },
         {
             label:'설문 관리',
-            expanded: true,
+            expanded: curLocation === 'qsm',
             items:[
                 {
                     label:'설문 목록 관리',
-                    url: '',
+                    url: '/qsm/list',
+                    className: getClsName('/qsm/list')
                 },
             ]
         },
         {
             label:'신청하기 관리',
+            expanded: curLocation === 'apm',
             items:[
                 {
                     label:'The First Cloud 신청 관리',
-                    url: '',
+                    url: '/apm/tfc/list',
+                    className: getClsName('/apm/tfc/list')
                 },
                 {
                     label:'서비스 카탈로그 신청 관리',
-                    url: '',
+                    url: '/apm/cat/list',
+                    className: getClsName('/apm/cat/list')
                 },
             ]
         },
         {
             label:'요청 관리',
-            expanded: true,
+            expanded: curLocation === 'rqm',
             items:[
                 {
                     label:'서비스그룹 요청 목록',
                     url: '',
+                    className: getClsName('')
                 },
                 {
                     label:'자원 요청 목록',
                     url: '',
+                    className: getClsName('')
                 },
             ]
         },
         {
             label:'운영 관리',
-            expanded: true,
+            expanded: curLocation === 'rqm',
             items:[
                 {
                     label:'자원 할당량 관리',
                     url: '',
+                    className: getClsName('')
                 },
                 {
                     label:'자원 청구 코드 관리',
                     url: '',
+                    className: getClsName('')
                 },
             ]
         },
@@ -123,6 +146,9 @@ const LNB: React.FC<IProps> = ({open, children}) => {
     return(
     <>
     {
+        /*
+        multiple 추가시 여러 탭 오픈 가능
+        */
         <PanelMenu className={`cldLnb navi ${open ? 'open':'close'}`} model={items}/>
     }
     </>

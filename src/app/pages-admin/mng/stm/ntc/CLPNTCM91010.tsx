@@ -65,7 +65,7 @@ const CLPNTCM91010: React.FC<IProps> = ({children}) => {
 
         <div className="toolbar">
             <p className="mb10">총 <span className="pageNm">{pages}</span>개</p>
-            <Button className="ml-auto cld-button primary outline" label="신규등록" icon='pi pi-pencil' />
+            <Button className="ml-auto outline" label="신규등록" icon='pi pi-pencil' />
         </div>
 
         <DataTable value={customers2} paginator paginatorTemplate={paginator} first={first1} rows={rows1} onPage={onCustomPage} responsiveLayout="scroll">
