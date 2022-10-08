@@ -34,12 +34,12 @@ const LNB: React.FC<IProps> = ({open, children}) => {
                 {
                     label:'사용자 권한관리',
                     url: '',
-                    className: 'selected'
+                    className: getClsName('/stm/mnm')
                 },
                 {
                     label:'사용자 접속이력 관리',
                     url: '',
-                    className: 'selected'
+                    className: getClsName('/stm/mnm')
                 },
             ]
         },
