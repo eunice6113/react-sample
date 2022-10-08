@@ -1,13 +1,11 @@
 import * as React from "react";
-import { matchRoutes, useLocation, useMatch, useNavigate, useParams, useRoutes } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import adminRoutes from "../../../routes/admin-routes";
 import AdminPageTitle from "../page-title/AdminPageTitle";
 
 interface IProps {
     children: React.ReactNode;
 }
-
-//https://reactnavigation.org/docs/use-navigation-state/
 
 export const BasePage: React.FC<IProps> = ({children}) => {
 
@@ -26,7 +24,7 @@ export const BasePage: React.FC<IProps> = ({children}) => {
             sub.children?.map((tir:any, tidx:any) => {
                 tir.children?.map((four:any, fidx:any) => {
                     console.log(curLocation.length, sub.path, tir.path, tir.name, four.path, four.name)
-
+                    
                     if(curLocation.length === 3 &&
                         curLocation[1] === sub.path && curLocation[2] === tir.path) 
                      {

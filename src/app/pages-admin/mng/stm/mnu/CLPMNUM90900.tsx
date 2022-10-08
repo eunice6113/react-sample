@@ -47,7 +47,6 @@ const CLPMNUM90900: React.FC = () => {
 
     return(
     <BasePage>
-    <h1>메뉴 관리</h1>
         <div className="searchBar">
             <Dropdown className="cld-select" value={select1} options={cities} onChange={handleChange} 
                 optionLabel="name" placeholder="전체" />
