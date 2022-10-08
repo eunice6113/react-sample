@@ -1,20 +1,20 @@
 import * as React from "react";
-import { BasePage } from "../../../shared/components/base/BasePage";
+import { BasePage } from "../../../../shared/components/base/BasePage";
 import { Dropdown } from 'primereact/dropdown';
 import { InputText } from 'primereact/inputtext';
 import { Calendar } from 'primereact/calendar';
 import { Button } from "primereact";
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
-import { paginator } from "../../../shared/utils/table-paginator";
-import { CustomerService } from "../../../shared/demo/customoer-service";
-import './CLPNTCM91010.css';
+import { paginator } from "../../../../shared/utils/table-paginator";
+import { CustomerService } from "../../../../shared/demo/customoer-service";
+import './CLPCATM95610.css';
 
 interface IProps {
     children: React.ReactNode;
 }
-//서비스 카탈로그 신청 관리
-const CLPCATM94510: React.FC<IProps> = ({children}) => {
+//the fast cloud 신청 관리 목록
+const CLPCATM95610: React.FC<IProps> = ({children}) => {
 
     const [select1, setSelect1] = React.useState<any>(null);
     const [select2, setSelect2] = React.useState<any>(null);
@@ -77,5 +77,5 @@ const CLPCATM94510: React.FC<IProps> = ({children}) => {
 
     </BasePage>)
 }
-export default CLPCATM94510;
+export default CLPCATM95610;
 

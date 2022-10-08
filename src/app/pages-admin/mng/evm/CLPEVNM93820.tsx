@@ -8,7 +8,7 @@ import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { paginator } from "../../../shared/utils/table-paginator";
 import { CustomerService } from "../../../shared/demo/customoer-service";
-import './CLPNTCM91010.css';
+import './CLPEVNM93820.css';
 
 interface IProps {
     children: React.ReactNode;
