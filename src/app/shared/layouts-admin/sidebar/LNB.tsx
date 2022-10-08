@@ -26,12 +26,42 @@ const LNB: React.FC<IProps> = ({open, children}) => {
         {
             label:'UI Guide',
             visible: true,
+            expanded: curLocation === 'ui',
             items:[
                 {
                     label:'UI Guide',
                     url: '/ui/guide',
-                    expanded: curLocation === 'ui',
                     className: getClsName('/ui/guide')
+                },
+                {
+                    label:'Button Guide',
+                    url: '/ui/button',
+                    className: getClsName('/ui/button')
+                },
+                {
+                    label:'Input Guide',
+                    url: '/ui/input',
+                    className: getClsName('/ui/input')
+                },
+                {
+                    label:'Select Guide',
+                    url: '/ui/select',
+                    className: getClsName('/ui/select')
+                },
+                {
+                    label:'Popup Guide',
+                    url: '/ui/popup',
+                    className: getClsName('/ui/popup')
+                },
+                {
+                    label:'Table Guide',
+                    url: '/ui/table',
+                    className: getClsName('/ui/table')
+                },
+                {
+                    label:'Chart Guide',
+                    url: '/ui/chart',
+                    className: getClsName('/ui/chart')
                 },
             ]
         },

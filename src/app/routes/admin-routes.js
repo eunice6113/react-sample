@@ -17,6 +17,11 @@ const FullLayout = Loadable(lazy(() => import('../shared/layouts-admin/FullLayou
 
 //UI GUIDE
 const UI_GUIDE = Loadable(lazy(() => import('../pages/ui-guide/UiGuide')));
+const ButtonGuide = Loadable(lazy(() => import('../pages/ui-guide/ButtonGuide')));
+const InputGuide = Loadable(lazy(() => import('../pages/ui-guide/InputGuide')));
+const SelectGuide = Loadable(lazy(() => import('../pages/ui-guide/SelectGuide')));
+const PopupGuide = Loadable(lazy(() => import('../pages/ui-guide/PopupGuide')));
+const TableGuide = Loadable(lazy(() => import('../pages/ui-guide/TableGuide')));
 
 
 //사이트 관리 ==================================================================================
@@ -131,6 +136,36 @@ const adminRoutes = [
           {
             path: 'guide', 
             name: 'UI Guide', 
+            element: <UI_GUIDE />
+          },
+          {
+            path: 'button', 
+            name: 'Button Guide', 
+            element: <ButtonGuide />
+          },
+          {
+            path: 'input', 
+            name: 'Input Guide', 
+            element: <InputGuide />
+          },
+          {
+            path: 'select', 
+            name: 'Select Guide', 
+            element: <SelectGuide />
+          },
+          {
+            path: 'popup', 
+            name: 'Popup Guide', 
+            element: <PopupGuide />
+          },
+          {
+            path: 'table', 
+            name: 'Table Guide', 
+            element: <TableGuide />
+          },
+          {
+            path: 'chart', 
+            name: 'Chart Guide', 
             element: <UI_GUIDE />
           },
         ]
