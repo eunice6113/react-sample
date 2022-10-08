@@ -5,6 +5,9 @@ import Loadable from '../shared/layouts/loader/Loadable';
 // import BlankLayout from '../shared/layouts/BlankLayout';
 // import FullLayout from '../shared/layouts-admin/FullLayout';
 
+//https://reactnavigation.org/docs/getting-started/
+//
+
 //:::::::::::::::::::::::::::::::::::::::: Layouts ::::::::::::::::::::::::::::::::::::::::::
 
 const BlankLayout = Loadable(lazy(() => import('../shared/layouts/BlankLayout')));
@@ -125,36 +128,36 @@ const adminRoutes = [
           { path: 'ntc',
             name: '공지사항 관리',
             children: [
-              {path: 'list', name:'공지사항 관리', element: <CLPNTCM91010 />},
-              {path: ':id', name:'공지사항 관리 상세/수정', element: <CLPNTCM91020 />},
-              {path: 'register', name:'공지사항 관리 등록', element: <CLPNTCM91030 />},
+              {path: 'list', name:'공지사항 관리', state: {name:'hello'}, element: <CLPNTCM91010 />},
+              {path: ':id', name:'공지사항 상세/수정', element: <CLPNTCM91020 />},
+              {path: 'register', name:'공지사항 등록', element: <CLPNTCM91030 />},
             ],
           },
           { path: 'qna', 
-            name: '자주묻는질문', 
+            name: '자주 묻는 질문', 
             children: [
-              {path: 'list', name:'자주묻는질문 관리', element: <CLPQNAM91410 />},
-              {path: ':id', name:'자주묻는질문 상세/수정', element: <CLPQNAM91520 />},
-              {path: 'register', name:'자주묻는질문 등록', element: <CLPQNAM91530 />},
+              {path: 'list', name:'자주 묻는 질문 관리', element: <CLPQNAM91410 />},
+              {path: ':id', name:'자주 묻는 질문 상세/수정', element: <CLPQNAM91520 />},
+              {path: 'register', name:'자주 묻는 질문 등록', element: <CLPQNAM91530 />},
             ],
           },
           { path: 'faq', 
-            name: '건의및개선', 
+            name: '건의 및 개선', 
             children: [
-              {path: 'list', name:'건의및개선 관리', element: <CLPFAQM91810 />},
-              {path: ':id', name:'건의및개선 상세/수정', element: <CLPFAQM91920 />},
-              {path: 'register', name:'건의및개선 등록', element: <CLPFAQM91930 />},
+              {path: 'list', name:'건의 및 개선 관리', element: <CLPFAQM91810 />},
+              {path: ':id', name:'건의 및 개선 상세/수정', element: <CLPFAQM91920 />},
+              {path: 'register', name:'건의 및 개선 등록', element: <CLPFAQM91930 />},
             ],
           },
           { path: 'pop', 
-            name: '팝업관리', 
+            name: '팝업 관리', 
             children: [
-              {path: 'list', name:'팝업관리', element: <CLPPOPM92110 />},
-              {path: ':id', name:'팝업관리 상세/수정', element: <CLPPOPM92220 />},
+              {path: 'list', name:'팝업 관리', element: <CLPPOPM92110 />},
+              {path: ':id', name:'팝업 관리 상세/수정', element: <CLPPOPM92220 />},
               {path: 'register', name:'팝업 등록', element: <CLPPOPM92230 />},
             ],
           },
-          { path: 'mnm', 
+          { path: 'cmn', 
             name: '소통공간', 
             children: [
               {path: 'list', name:'소통공간 관리', element: <CLPCMNM95410 />},

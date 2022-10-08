@@ -21,9 +21,9 @@ function App() {
   
   return (
     <>
-    <Suspense fallback={<Loader />}>
+    {/* <Suspense fallback={<Loader />}> */}
         {routing}
-    </Suspense>
+    {/* </Suspense> */}
     </>
   );
 }

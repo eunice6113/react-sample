@@ -17,6 +17,11 @@ const LNB: React.FC<IProps> = ({open, children}) => {
 
     const getClsName = ( url:string ) => url === pathName ? 'selected' : '';
 
+    //메뉴 필터링
+    const getIsAdmin = () => {
+        return true;
+    }
+
     const items = [
         {
             label:'사용자 관리',
@@ -30,6 +35,7 @@ const LNB: React.FC<IProps> = ({open, children}) => {
             //     );
             // },
             expanded: curLocation === 'usr',
+            visible: true,
             items:[
                 {
                     label:'사용자 권한관리',
@@ -46,6 +52,7 @@ const LNB: React.FC<IProps> = ({open, children}) => {
         {
             label:'사이트 관리',
             expanded: curLocation === 'stm',
+            visible: true,
             items:[
                 {
                     label:'메뉴 관리',
@@ -74,14 +81,15 @@ const LNB: React.FC<IProps> = ({open, children}) => {
                 },
                 {
                     label:'소통공간 관리',
-                    url: '/stm/mnm/list',
-                    className: getClsName('/stm/mnm/list')
+                    url: '/stm/cmn/list',
+                    className: getClsName('/stm/cmn/list')
                 },
             ]
         },
         {
             label:'설문 관리',
             expanded: curLocation === 'qsm',
+            visible: true,
             items:[
                 {
                     label:'설문 목록 관리',
@@ -93,6 +101,7 @@ const LNB: React.FC<IProps> = ({open, children}) => {
         {
             label:'신청하기 관리',
             expanded: curLocation === 'apm',
+            visible: true,
             items:[
                 {
                     label:'The First Cloud 신청 관리',
@@ -108,6 +117,7 @@ const LNB: React.FC<IProps> = ({open, children}) => {
         },
         {
             label:'요청 관리',
+            visible: getIsAdmin(),
             expanded: curLocation === 'rqm',
             items:[
                 {
@@ -125,6 +135,7 @@ const LNB: React.FC<IProps> = ({open, children}) => {
         {
             label:'운영 관리',
             expanded: curLocation === 'rqm',
+            visible: getIsAdmin(),
             items:[
                 {
                     label:'자원 할당량 관리',
