@@ -143,6 +143,8 @@ export default LNB;
 
 :::::::::::::::::: 관리자 화면 :::::::::::::::::::::::::::
 
+//사이트 관리
+
 CLPMNUM90900 메뉴 관리
 
 CLPNTCM91010 공지사항 관리
@@ -150,29 +152,48 @@ CLPNTCM91020 공지사항 관리 상세/수정
 CLPNTCM91030 공지사항 관리 등록
 
 CLPQNAM91410 자주묻는질문 관리
-CLPQNAM91520 자주묻는질문 상세
+CLPQNAM91520 자주묻는질문 상세/수정
+CLPQNAM91530 자주묻는질문 등록
 
-CLPFAQM91810 자주묻는질문 관리
-CLPFAQM91920 자주묻는질문 상세
+CLPFAQM91810 건의및개선 관리
+CLPFAQM91920 건의및개선 상세
+CLPFAQM91930 건의및개선 등록
 
 CLPPOPM92110 팝업관리
 CLPPOPM92220 팝업관리 상세
+CLPPOPM92230 팝업관리 등록
 
 CLPCMNM95410 소통공간 관리
 CLPCMNM95520 소통공간 관리 상세
+CLPCMNM95530 소통공간 등록
 
 CLPMBNM95810 메인배너 관리
 CLPMBNM95920 메인배너 관리 상세
+CLPMBNM95930 메인배너 등록
+
+
+//설문관리
 
 CLPSURM93310 설문 관리 
 CLPSURM93420 설문 상세
 CLPSURM93600 설문 결과 
 
+
+//이벤트관리
+
 CLPEVNM93710 이벤트 관리
 CLPEVNM93820 이벤트 관리 상세
+CLPEVNM93830 이벤트 등록
+
+
+//매뉴얼 관리
 
 CLPMNNM94110 매뉴얼 관리
 CLPMNNM94220 매뉴얼 관리 상세
+CLPMNNM94230 매뉴얼 등록
+
+
+//신청하기 관리
 
 CLPCATM94510 서비스 카탈로그 신청 관리
 CLPCATM94620 서비스 카탈로그 신청 상세

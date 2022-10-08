@@ -1,17 +1,17 @@
 import * as React from 'react';
 import { useParams } from 'react-router-dom';
 import { BasePage } from '../../../../shared/components/base/BasePage';
-import './CLPNTCM91020.css';
+import './CLPNTCM91030.css';
 
-//공지사항 관리 상세/수정
-const CLPNTCM91020:React.FC = () => {
+//공지사항 관리 등록
+const CLPNTCM91030:React.FC = () => {
     const params = useParams();
     console.log(params.id);
 
     return(
     <BasePage>
         <div className='heading'>
-            <h1>공지사항 관리 상세/수정</h1>
+            <h1>공지사항 등록</h1>
         </div>
         <div className='mb'>
             <p>등록자 정보</p>
@@ -51,4 +51,4 @@ const CLPNTCM91020:React.FC = () => {
         
     </BasePage>)
 }
-export default CLPNTCM91020;
+export default CLPNTCM91030;

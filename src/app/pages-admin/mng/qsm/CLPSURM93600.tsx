@@ -1,20 +1,20 @@
 import * as React from "react";
-import { BasePage } from "../../../../shared/components/base/BasePage";
+import { BasePage } from "../../../shared/components/base/BasePage";
 import { Dropdown } from 'primereact/dropdown';
 import { InputText } from 'primereact/inputtext';
 import { Calendar } from 'primereact/calendar';
 import { Button } from "primereact";
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
-import { paginator } from "../../../../shared/utils/table-paginator";
-import { CustomerService } from "../../../../shared/demo/customoer-service";
+import { paginator } from "../../../shared/utils/table-paginator";
+import { CustomerService } from "../../../shared/demo/customoer-service";
 import './CLPNTCM91010.css';
 
 interface IProps {
     children: React.ReactNode;
 }
-//공지사항 관리
-const CLPNTCM91010: React.FC<IProps> = ({children}) => {
+//설문 결과 
+const CLPSURM93600: React.FC<IProps> = ({children}) => {
 
     const [select1, setSelect1] = React.useState<any>(null);
     const [select2, setSelect2] = React.useState<any>(null);
@@ -77,5 +77,5 @@ const CLPNTCM91010: React.FC<IProps> = ({children}) => {
 
     </BasePage>)
 }
-export default CLPNTCM91010;
+export default CLPSURM93600;
 

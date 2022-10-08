@@ -13,8 +13,8 @@ import './CLPNTCM91010.css';
 interface IProps {
     children: React.ReactNode;
 }
-//공지사항 관리
-const CLPNTCM91010: React.FC<IProps> = ({children}) => {
+//자주묻는질문 상세/수정
+const CLPQNAM91520: React.FC<IProps> = ({children}) => {
 
     const [select1, setSelect1] = React.useState<any>(null);
     const [select2, setSelect2] = React.useState<any>(null);
@@ -77,5 +77,5 @@ const CLPNTCM91010: React.FC<IProps> = ({children}) => {
 
     </BasePage>)
 }
-export default CLPNTCM91010;
+export default CLPQNAM91520;
 
