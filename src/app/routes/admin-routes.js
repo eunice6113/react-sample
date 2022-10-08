@@ -15,6 +15,10 @@ const FullLayout = Loadable(lazy(() => import('../shared/layouts-admin/FullLayou
 
 // :::::::::::::::::::::::::::::::::::::::: Pages :::::::::::::::::::::::::::::::::::::::::::
 
+//UI GUIDE
+const UI_GUIDE = Loadable(lazy(() => import('../pages/ui-guide/UiGuide')));
+
+
 //사이트 관리 ==================================================================================
 //메뉴 관리
 const CLPMNUM90900 = Loadable(lazy(() => import('../pages-admin/mng/stm/mnu/CLPMNUM90900')));
@@ -111,8 +115,28 @@ CLPRSQM05510 자원 목록
 
 const Error = Loadable(lazy(() => import('../pages/auth/Error')));
 
-// Routes ==================================================================================
+// Routes ================================================================
 const adminRoutes = [
+  {
+    path: '/',
+    element: <Navigate to='/ui/guide' />,
+  },
+  {
+    path: '/',
+    element: <FullLayout />,
+    children: [
+      { path: 'ui',
+        name: 'UI guide', 
+        children: [
+          {
+            path: 'guide', 
+            name: 'UI Guide', 
+            element: <UI_GUIDE />
+          },
+        ]
+      }
+    ]
+  },
   {
     path: '/',
     element: <FullLayout />,

@@ -24,6 +24,18 @@ const LNB: React.FC<IProps> = ({open, children}) => {
 
     const items = [
         {
+            label:'UI Guide',
+            visible: true,
+            items:[
+                {
+                    label:'UI Guide',
+                    url: '/ui/guide',
+                    expanded: curLocation === 'ui',
+                    className: getClsName('/ui/guide')
+                },
+            ]
+        },
+        {
             label:'사용자 관리',
             // template: (item, options) => {
             //     return (

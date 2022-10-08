@@ -5,7 +5,7 @@ interface IProps {
     children: React.ReactNode;
 }
 
-const UiGuide: React.FC<IProps> = ({children}) => {
+const CssGuide: React.FC<IProps> = ({children}) => {
 
     return(
     <BasePage>
@@ -15,4 +15,4 @@ const UiGuide: React.FC<IProps> = ({children}) => {
 
     </BasePage>)
 }
-export default UiGuide
+export default CssGuide
