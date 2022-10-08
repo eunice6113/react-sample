@@ -1,5 +1,6 @@
 import * as React from "react";
 import { BasePage } from "../../../../shared/components/base/BasePage";
+import './CLPNTCM07410.css';
 
 interface IProps {
     children: React.ReactNode;

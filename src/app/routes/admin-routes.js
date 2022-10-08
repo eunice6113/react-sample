@@ -69,24 +69,48 @@ const CLPCATM95610 = Loadable(lazy(() => import('../pages-admin/mng/apm/tfc/CLPC
 const CLPCATM95720 = Loadable(lazy(() => import('../pages-admin/mng/apm/tfc/CLPCATM95720')));
 
 
+//운영 관리(크로센트) ==================================================================================
+/*
+사이트 관리 -------------------------
+
+CLPCTFM92510 자격증명 관리
+CLPCTFM92620 자격증명 관리 상세
+
+CLPCTFM92700 자격증명 발급
+CLPCTFM92800 자격증명 갱신
+
+CLPACTM92910 접근토큰 발급 관리
+CLPACTM93020 접근토큰 발급 관리 상세 
+
+CLPACTM93100 접근토큰 발급
+CLPACTM93200 접근토큰 갱신
+
+
+요청관리 ------------
+
+CLPSVGM04910 서비스그룹 요청 목록
+CLPSVGM05020 서비스그룹 요청 상세
+CLPSVGM05621 서비스그룹 상세
+
+CLPRSRM05110 자원 요청 목록
+CLPRSRM05220 자원 요청 상세
+
+CLPRSQM05300 자원 할당량 관리
+
+CLPRSQM05410 자원 청구 코드 목록
+
+CLPRSQM05510 자원 목록
+*/
+
 
 const Error = Loadable(lazy(() => import('../pages/auth/Error')));
 
-// Routes
+// Routes ==================================================================================
 const adminRoutes = [
   {
     path: '/',
     element: <FullLayout />,
     children: [
-      { path: 'notice', 
-        name: '공지사항 관리', 
-        children: [
-          {path: 'list', element: <CLPNTCM91010 />},
-          {path: ':id', element: <CLPNTCM91020 />},
-          {path: 'register', element: <CLPNTCM91030 />},
-          // {path: 'detail/:id', element: <NoticeDetail />},
-        ],
-      },
       { path: 'stm',
         name: '사이트 관리', 
         children: [
@@ -95,8 +119,7 @@ const adminRoutes = [
             name: '메뉴 관리', 
             element: <CLPMNUM90900 />,
           },
-          {
-            path: 'ntc',
+          { path: 'ntc',
             name: '공지사항 관리',
             children: [
               {path: 'list', name:'공지사항 관리', element: <CLPNTCM91010 />},
@@ -104,8 +127,7 @@ const adminRoutes = [
               {path: 'register', name:'공지사항 관리 등록', element: <CLPNTCM91030 />},
             ],
           },
-          { 
-            path: 'qna', 
+          { path: 'qna', 
             name: '자주묻는질문', 
             children: [
               {path: 'list', name:'자주묻는질문 관리', element: <CLPQNAM91410 />},
@@ -113,8 +135,7 @@ const adminRoutes = [
               {path: 'register', name:'자주묻는질문 등록', element: <CLPQNAM91530 />},
             ],
           },
-          { 
-            path: 'faq', 
+          { path: 'faq', 
             name: '건의및개선', 
             children: [
               {path: 'list', name:'건의및개선 관리', element: <CLPFAQM91810 />},
@@ -122,8 +143,7 @@ const adminRoutes = [
               {path: 'register', name:'건의및개선 등록', element: <CLPFAQM91930 />},
             ],
           },
-          { 
-            path: 'pop', 
+          { path: 'pop', 
             name: '팝업관리', 
             children: [
               {path: 'list', name:'팝업관리', element: <CLPPOPM92110 />},
@@ -131,8 +151,7 @@ const adminRoutes = [
               {path: 'register', name:'팝업 등록', element: <CLPPOPM92230 />},
             ],
           },
-          { 
-            path: 'mnm', 
+          { path: 'mnm', 
             name: '소통공간', 
             children: [
               {path: 'list', name:'소통공간 관리', element: <CLPCMNM95410 />},
@@ -140,8 +159,7 @@ const adminRoutes = [
               {path: 'register', name:'소통공간 등록', element: <CLPCMNM95530 />},
             ],
           },
-          { 
-            path: 'mbn', 
+          { path: 'mbn', 
             name: '메인배너', 
             children: [
               {path: 'list', name:'메인배너 관리', element: <CLPMBNM95810 />},
