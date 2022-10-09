@@ -27,7 +27,8 @@
     border-right: 0 none;
     border-bottom: 0 none;
     border-right: 0 none;
-    border-left: 1px solid #E7EAEE;
+    /* border-left: 1px solid #E7EAEE; */
+    border-left: 1px solid var(--global-border-color);
     border-radius: 0;
     padding-left: 10px;
 }

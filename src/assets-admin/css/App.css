@@ -3,7 +3,6 @@
 }
 
 
-
 :root {
   --primary-color: var(--brand-primary) !important;
   --focus-ring: 0 0 0 0.2rem red !important;
@@ -56,75 +55,6 @@
 }
 
 
-/* UI */
-.p-button {
-  color: #ffffff;
-  background: var(--brand-primary);
-  border: 1px solid var(--brand-primary);
-  height: 32px;
-  transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
-  border-radius: 4px;
-  padding: 0 .7rem;
-  font-size: 13px;
-}
-.p-button.p-button-outlined {
-  color: var(--brand-primary);
-}
-.p-button:enabled:hover, .p-button:not(button):not(a):not(.p-disabled):hover {
-  background: var(--brand-primary);
-  color: #ffffff;
-  border-color: var(--brand-primary);
-}
-.p-button:enabled:active, .p-button:not(button):not(a):not(.p-disabled):active {
-  background: var(--brand-primary);
-  color: #ffffff;
-  border-color: var(--brand-primary);
-}
-.p-button.p-button-outlined {
-  background-color: transparent;
-  color: var(--brand-primary);
-  border: 1px solid;
-}
-.p-button.p-button-outlined:enabled:hover, .p-button.p-button-outlined:not(button):not(a):not(.p-disabled):hover {
-  background: rgba(99, 102, 241, 0.04);
-  color: var(--brand-primary);
-  border: 1px solid;
-}
-.p-button.p-button-outlined:enabled:active, .p-button.p-button-outlined:not(button):not(a):not(.p-disabled):active {
-  background: rgba(99, 102, 241, 0.16);
-  color: var(--brand-primary);
-  border: 1px solid;
-}
-
-/* p-dropdown */
-.p-dropdown {
-  background: #ffffff;
-  border: 1px solid #ced4da;
-  transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
-  border-radius: 4px;
-  height: 32px;
-}
-.p-dropdown-panel .p-dropdown-items .p-dropdown-item {
-  padding: 0 15px;
-  font-size: 13px;
-}
-.p-dropdown .p-dropdown-trigger {
-  width:2rem;
-}
-
-
-.p-datepicker {
-  scale:0.8;
-  width: 320px !important;
-}
-.p-inputtext {
-  padding: 0.2rem 0.7rem;
-  font-size: 13px !important;
-  border-radius: 4px;
-  display: flex;
-  align-items: center;
-}
-
 
 
 .searchBar {
@@ -138,8 +68,6 @@
   margin-right: 0;
 }
 .searchBar .searchTxt {
-  height: 32px;
-  line-height: 32px;
   flex: 1;
 }
 .searchBar .p-dropdown {
@@ -148,30 +76,10 @@
 .searchBar .p-calendar {
   width: 120px;
 }
-
 .searchBar .searchBtn {
   width: 60px;
 }
 
-
-.p-calendar {
-  border: 1px solid #ced4da;
-  border-radius: 4px;
-  height: 32px;
-}
-.p-calendar .p-inputtext {
-  border: 0 none;
-  padding: 0 0 0 0.7rem;
-}
-.p-calendar .p-button.p-button-icon-only {
-  width: 1.7rem;
-  height: 30px;
-}
-.p-calendar .p-button {
-  background: #fff;
-  color: var(--brand-primary);
-  border: 0 none;
-}
 
 
 .pageNm {
@@ -181,7 +89,7 @@
 
 .toolbar {
   display: flex;
-
+  align-items: center;
 }
 
 

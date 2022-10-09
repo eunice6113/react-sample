@@ -6,13 +6,11 @@
 }
 
 .mainContainer .lnbContainer {
-    /* display: fixed; */
     position: relative;
     top:0;
     left:0;
     top:0;
     left:0;
-    background: #FFFFFF;
     box-shadow: 4px 0px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -23,4 +21,8 @@
     width: 100%;
     /* max-width: 1180px; */
     max-width: 1440px;
+}
+
+.p-panelmenu .p-panelmenu-content {
+    background: transparent !important;
 }

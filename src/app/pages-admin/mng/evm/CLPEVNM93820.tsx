@@ -7,7 +7,6 @@ import { Button } from "primereact";
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { paginator } from "../../../shared/utils/table-paginator";
-import { CustomerService } from "../../../shared/demo/customoer-service";
 import './CLPEVNM93820.css';
 
 interface IProps {
@@ -40,7 +39,6 @@ const CLPEVNM93820: React.FC<IProps> = ({children}) => {
     const [first1, setFirst1] = React.useState(0);
     const [rows1, setRows1] = React.useState(10);
 
-    const customerService = new CustomerService();
 
     const onCustomPage = (event:any) => {
         setFirst1(event.first);

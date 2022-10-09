@@ -3,9 +3,9 @@
 .customHeader {
     width: 100%;
     height: 55px;
-    background-color: var(--brand-primary);
+    background-color: #1d5dc4;
+    /*var(--brand-primary);*/
 }
-
 
 .customHeader .headerInnerContents {
     color: #fff;

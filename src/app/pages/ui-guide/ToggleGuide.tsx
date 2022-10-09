@@ -2,16 +2,15 @@ import * as React from "react";
 import { useState, useEffect } from "react";
 import { BasePage } from "../../shared/components/base/BasePage";
 
-const SelectGuide: React.FC = () => {
+const ToggleGuide: React.FC = () => {
 
-    //alert
-    // confirm
+    //toggle switch
+    //toggle button
     
     return(
     <BasePage>
 
-
     
     </BasePage>)
 }
-export default SelectGuide;
+export default ToggleGuide;

@@ -2,16 +2,12 @@ import * as React from "react";
 import { useState, useEffect } from "react";
 import { BasePage } from "../../shared/components/base/BasePage";
 
-const SelectGuide: React.FC = () => {
+const TabGuide: React.FC = () => {
 
-    //alert
-    // confirm
-    
     return(
     <BasePage>
-
 
     
     </BasePage>)
 }
-export default SelectGuide;
+export default TabGuide;

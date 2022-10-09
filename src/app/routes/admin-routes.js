@@ -23,6 +23,16 @@ const SelectGuide = Loadable(lazy(() => import('../pages/ui-guide/SelectGuide'))
 const PopupGuide = Loadable(lazy(() => import('../pages/ui-guide/PopupGuide')));
 const TableGuide = Loadable(lazy(() => import('../pages/ui-guide/TableGuide')));
 
+const CheckboxGuide = Loadable(lazy(() => import('../pages/ui-guide/CheckboxGuide')));
+const DatePickerGuide = Loadable(lazy(() => import('../pages/ui-guide/DatePickerGuide')));
+const InfoGuide = Loadable(lazy(() => import('../pages/ui-guide/InfoGuide')));
+const LabelGuide = Loadable(lazy(() => import('../pages/ui-guide/LabelGuide')));
+const RadioGuide = Loadable(lazy(() => import('../pages/ui-guide/RadioGuide')));
+const TabGuide = Loadable(lazy(() => import('../pages/ui-guide/TabGuide')));
+const ToggleGuide = Loadable(lazy(() => import('../pages/ui-guide/ToggleGuide')));
+
+
+
 
 //사이트 관리 ==================================================================================
 //메뉴 관리
@@ -167,6 +177,36 @@ const adminRoutes = [
             path: 'chart', 
             name: 'Chart Guide', 
             element: <UI_GUIDE />
+          },
+          {
+            path: 'check', 
+            name: 'Checkbox Guide', 
+            element: <CheckboxGuide />
+          },
+          {
+            path: 'datepicker', 
+            name: 'DatePickerGuide Guide', 
+            element: <DatePickerGuide />
+          },
+          {
+            path: 'info', 
+            name: 'InfoGuide Guide', 
+            element: <InfoGuide />
+          },
+          {
+            path: 'label', 
+            name: 'LabelGuide Guide', 
+            element: <LabelGuide />
+          },
+          {
+            path: 'tab', 
+            name: 'TabGuide Guide', 
+            element: <TabGuide />
+          },
+          {
+            path: 'toggle', 
+            name: 'ToggleGuide Guide', 
+            element: <ToggleGuide />
           },
         ]
       }

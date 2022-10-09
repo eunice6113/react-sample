@@ -7,22 +7,34 @@ import { Button } from "primereact";
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { paginator } from "../../../../shared/utils/table-paginator";
-import { CustomerService } from "../../../../shared/demo/customoer-service";
 import './CLPNTCM91010.css';
+import { noticeDummyData } from "../../../../shared/demo/data/noticeDummyData";
 
-interface IProps {
-    children: React.ReactNode;
-}
 //공지사항 관리
-const CLPNTCM91010: React.FC<IProps> = ({children}) => {
+const CLPNTCM91010: React.FC = () => {
 
     const [select1, setSelect1] = React.useState<any>(null);
     const [select2, setSelect2] = React.useState<any>(null);
-    const [value1, setValue1] = React.useState('');
-    const [date1, setDate1] = React.useState<Date | Date[] | undefined>(undefined);
+    const [searchValue, setSearchValue] = React.useState('');
+    const [fromDate, setFromDate] = React.useState<Date | Date[] | undefined>(undefined);
+    const [toDate, setToDate] = React.useState<Date | Date[] | undefined>(undefined);
 
+    //table
+    const [data, setData] = React.useState([]);
+    const [first, setFirst] = React.useState(0);
+    const [rows, setRows] = React.useState(10);
 
-    const cities = [
+    //table dummy data
+    React.useEffect(() => {
+        // setData(demoData)
+    }, []); 
+
+    React.useEffect(() => {
+        console.log('data =>', data)
+    }, [data]); 
+
+    //select option dummy data
+    const options1 = [
         { name: 'New York', code: 'NY' },
         { name: 'Rome', code: 'RM' },
         { name: 'London', code: 'LDN' },
@@ -30,51 +42,105 @@ const CLPNTCM91010: React.FC<IProps> = ({children}) => {
         { name: 'Paris', code: 'PRS' }
     ];
 
-    const handleChange = (e: { value: any}) => {
+    const options2 = [
+        { name: 'New York', code: 'NY' },
+        { name: 'Rome', code: 'RM' },
+        { name: 'London', code: 'LDN' },
+        { name: 'Istanbul', code: 'IST' },
+        { name: 'Paris', code: 'PRS' }
+    ];
+
+    const handleChange1 = (e: { value: any}) => {
         setSelect1(e.value);
     }
 
-
-    const [customers2, setCustomers2] = React.useState([]);
-    const [first1, setFirst1] = React.useState(0);
-    const [rows1, setRows1] = React.useState(10);
-
-    const customerService = new CustomerService();
-
-    const onCustomPage = (event:any) => {
-        setFirst1(event.first);
-        setRows1(event.rows);
+    const handleChange2 = (e: { value: any}) => {
+        setSelect2(e.value);
     }
 
+    const onCustomPage = (event:any) => {
+        setFirst(event.first);
+        setRows(event.rows);
+    }
+    
+    //table page length
     let pages = 50;
+    
+    //신규 등록 버튼
+    const register = (event:any) => {
+
+    }
+
+    const headerTemplate = [
+        {
+            field: 'no',
+            header: '순번',
+            sortable: false,
+            style: {width: '10%', textAlign:'center', color:'gray'}
+        },
+        {
+            field: 'type',
+            header: '',
+            sortable: false,
+            style: {width: '10%'}
+        },
+        {
+            field: 'subject',
+            header: '제목',
+            sortable: false,
+            style: {width: '40%'}
+        },
+        {
+            field: 'attach',
+            header: '첨부파일',
+            sortable: false,
+            style: {width: '10%', textAlign:'center'}
+        },
+        {
+            field: 'author',
+            header: '등록자',
+            sortable: false,
+            style: {width: '8%', textAlign:'center'}
+        },
+        {
+            field: 'hit',
+            header: '조회수',
+            sortable: false,
+            style: {width: '10%', textAlign:'center'}
+        },
+        {
+            field: 'registerDate',
+            header: '등록일',
+            sortable: false,
+            style: {width: '12%', textAlign:'center'}
+        },
+    ]
 
     return(
     <BasePage>
         <div className="searchBar">
-            <Dropdown className="cld-select" value={select1} options={cities} onChange={handleChange} 
+            <Dropdown value={select1} options={options1} onChange={handleChange1} 
                 optionLabel="name" placeholder="전체" />
-            <Dropdown value={select2} options={cities} onChange={handleChange} 
+            <Dropdown value={select2} options={options2} onChange={handleChange2} 
                 optionLabel="name" placeholder="전체" />
 
-            <InputText className="searchTxt" placeholder="검색어를 입력해주세요" value={value1} onChange={(e) => setValue1(e.target.value)} />
+            <InputText className="searchTxt" placeholder="검색어를 입력해주세요" value={searchValue} onChange={(e) => setSearchValue(e.target.value)} />
 
-            <Calendar id="icon" dateFormat="yy-mm-dd" value={date1} onChange={(e) => setDate1(e.value)} showIcon />
-            <Calendar id="icon" dateFormat="yy-mm-dd" value={date1} onChange={(e) => setDate1(e.value)} showIcon />
-            <Button className="cld-button primary" label="조회" />
+            <Calendar dateFormat="yy-mm-dd" value={fromDate} onChange={(e) => setFromDate(e.value)} showIcon />
+            <Calendar dateFormat="yy-mm-dd" value={toDate} onChange={(e) => setToDate(e.value)} showIcon />
+            <Button className="" label="조회" />
         </div>
 
-        <div className="toolbar">
-            <p className="mb10">총 <span className="pageNm">{pages}</span>개</p>
-            <Button className="ml-auto outline" label="신규등록" icon='pi pi-pencil' />
+        <div className="toolbar mb10">
+            <p>총 <span className="pageNm">{pages}</span>개</p>
+            <Button className="ml-auto outline" label="신규등록" icon='pi pi-pencil' onClick={register} />
         </div>
 
-        <DataTable value={customers2} paginator paginatorTemplate={paginator} first={first1} rows={rows1} onPage={onCustomPage} responsiveLayout="scroll">
-            <Column field="name" header="Name" style={{ width: '25%' }}></Column>
-            <Column field="country.name" header="Country" style={{ width: '25%' }}></Column>
-            <Column field="company" header="Company" style={{ width: '25%' }}></Column>
-            <Column field="representative.name" header="Representative" style={{ width: '25%' }}></Column>
+        <DataTable value={noticeDummyData} paginator paginatorTemplate={paginator} first={first} rows={rows} onPage={onCustomPage} responsiveLayout="scroll">
+            {headerTemplate.map((col, index) => (
+                <Column key={col.header} field={col.field} header={col.header} style={col.style}></Column>
+            ))}
         </DataTable>
-
     </BasePage>)
 }
 export default CLPNTCM91010;

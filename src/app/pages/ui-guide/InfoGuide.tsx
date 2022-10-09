@@ -2,7 +2,7 @@ import * as React from "react";
 import { useState, useEffect } from "react";
 import { BasePage } from "../../shared/components/base/BasePage";
 
-const SelectGuide: React.FC = () => {
+const InfoGuide: React.FC = () => {
 
     //alert
     // confirm
@@ -14,4 +14,4 @@ const SelectGuide: React.FC = () => {
     
     </BasePage>)
 }
-export default SelectGuide;
+export default InfoGuide;

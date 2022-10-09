@@ -7,8 +7,8 @@ import { Button } from "primereact";
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { paginator } from "../../../../shared/utils/table-paginator";
-import { CustomerService } from "../../../../shared/demo/customoer-service";
 import './CLPQNAM91530.css';
+import { CustomerService } from "../../../../shared/demo/customer-service";
 
 interface IProps {
     children: React.ReactNode;

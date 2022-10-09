@@ -7,7 +7,6 @@ import { Button } from "primereact";
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { paginator } from "../../../shared/utils/table-paginator";
-import { CustomerService } from "../../../shared/demo/customoer-service";
 import './CLPMNNM94230.css';
 
 //매뉴얼 등록
@@ -36,7 +35,6 @@ const CLPMNNM94230: React.FC = () => {
     const [first1, setFirst1] = React.useState(0);
     const [rows1, setRows1] = React.useState(10);
 
-    const customerService = new CustomerService();
 
     const onCustomPage = (event:any) => {
         setFirst1(event.first);
