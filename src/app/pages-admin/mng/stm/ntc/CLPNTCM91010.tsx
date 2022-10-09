@@ -71,6 +71,10 @@ const CLPNTCM91010: React.FC = () => {
 
     }
 
+    const goDetail = ( e:any ) => {
+        console.log('clicked row =>', e.index)
+    }
+
     const headerTemplate = [
         {
             field: 'no',
@@ -136,7 +140,10 @@ const CLPNTCM91010: React.FC = () => {
             <Button className="ml-auto outline" label="신규등록" icon='pi pi-pencil' onClick={register} />
         </div>
 
-        <DataTable value={noticeDummyData} paginator paginatorTemplate={paginator} first={first} rows={rows} onPage={onCustomPage} responsiveLayout="scroll">
+        <DataTable value={noticeDummyData} paginator paginatorTemplate={paginator} 
+            onRowClick={(e) => goDetail(e)}
+            first={first} rows={rows} 
+            onPage={onCustomPage} responsiveLayout="scroll">
             {headerTemplate.map((col, index) => (
                 <Column key={col.header} field={col.field} header={col.header} style={col.style}></Column>
             ))}

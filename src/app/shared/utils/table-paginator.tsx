@@ -5,7 +5,7 @@ export const paginator:any = {
     'PrevPageLink': (options:any) => {
         return (
             <button type="button" className={options.className} onClick={options.onClick} disabled={options.disabled}>
-                <span className="p-3">Previous</span>
+                <i className='pi pi-arrow-left'></i><span className="pl5">이전</span>
                 <Ripple />
             </button>
         )
@@ -13,7 +13,7 @@ export const paginator:any = {
     'NextPageLink': (options:any) => {
         return (
             <button type="button" className={options.className} onClick={options.onClick} disabled={options.disabled}>
-                <span className="p-3">Next</span>
+                <span className="pr5">다음</span><i className='pi pi-arrow-right'></i>
                 <Ripple />
             </button>
         )
