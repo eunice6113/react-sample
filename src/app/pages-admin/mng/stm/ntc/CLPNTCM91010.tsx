@@ -9,9 +9,11 @@ import { Column } from 'primereact/column';
 import { paginator } from "../../../../shared/utils/table-paginator";
 import './CLPNTCM91010.css';
 import { noticeDummyData } from "../../../../shared/demo/data/noticeDummyData";
+import { useBasePage } from "../../../../shared/hooks/base-page.hook";
 
 //공지사항 관리
 const CLPNTCM91010: React.FC = () => {
+    const { goPage, goBack } = useBasePage()
 
     const [select1, setSelect1] = React.useState<any>(null);
     const [select2, setSelect2] = React.useState<any>(null);
@@ -68,11 +70,12 @@ const CLPNTCM91010: React.FC = () => {
     
     //신규 등록 버튼
     const register = (event:any) => {
-
+        goPage(`/stm/ntc/register`);
     }
 
     const goDetail = ( e:any ) => {
         console.log('clicked row =>', e.index)
+        goPage(`/stm/ntc/${e.index}`);
     }
 
     const headerTemplate = [
@@ -86,37 +89,42 @@ const CLPNTCM91010: React.FC = () => {
             field: 'type',
             header: '',
             sortable: false,
-            style: {width: '10%'}
+            style: {width: '10%'},
+            className: 'color-primary'
         },
         {
             field: 'subject',
             header: '제목',
             sortable: false,
-            style: {width: '40%'}
+            style: {width: '40%'},
         },
         {
             field: 'attach',
             header: '첨부파일',
             sortable: false,
-            style: {width: '10%', textAlign:'center'}
+            style: {width: '10%'},
+            className: 'text-center'
         },
         {
             field: 'author',
             header: '등록자',
             sortable: false,
-            style: {width: '8%', textAlign:'center'}
+            style: {width: '8%'},
+            className: 'text-center'
         },
         {
             field: 'hit',
             header: '조회수',
             sortable: false,
-            style: {width: '10%', textAlign:'center'}
+            style: {width: '10%'},
+            className: 'text-center'
         },
         {
             field: 'registerDate',
             header: '등록일',
             sortable: false,
-            style: {width: '12%', textAlign:'center'}
+            style: {width: '12%'},
+            className: 'text-center'
         },
     ]
 
@@ -132,7 +140,7 @@ const CLPNTCM91010: React.FC = () => {
 
             <Calendar dateFormat="yy-mm-dd" value={fromDate} onChange={(e) => setFromDate(e.value)} showIcon />
             <Calendar dateFormat="yy-mm-dd" value={toDate} onChange={(e) => setToDate(e.value)} showIcon />
-            <Button className="" label="조회" />
+            <Button label="조회" />
         </div>
 
         <div className="toolbar mb10">
@@ -145,7 +153,7 @@ const CLPNTCM91010: React.FC = () => {
             first={first} rows={rows} 
             onPage={onCustomPage} responsiveLayout="scroll">
             {headerTemplate.map((col, index) => (
-                <Column key={col.header} field={col.field} header={col.header} style={col.style}></Column>
+                <Column key={col.header} field={col.field} header={col.header} style={col.style} className={col.className}></Column>
             ))}
         </DataTable>
     </BasePage>)

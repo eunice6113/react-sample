@@ -2,6 +2,12 @@
   outline: none;
 }
 
+table caption {height : 0 !important}
+
+.downloadIco {
+  font-size: 12px;
+  
+}
 
 :root {
   --primary-color: var(--brand-primary) !important;
@@ -96,6 +102,8 @@
 
 /*------권승주-------*/
 /* HTML Default */
+
+/* 
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, article, aside, hgroup, header, footer, figure, figcaption, nav, section { 
   margin:0; padding:0; border:0; font-size:100%; vertical-align:baseline; background:transparent; line-height:1.4em; box-sizing:border-box; font-weight:normal;}
 article, aside, hgroup, header, footer, figure, figcaption, nav, section { display: block; }
@@ -118,13 +126,16 @@ input { font-family: 'NanumSquare', sans-serif;}
 
 #root{
   padding:0 !important;
-  /* max-width: 1180px !important; */
   margin: 0 auto;
 }
 .textCenter{ text-align: center;}
 .mb{ margin-bottom: 30px;}
-.css-yfo96e{padding:0 !important;}
+.css-yfo96e{padding:0 !important;} */
+
+
 /*notice*/
+
+/* 
 .heading{
   border-bottom: 1px solid #E6E6E6;
   width: 100%;
@@ -149,3 +160,17 @@ input { font-family: 'NanumSquare', sans-serif;}
   vertical-align: middle;
 }
 .css-1d3z3hw-MuiOutlinedInput-notchedOutline{height:32px; top:2px !important;}
+
+ */
+
+
+ /* .cld-table-cover {
+  border: 1px solid #e6e6e6;
+  border-radius: 9px;
+  overflow: hidden;
+  box-shadow: 0px 4px 8px -2px rgb(16 24 40 / 10%), 0px 2px 4px -2px rgb(16 24 40 / 6%);
+ }
+
+ .cld-table-cover .cld-table {
+  border:0 none;
+ } */

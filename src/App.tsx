@@ -17,8 +17,6 @@ function App() {
   // const routing = useRoutes(portalRoutes)
   const routing = useRoutes(adminRoutes)
 
-  // window.document.body.classList.add('theme-dark')
-  
   return (
     <>
     {/* <Suspense fallback={<Loader />}> */}
