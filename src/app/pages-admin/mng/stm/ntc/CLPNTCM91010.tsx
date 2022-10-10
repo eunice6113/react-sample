@@ -87,10 +87,10 @@ const CLPNTCM91010: React.FC = () => {
         },
         {
             field: 'type',
-            header: '',
+            header: '유형',
             sortable: false,
             style: {width: '10%'},
-            className: 'color-primary'
+            className: 'text-center'
         },
         {
             field: 'subject',

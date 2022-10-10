@@ -1,27 +1,42 @@
-import * as React from "react";
-import { BasePage } from "../../../../shared/components/base/BasePage";
+import * as React from 'react';
+import { BasePage } from '../../../../shared/components/base/BasePage';
 import { Dropdown } from 'primereact/dropdown';
 import { InputText } from 'primereact/inputtext';
 import { Calendar } from 'primereact/calendar';
-import { Button } from "primereact";
+import { Button } from 'primereact';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
-import { paginator } from "../../../../shared/utils/table-paginator";
+import { paginator } from '../../../../shared/utils/table-paginator';
 import './CLPQNAM91410.css';
+import { qnaDummyData } from '../../../../shared/demo/data/qnaDummyData';
+import { useBasePage } from '../../../../shared/hooks/base-page.hook';
 
-interface IProps {
-    children: React.ReactNode;
-}
 // 자주묻는질문 관리
-const CLPQNAM91410: React.FC<IProps> = ({children}) => {
+const CLPQNAM91410: React.FC = () => {
+    const { goPage, goBack } = useBasePage()
 
     const [select1, setSelect1] = React.useState<any>(null);
     const [select2, setSelect2] = React.useState<any>(null);
-    const [value1, setValue1] = React.useState('');
-    const [date1, setDate1] = React.useState<Date | Date[] | undefined>(undefined);
+    const [searchValue, setSearchValue] = React.useState('');
+    const [fromDate, setFromDate] = React.useState<Date | Date[] | undefined>(undefined);
+    const [toDate, setToDate] = React.useState<Date | Date[] | undefined>(undefined);
 
+    //table
+    const [data, setData] = React.useState([]);
+    const [first, setFirst] = React.useState(0);
+    const [rows, setRows] = React.useState(10);
 
-    const cities = [
+    //table dummy data
+    React.useEffect(() => {
+        // setData(demoData)
+    }, []); 
+
+    React.useEffect(() => {
+        console.log('data =>', data)
+    }, [data]); 
+
+    //select option dummy data
+    const options1 = [
         { name: 'New York', code: 'NY' },
         { name: 'Rome', code: 'RM' },
         { name: 'London', code: 'LDN' },
@@ -29,50 +44,111 @@ const CLPQNAM91410: React.FC<IProps> = ({children}) => {
         { name: 'Paris', code: 'PRS' }
     ];
 
-    const handleChange = (e: { value: any}) => {
+    const options2 = [
+        { name: 'New York', code: 'NY' },
+        { name: 'Rome', code: 'RM' },
+        { name: 'London', code: 'LDN' },
+        { name: 'Istanbul', code: 'IST' },
+        { name: 'Paris', code: 'PRS' }
+    ];
+
+    const handleChange1 = (e: { value: any}) => {
         setSelect1(e.value);
     }
 
-
-    const [customers2, setCustomers2] = React.useState([]);
-    const [first1, setFirst1] = React.useState(0);
-    const [rows1, setRows1] = React.useState(10);
-
-
-    const onCustomPage = (event:any) => {
-        setFirst1(event.first);
-        setRows1(event.rows);
+    const handleChange2 = (e: { value: any}) => {
+        setSelect2(e.value);
     }
 
+    const onCustomPage = (event:any) => {
+        setFirst(event.first);
+        setRows(event.rows);
+    }
+    
+    //table page length
     let pages = 50;
+    
+    //신규 등록 버튼
+    const register = (event:any) => {
+        goPage(`/stm/qna/register`);
+    }
+
+    const goDetail = ( e:any ) => {
+        console.log('clicked row =>', e.index)
+        goPage(`/stm/qna/${e.index}`);
+    }
+
+    const headerTemplate = [
+        {
+            field: 'no',
+            header: '순번',
+            sortable: false,
+            style: {width: '10%', textAlign:'center', color:'gray'}
+        },
+        {
+            field: 'type',
+            header: '유형',
+            sortable: false,
+            style: {width: '10%'},
+            className: 'text-center'
+        },
+        {
+            field: 'subject',
+            header: '질문',
+            sortable: false,
+            style: {width: '40%'},
+        },
+        {
+            field: 'author',
+            header: '등록자',
+            sortable: false,
+            style: {width: '8%'},
+            className: 'text-center'
+        },
+        {
+            field: 'hit',
+            header: '조회수',
+            sortable: false,
+            style: {width: '10%'},
+            className: 'text-center'
+        },
+        {
+            field: 'registerDate',
+            header: '등록일',
+            sortable: false,
+            style: {width: '12%'},
+            className: 'text-center'
+        },
+    ]
 
     return(
     <BasePage>
-        <div className="searchBar">
-            <Dropdown className="cld-select" value={select1} options={cities} onChange={handleChange} 
-                optionLabel="name" placeholder="전체" />
-            <Dropdown value={select2} options={cities} onChange={handleChange} 
-                optionLabel="name" placeholder="전체" />
+        <div className='searchBar'>
+            <Dropdown value={select1} options={options1} onChange={handleChange1} 
+                optionLabel='name' placeholder='전체' />
+            <Dropdown value={select2} options={options2} onChange={handleChange2} 
+                optionLabel='name' placeholder='전체' />
 
-            <InputText className="searchTxt" placeholder="검색어를 입력해주세요" value={value1} onChange={(e) => setValue1(e.target.value)} />
+            <InputText className='searchTxt' placeholder='검색어를 입력해주세요' value={searchValue} onChange={(e) => setSearchValue(e.target.value)} />
 
-            <Calendar id="icon" dateFormat="yy-mm-dd" value={date1} onChange={(e) => setDate1(e.value)} showIcon />
-            <Calendar id="icon" dateFormat="yy-mm-dd" value={date1} onChange={(e) => setDate1(e.value)} showIcon />
-            <Button className="cld-button primary" label="조회" />
+            <Calendar dateFormat='yy-mm-dd' value={fromDate} onChange={(e) => setFromDate(e.value)} showIcon />
+            <Calendar dateFormat='yy-mm-dd' value={toDate} onChange={(e) => setToDate(e.value)} showIcon />
+            <Button label='조회' />
         </div>
 
-        <div className="toolbar">
-            <p className="mb10">총 <span className="pageNm">{pages}</span>개</p>
-            <Button className="ml-auto cld-button primary outline" label="신규등록" icon='pi pi-pencil' />
+        <div className='toolbar mb10'>
+            <p>총 <span className='pageNm'>{pages}</span>개</p>
+            <Button className='ml-auto outline' label='신규등록' icon='pi pi-pencil' onClick={register} />
         </div>
 
-        <DataTable value={customers2} paginator paginatorTemplate={paginator} first={first1} rows={rows1} onPage={onCustomPage} responsiveLayout="scroll">
-            <Column field="name" header="Name" style={{ width: '25%' }}></Column>
-            <Column field="country.name" header="Country" style={{ width: '25%' }}></Column>
-            <Column field="company" header="Company" style={{ width: '25%' }}></Column>
-            <Column field="representative.name" header="Representative" style={{ width: '25%' }}></Column>
+        <DataTable value={qnaDummyData} paginator paginatorTemplate={paginator} 
+            onRowClick={(e) => goDetail(e)}
+            first={first} rows={rows} 
+            onPage={onCustomPage} responsiveLayout='scroll'>
+            {headerTemplate.map((col, index) => (
+                <Column key={col.header} field={col.field} header={col.header} style={col.style} className={col.className}></Column>
+            ))}
         </DataTable>
-
     </BasePage>)
 }
 export default CLPQNAM91410;

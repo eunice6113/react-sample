@@ -68,7 +68,10 @@ const CLPNTCM91020:React.FC = () => {
             </div>
         </div>
         <div className='view-container'>
-            <h2 className='page-title mb5'>등록 내용</h2>
+            <h2 className='page-title mb5'>
+                등록 내용
+                {editMode && <span className='infoTxt'>(<span className='required'>*</span> 필수)</span>}
+            </h2>
             <div className='cld-table-cover'>
                 <table className='cld-table'>
                     <caption>등록내용</caption>
@@ -78,7 +81,10 @@ const CLPNTCM91020:React.FC = () => {
                     </colgroup>
                     <tbody>
                     <tr>
-                        <th>구분</th>
+                        <th>
+                            구분
+                            {editMode && <span className='required'>*</span>}
+                        </th>
                         <td>
                             {editMode ? 
                                 <Dropdown value={select1} options={options1} onChange={handleChange1} optionLabel="name" placeholder="전체" />
@@ -88,7 +94,10 @@ const CLPNTCM91020:React.FC = () => {
                         </td>
                     </tr>
                     <tr>
-                        <th>제목</th>
+                        <th>
+                            제목
+                            {editMode && <span className='required'>*</span>}
+                        </th>
                         <td>
                             {editMode ? 
                                 <InputText className="" placeholder="제목을 입력해주세요" value={title} onChange={(e) => setTitle(e.target.value)} />
@@ -98,7 +107,9 @@ const CLPNTCM91020:React.FC = () => {
                         </td>
                     </tr>
                     <tr>
-                        <th>내용</th>
+                        <th>
+                            내용
+                            {editMode && <span className='required'>*</span>}</th>
                         <td>
                             {editMode ? 
                                 <Editor style={{height:'320px'}} value={content} onTextChange={(e) => setContent(e.textValue)} />

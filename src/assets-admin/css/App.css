@@ -9,6 +9,10 @@ table caption {height : 0 !important}
 
 }
 
+table .color-primary {
+  color: initial !important;
+}
+
 .required {
   font-weight: bold;
   color: var(--brand-secondary);
