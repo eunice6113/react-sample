@@ -1,6 +1,5 @@
-import { Button } from 'primereact';
+import { Button, Dropdown, Editor, FileUpload, InputText, RadioButton } from 'primereact';
 import * as React from 'react';
-import { useParams } from 'react-router-dom';
 import { BasePage } from '../../../../shared/components/base/BasePage';
 import { useBasePage } from '../../../../shared/hooks/base-page.hook';
 import './CLPNTCM91020.css';
@@ -9,11 +8,38 @@ import './CLPNTCM91020.css';
 const CLPNTCM91020:React.FC = () => {
     const { goPage, goBack, paramId } = useBasePage()
 
-    let editMode = false;
+    const [editMode, setEditmode] = React.useState<boolean>(false);
+    const [select1, setSelect1] = React.useState<any>(null);
+    const [title, setTitle] = React.useState('');
+    const [content, setContent] = React.useState('');
+
+    const categories = [
+        {name: '노출', key: 'Y'}, 
+        {name: '비노출', key: 'N'}];
+    const [selectedCategory, setSelectedCategory] = React.useState(categories[1]);
+
+    //select option dummy data
+    const options1 = [
+        { name: '공지사항', code: 'NY' },
+        { name: '웹툰', code: 'RM' },
+    ];
+
+    const handleChange1 = (e: { value: any}) => {
+        setSelect1(e.value);
+    }
+
+    const cancel = () => {
+        goBack();
+    }
 
     const edit = () => {
-        editMode = !editMode;
+        setEditmode(!editMode);
 
+        console.log('editMode =>', editMode)
+    }
+    
+    const confirm = () => {
+        setEditmode(false);
     }
 
     return(
@@ -54,32 +80,58 @@ const CLPNTCM91020:React.FC = () => {
                     <tr>
                         <th>구분</th>
                         <td>
-                            공지사항
+                            {editMode ? 
+                                <Dropdown value={select1} options={options1} onChange={handleChange1} optionLabel="name" placeholder="전체" />
+                                :
+                                <span>공지사항</span>
+                            }
                         </td>
                     </tr>
                     <tr>
                         <th>제목</th>
                         <td>
-                            클라우드 포탈 소식 전해드립니다.
+                            {editMode ? 
+                                <InputText className="" placeholder="제목을 입력해주세요" value={title} onChange={(e) => setTitle(e.target.value)} />
+                                :
+                                <span> 클라우드 포탈 소식 전해드립니다.</span>
+                            }
                         </td>
                     </tr>
                     <tr>
                         <th>내용</th>
                         <td>
-                            공지사항
-                            
+                            {editMode ? 
+                                <Editor style={{height:'320px'}} value={content} onTextChange={(e) => setContent(e.textValue)} />
+                                :
+                                <span>공지사항</span>
+                            }
                         </td>
                     </tr>
                     <tr>
                         <th>첨부파일</th>
                         <td>
-                            <i className='pi pi-download mr5 downloadIco'></i><u>파일명.xlsx</u>
+                            {editMode ? 
+                                <FileUpload />
+                                :
+                                <><i className='pi pi-download mr5 downloadIco'></i><u>파일명.xlsx</u></>
+                            }
                         </td>
                     </tr>
                     <tr>
                         <th>중요공지여부</th>
                         <td>
-                            노출
+                            {editMode ? 
+                                (categories.map((category) => {
+                                return (
+                                    <span key={category.key} className="field-radiobutton mr20">
+                                        <RadioButton inputId={category.key} name="category" value={category} onChange={(e) => setSelectedCategory(e.value)}  checked={selectedCategory.key === category.key} disabled={category.key === 'R'} />
+                                        <label className='ml5' htmlFor={category.key}>{category.name}</label>
+                                    </span>
+                                    )
+                                }))
+                                :
+                                <span>노출</span>
+                            }
                         </td>
                     </tr>
                     </tbody>
@@ -89,7 +141,12 @@ const CLPNTCM91020:React.FC = () => {
         <div className='btn-container d-flex'>
             <Button className='secondary' onClick={goBack}>목록</Button>
             <Button className='ml-auto outline' onClick={edit}>수정</Button>
-            <Button className='ml5'>삭제</Button>
+            {editMode ? 
+                <Button className='ml5' onClick={confirm}>확인</Button> 
+                : 
+                <Button className='ml5'>삭제</Button>
+            }
+            
         </div>
     </BasePage>)
 }

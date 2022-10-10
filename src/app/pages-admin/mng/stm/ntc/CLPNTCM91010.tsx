@@ -1,15 +1,15 @@
-import * as React from "react";
-import { BasePage } from "../../../../shared/components/base/BasePage";
+import * as React from 'react';
+import { BasePage } from '../../../../shared/components/base/BasePage';
 import { Dropdown } from 'primereact/dropdown';
 import { InputText } from 'primereact/inputtext';
 import { Calendar } from 'primereact/calendar';
-import { Button } from "primereact";
+import { Button } from 'primereact';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
-import { paginator } from "../../../../shared/utils/table-paginator";
+import { paginator } from '../../../../shared/utils/table-paginator';
 import './CLPNTCM91010.css';
-import { noticeDummyData } from "../../../../shared/demo/data/noticeDummyData";
-import { useBasePage } from "../../../../shared/hooks/base-page.hook";
+import { noticeDummyData } from '../../../../shared/demo/data/noticeDummyData';
+import { useBasePage } from '../../../../shared/hooks/base-page.hook';
 
 //공지사항 관리
 const CLPNTCM91010: React.FC = () => {
@@ -130,28 +130,28 @@ const CLPNTCM91010: React.FC = () => {
 
     return(
     <BasePage>
-        <div className="searchBar">
+        <div className='searchBar'>
             <Dropdown value={select1} options={options1} onChange={handleChange1} 
-                optionLabel="name" placeholder="전체" />
+                optionLabel='name' placeholder='전체' />
             <Dropdown value={select2} options={options2} onChange={handleChange2} 
-                optionLabel="name" placeholder="전체" />
+                optionLabel='name' placeholder='전체' />
 
-            <InputText className="searchTxt" placeholder="검색어를 입력해주세요" value={searchValue} onChange={(e) => setSearchValue(e.target.value)} />
+            <InputText className='searchTxt' placeholder='검색어를 입력해주세요' value={searchValue} onChange={(e) => setSearchValue(e.target.value)} />
 
-            <Calendar dateFormat="yy-mm-dd" value={fromDate} onChange={(e) => setFromDate(e.value)} showIcon />
-            <Calendar dateFormat="yy-mm-dd" value={toDate} onChange={(e) => setToDate(e.value)} showIcon />
-            <Button label="조회" />
+            <Calendar dateFormat='yy-mm-dd' value={fromDate} onChange={(e) => setFromDate(e.value)} showIcon />
+            <Calendar dateFormat='yy-mm-dd' value={toDate} onChange={(e) => setToDate(e.value)} showIcon />
+            <Button label='조회' />
         </div>
 
-        <div className="toolbar mb10">
-            <p>총 <span className="pageNm">{pages}</span>개</p>
-            <Button className="ml-auto outline" label="신규등록" icon='pi pi-pencil' onClick={register} />
+        <div className='toolbar mb10'>
+            <p>총 <span className='pageNm'>{pages}</span>개</p>
+            <Button className='ml-auto outline' label='신규등록' icon='pi pi-pencil' onClick={register} />
         </div>
 
         <DataTable value={noticeDummyData} paginator paginatorTemplate={paginator} 
             onRowClick={(e) => goDetail(e)}
             first={first} rows={rows} 
-            onPage={onCustomPage} responsiveLayout="scroll">
+            onPage={onCustomPage} responsiveLayout='scroll'>
             {headerTemplate.map((col, index) => (
                 <Column key={col.header} field={col.field} header={col.header} style={col.style} className={col.className}></Column>
             ))}

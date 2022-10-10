@@ -6,8 +6,22 @@ table caption {height : 0 !important}
 
 .downloadIco {
   font-size: 12px;
-  
+
 }
+
+.required {
+  font-weight: bold;
+  color: var(--brand-secondary);
+}
+
+table .required {
+   margin-left:3px;
+}
+
+.infoTxt {
+  color: var(--global-placeholder-color);
+}
+
 
 :root {
   --primary-color: var(--brand-primary) !important;
