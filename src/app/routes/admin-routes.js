@@ -10,6 +10,8 @@ import Loadable from '../shared/layouts/loader/Loadable';
 
 //:::::::::::::::::::::::::::::::::::::::: Layouts ::::::::::::::::::::::::::::::::::::::::::
 
+const Callback = Loadable(lazy(() => import('../pages/auth/Callback')));
+
 const BlankLayout = Loadable(lazy(() => import('../shared/layouts/BlankLayout')));
 const FullLayout = Loadable(lazy(() => import('../shared/layouts-admin/FullLayout')));
 
@@ -123,6 +125,10 @@ const Error = Loadable(lazy(() => import('../pages/auth/Error')));
 
 // Routes ================================================================
 const adminRoutes = [
+  {
+    path: 'callback',
+    element: <Callback />
+  },
   {
     path: '/',
     element: <Navigate to='/ui/guide' />,

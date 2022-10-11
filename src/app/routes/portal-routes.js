@@ -4,6 +4,8 @@ import Loadable from '../shared/layouts/loader/Loadable';
 
 //:::::::::::::::::::::::::::::::::::::::: Layouts ::::::::::::::::::::::::::::::::::::::::::
 
+const Callback = Loadable(lazy(() => import('../pages/auth/Callback')));
+
 const BlankLayout = Loadable(lazy(() => import('../shared/layouts/BlankLayout')));
 const FullLayout = Loadable(lazy(() => import('../shared/layouts/FullLayout')));
 
@@ -64,6 +66,10 @@ const Error = Loadable(lazy(() => import('../pages/auth/Error')));
 
 // Routes ==================================================================================
 const portalRoutes = [
+  {
+    path: 'callback',
+    element: <Callback />
+  },
   {
     path: '/',
     element: <FullLayout />,
