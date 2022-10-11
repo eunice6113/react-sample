@@ -28,11 +28,6 @@ const LNB: React.FC<IProps> = ({open, children}) => {
             expanded: curLocation === 'ui',
             items:[
                 {
-                    label:'UI Guide',
-                    url: '/ui/guide',
-                    className: getClsName('/ui/guide')
-                },
-                {
                     label:'Button Guide',
                     url: '/ui/button',
                     className: getClsName('/ui/button')
