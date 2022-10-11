@@ -10,21 +10,40 @@ import { paginator } from '../../../../shared/utils/table-paginator';
 import './CLPQNAM91410.css';
 import { qnaDummyData } from '../../../../shared/demo/data/qnaDummyData';
 import { useBasePage } from '../../../../shared/hooks/base-page.hook';
+import { SearchParams } from '../../../../core/models/search-params';
 
 // 자주묻는질문 관리
 const CLPQNAM91410: React.FC = () => {
     const { goPage, goBack } = useBasePage()
 
-    const [select1, setSelect1] = React.useState<any>(null);
-    const [select2, setSelect2] = React.useState<any>(null);
-    const [searchValue, setSearchValue] = React.useState('');
-    const [fromDate, setFromDate] = React.useState<Date | Date[] | undefined>(undefined);
-    const [toDate, setToDate] = React.useState<Date | Date[] | undefined>(undefined);
+    const [values, setValues] = React.useState<SearchParams>({
+        type1: undefined,
+        type2: undefined,
+        searchValue: '',
+        fromDate: undefined,
+        toDate: undefined,
+    });
 
     //table
     const [data, setData] = React.useState([]);
     const [first, setFirst] = React.useState(0);
     const [rows, setRows] = React.useState(10);
+
+    //select option dummy data
+    const options1 = [
+        { name: '전체', code: 'NY' },
+        { name: '제목', code: 'RM' },
+        { name: '내용', code: 'LDN' },
+        { name: '등록자', code: 'IST' },
+    ];
+    
+    const options2 = [
+        { name: '전체', code: 'NY' },
+        { name: '공지사항', code: 'RM' },
+        { name: '웹툰', code: 'LDN' },
+        { name: '소식지', code: 'IST' },
+        { name: '기타', code: 'PRS' }
+    ];
 
     //table dummy data
     React.useEffect(() => {
@@ -35,30 +54,9 @@ const CLPQNAM91410: React.FC = () => {
         console.log('data =>', data)
     }, [data]); 
 
-    //select option dummy data
-    const options1 = [
-        { name: 'New York', code: 'NY' },
-        { name: 'Rome', code: 'RM' },
-        { name: 'London', code: 'LDN' },
-        { name: 'Istanbul', code: 'IST' },
-        { name: 'Paris', code: 'PRS' }
-    ];
-
-    const options2 = [
-        { name: 'New York', code: 'NY' },
-        { name: 'Rome', code: 'RM' },
-        { name: 'London', code: 'LDN' },
-        { name: 'Istanbul', code: 'IST' },
-        { name: 'Paris', code: 'PRS' }
-    ];
-
-    const handleChange1 = (e: { value: any}) => {
-        setSelect1(e.value);
-    }
-
-    const handleChange2 = (e: { value: any}) => {
-        setSelect2(e.value);
-    }
+    const handleChange = (prop: keyof SearchParams, value:any) => {
+        setValues({ ...values, [prop]: value });
+    };
 
     const onCustomPage = (event:any) => {
         setFirst(event.first);
@@ -124,15 +122,15 @@ const CLPQNAM91410: React.FC = () => {
     return(
     <BasePage>
         <div className='searchBar'>
-            <Dropdown value={select1} options={options1} onChange={handleChange1} 
+            <Dropdown value={values.type1} options={options1} onChange={(e) => handleChange('type1', e.value)} 
                 optionLabel='name' placeholder='전체' />
-            <Dropdown value={select2} options={options2} onChange={handleChange2} 
+            <Dropdown value={values.type2} options={options2} onChange={(e) => handleChange('type2', e.value)} 
                 optionLabel='name' placeholder='전체' />
 
-            <InputText className='searchTxt' placeholder='검색어를 입력해주세요' value={searchValue} onChange={(e) => setSearchValue(e.target.value)} />
+            <InputText className='searchTxt' placeholder='검색어를 입력해주세요' value={values.searchValue} onChange={(e) => handleChange('searchValue', e.target.value)} />
 
-            <Calendar dateFormat='yy-mm-dd' value={fromDate} onChange={(e) => setFromDate(e.value)} showIcon />
-            <Calendar dateFormat='yy-mm-dd' value={toDate} onChange={(e) => setToDate(e.value)} showIcon />
+            <Calendar dateFormat='yy-mm-dd' value={values.fromDate} onChange={(e) => handleChange('fromDate', e.value)} showIcon />
+            <Calendar dateFormat='yy-mm-dd' value={values.toDate} onChange={(e) => handleChange('toDate', e.value)} showIcon />
             <Button label='조회' />
         </div>
 
