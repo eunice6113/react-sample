@@ -1,7 +1,13 @@
-import { useNavigate, useParams } from "react-router-dom"
+import { useLoaderData, useLocation, useNavigate, useParams } from "react-router-dom"
 
 
 export const useBasePage = () => {
+
+    const location = useLocation();
+    const curLocation = location.pathname.split('/')
+    // console.log('curLocation', curLocation, curLocation[3])
+
+    const isRegister:boolean = curLocation[3] === 'register'
 
     const navigator = useNavigate();
     const params = useParams();
@@ -21,5 +27,8 @@ export const useBasePage = () => {
         goBack,
         goPage,
         paramId,
+
+        curLocation,
+        isRegister
     }
 }

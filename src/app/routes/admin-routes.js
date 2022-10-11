@@ -41,13 +41,10 @@ const CLPMNUM90900 = Loadable(lazy(() => import('../pages-admin/mng/stm/mnu/CLPM
 //공지사항
 const CLPNTCM91010 = Loadable(lazy(() => import('../pages-admin/mng/stm/ntc/CLPNTCM91010')));
 const CLPNTCM91020 = Loadable(lazy(() => import('../pages-admin/mng/stm/ntc/CLPNTCM91020')));
-const CLPNTCM91030 = Loadable(lazy(() => import('../pages-admin/mng/stm/ntc/CLPNTCM91030'))); 
-// const NoticeDetail = Loadable(lazy(() => import('../pages/sample/CLPNTCM91020')));
 
 //자주묻는질문
 const CLPQNAM91410 = Loadable(lazy(() => import('../pages-admin/mng/stm/qna/CLPQNAM91410')));
 const CLPQNAM91520 = Loadable(lazy(() => import('../pages-admin/mng/stm/qna/CLPQNAM91520')));
-const CLPQNAM91530 = Loadable(lazy(() => import('../pages-admin/mng/stm/qna/CLPQNAM91530')));
 
 // 건의및개선
 const CLPFAQM91810 = Loadable(lazy(() => import('../pages-admin/mng/stm/faq/CLPFAQM91810')));
@@ -231,7 +228,7 @@ const adminRoutes = [
             children: [
               {path: 'list', name:'공지사항 관리', state: {name:'hello'}, element: <CLPNTCM91010 />},
               {path: ':id', name:'공지사항 상세/수정', element: <CLPNTCM91020 />},
-              {path: 'register', name:'공지사항 등록', element: <CLPNTCM91030 />},
+              {path: 'register', name:'공지사항 등록', element: <CLPNTCM91020 />},
             ],
           },
           { path: 'qna', 
@@ -239,7 +236,7 @@ const adminRoutes = [
             children: [
               {path: 'list', name:'자주 묻는 질문 관리', element: <CLPQNAM91410 />},
               {path: ':id', name:'자주 묻는 질문 상세/수정', element: <CLPQNAM91520 />},
-              {path: 'register', name:'자주 묻는 질문 등록', element: <CLPQNAM91530 />},
+              {path: 'register', name:'자주 묻는 질문 등록', element: <CLPQNAM91520 />},
             ],
           },
           { path: 'faq', 

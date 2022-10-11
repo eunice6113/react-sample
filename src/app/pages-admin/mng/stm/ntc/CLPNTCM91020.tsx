@@ -8,9 +8,9 @@ import './CLPNTCM91020.css';
 
 //공지사항 관리 상세/수정
 const CLPNTCM91020:React.FC = () => {
-    const { goPage, goBack, paramId } = useBasePage()
+    const { goPage, goBack, paramId, isRegister } = useBasePage()
 
-    const [mode, setMode] = React.useState<'view' | 'edit' | 'resgister'>('view');
+    const [mode, setMode] = React.useState<'view' | 'edit' | 'resgister'>(isRegister ? 'resgister' : 'view');
 
     const [select1, setSelect1] = React.useState<any>(null);
     const [title, setTitle] = React.useState('');
@@ -46,15 +46,25 @@ const CLPNTCM91020:React.FC = () => {
     //취소 버튼
     const cancel = () => {
         console.log('취소')
-        setMode('view')
+
+        if(mode == 'resgister') {
+            goBack();
+        } else if(mode == 'edit') {
+            setMode('view')
+        }
     }
 
     //확인 버튼
     const confirm = () => {
-        setMode('view')
+        if(mode == 'resgister') {
+            goBack();
+        } else if(mode == 'edit') {
+            setMode('view')
+        }
     }
 
-    const contents1 = {
+    //api 읽어와서 업데이트 할 내용
+    const authorInfo = {
         title: '등록자 정보',
         grid: 4,  
         contents: [
@@ -69,7 +79,7 @@ const CLPNTCM91020:React.FC = () => {
         ]
     }
 
-    const contents2 = {
+    const contentsInfo = {
         title: '등록 내용',
         grid: 2, 
         mode: mode,
@@ -105,7 +115,7 @@ const CLPNTCM91020:React.FC = () => {
                     categories.map((category) => {
                     return (
                         <span key={category.key} className="field-radiobutton mr20">
-                            <RadioButton inputId={category.key} name="category" value={category} onChange={(e) => setSelectedCategory(e.value)}  checked={selectedCategory.key === category.key} disabled={category.key === 'R'} />
+                            <RadioButton inputId={category.key} name="category" value={category} onChange={(e) => setSelectedCategory(e.value)} checked={selectedCategory.key === category.key} disabled={category.key === 'R'} />
                             <label className='ml5' htmlFor={category.key}>{category.name}</label>
                         </span>
                 )}))
@@ -116,10 +126,10 @@ const CLPNTCM91020:React.FC = () => {
     return(
     <BasePage>
         {/* 등록자 정보 */}
-        <ViewTemplate {...contents1} />
+        <ViewTemplate {...authorInfo} />
 
         {/* 등록 내용 */}
-        <ViewTemplate {...contents2} />
+        <ViewTemplate {...contentsInfo} />
 
         {/* 
             버튼영역 

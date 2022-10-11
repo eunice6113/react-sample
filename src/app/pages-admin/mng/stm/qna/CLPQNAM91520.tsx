@@ -8,12 +8,11 @@ import './CLPQNAM91520.css';
 
 //자주묻는질문 상세/수정
 const CLPQNAM91520:React.FC = () => {
-    const { goPage, goBack, paramId } = useBasePage()
+    const { goPage, goBack, paramId, isRegister } = useBasePage()
 
-    const [mode, setMode] = React.useState<'view' | 'edit' | 'resgister'>('view');
+    const [mode, setMode] = React.useState<'view' | 'edit' | 'resgister'>(isRegister ? 'resgister' : 'view');
 
     const [order, setOrder] = React.useState<any>(null);
-    // const [editMode, setEditmode] = React.useState<boolean>(false);
     const [select1, setSelect1] = React.useState<any>(null);
     const [title, setTitle] = React.useState('');
     const [content, setContent] = React.useState('');
@@ -28,30 +27,40 @@ const CLPQNAM91520:React.FC = () => {
         setSelect1(e.value);
     }
 
-    //취소 버튼
-    const cancel = () => {
-        console.log('취소')
-        setMode('view')
-    }
-
     //수정 버튼
     const edit = () => {
         setMode('edit');
 
         console.log('mode =>', mode)
     }
-    
-    //확인 버튼
-    const confirm = () => {
-        setMode('view')
-    }
 
     //삭제 버튼
     const remove = () => {
         console.log('삭제')
     }
+    
+    //취소 버튼
+    const cancel = () => {
+        console.log('취소')
 
-    const contents1 = {
+        if(mode == 'resgister') {
+            goBack();
+        } else if(mode == 'edit') {
+            setMode('view')
+        }
+    }
+
+    //확인 버튼
+    const confirm = () => {
+        if(mode == 'resgister') {
+            goBack();
+        } else if(mode == 'edit') {
+            setMode('view')
+        }
+    }
+
+    //api 읽어와서 업데이트 할 내용
+    const authorInfo = {
         title: '등록자 정보',
         grid: 4,  
         contents: [
@@ -66,7 +75,7 @@ const CLPQNAM91520:React.FC = () => {
         ]
     }
 
-    const contents2 = {
+    const contentsInfo = {
         title: '등록 내용',
         grid: 2, 
         mode: mode,
@@ -107,10 +116,10 @@ const CLPQNAM91520:React.FC = () => {
     return(
     <BasePage>
         {/* 등록자 정보 */}
-        <ViewTemplate {...contents1} />
+        <ViewTemplate {...authorInfo} />
 
         {/* 등록 내용 */}
-        <ViewTemplate {...contents2} />
+        <ViewTemplate {...contentsInfo} />
 
         {/* 
             버튼영역 
