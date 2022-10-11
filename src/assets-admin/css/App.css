@@ -122,77 +122,46 @@ table .required {
 
 
 
-/*------권승주-------*/
-/* HTML Default */
 
-/* 
-html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, article, aside, hgroup, header, footer, figure, figcaption, nav, section { 
-  margin:0; padding:0; border:0; font-size:100%; vertical-align:baseline; background:transparent; line-height:1.4em; box-sizing:border-box; font-weight:normal;}
-article, aside, hgroup, header, footer, figure, figcaption, nav, section { display: block; }
-body {padding:0;margin:0;box-sizing:border-box; font: 13px "NanumSquare", sans-serif; color:#575757;}
-h1, h2, h3, h4, h5, h6 { font-weight:600; } 
-ol, ul { list-style:none; }
-blockquote, q { quotes:none; }
-blockquote:before, blockquote:after,q:before, q:after { content:''; }
-table { border-collapse:collapse; border-spacing:0; table-layout:fixed; width:100%;}
-button { margin:0; padding:0; border:0; font:inherit; color:inherit; background:transparent; overflow:visible; cursor:pointer; line-height:1; }
-a:link, a:visited, a:hover, a,active, a:focus { text-decoration:none; cursor:pointer; color:#666;}
-legend, caption { display:none; }
-textarea { resize:vertical; font:inherit; overflow-y:auto; }
-input, select { color:inherit; font:inherit; vertical-align: middle;}
-address, i { font-style:normal; }
-table { border-collapse:collapse; table-layout:fixed; }
-img, select, input, button { vertical-align:middle; }
-em { font-style:normal; }
-input { font-family: 'NanumSquare', sans-serif;}
 
-#root{
-  padding:0 !important;
-  margin: 0 auto;
+.p-dialog .p-dialog-header {
+  padding: 0;
 }
-.textCenter{ text-align: center;}
-.mb{ margin-bottom: 30px;}
-.css-yfo96e{padding:0 !important;} */
 
+/* 닫기 버튼 숨김 */
+.p-dialog .p-dialog-header .p-dialog-header-icon {
+  visibility: hidden;
+}
 
-/*notice*/
+/* 제목이 없는 팝업 */
+.p-dialog.noHeader .p-dialog-header {
+  padding: 0 !important;
+}
 
-/* 
-.heading{
-  border-bottom: 1px solid #E6E6E6;
+/* 제목이 있는 팝업 */
+.p-dialog .p-dialog-header {
+  padding: 1.5rem !important;
+}
+
+/* 버튼 하나만 있는 alert dialog */
+.p-confirm-dialog.oneButton .p-button.p-confirm-dialog-reject {
+  display: none;
+  color: var(--brand-primary) !important;
+  border: 1px solid var(--brand-primary) !important;
+  background-color: transparent !important
+}
+.p-confirm-dialog.oneButton .p-confirm-dialog-accept {
+  background: var(--brand-primary);
   width: 100%;
-  padding:25px;
-  margin-bottom: 40px;
 }
-.heading h1{font-size: 24px; color: #333;}
-.css-f3jnds-MuiDataGrid-columnHeaders{background-color: #F4F4F4; text-align: center !important;}
-.css-1e2bxag-MuiDataGrid-root {font-size: 13px;}
-.table{
-  border:1px solid #EAECF0;
+.p-confirm-dialog {width: 400px;}
+.p-confirm-dialog-message {margin-left: 0 !important;}
+
+.p-dialog .p-dialog-footer button {
+  width:48%;
 }
-.table tr{border-bottom:1px solid #EAECF0;}
-.table th{
-   border-right:1px solid #EAECF0;
-   background-color: #F4F4F4;
-   height:45px;
-   width:180px;
+.p-dialog .p-dialog-footer button:last-child {margin-right: 0 !important;}
+.p-dialog .p-dialog-footer {
+  display: flex;
+  justify-content: space-between;
 }
-.table td{
-  padding: 0 24px;
-  vertical-align: middle;
-}
-.css-1d3z3hw-MuiOutlinedInput-notchedOutline{height:32px; top:2px !important;}
-
- */
-
-
- /* .cld-table-cover {
-  border: 1px solid #e6e6e6;
-  border-radius: 9px;
-  overflow: hidden;
-  box-shadow: 0px 4px 8px -2px rgb(16 24 40 / 10%), 0px 2px 4px -2px rgb(16 24 40 / 6%);
- }
-
- .cld-table-cover .cld-table {
-  border:0 none;
- } */

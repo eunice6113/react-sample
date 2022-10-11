@@ -3,6 +3,7 @@ import * as React from 'react';
 import { BasePage } from '../../../../shared/components/base/BasePage';
 import ViewButtonsTemplate from '../../../../shared/components/template/ViewButtonsTemplate';
 import ViewTemplate from '../../../../shared/components/template/ViewTemplate';
+import TextEditor from '../../../../shared/components/ui/text-editor/TextEditor';
 import { useBasePage } from '../../../../shared/hooks/base-page.hook';
 import './CLPQNAM91520.css';
 
@@ -97,7 +98,7 @@ const CLPQNAM91520:React.FC = () => {
                 required: true,
                 key: '답변', 
                 value: <span>내용입니다</span>,
-                editingValue: <Editor style={{height:'320px'}} value={content} onTextChange={(e) => setContent(e.textValue)} />,
+                editingValue: <TextEditor value={content} onTextChange={setContent} />,
             },
             {
                 required: true,

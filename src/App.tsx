@@ -12,6 +12,7 @@ import "primeicons/primeicons.css";                                //icons
 import "./assets-admin/css/token-rewrite.css";
 import './assets-admin/css/App.css';
 import adminRoutes from './app/routes/admin-routes';
+import { ConfirmDialog, Toast } from 'primereact';
 
 function App() {
   // const routing = useRoutes(portalRoutes)
@@ -19,6 +20,9 @@ function App() {
 
   return (
     <>
+    <ConfirmDialog />
+    <Toast />
+    
     {/* <Suspense fallback={<Loader />}> */}
         {routing}
     {/* </Suspense> */}

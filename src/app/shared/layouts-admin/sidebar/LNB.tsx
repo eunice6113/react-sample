@@ -1,7 +1,6 @@
 import * as React from "react";
 import { PanelMenu } from 'primereact/panelmenu';
 import './lnb.css';
-import { classNames } from "primereact";
 import { useLocation } from "react-router-dom";
 
 interface IProps {
@@ -47,6 +46,21 @@ const LNB: React.FC<IProps> = ({open, children}) => {
                     label:'Select Guide',
                     url: '/ui/select',
                     className: getClsName('/ui/select')
+                },
+                {
+                    label:'Radio Guide',
+                    url: '/ui/radio',
+                    className: getClsName('/ui/radio')
+                },
+                {
+                    label:'Checkbox Guide',
+                    url: '/ui/check',
+                    className: getClsName('/ui/check')
+                },
+                {
+                    label:'DatePicker Guide',
+                    url: '/ui/datepicker',
+                    className: getClsName('/ui/datepicker')
                 },
                 {
                     label:'Popup Guide',
