@@ -15,12 +15,6 @@ const CLPNTCM91030:React.FC = () => {
     const [title, setTitle] = React.useState('');
     const [content, setContent] = React.useState('');
 
-    const [values, setValues] = React.useState<any>({
-        type: undefined,
-        title: '',
-        content: '',
-    });
-
     const categories = [
         {name: '노출', key: 'Y'}, 
         {name: '비노출', key: 'N'}];
@@ -68,29 +62,24 @@ const CLPNTCM91030:React.FC = () => {
             {
                 required: true,
                 key: '구분', 
-                value: <span>클라우드</span>,
                 editingValue: <Dropdown value={select1} options={options1} onChange={handleChange1} optionLabel="name" placeholder="전체" />
             },
             {
                 required: true,
                 key: '제목', 
-                value: <span> 클라우드 포탈 소식 전해드립니다.</span>,
                 editingValue: <InputText className="" placeholder="제목을 입력해주세요" value={title} onChange={(e) => setTitle(e.target.value)} />,
             },
             {
                 required: true,
                 key: '내용', 
-                value: <span>내용입니다</span>,
                 editingValue: <Editor style={{height:'320px'}} value={content} onTextChange={(e) => setContent(e.textValue)} />,
             },
             {
                 key: '첨부파일', 
-                value: <><i className='pi pi-download mr5 downloadIco'></i><u>파일명.xlsx</u></>,
                 editingValue: <FileUpload />
             },
             {
                 key: '중요공지여부',
-                value: <span>노출</span>,
                 editingValue: (
                     categories.map((category) => {
                     return (

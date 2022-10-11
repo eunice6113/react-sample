@@ -31,21 +31,25 @@ const CLPNTCM91020:React.FC = () => {
         setSelect1(e.value);
     }
 
+    //삭제 버튼
     const remove = () => {
         console.log('삭제')
     }
 
+    //수정 버튼
     const edit = () => {
         setMode('edit');
 
         console.log('mode =>', mode)
     }
     
+    //취소 버튼
     const cancel = () => {
         console.log('취소')
         setMode('view')
     }
 
+    //확인 버튼
     const confirm = () => {
         setMode('view')
     }
