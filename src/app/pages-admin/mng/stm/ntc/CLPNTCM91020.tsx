@@ -1,6 +1,8 @@
 import { Button, Dropdown, Editor, FileUpload, InputText, RadioButton } from 'primereact';
 import * as React from 'react';
 import { BasePage } from '../../../../shared/components/base/BasePage';
+import ViewButtonsTemplate from '../../../../shared/components/template/ViewButtonsTemplate';
+import ViewTemplate from '../../../../shared/components/template/ViewTemplate';
 import { useBasePage } from '../../../../shared/hooks/base-page.hook';
 import './CLPNTCM91020.css';
 
@@ -8,7 +10,8 @@ import './CLPNTCM91020.css';
 const CLPNTCM91020:React.FC = () => {
     const { goPage, goBack, paramId } = useBasePage()
 
-    const [editMode, setEditmode] = React.useState<boolean>(false);
+    const [mode, setMode] = React.useState<'view' | 'edit' | 'resgister'>('view');
+
     const [select1, setSelect1] = React.useState<any>(null);
     const [title, setTitle] = React.useState('');
     const [content, setContent] = React.useState('');
@@ -28,137 +31,109 @@ const CLPNTCM91020:React.FC = () => {
         setSelect1(e.value);
     }
 
-    const cancel = () => {
-        goBack();
+    const remove = () => {
+        console.log('삭제')
     }
 
     const edit = () => {
-        setEditmode(!editMode);
+        setMode('edit');
 
-        console.log('editMode =>', editMode)
+        console.log('mode =>', mode)
     }
     
+    const cancel = () => {
+        console.log('취소')
+        setMode('view')
+    }
+
     const confirm = () => {
-        setEditmode(false);
+        setMode('view')
+    }
+
+    const contents1 = {
+        title: '등록자 정보',
+        grid: 4,  
+        contents: [
+            {
+                key: '등록자', 
+                value: '신재문'
+            },
+            {
+                key: '등록일시', 
+                value: '2023.03.02. 15:00:00'
+            },
+        ]
+    }
+
+    const contents2 = {
+        title: '등록 내용',
+        grid: 2, 
+        mode: mode,
+        hasRequired: true,
+        contents: [
+            {
+                required: true,
+                key: '구분', 
+                value: <span>공지사항</span>,
+                editingValue: <Dropdown value={select1} options={options1} onChange={handleChange1} optionLabel="name" placeholder="전체" />
+            },
+            {
+                required: true,
+                key: '제목', 
+                value: <span> 클라우드 포탈 소식 전해드립니다.</span>,
+                editingValue: <InputText className="" placeholder="제목을 입력해주세요" value={title} onChange={(e) => setTitle(e.target.value)} />,
+            },
+            {
+                required: true,
+                key: '내용', 
+                value: <span>내용입니다</span>,
+                editingValue: <Editor style={{height:'320px'}} value={content} onTextChange={(e) => setContent(e.textValue)} />,
+            },
+            {
+                key: '첨부파일', 
+                value: <><i className='pi pi-download mr5 downloadIco'></i><u>파일명.xlsx</u></>,
+                editingValue: <FileUpload />
+            },
+            {
+                key: '중요공지여부',
+                value: <span>노출</span>,
+                editingValue: (
+                    categories.map((category) => {
+                    return (
+                        <span key={category.key} className="field-radiobutton mr20">
+                            <RadioButton inputId={category.key} name="category" value={category} onChange={(e) => setSelectedCategory(e.value)}  checked={selectedCategory.key === category.key} disabled={category.key === 'R'} />
+                            <label className='ml5' htmlFor={category.key}>{category.name}</label>
+                        </span>
+                )}))
+            }
+        ]
     }
 
     return(
     <BasePage>
-        <div className='view-container'>
-            <h2 className='page-title mb5'>등록자 정보</h2>
-            <div className='cld-table-cover'>
-                <table className='cld-table'>
-                    <caption>등록자 정보</caption>
-                    <colgroup>
-                        <col width='15%'></col>
-                        <col width='35%'></col>
-                        <col width='15%'></col>
-                        <col width='35%'></col>
-                    </colgroup>
-                    <tbody>
-                    <tr>
-                        <th>등록자</th>
-                        <td>신재문</td>
-                    
-                        <th>등록일시</th>
-                        <td>2023.03.02. 15:00:00</td>
-                    </tr>
-                    </tbody>
-                </table>    
-            </div>
-        </div>
-        <div className='view-container'>
-            <h2 className='page-title mb5'>
-                등록 내용
-                {editMode && <span className='infoTxt'>(<span className='required'>*</span> 필수)</span>}
-            </h2>
-            <div className='cld-table-cover'>
-                <table className='cld-table'>
-                    <caption>등록내용</caption>
-                    <colgroup>
-                        <col width='15%'></col>
-                        <col width='*'></col>
-                    </colgroup>
-                    <tbody>
-                    <tr>
-                        <th>
-                            구분
-                            {editMode && <span className='required'>*</span>}
-                        </th>
-                        <td>
-                            {editMode ? 
-                                <Dropdown value={select1} options={options1} onChange={handleChange1} optionLabel="name" placeholder="전체" />
-                                :
-                                <span>공지사항</span>
-                            }
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
-                            제목
-                            {editMode && <span className='required'>*</span>}
-                        </th>
-                        <td>
-                            {editMode ? 
-                                <InputText className="" placeholder="제목을 입력해주세요" value={title} onChange={(e) => setTitle(e.target.value)} />
-                                :
-                                <span> 클라우드 포탈 소식 전해드립니다.</span>
-                            }
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
-                            내용
-                            {editMode && <span className='required'>*</span>}</th>
-                        <td>
-                            {editMode ? 
-                                <Editor style={{height:'320px'}} value={content} onTextChange={(e) => setContent(e.textValue)} />
-                                :
-                                <span>공지사항</span>
-                            }
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>첨부파일</th>
-                        <td>
-                            {editMode ? 
-                                <FileUpload />
-                                :
-                                <><i className='pi pi-download mr5 downloadIco'></i><u>파일명.xlsx</u></>
-                            }
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>중요공지여부</th>
-                        <td>
-                            {editMode ? 
-                                (categories.map((category) => {
-                                return (
-                                    <span key={category.key} className="field-radiobutton mr20">
-                                        <RadioButton inputId={category.key} name="category" value={category} onChange={(e) => setSelectedCategory(e.value)}  checked={selectedCategory.key === category.key} disabled={category.key === 'R'} />
-                                        <label className='ml5' htmlFor={category.key}>{category.name}</label>
-                                    </span>
-                                    )
-                                }))
-                                :
-                                <span>노출</span>
-                            }
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <div className='btn-container d-flex'>
-            <Button className='secondary' onClick={goBack}>목록</Button>
-            <Button className='ml-auto outline' onClick={edit}>수정</Button>
-            {editMode ? 
-                <Button className='ml5' onClick={confirm}>확인</Button> 
-                : 
-                <Button className='ml5'>삭제</Button>
-            }
-            
-        </div>
+        {/* 등록자 정보 */}
+        <ViewTemplate {...contents1} />
+
+        {/* 등록 내용 */}
+        <ViewTemplate {...contents2} />
+
+        {/* 
+            버튼영역 
+            mode={mode} 편집모드 'view' | 'edit' | 'resgister'
+            list={goBack} 목록 버튼
+            edit={edit} 수정 버튼
+            remove={remove} 삭제 버튼
+            cancel={cancel} 수정모드 > 취소 버튼
+            confirm={confirm} 수정모드 > 확인 버튼
+        */}
+        <ViewButtonsTemplate 
+            mode={mode}
+            list={goBack}
+            edit={edit}
+            remove={remove}
+            cancel={cancel}
+            confirm={confirm}
+        />
     </BasePage>)
 }
 export default CLPNTCM91020;
