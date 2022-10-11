@@ -14,7 +14,7 @@ import { SearchParams } from '../../../../core/models/search-params';
 
 // 자주묻는질문 관리
 const CLPQNAM91410: React.FC = () => {
-    const { goPage, goBack } = useBasePage()
+    const { goPage } = useBasePage()
 
     const [values, setValues] = React.useState<SearchParams>({
         type1: undefined,

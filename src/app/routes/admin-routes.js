@@ -49,22 +49,18 @@ const CLPQNAM91520 = Loadable(lazy(() => import('../pages-admin/mng/stm/qna/CLPQ
 // 건의및개선
 const CLPFAQM91810 = Loadable(lazy(() => import('../pages-admin/mng/stm/faq/CLPFAQM91810')));
 const CLPFAQM91920 = Loadable(lazy(() => import('../pages-admin/mng/stm/faq/CLPFAQM91920')));
-const CLPFAQM91930 = Loadable(lazy(() => import('../pages-admin/mng/stm/faq/CLPFAQM91930')));
 
 // 팝업관리
 const CLPPOPM92110 = Loadable(lazy(() => import('../pages-admin/mng/stm/pop/CLPPOPM92110')));
 const CLPPOPM92220 = Loadable(lazy(() => import('../pages-admin/mng/stm/pop/CLPPOPM92220')));
-const CLPPOPM92230 = Loadable(lazy(() => import('../pages-admin/mng/stm/pop/CLPPOPM92230')));
 
 // 소통공간
 const CLPCMNM95410 = Loadable(lazy(() => import('../pages-admin/mng/stm/cmn/CLPCMNM95410')));
 const CLPCMNM95520 = Loadable(lazy(() => import('../pages-admin/mng/stm/cmn/CLPCMNM95520')));
-const CLPCMNM95530 = Loadable(lazy(() => import('../pages-admin/mng/stm/cmn/CLPCMNM95530')));
 
 // 메인배너
 const CLPMBNM95810 = Loadable(lazy(() => import('../pages-admin/mng/stm/mbn/CLPMBNM95810')));
 const CLPMBNM95920 = Loadable(lazy(() => import('../pages-admin/mng/stm/mbn/CLPMBNM95920')));
-const CLPMBNM95930 = Loadable(lazy(() => import('../pages-admin/mng/stm/mbn/CLPMBNM95930')));
 
 // 설문관리 ===================================================================================
 const CLPSURM93310 = Loadable(lazy(() => import('../pages-admin/mng/qsm/CLPSURM93310')));
@@ -74,12 +70,10 @@ const CLPSURM93600 = Loadable(lazy(() => import('../pages-admin/mng/qsm/CLPSURM9
 // 이벤트관리 ==================================================================================
 const CLPEVNM93710 = Loadable(lazy(() => import('../pages-admin/mng/evm/CLPEVNM93710')));
 const CLPEVNM93820 = Loadable(lazy(() => import('../pages-admin/mng/evm/CLPEVNM93820')));
-const CLPEVNM93830 = Loadable(lazy(() => import('../pages-admin/mng/evm/CLPEVNM93830')));
 
 // 매뉴얼 관리 =================================================================================
 const CLPMNNM94110 = Loadable(lazy(() => import('../pages-admin/mng/mnm/CLPMNNM94110')));
 const CLPMNNM94220 = Loadable(lazy(() => import('../pages-admin/mng/mnm/CLPMNNM94220')));
-const CLPMNNM94230 = Loadable(lazy(() => import('../pages-admin/mng/mnm/CLPMNNM94230')));
 
 // 신청하기 관리 ================================================================================
 //서비스 카탈로그 관리
@@ -176,6 +170,11 @@ const adminRoutes = [
             element: <UI_GUIDE />
           },
           {
+            path: 'radio', 
+            name: 'Radio Guide', 
+            element: <RadioGuide />
+          },
+          {
             path: 'check', 
             name: 'Checkbox Guide', 
             element: <CheckboxGuide />
@@ -244,7 +243,7 @@ const adminRoutes = [
             children: [
               {path: 'list', name:'건의 및 개선 관리', element: <CLPFAQM91810 />},
               {path: ':id', name:'건의 및 개선 상세/수정', element: <CLPFAQM91920 />},
-              {path: 'register', name:'건의 및 개선 등록', element: <CLPFAQM91930 />},
+              {path: 'register', name:'건의 및 개선 등록', element: <CLPFAQM91920 />},
             ],
           },
           { path: 'pop', 
@@ -252,7 +251,7 @@ const adminRoutes = [
             children: [
               {path: 'list', name:'팝업 관리', element: <CLPPOPM92110 />},
               {path: ':id', name:'팝업 관리 상세/수정', element: <CLPPOPM92220 />},
-              {path: 'register', name:'팝업 등록', element: <CLPPOPM92230 />},
+              {path: 'register', name:'팝업 등록', element: <CLPPOPM92220 />},
             ],
           },
           { path: 'cmn', 
@@ -260,7 +259,7 @@ const adminRoutes = [
             children: [
               {path: 'list', name:'소통공간 관리', element: <CLPCMNM95410 />},
               {path: ':id', name:'소통공간 상세/수정', element: <CLPCMNM95520 />},
-              {path: 'register', name:'소통공간 등록', element: <CLPCMNM95530 />},
+              {path: 'register', name:'소통공간 등록', element: <CLPCMNM95520 />},
             ],
           },
           { path: 'mbn', 
@@ -268,7 +267,7 @@ const adminRoutes = [
             children: [
               {path: 'list', name:'메인배너 관리', element: <CLPMBNM95810 />},
               {path: ':id', name:'메인배너 상세/수정', element: <CLPMBNM95920 />},
-              {path: 'register', name:'메인배너 등록', element: <CLPMBNM95930 />},
+              {path: 'register', name:'메인배너 등록', element: <CLPMBNM95920 />},
             ],
           },
         ],
@@ -286,7 +285,7 @@ const adminRoutes = [
         children: [
           {path: 'list', name:'이벤트 관리', element: <CLPEVNM93710 />},
           {path: ':id', name:'이벤트 관리 상세/수정', element: <CLPEVNM93820 />},
-          {path: 'register', name:'이벤트 등록', element: <CLPEVNM93830 />},
+          {path: 'register', name:'이벤트 등록', element: <CLPEVNM93820 />},
         ],
       },
       { path: 'mnm', 
@@ -294,7 +293,7 @@ const adminRoutes = [
         children: [
           {path: 'list', name:'매뉴얼 관리', element: <CLPMNNM94110 />},
           {path: ':id', name:'매뉴얼 관리 상세/수정', element: <CLPMNNM94220 />},
-          {path: 'register', name:'매뉴얼 등록', element: <CLPMNNM94230 />},
+          {path: 'register', name:'매뉴얼 등록', element: <CLPMNNM94220 />},
         ],
       },
       { path: 'apm', 

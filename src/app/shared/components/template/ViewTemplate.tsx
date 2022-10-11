@@ -20,7 +20,7 @@ const ViewTemplate: React.FC<IProps> = ({ title, grid, hasRequired, mode, conten
     return(
         <>
         {
-            grid == 4 &&
+            grid === 4 &&
             <div className='view-container'>
                 <h2 className='page-title mb5'>{title}</h2>
                 <div className='cld-table-cover'>
@@ -53,7 +53,7 @@ const ViewTemplate: React.FC<IProps> = ({ title, grid, hasRequired, mode, conten
             </div>
         }
         {
-            grid == 2 &&
+            grid === 2 &&
             <div className='view-container'>
                 <h2 className='page-title mb5'>
                     {title}
@@ -76,7 +76,7 @@ const ViewTemplate: React.FC<IProps> = ({ title, grid, hasRequired, mode, conten
                                     </th>
                                     <td>
                                         {
-                                            mode == 'view' ? item.value : item.editingValue
+                                            mode === 'view' ? item.value : item.editingValue
                                         }
                                     </td>
                                 </tr>

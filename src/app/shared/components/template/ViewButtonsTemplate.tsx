@@ -1,6 +1,4 @@
 import { Button } from "primereact";
-import { MouseEventHandler } from "react";
-
 
 interface IProps {
     list?: any,
@@ -18,7 +16,7 @@ const ViewButtonsTemplate: React.FC<IProps> = ({ list, cancel, confirm, edit, re
                 <Button className='secondary' onClick={list}>목록</Button>
             </div>
             <div className='cld-col-6 text-center'>
-            { (mode == 'edit' || mode == 'resgister') &&
+            { (mode === 'edit' || mode === 'resgister') &&
             <>
                 <Button className='lg outline' onClick={cancel}>취소</Button>
                 <Button className='lg ml5' onClick={confirm}>확인</Button>
@@ -26,7 +24,7 @@ const ViewButtonsTemplate: React.FC<IProps> = ({ list, cancel, confirm, edit, re
             }
             </div>
             <div className='cld-col-3 d-flex'>
-            {mode == 'view' &&
+            {mode === 'view' &&
             <>
                 <Button className='ml-auto outline' onClick={edit}>수정</Button>
                 <Button className='ml5' onClick={remove}>삭제</Button>

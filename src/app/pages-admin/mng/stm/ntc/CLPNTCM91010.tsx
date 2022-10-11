@@ -3,7 +3,7 @@ import { BasePage } from '../../../../shared/components/base/BasePage';
 import { Dropdown } from 'primereact/dropdown';
 import { InputText } from 'primereact/inputtext';
 import { Calendar } from 'primereact/calendar';
-import { Button, SelectItemOptionsType } from 'primereact';
+import { Button } from 'primereact';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { paginator } from '../../../../shared/utils/table-paginator';
