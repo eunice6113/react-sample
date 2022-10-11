@@ -16,6 +16,7 @@ import { SearchParams } from '../../../../core/models/search-params';
 const CLPNTCM91010: React.FC = () => {
     const { goPage, goBack } = useBasePage()
 
+    //검색 조건
     const [values, setValues] = React.useState<SearchParams>({
         type1: undefined,
         type2: undefined,
