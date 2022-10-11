@@ -23,52 +23,52 @@ const LNB: React.FC<IProps> = ({open, children}) => {
 
     const items = [
         {
-            label:'UI Guide',
+            label:'UI',
             visible: true,
             expanded: curLocation === 'ui',
             items:[
                 {
-                    label:'Button Guide',
+                    label:'Button',
                     url: '/ui/button',
                     className: getClsName('/ui/button')
                 },
                 {
-                    label:'Input Guide',
+                    label:'Input',
                     url: '/ui/input',
                     className: getClsName('/ui/input')
                 },
                 {
-                    label:'Select Guide',
+                    label:'Select',
                     url: '/ui/select',
                     className: getClsName('/ui/select')
                 },
                 {
-                    label:'Radio Guide',
+                    label:'Radio',
                     url: '/ui/radio',
                     className: getClsName('/ui/radio')
                 },
                 {
-                    label:'Checkbox Guide',
+                    label:'Checkbox (업데이트예정)',
                     url: '/ui/check',
                     className: getClsName('/ui/check')
                 },
                 {
-                    label:'DatePicker Guide',
+                    label:'DatePicker',
                     url: '/ui/datepicker',
                     className: getClsName('/ui/datepicker')
                 },
                 {
-                    label:'Popup Guide',
+                    label:'Popup',
                     url: '/ui/popup',
                     className: getClsName('/ui/popup')
                 },
                 {
-                    label:'Table Guide',
+                    label:'Table (페이지참고)',
                     url: '/ui/table',
                     className: getClsName('/ui/table')
                 },
                 {
-                    label:'Chart Guide',
+                    label:'Chart (업데이트예정)',
                     url: '/ui/chart',
                     className: getClsName('/ui/chart')
                 },
