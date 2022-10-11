@@ -34,14 +34,18 @@ const ViewTemplate: React.FC<IProps> = ({ title, grid, hasRequired, mode, conten
                         </colgroup>
                         <tbody>
                         <tr>
-                            {
+                            <th>{contents[0].key}</th>
+                            <td>{contents[0].value}</td>
+                            <th>{contents[1].key}</th>
+                            <td>{contents[1].value}</td>
+                            {/* {
                                 contents.map((item, index) => (
                                     <>
                                     <th>{item.key}</th>
                                     <td>{item.value}</td>
                                     </>
                                 ))
-                            }
+                            } */}
                         </tr>
                         </tbody>
                     </table>    
@@ -65,7 +69,7 @@ const ViewTemplate: React.FC<IProps> = ({ title, grid, hasRequired, mode, conten
                         <tbody>
                         {
                             contents.map((item, index) => (
-                                <tr key={item.value}>
+                                <tr key={item.value + item.key + index}>
                                     <th>
                                         {item.key}
                                         {mode !== 'view' && item.required && <span className='required'>*</span>}    

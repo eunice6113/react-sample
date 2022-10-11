@@ -15,6 +15,12 @@ const CLPNTCM91030:React.FC = () => {
     const [title, setTitle] = React.useState('');
     const [content, setContent] = React.useState('');
 
+    const [values, setValues] = React.useState<any>({
+        type: undefined,
+        title: '',
+        content: '',
+    });
+
     const categories = [
         {name: '노출', key: 'Y'}, 
         {name: '비노출', key: 'N'}];
