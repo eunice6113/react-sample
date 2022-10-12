@@ -592,7 +592,7 @@ body.theme-dark {
   --toggle-off-handle-color: #ffffff;
   --toggle-off-background-color: #cccccc;
   --button-primary-cta-default-color: #ffffff;
-  --button-primary-cta-default-border-color: #1d5dc4;
+  --button-primary-cta-default-border-color: #ffffff;
   --button-primary-cta-default-background-color: #1d5dc4;
   --button-primary-cta-hover-color: #ffffff;
   --button-primary-cta-hover-border-color: #1fa4cc;
@@ -9803,6 +9803,25 @@ textarea:focus {
   .customDialog .dialogTitle {
     font-size: 14px; } }
 
+.p-dialog,
+.p-dialog .p-dialog-header,
+.p-dialog-content,
+.p-dialog-footer {
+  background-color: #808080;
+  color: #ffffff; }
+  body.theme-light .p-dialog, body.theme-light
+  .p-dialog .p-dialog-header, body.theme-light
+  .p-dialog-content, body.theme-light
+  .p-dialog-footer {
+    background-color: #ffffff;
+    color: #333333; }
+  body.theme-dark .p-dialog, body.theme-dark
+  .p-dialog .p-dialog-header, body.theme-dark
+  .p-dialog-content, body.theme-dark
+  .p-dialog-footer {
+    background-color: #808080;
+    color: #ffffff; }
+
 .p-dialog .p-dialog-header {
   padding: 0; }
 
@@ -9819,17 +9838,27 @@ textarea:focus {
   padding: 1.5rem !important; }
 
 .p-confirm-dialog .p-button.p-confirm-dialog-reject {
-  color: var(--brand-primary) !important;
-  border: 1px solid var(--brand-primary) !important;
+  color: #ffffff;
+  border: 1px solid #ffffff;
   background-color: transparent !important; }
+  body.theme-light .p-confirm-dialog .p-button.p-confirm-dialog-reject {
+    color: #ffffff;
+    border: 1px solid #cccccc; }
+  body.theme-dark .p-confirm-dialog .p-button.p-confirm-dialog-reject {
+    color: #ffffff;
+    border: 1px solid #ffffff; }
 
 /* 버튼 하나만 있는 alert dialog */
 .p-confirm-dialog.oneButton .p-button.p-confirm-dialog-reject {
   display: none; }
 
 .p-confirm-dialog.oneButton .p-confirm-dialog-accept {
-  background: var(--brand-primary);
+  background: #1d5dc4;
   width: 100%; }
+  body.theme-light .p-confirm-dialog.oneButton .p-confirm-dialog-accept {
+    background: #1d5dc4; }
+  body.theme-dark .p-confirm-dialog.oneButton .p-confirm-dialog-accept {
+    background: #1d5dc4; }
 
 .p-confirm-dialog {
   width: 400px; }
