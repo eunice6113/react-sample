@@ -1,6 +1,7 @@
 import { Button, confirmDialog } from "primereact";
 import * as React from "react";
 import { BasePage } from "../../shared/components/base/BasePage";
+import './ui-guide.css';
 
 const SelectGuide: React.FC = () => {
 

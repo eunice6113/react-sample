@@ -2,6 +2,7 @@ import { InputNumber, InputText } from "primereact";
 import * as React from "react";
 import { BasePage } from "../../shared/components/base/BasePage";
 import TextEditor from "../../shared/components/ui/text-editor/TextEditor";
+import './ui-guide.css';
 
 const InputGuide: React.FC = () => {
 

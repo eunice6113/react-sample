@@ -2,6 +2,7 @@ import { Calendar } from "primereact";
 import * as React from "react";
 import { SearchParams } from "../../core/models/search-params";
 import { BasePage } from "../../shared/components/base/BasePage";
+import './ui-guide.css';
 
 const DatePickerGuide: React.FC = () => {
 

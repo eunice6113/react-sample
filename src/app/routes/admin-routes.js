@@ -24,6 +24,7 @@ const InputGuide = Loadable(lazy(() => import('../pages/ui-guide/InputGuide')));
 const SelectGuide = Loadable(lazy(() => import('../pages/ui-guide/SelectGuide')));
 const PopupGuide = Loadable(lazy(() => import('../pages/ui-guide/PopupGuide')));
 const TableGuide = Loadable(lazy(() => import('../pages/ui-guide/TableGuide')));
+const ChartGuide = Loadable(lazy(() => import('../pages/ui-guide/ChartGuide')));
 
 const CheckboxGuide = Loadable(lazy(() => import('../pages/ui-guide/CheckboxGuide')));
 const DatePickerGuide = Loadable(lazy(() => import('../pages/ui-guide/DatePickerGuide')));
@@ -125,10 +126,10 @@ const Error = Loadable(lazy(() => import('../pages/auth/Error')));
 
 // Routes ================================================================
 const adminRoutes = [
-  {
-    path: 'callback',
-    element: <Callback />
-  },
+  // {
+  //   path: 'callback',
+  //   element: <Callback />
+  // },
   {
     path: '/',
     element: <Navigate to='/ui/guide' />,
@@ -142,7 +143,7 @@ const adminRoutes = [
         children: [
           {
             path: 'guide', 
-            name: 'UI Guide', 
+            name: 'CSS Guide', 
             element: <UI_GUIDE />
           },
           {
@@ -169,11 +170,6 @@ const adminRoutes = [
             path: 'table', 
             name: 'Table Guide', 
             element: <TableGuide />
-          },
-          {
-            path: 'chart', 
-            name: 'Chart Guide', 
-            element: <UI_GUIDE />
           },
           {
             path: 'radio', 
@@ -209,6 +205,11 @@ const adminRoutes = [
             path: 'toggle', 
             name: 'ToggleGuide Guide', 
             element: <ToggleGuide />
+          },
+          {
+            path: 'chart', 
+            name: 'Chart Guide', 
+            element: <ChartGuide />
           },
         ]
       }

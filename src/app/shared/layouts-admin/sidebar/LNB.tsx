@@ -28,6 +28,11 @@ const LNB: React.FC<IProps> = ({open, children}) => {
             expanded: curLocation === 'ui',
             items:[
                 {
+                    label:'CSS Guide',
+                    url: '/ui/guide',
+                    className: getClsName('/ui/guide')
+                },
+                {
                     label:'Button',
                     url: '/ui/button',
                     className: getClsName('/ui/button')
@@ -48,7 +53,7 @@ const LNB: React.FC<IProps> = ({open, children}) => {
                     className: getClsName('/ui/radio')
                 },
                 {
-                    label:'Checkbox (업데이트예정)',
+                    label:'Checkbox',
                     url: '/ui/check',
                     className: getClsName('/ui/check')
                 },
@@ -68,7 +73,7 @@ const LNB: React.FC<IProps> = ({open, children}) => {
                     className: getClsName('/ui/table')
                 },
                 {
-                    label:'Chart (업데이트예정)',
+                    label:'Chart',
                     url: '/ui/chart',
                     className: getClsName('/ui/chart')
                 },
