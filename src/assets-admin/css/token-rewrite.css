@@ -7520,8 +7520,8 @@ body {
   max-width: 25%; }
 
 .cld-row .cld-col-2 {
-  flex: 0 0 16.7%;
-  max-width: 16.7%; }
+  flex: 0 0 16.6%;
+  max-width: 16.6%; }
 
 .cld-row .cld-col {
   flex: 0 0 8.3%;
@@ -7563,8 +7563,8 @@ body {
     flex: 0 0 25%;
     max-width: 25%; }
   .cld-row .cld-col-sm-2 {
-    flex: 0 0 16.7%;
-    max-width: 16.7%; }
+    flex: 0 0 16.6%;
+    max-width: 16.6%; }
   .cld-row .cld-col-sm {
     flex: 0 0 8.3%;
     max-width: 8.3%; }
@@ -7604,8 +7604,8 @@ body {
     flex: 0 0 25%;
     max-width: 25%; }
   .cld-row .cld-col-md-2 {
-    flex: 0 0 16.7%;
-    max-width: 16.7%; }
+    flex: 0 0 16.6%;
+    max-width: 16.6%; }
   .cld-row .cld-col-md {
     flex: 0 0 8.3%;
     max-width: 8.3%; }
@@ -7645,8 +7645,8 @@ body {
     flex: 0 0 25%;
     max-width: 25%; }
   .cld-row .cld-col-lg-2 {
-    flex: 0 0 16.7%;
-    max-width: 16.7%; }
+    flex: 0 0 16.6%;
+    max-width: 16.6%; }
   .cld-row .cld-col-lg {
     flex: 0 0 8.3%;
     max-width: 8.3%; }
@@ -7686,8 +7686,8 @@ body {
     flex: 0 0 25%;
     max-width: 25%; }
   .cld-row .cld-col-xl-2 {
-    flex: 0 0 16.7%;
-    max-width: 16.7%; }
+    flex: 0 0 16.6%;
+    max-width: 16.6%; }
   .cld-row .cld-col-xl {
     flex: 0 0 8.3%;
     max-width: 8.3%; }
@@ -8872,9 +8872,35 @@ a:hover {
 .p-dropdown, .p-multiselect {
   transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
   border-radius: 4px;
-  height: 32px; }
-  .p-dropdown .p-dropdown-trigger-icon, .p-multiselect .p-dropdown-trigger-icon {
+  height: 32px;
+  color: #ffffff;
+  background-color: #333333; }
+  .p-dropdown .p-dropdown-trigger-icon, .p-dropdown .p-multiselect-trigger-icon, .p-multiselect .p-dropdown-trigger-icon, .p-multiselect .p-multiselect-trigger-icon {
     font-size: 0.7rem; }
+  .p-dropdown:disabled, .p-multiselect:disabled {
+    color: #777777;
+    background: #666666;
+    border: 0 none; }
+  .p-dropdown:disabled ~ label, .p-multiselect:disabled ~ label {
+    color: #777777; }
+  body.theme-light .p-dropdown, body.theme-light .p-multiselect {
+    color: #000000;
+    background-color: #ffffff; }
+    body.theme-light .p-dropdown:disabled, body.theme-light .p-multiselect:disabled {
+      color: #cccccc;
+      background: #ffffff;
+      border: 0 none; }
+    body.theme-light .p-dropdown:disabled ~ label, body.theme-light .p-multiselect:disabled ~ label {
+      color: #cccccc; }
+  body.theme-dark .p-dropdown, body.theme-dark .p-multiselect {
+    color: #ffffff;
+    background-color: #333333; }
+    body.theme-dark .p-dropdown:disabled, body.theme-dark .p-multiselect:disabled {
+      color: #777777;
+      background: #666666;
+      border: 0 none; }
+    body.theme-dark .p-dropdown:disabled ~ label, body.theme-dark .p-multiselect:disabled ~ label {
+      color: #777777; }
   .p-dropdown .p-inputtext, .p-dropdown .p-inputwrapper, .p-multiselect .p-inputtext, .p-multiselect .p-inputwrapper {
     width: 100%;
     min-height: initial !important;
@@ -8940,7 +8966,9 @@ a:hover {
 
 .cld-option,
 .p-dropdown-panel .p-dropdown-items .p-dropdown-item,
-.p-multiselect-panel .p-multiselect-items .p-multiselect-item {
+.p-multiselect-panel .p-multiselect-items .p-multiselect-item,
+.p-multiselect-panel .p-multiselect-items .p-multiselect-item-group,
+.p-multiselect-header {
   width: 100%;
   min-height: 32px;
   line-height: 32px;
@@ -8951,12 +8979,16 @@ a:hover {
   background-color: #555555; }
   body.theme-light .cld-option, body.theme-light
   .p-dropdown-panel .p-dropdown-items .p-dropdown-item, body.theme-light
-  .p-multiselect-panel .p-multiselect-items .p-multiselect-item {
+  .p-multiselect-panel .p-multiselect-items .p-multiselect-item, body.theme-light
+  .p-multiselect-panel .p-multiselect-items .p-multiselect-item-group, body.theme-light
+  .p-multiselect-header {
     color: #000000;
     background-color: #ffffff; }
   body.theme-dark .cld-option, body.theme-dark
   .p-dropdown-panel .p-dropdown-items .p-dropdown-item, body.theme-dark
-  .p-multiselect-panel .p-multiselect-items .p-multiselect-item {
+  .p-multiselect-panel .p-multiselect-items .p-multiselect-item, body.theme-dark
+  .p-multiselect-panel .p-multiselect-items .p-multiselect-item-group, body.theme-dark
+  .p-multiselect-header {
     color: #ffffff;
     background-color: #555555; }
 
@@ -9005,6 +9037,10 @@ a:hover {
 .p-dropdown-items-wrapper,
 .p-multiselect-items-wrapper {
   border-radius: 4px; }
+
+.p-multiselect-items-wrapper {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0; }
 
 .p-dropdown-panel .p-dropdown-items,
 .p-multiselect-panel .p-multiselect-items {
@@ -9398,7 +9434,7 @@ textarea:focus {
   .p-datatable td {
     font-size: 13px;
     word-break: break-all;
-    padding: 3px 20px;
+    padding: 3px 10px;
     white-space: normal !important;
     color: #ffffff;
     border-bottom: 1px solid; }
@@ -9516,6 +9552,9 @@ textarea:focus {
 .cld-table.tdCenter td,
 .p-datatable.tdCenter td {
   text-align: center; }
+
+.p-datatable .p-datatable-tbody > tr > td {
+  padding: 3px 10px; }
 
 .cld-table-cover {
   border-radius: 8px;

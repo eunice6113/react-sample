@@ -52,16 +52,30 @@ const Select: React.FC = () => {
 
         <h3>Basic</h3>
         <Dropdown value={select1} options={options1} onChange={handleChange1} optionLabel="name" placeholder="전체" />
+        
+        <br/>
+        <br/>
+        <Dropdown disabled value={select1} optionLabel="name" placeholder="Disabled" />
 
         <h3>Multi Select</h3>
         <MultiSelect 
-        style={{width:150}}
+            style={{width:150}}
             filter
             value={selectedGroupedCities} 
             options={groupedCities} 
             onChange={(e) => setSelectedGroupedCities(e.value)} 
             optionLabel="label" optionGroupLabel="label" optionGroupChildren="items"
             placeholder="Select Cities" />
+
+        <br/>
+        <br/>
+        <MultiSelect 
+            disabled
+            style={{width:150}}
+            filter
+            optionLabel="label" optionGroupLabel="label" optionGroupChildren="items"
+            placeholder="Disabled" />
+    
     
     </BasePage>)
 }

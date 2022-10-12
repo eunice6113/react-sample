@@ -10,7 +10,6 @@
 .cldLnb {
     padding: 10px;
     width: 220px !important;
-    height: 100vh;
 }
 .cldLnb .p-panelmenu-header.p-highlight > a {
     border-radius: 4px !important;
@@ -27,7 +26,6 @@
     border-right: 0 none;
     border-bottom: 0 none;
     border-right: 0 none;
-    /* border-left: 1px solid #E7EAEE; */
     border-left: 1px solid var(--global-border-color);
     border-radius: 0;
     padding-left: 10px;
