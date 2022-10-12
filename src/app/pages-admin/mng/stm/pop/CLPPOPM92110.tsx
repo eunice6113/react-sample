@@ -141,7 +141,7 @@ const CLPPOPM92110: React.FC = () => {
 
         <div className='toolbar mb10'>
             <p>총 <span className='pageNm'>{pages}</span>개</p>
-            <Button className='ml-auto outline' label='신규등록' icon='pi pi-pencil' onClick={register} />
+            <Button className='ml-auto outline' label='팝업등록' icon='pi pi-pencil' onClick={register} />
         </div>
 
         <DataTable value={data} paginator paginatorTemplate={paginator} 
@@ -155,4 +155,3 @@ const CLPPOPM92110: React.FC = () => {
     </BasePage>)
 }
 export default CLPPOPM92110;
-
