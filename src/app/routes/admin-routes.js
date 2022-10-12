@@ -56,6 +56,7 @@ const CLPFAQM91920 = Loadable(lazy(() => import('../pages-admin/mng/stm/faq/CLPF
 // 팝업관리
 const CLPPOPM92110 = Loadable(lazy(() => import('../pages-admin/mng/stm/pop/CLPPOPM92110')));
 const CLPPOPM92220 = Loadable(lazy(() => import('../pages-admin/mng/stm/pop/CLPPOPM92220')));
+const CLPPOPM92230 = Loadable(lazy(() => import('../pages-admin/mng/stm/pop/CLPPOPM92230')));
 
 // 소통공간
 const CLPCMNM95410 = Loadable(lazy(() => import('../pages-admin/mng/stm/cmn/CLPCMNM95410')));
@@ -258,7 +259,7 @@ const adminRoutes = [
             children: [
               {path: 'list', name:'팝업 관리', element: <CLPPOPM92110 />},
               {path: ':id', name:'팝업 관리 상세/수정', element: <CLPPOPM92220 />},
-              {path: 'register', name:'팝업 등록', element: <CLPPOPM92220 />},
+              {path: 'register', name:'팝업 등록', element: <CLPPOPM92230 />},
             ],
           },
           { path: 'cmn', 

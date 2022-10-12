@@ -2,6 +2,28 @@
   outline: none;
 }
 
+.viewDateRangePicker .p-calendar {
+  width: 120px;
+}
+
+.downloadFiles {
+  border: 1px solid var(--global-border-color);
+  border-radius: 4px;
+  padding:10px;
+}
+
+.downloadFiles .fileList {
+  list-style: none;
+}
+
+.downloadFiles .fileList li {
+  margin-bottom: 10px;
+}
+
+.downloadFiles .fileList li:last-child {
+  margin-bottom: 0;
+}
+
 .p-datepicker {
   width: 420px !important
 }
@@ -67,22 +89,6 @@ table .required {
 }
 
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-
 
 
 .searchBar {
@@ -122,46 +128,3 @@ table .required {
 
 
 
-
-
-.p-dialog .p-dialog-header {
-  padding: 0;
-}
-
-/* 닫기 버튼 숨김 */
-.p-dialog .p-dialog-header .p-dialog-header-icon {
-  visibility: hidden;
-}
-
-/* 제목이 없는 팝업 */
-.p-dialog.noHeader .p-dialog-header {
-  padding: 0 !important;
-}
-
-/* 제목이 있는 팝업 */
-.p-dialog .p-dialog-header {
-  padding: 1.5rem !important;
-}
-
-/* 버튼 하나만 있는 alert dialog */
-.p-confirm-dialog.oneButton .p-button.p-confirm-dialog-reject {
-  display: none;
-  color: var(--brand-primary) !important;
-  border: 1px solid var(--brand-primary) !important;
-  background-color: transparent !important
-}
-.p-confirm-dialog.oneButton .p-confirm-dialog-accept {
-  background: var(--brand-primary);
-  width: 100%;
-}
-.p-confirm-dialog {width: 400px;}
-.p-confirm-dialog-message {margin-left: 0 !important;}
-
-.p-dialog .p-dialog-footer button {
-  width:48%;
-}
-.p-dialog .p-dialog-footer button:last-child {margin-right: 0 !important;}
-.p-dialog .p-dialog-footer {
-  display: flex;
-  justify-content: space-between;
-}

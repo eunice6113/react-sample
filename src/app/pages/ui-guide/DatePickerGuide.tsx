@@ -20,7 +20,7 @@ const DatePickerGuide: React.FC = () => {
     <BasePage>
         <h3>Basic</h3>
         <Calendar dateFormat='yy-mm-dd' value={values.fromDate} onChange={(e) => handleChange('fromDate', e.value)} showIcon />
-        <span className='mt5'>~</span>
+        <span className='mt5 mx5'>~</span>
         <Calendar dateFormat='yy-mm-dd' value={values.toDate} onChange={(e) => handleChange('toDate', e.value)} showIcon />
     
     </BasePage>)

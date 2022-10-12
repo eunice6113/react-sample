@@ -112,9 +112,9 @@ const CLPPOPM92220:React.FC = () => {
                 key: '중요공지여부',
                 value: <span>노출</span>,
                 editingValue: (
-                    categories.map((category) => {
+                    categories.map((category, index) => {
                     return (
-                        <span key={category.key} className="field-radiobutton mr20">
+                        <span key={category.key+index} className="field-radiobutton mr20">
                             <RadioButton inputId={category.key} name="category" value={category} onChange={(e) => setSelectedCategory(e.value)} checked={selectedCategory.key === category.key} disabled={category.key === 'R'} />
                             <label className='ml5' htmlFor={category.key}>{category.name}</label>
                         </span>
