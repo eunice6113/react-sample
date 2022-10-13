@@ -71,9 +71,9 @@ const CldFileUpload: React.FC<FileUploadProps> = ({name, url, onSelect, onUpload
         )
     }
 
-    const chooseOptions = {icon: 'pi pi-fw pi-plus', iconOnly: false, label:'파일추가', className: 'custom-choose-btn p-button-rounded p-button-outlined'};
-    const uploadOptions = {icon: 'pi pi-fw pi-cloud-upload', iconOnly: false, label:'업로드', className: 'custom-upload-btn p-button-success p-button-rounded p-button-outlined'};
-    const cancelOptions = {icon: 'pi pi-fw pi-times', iconOnly: false, label:'파일삭제', className: 'custom-cancel-btn p-button-danger p-button-rounded p-button-outlined'};
+    const chooseOptions = {icon: 'pi pi-fw pi-plus', iconOnly: false, label:'파일추가', className: 'custom-choose-btn p-button outline'};
+    const uploadOptions = {icon: 'pi pi-fw pi-cloud-upload', iconOnly: false, label:'업로드', className: 'custom-upload-btn p-button outline'};
+    const cancelOptions = {icon: 'pi pi-fw pi-times', iconOnly: false, label:'파일삭제', className: 'custom-cancel-btn p-button outline'};
 
     return (
         <div>
