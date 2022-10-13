@@ -20,7 +20,6 @@ const CLPCMNM95520: React.FC<IProps> = ({children}) => {
     const [value1, setValue1] = React.useState('');
     const [date1, setDate1] = React.useState<Date | Date[] | undefined>(undefined);
 
-
     const cities = [
         { name: 'New York', code: 'NY' },
         { name: 'Rome', code: 'RM' },

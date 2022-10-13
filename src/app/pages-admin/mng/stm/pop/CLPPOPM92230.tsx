@@ -1,15 +1,18 @@
-import { Calendar, FileUpload, InputText, InputTextarea, RadioButton } from 'primereact';
+import { Calendar, InputText, InputTextarea, RadioButton } from 'primereact';
 import * as React from 'react';
 import { BasePage } from '../../../../shared/components/base/BasePage';
+import CldFileUpload from '../../../../shared/components/CldFileUpload';
 import ViewButtonsTemplate from '../../../../shared/components/template/ViewButtonsTemplate';
-import ViewTemplate from '../../../../shared/components/template/ViewTemplate';
 import { useBasePage } from '../../../../shared/hooks/base-page.hook';
+import { MODE } from '../../../../shared/config/commonCode';
+import ViewTemplate from '../../../../shared/components/template/ViewTemplate';
 import './CLPPOPM92220.css';
 
 interface File {
     name:string;
     size:number;
 }
+
 interface PopupContent {
     title: string;
     content: string;
@@ -22,9 +25,9 @@ interface PopupContent {
 
 //팝업관리 등록
 const CLPPOPM92220:React.FC = () => {
-    const { goBack, isRegister } = useBasePage()
+    const { goBack } = useBasePage()
 
-    const [mode, setMode] = React.useState<'view' | 'edit' | 'resgister'>('resgister');
+    const [mode, setMode] = React.useState<'view' | 'edit' | 'register'>('register');
 
     const popupTypes = [
         {name: '토스트 팝업', key: 'T'}, 
@@ -54,18 +57,18 @@ const CLPPOPM92220:React.FC = () => {
     const cancel = () => {
         console.log('취소')
 
-        if(mode == 'resgister') {
+        if(mode === MODE.REGISTER) {
             goBack();
-        } else if(mode == 'edit') {
+        } else if(mode === MODE.EDIT) {
             setMode('view')
         }
     }
 
     //확인 버튼
     const confirm = () => {
-        if(mode == 'resgister') {
+        if(mode === MODE.REGISTER) {
             goBack();
-        } else if(mode == 'edit') {
+        } else if(mode === MODE.EDIT) {
             setMode('view')
         }
     }
@@ -73,116 +76,150 @@ const CLPPOPM92220:React.FC = () => {
     //api 읽어와서 업데이트 할 내용
     const authorInfo = {
         title: '등록자 정보',
-        grid: 4,  
-        contents: [
+        rows: [
             {
-                key: '등록자', 
-                value: '신재문'
-            },
-            {
-                key: '등록일시', 
-                value: '2023.03.02. 15:00:00'
-            },
+                cols: [
+                    {
+                        key: '등록자', 
+                        value: '신재문'
+                    },
+                    {
+                        key: '등록일시', 
+                        value: '2023.03.02. 15:00:00'
+                    },
+                ]
+            }
         ]
     }
 
     const contentsInfo = {
         title: '등록 내용',
-        grid: 2, 
-        mode: mode,
+        mode: mode, //view 가 디폴트
         hasRequired: true,
-        contents: [
+        rows: [
             {
-                key: '유형', 
-                value: <span>토스트 팝업</span>,
-                editingValue: <>
-                 {
-                    popupTypes.map((popup) => {
-                        return (
-                            <span key={popup.key} className='field-radiobutton mr20'>
-                                <RadioButton inputId={popup.key} name='category' 
-                                    value={popup} 
-                                    onChange={(e) => setPopupType(e.value)} 
-                                    checked={popupType.key === popup.key} 
-                                    disabled={popup.key === 'R'} />
-                                    <label htmlFor={popup.key}>{popup.name}</label>
-                            </span>
-                    )})
+            cols: [
+                {
+                    key: '유형', 
+                    value: <span>토스트 팝업</span>,
+                    editingValue: <>
+                    {
+                        popupTypes.map((popup) => {
+                            return (
+                                <span key={popup.key} className='field-radiobutton mr20'>
+                                    <RadioButton 
+                                        inputId={popup.key} 
+                                        name='category' 
+                                        value={popup} 
+                                        onChange={(e) => setPopupType(e.value)} 
+                                        checked={popupType.key === popup.key} 
+                                        disabled={popup.key === 'R'} />
+                                        <label htmlFor={popup.key}>{popup.name}</label>
+                                </span>
+                        )})
+                    }
+                    </>
                 }
-                </>
-            },
-            {
-                required: true,
-                key: '제목', 
-                value: <span> 클라우드 포탈 소식 전해드립니다.</span>,
-                editingValue: <InputText maxLength={100} placeholder='제목을 입력해주세요.(최대 100자)' value={values.title} onChange={(e) => handleChange('title', e.target.value)} />,
-            },
-            {
-                required: true,
-                key: '상세내용', 
-                value: <span>상세내용입니다</span>,
-                editingValue: <InputTextarea rows={5} maxLength={250} placeholder='상세내용을 입력해주세요.(최대 250자)' value={values.content} onChange={(e) => handleChange('content', e.target.value)} />,
-            },
-            {
-                key: '팝업이미지', 
-                value: <>
-                    <div className='downloadFiles'>
-                        <ul className='fileList'>
-                            {
-                                values.files.map((file:any, index:number) => (
-                                    <li key={file.name+index}><i className='pi pi-download mr5 downloadIco'></i><u>{file.name}</u></li>
-                                ))
-                            }
-                        </ul>
+            ]
+        },
+        {
+            cols: [
+                {
+                    required: true,
+                    key: '제목', 
+                    value: <span> 클라우드 포탈 소식 전해드립니다.</span>,
+                    editingValue: <InputText maxLength={100} placeholder='제목을 입력해주세요.(최대 100자)' value={values.title} onChange={(e) => handleChange('title', e.target.value)} />,
+                },
+            ]
+        },
+        {
+            cols: [
+                {
+                    required: true,
+                    key: '상세내용', 
+                    value: <span>상세내용입니다</span>,
+                    editingValue: <InputTextarea rows={5} maxLength={250} placeholder='상세내용을 입력해주세요.(최대 250자)' value={values.content} onChange={(e) => handleChange('content', e.target.value)} />,
+                }
+            ]
+        },
+        {
+            showIf: popupType.key === 'W', //팝업 유형 === '윈도우 팝업' 일 때만 노출
+            cols: [
+                {
+                    key: '팝업이미지', 
+                    value: <>
+                        <div className='downloadFiles'>
+                            <ul className='fileList'>
+                                {
+                                    values.files.map((file:any, index:number) => (
+                                        <li key={file.name+index}><i className='pi pi-download mr5 downloadIco'></i><u>{file.name}</u></li>
+                                    ))
+                                }
+                            </ul>
+                        </div>
+                    </>,
+                    editingValue: <>
+                        <CldFileUpload url='' onUpload={()=>{ }} />
+                        <div className='downloadFiles mt10'>
+                            <ul className='fileList'>
+                                {
+                                    values.files.map((file:any, index:number) => (
+                                        <li key={file.name+index}><i className='pi pi-download mr5 downloadIco'></i><u>{file.name}</u></li>
+                                    ))
+                                }
+                            </ul>
+                        </div>
+                    </>
+                }
+            ]
+        },
+        {
+            showIf: popupType.key === 'W', //팝업 유형 === '윈도우 팝업' 일 때만 노출
+            cols: [
+                {
+                    required: false,
+                    key: '팝업링크', 
+                    value: <span> 클라우드 포탈 소식 전해드립니다.</span>,
+                    editingValue: <InputText maxLength={100} placeholder='http://' value={values.link} onChange={(e) => handleChange('link', e.target.value)} />,
+                }
+            ]
+        },
+        {
+            cols: [
+                {
+                    required: true,
+                    key: '노출기간', 
+                    value: <span>2022.10.15 ~ 2022.10.31</span>,
+                    editingValue: <div className='viewDateRangePicker'>
+                        <Calendar dateFormat='yy.mm.dd' value={values.fromDate} onChange={(e) => handleChange('fromDate', e.value)} showIcon />
+                        <span className='mt5 ml5 mr5'>~</span>
+                        <Calendar dateFormat='yy.mm.dd' value={values.toDate} onChange={(e) => handleChange('toDate', e.value)} showIcon />
                     </div>
-                </>,
-                editingValue: <>
-                    <FileUpload />
-                    <div className='downloadFiles mt10'>
-                        <ul className='fileList'>
-                            {
-                                values.files.map((file:any, index:number) => (
-                                    <li key={file.name+index}><i className='pi pi-download mr5 downloadIco'></i><u>{file.name}</u></li>
-                                ))
-                            }
-                        </ul>
-                    </div>
-                </>
-            },
-            {
-                required: false,
-                key: '팝업링크', 
-                value: <span> 클라우드 포탈 소식 전해드립니다.</span>,
-                editingValue: <InputText maxLength={100} placeholder='http://' value={values.link} onChange={(e) => handleChange('link', e.target.value)} />,
-            },
-            {
-                required: true,
-                key: '노출기간', 
-                value: <span>2022.10.15 ~ 2022.10.31</span>,
-                editingValue: <div className='viewDateRangePicker'>
-                    <Calendar dateFormat='yy.mm.dd' value={values.fromDate} onChange={(e) => handleChange('fromDate', e.value)} showIcon />
-                    <span className='mt5 ml5 mr5'>~</span>
-                    <Calendar dateFormat='yy.mm.dd' value={values.toDate} onChange={(e) => handleChange('toDate', e.value)} showIcon />
-                </div>
-            },
-            {
-                key: '사용여부',
-                value: <span>노출</span>,
-                editingValue: (
-                    useTypes.map((use) => {
-                    return (
-                        <span key={use.key} className='field-radiobutton mr20'>
-                            <RadioButton inputId={use.key} name='category' 
-                            value={use} onChange={(e) => setUseType(e.value)} 
-                            checked={useType.key === use.key} 
-                            disabled={use.key === 'R'} />
-                            <label className='ml5' htmlFor={use.key}>{use.name}</label>
-                        </span>
-                )}))
-            }
-        ]
+                }
+            ]
+        },
+        {
+            cols: [
+                {
+                    key: '사용여부',
+                    value: <span>노출</span>,
+                    editingValue: (
+                        useTypes.map((use) => {
+                        return (
+                            <span key={use.key} className='field-radiobutton mr20'>
+                                <RadioButton inputId={use.key} name='category' 
+                                value={use} onChange={(e) => setUseType(e.value)} 
+                                checked={useType.key === use.key} 
+                                disabled={use.key === 'R'} />
+                                <label className='ml5' htmlFor={use.key}>{use.name}</label>
+                            </span>
+                    )}))
+                }
+            ]
+        }
+    ]
     }
-
+    
     return(
     <BasePage>
         {/* 등록자 정보 */}
@@ -193,7 +230,7 @@ const CLPPOPM92220:React.FC = () => {
 
         {/* 
             버튼영역 
-            mode={mode} 편집모드 'view' | 'edit' | 'resgister'
+            mode={mode} 편집모드 'view' | 'edit' | 'register'
             list={goBack} 목록 버튼
             edit={edit} 수정 버튼
             remove={remove} 삭제 버튼

@@ -1,27 +1,23 @@
-import { Dropdown, Editor, FileUpload, InputText, RadioButton } from 'primereact';
+import { Dropdown, InputNumber, InputText } from 'primereact';
 import * as React from 'react';
 import { BasePage } from '../../../../shared/components/base/BasePage';
-import CldFileUpload from '../../../../shared/components/CldFileUpload';
 import ViewButtonsTemplate from '../../../../shared/components/template/ViewButtonsTemplate';
+import TextEditor from '../../../../shared/components/ui/text-editor/TextEditor';
 import { useBasePage } from '../../../../shared/hooks/base-page.hook';
 import { MODE } from '../../../../shared/config/commonCode';
-import './CLPNTCM91020.css';
 import ViewTemplate from '../../../../shared/components/template/ViewTemplate';
+import './CLPQNAM91520.css';
 
-//공지사항 관리 상세/수정
-const CLPNTCM91020:React.FC = () => {
-    const { goPage, goBack, paramId, isRegister } = useBasePage()
+//자주묻는질문 등록
+const CLPQNAM91520:React.FC = () => {
+    const { goPage, goBack } = useBasePage()
 
     const [mode, setMode] = React.useState<'view' | 'edit' | 'register'>('view');
 
+    const [order, setOrder] = React.useState<any>(null);
     const [select1, setSelect1] = React.useState<any>(null);
     const [title, setTitle] = React.useState('');
     const [content, setContent] = React.useState('');
-
-    const categories = [
-        {name: '노출', key: 'Y'}, 
-        {name: '비노출', key: 'N'}];
-    const [selectedCategory, setSelectedCategory] = React.useState(categories[1]);
 
     //select option dummy data
     const options1 = [
@@ -38,16 +34,15 @@ const CLPNTCM91020:React.FC = () => {
         goPage('/stm/qna/list')
     }
 
-    //삭제 버튼
-    const remove = () => {
-        console.log('삭제')
-    }
-
     //수정 버튼
     const edit = () => {
         setMode('edit');
-
         console.log('mode =>', mode)
+    }
+
+    //삭제 버튼
+    const remove = () => {
+        console.log('삭제')
     }
     
     //취소 버튼
@@ -99,7 +94,7 @@ const CLPNTCM91020:React.FC = () => {
                     {
                         required: true,
                         key: '구분', 
-                        value: <span>공지사항</span>,
+                        value: <span>클라우드</span>,
                         editingValue: <Dropdown value={select1} options={options1} onChange={handleChange1} optionLabel="name" placeholder="전체" />
                     },
                 ]
@@ -108,7 +103,7 @@ const CLPNTCM91020:React.FC = () => {
                 cols: [
                     {
                         required: true,
-                        key: '제목', 
+                        key: '질문', 
                         value: <span> 클라우드 포탈 소식 전해드립니다.</span>,
                         editingValue: <InputText className="" placeholder="제목을 입력해주세요" value={title} onChange={(e) => setTitle(e.target.value)} />,
                     },
@@ -118,34 +113,24 @@ const CLPNTCM91020:React.FC = () => {
                 cols: [
                     {
                         required: true,
-                        key: '내용', 
+                        key: '답변', 
                         value: <span>내용입니다</span>,
-                        editingValue: <Editor style={{height:'320px'}} value={content} onTextChange={(e) => setContent(e.textValue)} />,
+                        editingValue: <TextEditor value={content} onTextChange={setContent} />,
                     },
                 ]
             },
             {
                 cols: [
                     {
-                        key: '첨부파일', 
-                        value: <><i className='pi pi-download mr5 downloadIco'></i><u>파일명.xlsx</u></>,
-                        editingValue: <CldFileUpload url='' onUpload={()=>{ }} />
-                    },
-                ]
-            },
-            {
-                cols: [
-                    {
-                        key: '중요공지여부',
-                        value: <span>노출</span>,
+                        required: true,
+                        key: '노출순서',
+                        value: <span>1</span>,
                         editingValue: (
-                            categories.map((category) => {
-                            return (
-                                <span key={category.key} className="field-radiobutton mr20">
-                                    <RadioButton inputId={category.key} name="category" value={category} onChange={(e) => setSelectedCategory(e.value)} checked={selectedCategory.key === category.key} disabled={category.key === 'R'} />
-                                    <label className='ml5' htmlFor={category.key}>{category.name}</label>
-                                </span>
-                        )}))
+                            <div className='d-flex-default'>
+                                <InputNumber className='orderNm' inputId="integeronly" value={order} onValueChange={(e) => setOrder(e.value)} />
+                                <span className='infoTxt d-flex-default'><i className='pi pi-info-circle ml10 mr5'></i> 기등록한 노출순서와 변경하시는 경우 기등록된 자주 묻는 질문 이후 게시글도 포함하여 +1 처리 됩니다. </span>
+                            </div>
+                        )
                     }
                 ]
             },
@@ -162,7 +147,7 @@ const CLPNTCM91020:React.FC = () => {
 
         {/* 
             버튼영역 
-            mode={mode} 편집모드 'view' | 'edit' | 'resgister'
+            mode={mode} 편집모드 'view' | 'edit' | 'register'
             list={list} 목록 버튼
             edit={edit} 수정 버튼
             remove={remove} 삭제 버튼
@@ -179,4 +164,4 @@ const CLPNTCM91020:React.FC = () => {
         />
     </BasePage>)
 }
-export default CLPNTCM91020;
+export default CLPQNAM91520;

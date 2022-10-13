@@ -2,6 +2,14 @@
   outline: none;
 }
 
+.show {
+  
+}
+
+.hide {
+  display: none;
+}
+
 .viewDateRangePicker .p-calendar {
   width: 120px;
 }
