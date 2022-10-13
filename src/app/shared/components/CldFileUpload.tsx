@@ -7,33 +7,33 @@ import { Button } from 'primereact/button';
 import { Tag } from 'primereact/tag';
 
 interface FileUploadProps {
-    name: string;
+    name?: string;
     url: string;
-    onSelect: any;
+    onSelect?: any;
     onUpload: any;
-    onFileRemove: any;
-    onError: any;
-    onClear: any;
+    onFileRemove?: any;
+    onError?: any;
+    onClear?: any;
     multiple?: boolean;
     accept?: string;
     maxFileSize?: number;
-    totalSize: number;
+    totalSize?: number;
 }
 
-const CldFileUpload: React.FC<FileUploadProps> = ({name, url, onSelect, onUpload, onFileRemove, onError, onClear, totalSize, multiple = false, accept = 'image/*', maxFileSize = 1000000}) => {
+const CldFileUpload: React.FC<FileUploadProps> = ({name = 'files', url, onSelect, onUpload, onFileRemove, onError, onClear, totalSize, multiple = false, accept = 'image/*', maxFileSize = 1000000}) => {
     const fileUploadRef:any = React.useRef(null);
 
     const headerTemplate = (options:any) => {
         const { className, chooseButton, uploadButton, cancelButton } = options;
-        const value = totalSize/200000;
-        const formatedValue = fileUploadRef && fileUploadRef.current ? fileUploadRef.current.formatSize(totalSize) : '0 B';
+        // const value = totalSize/200000;
+        // const formatedValue = fileUploadRef && fileUploadRef.current ? fileUploadRef.current.formatSize(totalSize) : '0 B';
 
         return (
             <div className={className} style={{backgroundColor: 'transparent', display: 'flex', alignItems: 'center'}}>
                 {chooseButton}
                 {uploadButton}
                 {cancelButton}
-                <ProgressBar value={value} displayValueTemplate={() => `${formatedValue} / 20 MB`} style={{width: '300px', height: '18px', marginLeft: 'auto'}}></ProgressBar>
+                {/* <ProgressBar value={value} displayValueTemplate={() => `${formatedValue} / 20 MB`} style={{width: '300px', height: '18px', marginLeft: 'auto'}}></ProgressBar> */}
             </div>
         );
     }

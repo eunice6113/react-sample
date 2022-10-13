@@ -1,6 +1,7 @@
 import { Dropdown, Editor, FileUpload, InputText, RadioButton } from 'primereact';
 import * as React from 'react';
 import { BasePage } from '../../../../shared/components/base/BasePage';
+import CldFileUpload from '../../../../shared/components/CldFileUpload';
 import ViewButtonsTemplate from '../../../../shared/components/template/ViewButtonsTemplate';
 import ViewTemplate from '../../../../shared/components/template/ViewTemplate';
 import { useBasePage } from '../../../../shared/hooks/base-page.hook';
@@ -106,7 +107,7 @@ const CLPNTCM91020:React.FC = () => {
             {
                 key: '첨부파일', 
                 value: <><i className='pi pi-download mr5 downloadIco'></i><u>파일명.xlsx</u></>,
-                editingValue: <FileUpload />
+                editingValue: <CldFileUpload url='' onUpload={()=>{}} />
             },
             {
                 key: '중요공지여부',
