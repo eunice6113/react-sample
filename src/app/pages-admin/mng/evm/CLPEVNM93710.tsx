@@ -8,71 +8,172 @@ import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { paginator } from "../../../shared/utils/table-paginator";
 import './CLPEVNM93710.css';
+import { eventDummyData } from '../../../shared/demo/data/eventDummyData';
+import { useBasePage } from '../../../shared/hooks/base-page.hook';
+import { SearchParams } from '../../../core/models/search-params';
 
-interface IProps {
-    children: React.ReactNode;
-}
 //이벤트 관리
-const CLPEVNM93710: React.FC<IProps> = ({children}) => {
+const CLPEVNM93710: React.FC = () => {
+    const { goPage, goBack } = useBasePage()
 
-    const [select1, setSelect1] = React.useState<any>(null);
-    const [select2, setSelect2] = React.useState<any>(null);
-    const [value1, setValue1] = React.useState('');
-    const [date1, setDate1] = React.useState<Date | Date[] | undefined>(undefined);
+    //검색 조건
+    const [values, setValues] = React.useState<SearchParams>({
+        type1: undefined,
+        type2: undefined,
+        searchValue: '',
+        fromDate: undefined,
+        toDate: undefined,
+    });
 
+    //table
+    const [data, setData] = React.useState([]);
+    const [first, setFirst] = React.useState(0);
+    const [rows, setRows] = React.useState(10);
 
-    const cities = [
-        { name: 'New York', code: 'NY' },
-        { name: 'Rome', code: 'RM' },
-        { name: 'London', code: 'LDN' },
-        { name: 'Istanbul', code: 'IST' },
-        { name: 'Paris', code: 'PRS' }
+    //초기화
+    React.useEffect(() => {
+
+    }, []); 
+
+    React.useEffect(() => {
+        console.log('data =>', data)
+    }, [data]); 
+
+    //select option dummy data
+    const options1 = [
+        { name: '전체', code: 'NY' },
+        { name: '제목', code: 'RM' },
+        { name: '등록자', code: 'IST' },
     ];
-
-    const handleChange = (e: { value: any}) => {
-        setSelect1(e.value);
-    }
-
-
-    const [customers2, setCustomers2] = React.useState([]);
-    const [first1, setFirst1] = React.useState(0);
-    const [rows1, setRows1] = React.useState(10);
-
+    
+    const options2 = [
+        { name: '전체', code: 'NY' },
+        { name: '댓글', code: 'RM' },
+        { name: '퀴즈', code: 'LDN' },
+    ];
+    const options3 = [
+        { name: '전체', code: 'NY' },
+        { name: '시작일', code: 'RM' },
+        { name: '종료일', code: 'LDN' },
+        { name: '등록일자', code: 'LDN2' },
+    ];
+    const options4 = [
+        { name: '전체', code: 'NY' },
+        { name: '진행중', code: 'RM' },
+        { name: '종료', code: 'LDN' },
+        { name: '당첨발표 건', code: 'LDN2' },
+    ];
+    const options4 = [
+        { name: '전체', code: 'NY' },
+        { name: '진행중', code: 'RM' },
+        { name: '종료', code: 'LDN' },
+        { name: '당첨발표 건', code: 'LDN2' },
+    ];
+    
+    const handleChange = (prop: keyof SearchParams, value:any) => {
+        setValues({ ...values, [prop]: value });
+    };
 
     const onCustomPage = (event:any) => {
-        setFirst1(event.first);
-        setRows1(event.rows);
+        setFirst(event.first);
+        setRows(event.rows);
+    }
+    
+    //table page length
+    let pages = 50;
+    
+    //신규 등록 버튼
+    const register = (event:any) => {
+        goPage(`/stm/ntc/register`);
     }
 
-    let pages = 50;
+    const goDetail = ( e:any ) => {
+        console.log('clicked row =>', e.index)
+        goPage(`/stm/ntc/${e.index}`);
+    }
+
+    const headerTemplate = [
+        {
+            field: 'no',
+            header: '순번',
+            sortable: false,
+            style: {width: '10%', textAlign:'center', color:'gray'}
+        },
+        {
+            field: 'type',
+            header: '유형',
+            sortable: false,
+            style: {width: '10%'},
+            className: 'text-center'
+        },
+        {
+            field: 'subject',
+            header: '제목',
+            sortable: false,
+            style: {width: '40%'},
+        },
+        {
+            field: 'attach',
+            header: '첨부파일',
+            sortable: false,
+            style: {width: '10%'},
+            className: 'text-center'
+        },
+        {
+            field: 'author',
+            header: '등록자',
+            sortable: false,
+            style: {width: '8%'},
+            className: 'text-center'
+        },
+        {
+            field: 'hit',
+            header: '조회수',
+            sortable: false,
+            style: {width: '10%'},
+            className: 'text-center'
+        },
+        {
+            field: 'registerDate',
+            header: '등록일',
+            sortable: false,
+            style: {width: '12%'},
+            className: 'text-center'
+        },
+    ]
 
     return(
     <BasePage>
-        <div className="searchBar">
-            <Dropdown className="cld-select" value={select1} options={cities} onChange={handleChange} 
-                optionLabel="name" placeholder="전체" />
-            <Dropdown value={select2} options={cities} onChange={handleChange} 
-                optionLabel="name" placeholder="전체" />
+        <div className='searchBar'>
+            <Dropdown value={values.type1} options={options1} onChange={(e) => handleChange('type1', e.value)} 
+                optionLabel='name' placeholder='전체' />
+            <Dropdown value={values.type2} options={options2} onChange={(e) => handleChange('type2', e.value)} 
+                optionLabel='name' placeholder='전체' />
 
-            <InputText className="searchTxt" placeholder="검색어를 입력해주세요" value={value1} onChange={(e) => setValue1(e.target.value)} />
+            <InputText className='searchTxt mr20' placeholder='검색어를 입력해주세요' value={values.searchValue} onChange={(e) => handleChange('searchValue', e.target.value)} />
 
-            <Calendar id="icon" dateFormat="yy-mm-dd" value={date1} onChange={(e) => setDate1(e.value)} showIcon />
-            <Calendar id="icon" dateFormat="yy-mm-dd" value={date1} onChange={(e) => setDate1(e.value)} showIcon />
-            <Button className="cld-button primary" label="조회" />
+            <Dropdown value={values.type1} options={options3} onChange={(e) => handleChange('type1', e.value)} 
+                optionLabel='name' placeholder='전체' />
+            <Calendar dateFormat='yy-mm-dd' value={values.fromDate} onChange={(e) => handleChange('fromDate', e.value)} showIcon />
+            <span className='mt5'>~</span>
+            <Calendar dateFormat='yy-mm-dd' value={values.toDate} onChange={(e) => handleChange('toDate', e.value)} showIcon />
+            <Button label='조회' />
         </div>
 
-        <div className="toolbar">
-            <p className="mb10">총 <span className="pageNm">{pages}</span>개</p>
-            <Button className="ml-auto cld-button primary outline" label="신규등록" icon='pi pi-pencil' />
+        <div className='toolbar mb10'>
+            <p>총 <span className='pageNm'>{pages}</span>개</p>
+            <Dropdown className='ml-auto' value={values.type1} options={options4} onChange={(e) => handleChange('type1', e.value)} 
+                optionLabel='name' placeholder='전체' />
         </div>
 
-        <DataTable value={customers2} paginator paginatorTemplate={paginator} first={first1} rows={rows1} onPage={onCustomPage} responsiveLayout="scroll">
-            <Column field="name" header="Name" style={{ width: '25%' }}></Column>
-            <Column field="country.name" header="Country" style={{ width: '25%' }}></Column>
-            <Column field="company" header="Company" style={{ width: '25%' }}></Column>
-            <Column field="representative.name" header="Representative" style={{ width: '25%' }}></Column>
+        <DataTable value={eventDummyData} paginator paginatorTemplate={paginator} 
+            onRowClick={(e) => goDetail(e)}
+            first={first} rows={rows} 
+            onPage={onCustomPage} responsiveLayout='scroll'>
+            {headerTemplate.map((col, index) => (
+                <Column key={col.header} field={col.field} header={col.header} style={col.style} className={col.className}></Column>
+            ))}
         </DataTable>
-
     </BasePage>)
 }
 export default CLPEVNM93710;

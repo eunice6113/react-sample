@@ -155,6 +155,18 @@ const LNB: React.FC<IProps> = ({open, children}) => {
             ]
         },
         {
+            label:'이벤트 관리',
+            expanded: curLocation === 'evm',
+            visible: true,
+            items:[
+                {
+                    label:'이벤트 목록 관리',
+                    url: '/evm/list',
+                    className: getClsName('/evm/list')
+                },
+            ]
+        },
+        {
             label:'신청하기 관리',
             expanded: curLocation === 'apm',
             visible: true,
