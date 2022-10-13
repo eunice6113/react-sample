@@ -4,261 +4,118 @@ export const cmnDummyData = [
         no: 0,
         type: '[공지사항]',
         subject: '제목입니다',
-        attach: <i className="pi pi-download"></i>,
         author: '신재문',
-        hit: 100,
+        hit: '1,548',
+        upvote:'548',
         registerDate: '2022-10-15'
     },
     {
-        no: 0,
+        no: 1,
         type: '[공지사항]',
         subject: '제목입니다',
-        attach: <i className="pi pi-download"></i>,
         author: '신재문',
-        hit: 100,
+        hit: '1,548',
+        upvote:'548',
         registerDate: '2022-10-15'
     },
     {
-        no: 0,
+        no: 2,
         type: '[공지사항]',
         subject: '제목입니다',
-        attach: <i className="pi pi-download"></i>,
         author: '신재문',
-        hit: 100,
+        hit: '1,548',
+        upvote:'548',
         registerDate: '2022-10-15'
     },
     {
-        no: 0,
+        no: 3,
         type: '[공지사항]',
         subject: '제목입니다',
-        attach: <i className="pi pi-download"></i>,
         author: '신재문',
-        hit: 100,
+        hit: '1,548',
+        upvote:'548',
         registerDate: '2022-10-15'
     },
     {
-        no: 0,
+        no: 4,
         type: '[공지사항]',
         subject: '제목입니다',
-        attach: <i className="pi pi-download"></i>,
         author: '신재문',
-        hit: 100,
+        hit: '1,548',
+        upvote:'548',
         registerDate: '2022-10-15'
     },
     {
-        no: 0,
+        no: 5,
         type: '[공지사항]',
         subject: '제목입니다',
-        attach: <i className="pi pi-download"></i>,
         author: '신재문',
-        hit: 100,
+        hit: '1,548',
+        upvote:'548',
         registerDate: '2022-10-15'
     },
     {
-        no: 0,
+        no: 6,
         type: '[공지사항]',
         subject: '제목입니다',
-        attach: <i className="pi pi-download"></i>,
         author: '신재문',
-        hit: 100,
+        hit: '1,548',
+        upvote:'548',
         registerDate: '2022-10-15'
     },
     {
-        no: 0,
+        no: 7,
         type: '[공지사항]',
         subject: '제목입니다',
-        attach: <i className="pi pi-download"></i>,
         author: '신재문',
-        hit: 100,
+        hit: '1,548',
+        upvote:'548',
         registerDate: '2022-10-15'
     },
     {
-        no: 0,
+        no: 8,
         type: '[공지사항]',
         subject: '제목입니다',
-        attach: <i className="pi pi-download"></i>,
         author: '신재문',
-        hit: 100,
+        hit: '1,548',
+        upvote:'548',
         registerDate: '2022-10-15'
     },
     {
-        no: 0,
+        no: 9,
         type: '[공지사항]',
         subject: '제목입니다',
-        attach: <i className="pi pi-download"></i>,
         author: '신재문',
-        hit: 100,
+        hit: '1,548',
+        upvote:'548',
         registerDate: '2022-10-15'
     },
     {
-        no: 0,
+        no: 10,
         type: '[공지사항]',
         subject: '제목입니다',
-        attach: <i className="pi pi-download"></i>,
         author: '신재문',
-        hit: 100,
+        hit: '1,548',
+        upvote:'548',
         registerDate: '2022-10-15'
     },
     {
-        no: 0,
+        no: 10,
         type: '[공지사항]',
         subject: '제목입니다',
-        attach: <i className="pi pi-download"></i>,
         author: '신재문',
-        hit: 100,
+        hit: '1,548',
+        upvote:'548',
         registerDate: '2022-10-15'
     },
     {
-        no: 0,
+        no: 10,
         type: '[공지사항]',
         subject: '제목입니다',
-        attach: <i className="pi pi-download"></i>,
         author: '신재문',
-        hit: 100,
+        hit: '1,548',
+        upvote:'548',
         registerDate: '2022-10-15'
     },
-    {
-        no: 0,
-        type: '[공지사항]',
-        subject: '제목입니다',
-        attach: <i className="pi pi-download"></i>,
-        author: '신재문',
-        hit: 100,
-        registerDate: '2022-10-15'
-    },
-    {
-        no: 0,
-        type: '[공지사항]',
-        subject: '제목입니다',
-        attach: <i className="pi pi-download"></i>,
-        author: '신재문',
-        hit: 100,
-        registerDate: '2022-10-15'
-    },
-    {
-        no: 0,
-        type: '[공지사항]',
-        subject: '제목입니다',
-        attach: <i className="pi pi-download"></i>,
-        author: '신재문',
-        hit: 100,
-        registerDate: '2022-10-15'
-    },
-    {
-        no: 0,
-        type: '[공지사항]',
-        subject: '제목입니다',
-        attach: <i className="pi pi-download"></i>,
-        author: '신재문',
-        hit: 100,
-        registerDate: '2022-10-15'
-    },
-    {
-        no: 0,
-        type: '[공지사항]',
-        subject: '제목입니다',
-        attach: <i className="pi pi-download"></i>,
-        author: '신재문',
-        hit: 100,
-        registerDate: '2022-10-15'
-    },
-    {
-        no: 0,
-        type: '[공지사항]',
-        subject: '제목입니다',
-        attach: <i className="pi pi-download"></i>,
-        author: '신재문',
-        hit: 100,
-        registerDate: '2022-10-15'
-    },
-    {
-        no: 0,
-        type: '[공지사항]',
-        subject: '제목입니다',
-        attach: <i className="pi pi-download"></i>,
-        author: '신재문',
-        hit: 100,
-        registerDate: '2022-10-15'
-    },
-    {
-        no: 0,
-        type: '[공지사항]',
-        subject: '제목입니다',
-        attach: <i className="pi pi-download"></i>,
-        author: '신재문',
-        hit: 100,
-        registerDate: '2022-10-15'
-    },
-    {
-        no: 0,
-        type: '[공지사항]',
-        subject: '제목입니다',
-        attach: <i className="pi pi-download"></i>,
-        author: '신재문',
-        hit: 100,
-        registerDate: '2022-10-15'
-    },
-    {
-        no: 0,
-        type: '[공지사항]',
-        subject: '제목입니다',
-        attach: <i className="pi pi-download"></i>,
-        author: '신재문',
-        hit: 100,
-        registerDate: '2022-10-15'
-    },
-    {
-        no: 0,
-        type: '[공지사항]',
-        subject: '제목입니다',
-        attach: <i className="pi pi-download"></i>,
-        author: '신재문',
-        hit: 100,
-        registerDate: '2022-10-15'
-    },
-    {
-        no: 0,
-        type: '[공지사항]',
-        subject: '제목입니다',
-        attach: <i className="pi pi-download"></i>,
-        author: '신재문',
-        hit: 100,
-        registerDate: '2022-10-15'
-    },
-    {
-        no: 0,
-        type: '[공지사항]',
-        subject: '제목입니다',
-        attach: <i className="pi pi-download"></i>,
-        author: '신재문',
-        hit: 100,
-        registerDate: '2022-10-15'
-    },
-    {
-        no: 0,
-        type: '[공지사항]',
-        subject: '제목입니다',
-        attach: <i className="pi pi-download"></i>,
-        author: '신재문',
-        hit: 100,
-        registerDate: '2022-10-15'
-    },
-    {
-        no: 0,
-        type: '[공지사항]',
-        subject: '제목입니다',
-        attach: <i className="pi pi-download"></i>,
-        author: '신재문',
-        hit: 100,
-        registerDate: '2022-10-15'
-    },
-    {
-        no: 0,
-        type: '[공지사항]',
-        subject: '제목입니다',
-        attach: <i className="pi pi-download"></i>,
-        author: '신재문',
-        hit: 100,
-        registerDate: '2022-10-15'
-    },
+    
 ]

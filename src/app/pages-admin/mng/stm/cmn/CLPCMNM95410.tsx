@@ -44,17 +44,15 @@ const CLPCMNM95410: React.FC = () => {
     //select option dummy data
     const options1 = [
         { name: '전체', code: 'NY' },
-        { name: '제목', code: 'RM' },
-        { name: '내용', code: 'LDN' },
-        { name: '등록자', code: 'IST' },
+        { name: '자율소통', code: 'RM' },
+        { name: '후기', code: 'LDN' },
+        { name: '질문', code: 'IST' },
     ];
     
     const options2 = [
         { name: '전체', code: 'NY' },
-        { name: '공지사항', code: 'RM' },
-        { name: '웹툰', code: 'LDN' },
-        { name: '소식지', code: 'IST' },
-        { name: '기타', code: 'PRS' }
+        { name: '제목', code: 'RM' },
+        { name: '등록자', code: 'LDN' },
     ];
     
     const handleChange = (prop: keyof SearchParams, value:any) => {
@@ -97,14 +95,7 @@ const CLPCMNM95410: React.FC = () => {
             field: 'subject',
             header: '제목',
             sortable: false,
-            style: {width: '40%'},
-        },
-        {
-            field: 'attach',
-            header: '첨부파일',
-            sortable: false,
-            style: {width: '10%'},
-            className: 'text-center'
+            style: {width: '30%'},
         },
         {
             field: 'author',
@@ -115,14 +106,21 @@ const CLPCMNM95410: React.FC = () => {
         },
         {
             field: 'hit',
-            header: '조회수',
+            header: '노출수',
+            sortable: false,
+            style: {width: '10%'},
+            className: 'text-center'
+        },
+        {
+            field: 'upvote',
+            header: '업보트',
             sortable: false,
             style: {width: '10%'},
             className: 'text-center'
         },
         {
             field: 'registerDate',
-            header: '등록일',
+            header: '등록일자',
             sortable: false,
             style: {width: '12%'},
             className: 'text-center'
@@ -147,7 +145,7 @@ const CLPCMNM95410: React.FC = () => {
 
         <div className='toolbar mb10'>
             <p>총 <span className='pageNm'>{pages}</span>개</p>
-            <Button className='ml-auto outline' label='신규등록' icon='pi pi-pencil' onClick={register} />
+            <Button className='ml-auto outline' label='인기글 기간 설정' icon='pi pi-calendar' onClick={register} />
         </div>
 
         <DataTable value={cmnDummyData} paginator paginatorTemplate={paginator} 
