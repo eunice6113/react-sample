@@ -74,7 +74,7 @@ const CLPFAQM91810: React.FC = () => {
 
     const goDetail = ( e:any ) => {
         console.log('clicked row =>', e.index)
-        goPage(`/stm/ntc/${e.index}`);
+        goPage(`/stm/faq/${e.index}`);
     }
 
     const headerTemplate = [

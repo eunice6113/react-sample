@@ -18,6 +18,10 @@ export const BasePage: React.FC<IProps> = ({children}) => {
     if( curLocation[3] && curLocation[3] !== 'list' && curLocation[3] !== 'register' &&  curLocation[3] !== '') {
         curLocation[3] = ':id'
     }
+    else if( curLocation[2] && curLocation[2] !== 'list' && curLocation[2] !== 'register' &&  curLocation[2] !== '') {
+        curLocation[2] = ':id'
+    }
+    
 
     //이 방법 말고 path + children path 를 / 로 flatten 해서 읽어오게 개선하기
     //breadcrumb 도 개발해야함

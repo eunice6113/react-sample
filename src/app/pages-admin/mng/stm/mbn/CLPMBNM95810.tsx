@@ -42,17 +42,15 @@ const CLPMBNM95810: React.FC = () => {
     //select option dummy data
     const options1 = [
         { name: '전체', code: 'NY' },
-        { name: '제목', code: 'RM' },
-        { name: '내용', code: 'LDN' },
-        { name: '등록자', code: 'IST' },
+        { name: '배너명', code: 'RM' },
+        { name: '등록자', code: 'LDN' },
     ];
     
     const options2 = [
         { name: '전체', code: 'NY' },
-        { name: '공지사항', code: 'RM' },
-        { name: '웹툰', code: 'LDN' },
-        { name: '소식지', code: 'IST' },
-        { name: '기타', code: 'PRS' }
+        { name: '노출시작일', code: 'RM' },
+        { name: '노출종료일', code: 'LDN' },
+        { name: '등록일자', code: 'IST' },
     ];
     
     const handleChange = (prop: keyof SearchParams, value:any) => {
@@ -69,12 +67,17 @@ const CLPMBNM95810: React.FC = () => {
     
     //신규 등록 버튼
     const register = (event:any) => {
-        goPage(`/stm/ntc/register`);
+        goPage(`/stm/mbn/register`);
+    }
+    
+    //순서저장 버튼
+    const save = (event:any) => {
+
     }
 
     const goDetail = ( e:any ) => {
         console.log('clicked row =>', e.index)
-        goPage(`/stm/ntc/${e.index}`);
+        goPage(`/stm/mbn/${e.index}`);
     }
 
     const headerTemplate = [
@@ -132,11 +135,11 @@ const CLPMBNM95810: React.FC = () => {
         <div className='searchBar'>
             <Dropdown value={values.type1} options={options1} onChange={(e) => handleChange('type1', e.value)} 
                 optionLabel='name' placeholder='전체' />
+            
+            <InputText className='searchTxt mr20' placeholder='검색어를 입력해주세요' value={values.searchValue} onChange={(e) => handleChange('searchValue', e.target.value)} />
+
             <Dropdown value={values.type2} options={options2} onChange={(e) => handleChange('type2', e.value)} 
                 optionLabel='name' placeholder='전체' />
-
-            <InputText className='searchTxt' placeholder='검색어를 입력해주세요' value={values.searchValue} onChange={(e) => handleChange('searchValue', e.target.value)} />
-
             <Calendar dateFormat='yy.mm.dd' value={values.fromDate} onChange={(e) => handleChange('fromDate', e.value)} showIcon />
             <span className='mt5'>~</span>
             <Calendar dateFormat='yy.mm.dd' value={values.toDate} onChange={(e) => handleChange('toDate', e.value)} showIcon />
@@ -145,7 +148,8 @@ const CLPMBNM95810: React.FC = () => {
 
         <div className='toolbar mb10'>
             <p>총 <span className='pageNm'>{pages}</span>개</p>
-            <Button className='ml-auto outline' label='신규등록' icon='pi pi-pencil' onClick={register} />
+            <Button className='ml-auto outline mr8' label='순서저장' icon='pi pi-save' onClick={save}/>
+            <Button className='outline' label='신규등록' icon='pi pi-pencil' onClick={register} />
         </div>
 
         <DataTable value={noticeDummyData} paginator paginatorTemplate={paginator} 
