@@ -6,6 +6,16 @@
   width: 120px;
 }
 
+.p-fileupload .p-fileupload-buttonbar {
+  padding: 0.5rem;
+}
+
+.p-fileupload .p-progressbar-label {
+  position: relative;
+  top:-2px;
+  font-size: 12px;
+}
+
 .downloadFiles {
   border: 1px solid var(--global-border-color);
   border-radius: 4px;

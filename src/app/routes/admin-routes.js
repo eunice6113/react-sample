@@ -25,6 +25,7 @@ const SelectGuide = Loadable(lazy(() => import('../pages/ui-guide/SelectGuide'))
 const PopupGuide = Loadable(lazy(() => import('../pages/ui-guide/PopupGuide')));
 const TableGuide = Loadable(lazy(() => import('../pages/ui-guide/TableGuide')));
 const ChartGuide = Loadable(lazy(() => import('../pages/ui-guide/ChartGuide')));
+const UploadGuide = Loadable(lazy(() => import('../pages/ui-guide/UploadGuide')));
 
 const CheckboxGuide = Loadable(lazy(() => import('../pages/ui-guide/CheckboxGuide')));
 const DatePickerGuide = Loadable(lazy(() => import('../pages/ui-guide/DatePickerGuide')));
@@ -184,33 +185,38 @@ const adminRoutes = [
           },
           {
             path: 'datepicker', 
-            name: 'DatePickerGuide Guide', 
+            name: 'DatePicker Guide', 
             element: <DatePickerGuide />
           },
           {
             path: 'info', 
-            name: 'InfoGuide Guide', 
+            name: 'Info Guide', 
             element: <InfoGuide />
           },
           {
             path: 'label', 
-            name: 'LabelGuide Guide', 
+            name: 'Label Guide', 
             element: <LabelGuide />
           },
           {
             path: 'tab', 
-            name: 'TabGuide Guide', 
+            name: 'Tab Guide', 
             element: <TabGuide />
           },
           {
             path: 'toggle', 
-            name: 'ToggleGuide Guide', 
+            name: 'Toggle Guide', 
             element: <ToggleGuide />
           },
           {
             path: 'chart', 
             name: 'Chart Guide', 
             element: <ChartGuide />
+          },
+          {
+            path: 'upload', 
+            name: 'Upload Guide', 
+            element: <UploadGuide />
           },
         ]
       }
