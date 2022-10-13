@@ -160,9 +160,9 @@ const CLPPOPM92220:React.FC = () => {
                 key: '노출기간', 
                 value: <span>2022.10.15 ~ 2022.10.31</span>,
                 editingValue: <div className='viewDateRangePicker'>
-                    <Calendar dateFormat='yy-mm-dd' value={values.fromDate} onChange={(e) => handleChange('fromDate', e.value)} showIcon />
+                    <Calendar dateFormat='yy.mm.dd' value={values.fromDate} onChange={(e) => handleChange('fromDate', e.value)} showIcon />
                     <span className='mt5 ml5 mr5'>~</span>
-                    <Calendar dateFormat='yy-mm-dd' value={values.toDate} onChange={(e) => handleChange('toDate', e.value)} showIcon />
+                    <Calendar dateFormat='yy.mm.dd' value={values.toDate} onChange={(e) => handleChange('toDate', e.value)} showIcon />
                 </div>
             },
             {

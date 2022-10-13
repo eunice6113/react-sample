@@ -154,9 +154,9 @@ const CLPEVNM93710: React.FC = () => {
 
             <Dropdown value={values.type1} options={options3} onChange={(e) => handleChange('type1', e.value)} 
                 optionLabel='name' placeholder='전체' />
-            <Calendar dateFormat='yy-mm-dd' value={values.fromDate} onChange={(e) => handleChange('fromDate', e.value)} showIcon />
+            <Calendar dateFormat='yy.mm.dd' value={values.fromDate} onChange={(e) => handleChange('fromDate', e.value)} showIcon />
             <span className='mt5'>~</span>
-            <Calendar dateFormat='yy-mm-dd' value={values.toDate} onChange={(e) => handleChange('toDate', e.value)} showIcon />
+            <Calendar dateFormat='yy.mm.dd' value={values.toDate} onChange={(e) => handleChange('toDate', e.value)} showIcon />
             <Button label='조회' />
         </div>
 

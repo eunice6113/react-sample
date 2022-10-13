@@ -129,9 +129,9 @@ const CLPQNAM91410: React.FC = () => {
 
             <InputText className='searchTxt' placeholder='검색어를 입력해주세요' value={values.searchValue} onChange={(e) => handleChange('searchValue', e.target.value)} />
 
-            <Calendar dateFormat='yy-mm-dd' value={values.fromDate} onChange={(e) => handleChange('fromDate', e.value)} showIcon />
+            <Calendar dateFormat='yy.mm.dd' value={values.fromDate} onChange={(e) => handleChange('fromDate', e.value)} showIcon />
             <span className='mt5'>~</span>
-            <Calendar dateFormat='yy-mm-dd' value={values.toDate} onChange={(e) => handleChange('toDate', e.value)} showIcon />
+            <Calendar dateFormat='yy.mm.dd' value={values.toDate} onChange={(e) => handleChange('toDate', e.value)} showIcon />
             <Button label='조회' />
         </div>
 

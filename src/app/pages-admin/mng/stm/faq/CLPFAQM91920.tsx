@@ -56,8 +56,8 @@ const CLPFAQM91920: React.FC<IProps> = ({children}) => {
 
             <InputText className="searchTxt" placeholder="검색어를 입력해주세요" value={value1} onChange={(e) => setValue1(e.target.value)} />
 
-            <Calendar id="icon" dateFormat="yy-mm-dd" value={date1} onChange={(e) => setDate1(e.value)} showIcon />
-            <Calendar id="icon" dateFormat="yy-mm-dd" value={date1} onChange={(e) => setDate1(e.value)} showIcon />
+            <Calendar id="icon" dateFormat="yy.mm.dd" value={date1} onChange={(e) => setDate1(e.value)} showIcon />
+            <Calendar id="icon" dateFormat="yy.mm.dd" value={date1} onChange={(e) => setDate1(e.value)} showIcon />
             <Button className="cld-button primary" label="조회" />
         </div>
 
