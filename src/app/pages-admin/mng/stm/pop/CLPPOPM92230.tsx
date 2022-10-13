@@ -4,7 +4,6 @@ import { BasePage } from '../../../../shared/components/base/BasePage';
 import CldFileUpload from '../../../../shared/components/CldFileUpload';
 import ViewButtonsTemplate from '../../../../shared/components/template/ViewButtonsTemplate';
 import { useBasePage } from '../../../../shared/hooks/base-page.hook';
-import { MODE } from '../../../../shared/config/commonCode';
 import ViewTemplate from '../../../../shared/components/template/ViewTemplate';
 import './CLPPOPM92220.css';
 
@@ -25,7 +24,7 @@ interface PopupContent {
 
 //팝업관리 등록
 const CLPPOPM92220:React.FC = () => {
-    const { goBack } = useBasePage()
+    const { goPage } = useBasePage()
 
     const [mode, setMode] = React.useState<'view' | 'edit' | 'register'>('register');
 
@@ -53,24 +52,20 @@ const CLPPOPM92220:React.FC = () => {
         setValues({ ...values, [prop]: value });
     };
 
+    //목록 버튼
+    const list = () => {
+        goPage('/stm/qna/list')
+    }
+
     //취소 버튼
     const cancel = () => {
         console.log('취소')
-
-        if(mode === MODE.REGISTER) {
-            goBack();
-        } else if(mode === MODE.EDIT) {
-            setMode('view')
-        }
+        setMode('view')
     }
 
     //확인 버튼
     const confirm = () => {
-        if(mode === MODE.REGISTER) {
-            goBack();
-        } else if(mode === MODE.EDIT) {
-            setMode('view')
-        }
+        setMode('view')
     }
 
     //api 읽어와서 업데이트 할 내용
@@ -231,7 +226,7 @@ const CLPPOPM92220:React.FC = () => {
         {/* 
             버튼영역 
             mode={mode} 편집모드 'view' | 'edit' | 'register'
-            list={goBack} 목록 버튼
+            list={list} 목록 버튼
             edit={edit} 수정 버튼
             remove={remove} 삭제 버튼
             cancel={cancel} 수정모드 > 취소 버튼
@@ -239,7 +234,7 @@ const CLPPOPM92220:React.FC = () => {
         */}
         <ViewButtonsTemplate 
             mode={mode}
-            list={goBack}
+            list={list}
             cancel={cancel}
             confirm={confirm}
         />

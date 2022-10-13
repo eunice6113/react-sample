@@ -12,7 +12,7 @@ import './CLPQNAM91520.css';
 const CLPQNAM91520:React.FC = () => {
     const { goPage, goBack } = useBasePage()
 
-    const [mode, setMode] = React.useState<'view' | 'edit' | 'register'>('view');
+    const [mode, setMode] = React.useState<'view' | 'edit' | 'register'>('register');
 
     const [order, setOrder] = React.useState<any>(null);
     const [select1, setSelect1] = React.useState<any>(null);

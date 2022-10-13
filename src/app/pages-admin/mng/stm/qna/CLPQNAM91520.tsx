@@ -29,8 +29,8 @@ const CLPQNAM91520:React.FC = () => {
         setSelect1(e.value);
     }
 
-     //목록 버튼
-     const list = () => {
+    //목록 버튼
+    const list = () => {
         goPage('/stm/qna/list')
     }
 
