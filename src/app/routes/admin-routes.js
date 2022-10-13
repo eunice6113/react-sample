@@ -70,6 +70,7 @@ const CLPMBNM95920 = Loadable(lazy(() => import('../pages-admin/mng/stm/mbn/CLPM
 // 설문관리 ===================================================================================
 const CLPSURM93310 = Loadable(lazy(() => import('../pages-admin/mng/qsm/CLPSURM93310')));
 const CLPSURM93420 = Loadable(lazy(() => import('../pages-admin/mng/qsm/CLPSURM93420')));
+const CLPSURM93430 = Loadable(lazy(() => import('../pages-admin/mng/qsm/CLPSURM93430')));
 const CLPSURM93600 = Loadable(lazy(() => import('../pages-admin/mng/qsm/CLPSURM93600')));
 
 // 이벤트관리 ==================================================================================
@@ -291,6 +292,7 @@ const adminRoutes = [
         children: [
           {path: 'list', name:'설문 관리', element: <CLPSURM93310 />},
           {path: ':id', name:'설문 상세/수정', element: <CLPSURM93420 />},
+          {path: 'register', name:'설문 등록', element: <CLPSURM93430 />},
           {path: 'result', name:'설문 결과', element: <CLPSURM93600 />},
         ],
       },

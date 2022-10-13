@@ -145,6 +145,11 @@ const LNB: React.FC<IProps> = ({open, children}) => {
                     url: '/stm/cmn/list',
                     className: getClsName('/stm/cmn/list')
                 },
+                {
+                    label:'메인배너 관리',
+                    url: '/stm/mbn/list',
+                    className: getClsName('/stm/mbn/list')
+                },
             ]
         },
         {

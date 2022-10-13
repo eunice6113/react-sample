@@ -1,5 +1,3 @@
-
-
 import * as React from "react";
 import { BasePage } from "../../../../shared/components/base/BasePage";
 import { Dropdown } from 'primereact/dropdown';
@@ -66,15 +64,10 @@ const CLPCMNM95410: React.FC = () => {
     
     //table page length
     let pages = 50;
-    
-    //신규 등록 버튼
-    const register = (event:any) => {
-        goPage(`/stm/ntc/register`);
-    }
-
+        
     const goDetail = ( e:any ) => {
         console.log('clicked row =>', e.index)
-        goPage(`/stm/ntc/${e.index}`);
+        goPage(`/stm/cmn/${e.index}`);
     }
 
     const headerTemplate = [
@@ -145,7 +138,6 @@ const CLPCMNM95410: React.FC = () => {
 
         <div className='toolbar mb10'>
             <p>총 <span className='pageNm'>{pages}</span>개</p>
-            <Button className='ml-auto outline' label='인기글 기간 설정' icon='pi pi-calendar' onClick={register} />
         </div>
 
         <DataTable value={cmnDummyData} paginator paginatorTemplate={paginator} 

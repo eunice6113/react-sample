@@ -92,7 +92,7 @@ const CLPEVNM93710: React.FC = () => {
     
     const goDetail = ( e:any ) => {
         console.log('clicked row =>', e.index)
-        goPage(`/stm/ntc/${e.index}`);
+        goPage(`/evm/${e.index}`);
     }
 
     const headerTemplate = [
