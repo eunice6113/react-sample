@@ -9,24 +9,24 @@ import { Tag } from 'primereact/tag';
 
 const CldFileUpload = () => {
     const [totalSize, setTotalSize] = useState(0);
-    const fileUploadRef = useRef(null);
+    const fileUploadRef:any = useRef(null);
 
     const onUpload = () => {
         alert('Success')
     }
 
-    const onTemplateSelect = (e) => {
+    const onTemplateSelect = (e:any) => {
         let _totalSize = totalSize;
-        e.files.forEach(file => {
+        e.files.forEach((file:any) => {
             _totalSize += file.size;
         });
 
         setTotalSize(_totalSize);
     }
 
-    const onTemplateUpload = (e) => {
+    const onTemplateUpload = (e:any) => {
         let _totalSize = 0;
-        e.files.forEach(file => {
+        e.files.forEach((file:any) => {
             _totalSize += (file.size || 0);
         });
 
@@ -35,7 +35,7 @@ const CldFileUpload = () => {
         alert('Success')
     }
 
-    const onTemplateRemove = (file, callback) => {
+    const onTemplateRemove = (file:any, callback:any) => {
         setTotalSize(totalSize - file.size);
         callback();
     }
@@ -113,9 +113,9 @@ const CldFileUpload = () => {
 
     return (
         <div>
-            <Tooltip target=".custom-choose-btn" content="Choose" position="bottom" />
-            <Tooltip target=".custom-upload-btn" content="Upload" position="bottom" />
-            <Tooltip target=".custom-cancel-btn" content="Clear" position="bottom" />
+            <Tooltip target=".custom-choose-btn" content="파일 선택" position="bottom" />
+            <Tooltip target=".custom-upload-btn" content="업로드" position="bottom" />
+            <Tooltip target=".custom-cancel-btn" content="초기화" position="bottom" />
 
             <div className="card">
                 <h5>Advanced</h5>
@@ -128,14 +128,6 @@ const CldFileUpload = () => {
                     headerTemplate={headerTemplate} itemTemplate={itemTemplate} emptyTemplate={emptyTemplate}
                     chooseOptions={chooseOptions} uploadOptions={uploadOptions} cancelOptions={cancelOptions} />
 
-                <h5>Basic</h5>
-                <FileUpload mode="basic" name="demo[]" url="https://primefaces.org/primereact/showcase/upload.php" accept="image/*" maxFileSize={1000000} onUpload={onBasicUpload} />
-
-                <h5>Basic with Auto</h5>
-                <FileUpload mode="basic" name="demo[]" url="https://primefaces.org/primereact/showcase/upload.php" accept="image/*" maxFileSize={1000000} onUpload={onBasicUploadAuto} auto chooseLabel="Browse" />
-
-                <h5>Custom (base64 encoded)</h5>
-                <FileUpload mode="basic" name="demo[]" url="https://primefaces.org/primereact/showcase/upload.php" accept="image/*" customUpload uploadHandler={customBase64Uploader} />
             </div>
         </div>
     )
