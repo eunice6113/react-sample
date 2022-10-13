@@ -68,7 +68,7 @@ const LNB: React.FC<IProps> = ({open, children}) => {
                     className: getClsName('/ui/popup')
                 },
                 {
-                    label:'Table (페이지참고)',
+                    label:'Table',
                     url: '/ui/table',
                     className: getClsName('/ui/table')
                 },
@@ -76,6 +76,11 @@ const LNB: React.FC<IProps> = ({open, children}) => {
                     label:'Chart',
                     url: '/ui/chart',
                     className: getClsName('/ui/chart')
+                },
+                {
+                    label:'Upload',
+                    url: '/ui/upload',
+                    className: getClsName('/ui/upload')
                 },
             ]
         },
