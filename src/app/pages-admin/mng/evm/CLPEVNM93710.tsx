@@ -11,6 +11,7 @@ import './CLPEVNM93710.css';
 import { eventDummyData } from '../../../shared/demo/data/eventDummyData';
 import { useBasePage } from '../../../shared/hooks/base-page.hook';
 import { SearchParams } from '../../../core/models/search-params';
+import { TableSortParams } from '../../../core/models/table-sort-params';
 
 //이벤트 관리
 const CLPEVNM93710: React.FC = () => {
@@ -23,6 +24,11 @@ const CLPEVNM93710: React.FC = () => {
         searchValue: '',
         fromDate: undefined,
         toDate: undefined,
+    });
+    //table sorting 조건
+    const [sort, setSort] = React.useState<TableSortParams>({
+        sort1: undefined,
+        sort2: undefined,
     });
 
     //table
@@ -65,13 +71,15 @@ const CLPEVNM93710: React.FC = () => {
     ];
     const options5 = [
         { name: '전체', code: 'NY' },
-        { name: '진행중', code: 'RM' },
-        { name: '종료', code: 'LDN' },
-        { name: '당첨발표 건', code: 'LDN2' },
+        { name: '실패', code: 'RM' },
+        { name: '완료', code: 'LDN' },
     ];
     
     const handleChange = (prop: keyof SearchParams, value:any) => {
         setValues({ ...values, [prop]: value });
+    };
+    const sortHandleChange = (prop: keyof TableSortParams, value:any) => {
+        setSort({ ...sort, [prop]: value });
     };
 
     const onCustomPage = (event:any) => {
@@ -82,11 +90,6 @@ const CLPEVNM93710: React.FC = () => {
     //table page length
     let pages = 50;
     
-    //신규 등록 버튼
-    const register = (event:any) => {
-        goPage(`/stm/ntc/register`);
-    }
-
     const goDetail = ( e:any ) => {
         console.log('clicked row =>', e.index)
         goPage(`/stm/ntc/${e.index}`);
@@ -100,21 +103,14 @@ const CLPEVNM93710: React.FC = () => {
             style: {width: '10%', textAlign:'center', color:'gray'}
         },
         {
-            field: 'type',
-            header: '유형',
-            sortable: false,
-            style: {width: '10%'},
-            className: 'text-center'
-        },
-        {
             field: 'subject',
-            header: '제목',
+            header: '이벤트 제목',
             sortable: false,
-            style: {width: '40%'},
+            style: {width: '30%'},
         },
         {
-            field: 'attach',
-            header: '첨부파일',
+            field: 'type',
+            header: '이벤트 유형',
             sortable: false,
             style: {width: '10%'},
             className: 'text-center'
@@ -127,19 +123,27 @@ const CLPEVNM93710: React.FC = () => {
             className: 'text-center'
         },
         {
-            field: 'hit',
-            header: '조회수',
+            field: 'registerDate',
+            header: '등록일자',
+            sortable: false,
+            style: {width: '12%'},
+            className: 'text-center'
+        },
+        {
+            field: 'state',
+            header: '진행상태',
             sortable: false,
             style: {width: '10%'},
             className: 'text-center'
         },
         {
-            field: 'registerDate',
-            header: '등록일',
+            field: 'period',
+            header: '이벤트 기간',
             sortable: false,
-            style: {width: '12%'},
+            style: {width: '20%'},
             className: 'text-center'
         },
+        
     ]
 
     return(
@@ -152,7 +156,7 @@ const CLPEVNM93710: React.FC = () => {
 
             <InputText className='searchTxt mr20' placeholder='검색어를 입력해주세요' value={values.searchValue} onChange={(e) => handleChange('searchValue', e.target.value)} />
 
-            <Dropdown value={values.type1} options={options3} onChange={(e) => handleChange('type1', e.value)} 
+            <Dropdown value={values.type3} options={options3} onChange={(e) => handleChange('type3', e.value)} 
                 optionLabel='name' placeholder='전체' />
             <Calendar dateFormat='yy-mm-dd' value={values.fromDate} onChange={(e) => handleChange('fromDate', e.value)} showIcon />
             <span className='mt5'>~</span>
@@ -162,7 +166,9 @@ const CLPEVNM93710: React.FC = () => {
 
         <div className='toolbar mb10'>
             <p>총 <span className='pageNm'>{pages}</span>개</p>
-            <Dropdown className='ml-auto' value={values.type1} options={options4} onChange={(e) => handleChange('type1', e.value)} 
+            <Dropdown className='ml-auto mr8' value={sort.sort1} options={options4} onChange={(e) => sortHandleChange('sort1', e.value)} 
+                optionLabel='name' placeholder='전체' />
+                <Dropdown className='' value={sort.sort2} options={options5} onChange={(e) => sortHandleChange('sort2', e.value)} 
                 optionLabel='name' placeholder='전체' />
         </div>
 
