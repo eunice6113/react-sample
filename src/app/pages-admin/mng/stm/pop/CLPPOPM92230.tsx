@@ -33,7 +33,7 @@ const CLPPOPM92220:React.FC = () => {
 
     const useTypes = [
         {name: '사용', key: 'Y'}, 
-        {name: '비사용', key: 'N'}];
+        {name: '미사용', key: 'N'}];
     const [useType, setUseType] = React.useState(useTypes[1]);
 
     const [values, setValues] = React.useState<any>({
@@ -93,7 +93,6 @@ const CLPPOPM92220:React.FC = () => {
         hasRequired: true,
         contents: [
             {
-                required: true,
                 key: '유형', 
                 value: <span>토스트 팝업</span>,
                 editingValue: <>
@@ -167,7 +166,7 @@ const CLPPOPM92220:React.FC = () => {
                 </div>
             },
             {
-                key: '중요공지여부',
+                key: '사용여부',
                 value: <span>노출</span>,
                 editingValue: (
                     useTypes.map((use) => {
