@@ -15,10 +15,11 @@ export const BasePage: React.FC<IProps> = ({children}) => {
     const routes = adminRoutes;
 
     //route에 정의된 name 에서 페이지 제목을 읽어온다
-    if( curLocation[3] && curLocation[3] !== 'list' && curLocation[3] !== 'register' &&  curLocation[3] !== '') {
+    // console.log('curLocation.length', curLocation.length)
+    if( curLocation.length === 4 && curLocation[3] && curLocation[3] !== 'list' && curLocation[3] !== 'register' &&  curLocation[3] !== '') {
         curLocation[3] = ':id'
     }
-    else if( curLocation[2] && curLocation[2] !== 'list' && curLocation[2] !== 'register' &&  curLocation[2] !== '') {
+    if( curLocation.length === 3 && curLocation[2] && curLocation[2] !== 'list' && curLocation[2] !== 'register' &&  curLocation[2] !== '') {
         curLocation[2] = ':id'
     }
     
