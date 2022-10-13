@@ -63,7 +63,7 @@ const CLPEVNM93710: React.FC = () => {
         { name: '종료', code: 'LDN' },
         { name: '당첨발표 건', code: 'LDN2' },
     ];
-    const options4 = [
+    const options5 = [
         { name: '전체', code: 'NY' },
         { name: '진행중', code: 'RM' },
         { name: '종료', code: 'LDN' },
