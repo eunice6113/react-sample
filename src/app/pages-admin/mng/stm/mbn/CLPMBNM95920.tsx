@@ -7,7 +7,7 @@ const CLPMBNM95920: React.FC = () => {
 
 
     return(
-    <BasePage>
+    <BasePage className='CLPMBNM95920'>
         
 
     </BasePage>)

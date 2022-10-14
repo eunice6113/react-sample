@@ -1,20 +1,29 @@
-import * as React from "react";
-import { BasePage } from "../../../../shared/components/base/BasePage";
+import * as React from 'react';
+import { BasePage } from '../../../../shared/components/base/BasePage';
 import { Dropdown } from 'primereact/dropdown';
 import { InputText } from 'primereact/inputtext';
 import { Calendar } from 'primereact/calendar';
-import { Button } from "primereact";
+import { Button, TabPanel, TabView } from 'primereact';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
-import { paginator } from "../../../../shared/utils/table-paginator";
+import { paginator } from '../../../../shared/utils/table-paginator';
 import './CLPMBNM95810.css';
 import { mbnDummyData } from '../../../../shared/demo/data/mbnDummyData';
 import { useBasePage } from '../../../../shared/hooks/base-page.hook';
 import { SearchParams } from '../../../../core/models/search-params';
 
+interface OrderData {
+    idx?: number;
+    subject: string;
+    author: string;
+    registerDate: string;
+    useYn: string;
+    period: string;
+}
+
 // 메인배너 관리
 const CLPMBNM95810: React.FC = () => {
-    const { goPage, goBack } = useBasePage()
+    const { goPage } = useBasePage()
 
     //검색 조건
     const [values, setValues] = React.useState<SearchParams>({
@@ -27,10 +36,10 @@ const CLPMBNM95810: React.FC = () => {
 
     //table
     const [data, setData] = React.useState(mbnDummyData);
-
-    //reorder
-    const toast = React.useRef(null);
-    const isMounted = React.useRef(false);
+    const [orderableData, setOrderableData] = React.useState<any[]>([]);
+    const [nonOrderableData, setNonOrderableData] = React.useState<any[]>([]);
+    const [first, setFirst] = React.useState(0);
+    const [rows, setRows] = React.useState(10);
 
     //초기화
     React.useEffect(() => {
@@ -38,11 +47,24 @@ const CLPMBNM95810: React.FC = () => {
     }, []); 
 
     React.useEffect(() => {
+
+        //data 읽어옴
         console.log('data =>', data)
 
-        if (isMounted.current) {
-            // toast.current.show({severity:'success', summary: 'Rows Reordered', life: 3000});
-        }
+        //사용중인 배너 최대 10개까지
+        //useYn === Y 이면 '사용' 으로 노출
+        let orderableData = data.filter(data => data.useYn === 'Y').map(data => 
+            data.useYn === 'Y' ? { ...data, useYn: '사용'} : data
+        )
+        console.log('orderableData', orderableData)
+        setOrderableData(orderableData)
+
+        //미사용 배너 (사용중 배너 제외한 나머지)
+        let nonorderableData = data.filter(data => data.useYn === 'N').map(data => 
+            data.useYn === 'N' ? { ...data, useYn: '미사용'} : data
+        )
+        setNonOrderableData(nonorderableData)
+
     }, [data]); 
 
     //select option dummy data
@@ -62,6 +84,11 @@ const CLPMBNM95810: React.FC = () => {
     const handleChange = (prop: keyof SearchParams, value:any) => {
         setValues({ ...values, [prop]: value });
     };
+
+    const onCustomPage = (event:any) => {
+        setFirst(event.first);
+        setRows(event.rows);
+    }
     
     //table page length
     let pages = 50;
@@ -93,8 +120,36 @@ const CLPMBNM95810: React.FC = () => {
             sortable: false,
         },
         {
-            field: 'attach',
-            header: '첨부파일',
+            field: 'author',
+            header: '등록자',
+            sortable: false,
+        },
+        {
+            field: 'registerDate',
+            header: '등록일',
+            sortable: false,
+        },
+        {
+            field: 'useYn',
+            header: '사용여부',
+            sortable: true,
+        },
+        {
+            field: 'period',
+            header: '노출기간',
+            sortable: false,
+        },
+    ]
+
+    const headerTemplate2 = [
+        {
+            field: 'idx',
+            header: '순번',
+            sortable: false,
+        },
+        {
+            field: 'subject',
+            header: '제목',
             sortable: false,
         },
         {
@@ -119,9 +174,10 @@ const CLPMBNM95810: React.FC = () => {
         },
     ]
 
+    //순서조정
     const onRowReorder = (e:any) => {
         console.log(e.value, e, 'onRowReorder')
-        setData(e.value);
+        setOrderableData(e.value);
     }
 
     const onIndexTemplate = (data:any, props:any) => {
@@ -144,24 +200,45 @@ const CLPMBNM95810: React.FC = () => {
             <Button label='조회' />
         </div>
 
-        <div className='toolbar mb10'>
-            <p>총 <span className='pageNm'>{pages}</span>개</p>
-            <Button className='ml-auto outline mr8' label='순서저장' icon='pi pi-save' onClick={save}/>
-            <Button className='outline' label='신규등록' icon='pi pi-pencil' onClick={register} />
-        </div>
+        <TabView>
+            <TabPanel header='사용 배너'>
+                <div className='d-flex align-end toolbar mb10'>
+                    <p>총 <span className='pageNm'>{pages}</span>개</p>
+                    <p className='infoTxt f13 mb5 d-flex-default ml-auto mr10'><i className='pi pi-exclamation-circle mr5'></i> 오른쪽 <i className='pi pi-bars ml5 mr5'></i> 를 잡고 드래그한 뒤 [순서저장] 버튼을 누르면 순서를 조정하실 수 있습니다</p>
+                    <Button className='outline mr8' label='순서저장' icon='pi pi-save' onClick={save}/>
+                    <Button className='outline' label='신규등록' icon='pi pi-pencil' onClick={register} />
+                </div>
 
-        <DataTable 
-            className='mbn'
-            value={data}
-            onRowClick={(e) => goDetail(e)}
-            reorderableRows onRowReorder={onRowReorder}
-            responsiveLayout='scroll'>
-            {headerTemplate.map((col, index) => (
-                <Column key={col.header} field={col.field} header={col.header} body={col.field === 'idx' ? onIndexTemplate : null}></Column>
-            ))}
-            <Column rowReorder />
-        </DataTable>
+                <DataTable 
+                    className='mbn'
+                    value={orderableData}
+                    onRowClick={(e) => goDetail(e)}
+                    reorderableRows onRowReorder={onRowReorder}
+                    responsiveLayout='scroll'>
+                    {headerTemplate.map((col, index) => (
+                        <Column key={col.header} field={col.field} header={col.header} body={col.field === 'idx' ? onIndexTemplate : null}></Column>
+                    ))}
+                    <Column rowReorder />
+                </DataTable>
+            </TabPanel>
+            <TabPanel header='미사용 배너'>
+                <div className='toolbar mb10'>
+                    <p>총 <span className='pageNm'>{pages}</span>개</p>
+                    <Button className='outline ml-auto' label='신규등록' icon='pi pi-pencil' onClick={register} />
+                </div>
 
+                <DataTable 
+                    className='mbn'
+                    value={nonOrderableData}
+                    paginator paginatorTemplate={paginator} first={first} rows={rows} onPage={onCustomPage} 
+                    onRowClick={(e) => goDetail(e)}
+                    responsiveLayout='scroll'>
+                    {headerTemplate2.map((col, index) => (
+                        <Column key={col.header} field={col.field} header={col.header} body={col.field === 'idx' ? onIndexTemplate : null}></Column>
+                    ))}
+                </DataTable>
+            </TabPanel>
+        </TabView>
     </BasePage>)
 }
 export default CLPMBNM95810;
