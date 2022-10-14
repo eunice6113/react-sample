@@ -2,3 +2,27 @@
 .p-datatable .p-datatable-tbody > tr > td:nth-child(2) {
     color: var(--brand-primary)
 }
+
+.p-datatable.qna tr th, 
+.p-datatable.qna tr td:not(:nth-child(3)) {
+    text-align: center;
+}
+.p-datatable.qna tr th:first-child {
+    width: 10%;
+    color:gray;
+}
+.p-datatable.qna tr th:nth-child(2) {
+    width: 12%;
+}
+.p-datatable.qna tr th:nth-child(3) {
+    width: 38%;
+}
+.p-datatable.qna tr th:nth-child(4) {
+    width: 8%;
+}
+.p-datatable.qna tr th:nth-child(5) {
+    width: 10%;
+}
+.p-datatable.qna tr th:nth-child(6) {
+    width: 12%;
+}

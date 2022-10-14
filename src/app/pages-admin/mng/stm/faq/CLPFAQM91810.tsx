@@ -121,7 +121,7 @@ const CLPFAQM91810: React.FC = () => {
     ]
 
     return(
-    <BasePage>
+    <BasePage className="CLPFAQM91810">
         <div className='searchBar'>
             <Dropdown value={values.type1} options={options1} onChange={(e) => handleChange('type1', e.value)} 
                 optionLabel='name' placeholder='전체' />
@@ -144,6 +144,7 @@ const CLPFAQM91810: React.FC = () => {
         </div>
 
         <DataTable value={faqDummyData} paginator paginatorTemplate={paginator} 
+            className="faq"
             onRowClick={(e) => goDetail(e)}
             first={first} rows={rows} 
             onPage={onCustomPage} responsiveLayout='scroll'>
