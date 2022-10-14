@@ -7,7 +7,7 @@
   background-color: transparent !important;
   color: #667085 !important;
 }
-
+/* 
 .p-tabview-selected .p-tabview-title {
   color: var(--brand-primary);
 }
@@ -16,7 +16,7 @@
   background: #ffffff;
   border-color: var(--brand-primary);
   color: var(--brand-primary);
-}
+} */
 
 .hide {
   display: none;
