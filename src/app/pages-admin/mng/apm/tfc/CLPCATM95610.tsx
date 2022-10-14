@@ -8,7 +8,7 @@ import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { paginator } from "../../../../shared/utils/table-paginator";
 import './CLPCATM95610.css';
-import { catDummyData } from '../../../../shared/demo/data/catDummyData';
+import { tfcDummyData } from '../../../../shared/demo/data/tfcDummyData';
 import { useBasePage } from '../../../../shared/hooks/base-page.hook';
 import { SearchParams } from '../../../../core/models/search-params';
 import { TableSortParams } from '../../../../core/models/table-sort-params';
@@ -151,14 +151,14 @@ const CLPCATM95610: React.FC = () => {
             field: 'applicant',
             header: '신청자',
             sortable: false,
-            style: {width: '15%'},
+            style: {width: '10%'},
             className: 'text-center'
         },
         {
             field: 'applicationDate',
             header: '신청일자',
             sortable: false,
-            style: {width: '10%'},
+            style: {width: '15%'},
             className: 'text-center'
         },
         {
@@ -205,7 +205,7 @@ const CLPCATM95610: React.FC = () => {
                 optionLabel='name' placeholder='전체' />
         </div>
 
-        <DataTable value={catDummyData} paginator paginatorTemplate={paginator} 
+        <DataTable value={tfcDummyData} paginator paginatorTemplate={paginator} 
             onRowClick={(e) => goDetail(e)}
             first={first} rows={rows} 
             onPage={onCustomPage} responsiveLayout='scroll'>

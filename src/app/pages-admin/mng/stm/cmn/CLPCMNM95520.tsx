@@ -1,78 +1,125 @@
-import * as React from "react";
-import { BasePage } from "../../../../shared/components/base/BasePage";
-import { Dropdown } from 'primereact/dropdown';
-import { InputText } from 'primereact/inputtext';
-import { Calendar } from 'primereact/calendar';
-import { Button } from "primereact";
-import { DataTable } from 'primereact/datatable';
-import { Column } from 'primereact/column';
-import { paginator } from "../../../../shared/utils/table-paginator";
+import { Button, Calendar, Dropdown, Editor, FileUpload, InputText, InputTextarea, RadioButton } from 'primereact';
+import * as React from 'react';
+import { BasePage } from '../../../../shared/components/base/BasePage';
+import ViewButtonsTemplate from '../../../../shared/components/template/ViewButtonsTemplate';
+import { useBasePage } from '../../../../shared/hooks/base-page.hook';
 import './CLPCMNM95520.css';
+import ViewTemplate from '../../../../shared/components/template/ViewTemplate';
 
-interface IProps {
-    children: React.ReactNode;
+interface File {
+    name:string;
+    size:number;
 }
-// 소통공간 관리 상세
-const CLPCMNM95520: React.FC<IProps> = ({children}) => {
+interface cmnContent {
+    title: string;
+    content: string;
+    fromDate: Date;
+    toDate: Date;
+    useYn?: boolean;
+    files?: File[];
+}
+//소통공간 상세
+const CLPCMNM95520:React.FC = () => {
+    const { goPage } = useBasePage()
 
-    const [select1, setSelect1] = React.useState<any>(null);
-    const [select2, setSelect2] = React.useState<any>(null);
-    const [value1, setValue1] = React.useState('');
-    const [date1, setDate1] = React.useState<Date | Date[] | undefined>(undefined);
+    const [mode, setMode] = React.useState<'view' | 'edit' | 'register'>('view');
+   
+    //목록 버튼
+    const list = () => {
+        goPage('/stm/cmn/list')
+    }
 
-    const cities = [
-        { name: 'New York', code: 'NY' },
-        { name: 'Rome', code: 'RM' },
-        { name: 'London', code: 'LDN' },
-        { name: 'Istanbul', code: 'IST' },
-        { name: 'Paris', code: 'PRS' }
-    ];
-
-    const handleChange = (e: { value: any}) => {
-        setSelect1(e.value);
+    //삭제 버튼
+    const remove = () => {
+        console.log('삭제')
     }
 
 
-    const [customers2, setCustomers2] = React.useState([]);
-    const [first1, setFirst1] = React.useState(0);
-    const [rows1, setRows1] = React.useState(10);
-
-
-    const onCustomPage = (event:any) => {
-        setFirst1(event.first);
-        setRows1(event.rows);
+    //api 읽어와서 업데이트 할 내용
+    const authorInfo = {
+        title: '등록자 정보',
+        rows: [
+            {
+                cols: [
+                    {
+                        key: '등록자 | 부서', 
+                        value: '신재문 (12345) | IT그룹'
+                    },
+                    {
+                        key: '등록일시', 
+                        value: '2023.03.02. 15:00:00'
+                    },
+                ]
+            }
+        ]
     }
 
-    let pages = 50;
+    const contentsInfo = {
+        title: '상세 내용',
+        mode: mode,
+        rows: [
+            {
+                cols: [
+                    {
+                        key: '유형', 
+                        value: <span>자율소통</span>,
+                    },
+                    {
+                        key: '노출수', 
+                        value: <span>800</span>,
+                    },
+                ]
+            },
+            {
+                cols: [
+                    {
+                        key: '업보트', 
+                        value: <span>1,509</span>,
+                    }
+                ]
+            },
+            {
+                cols: [
+                    {
+                        key: '제목', 
+                        value: <span>제목이 노출되는 영역</span>,
+                    }
+                ]
+            },
+            {
+                cols: [
+                    {
+                        
+                        value: <span>내용노출 영역</span>,
+                    }
+                ]
+            },
+            
+        ]
+    }
+
 
     return(
     <BasePage>
-        <div className="searchBar">
-            <Dropdown className="cld-select" value={select1} options={cities} onChange={handleChange} 
-                optionLabel="name" placeholder="전체" />
-            <Dropdown value={select2} options={cities} onChange={handleChange} 
-                optionLabel="name" placeholder="전체" />
+        {/* 등록자 정보 */}
+        <ViewTemplate {...authorInfo} />
 
-            <InputText className="searchTxt" placeholder="검색어를 입력해주세요" value={value1} onChange={(e) => setValue1(e.target.value)} />
+        {/* 등록 내용 */}
+        <ViewTemplate {...contentsInfo} />
 
-            <Calendar id="icon" dateFormat="yy.mm.dd" value={date1} onChange={(e) => setDate1(e.value)} showIcon />
-            <Calendar id="icon" dateFormat="yy.mm.dd" value={date1} onChange={(e) => setDate1(e.value)} showIcon />
-            <Button className="cld-button primary" label="조회" />
+        <div className='btn-container cld-row'>
+                <Button className='secondary' onClick={list}>목록</Button>
+                <Button className='ml-auto' onClick={remove}>삭제</Button>
         </div>
-
-        <div className="toolbar">
-            <p className="mb10">총 <span className="pageNm">{pages}</span>개</p>
-            <Button className="ml-auto cld-button primary outline" label="신규등록" icon='pi pi-pencil' />
+        {/* 댓글 */}
+        <div className='commentWRap'>
+            관리자 댓글을 입력하실 수 있습니다.(글 댓글 3)
+            <div className='comment'>
+                <div>홍길동</div>
+                <p>클라우드 Cell은 당대의 빛과 같은 존재로 기은에서 없어서는 안될 존재입니다. 기은의 클라우드를 늘 이끌어주세요~~!!</p>
+                <p>2022.03.02 09:00:00</p>
+            </div>
         </div>
-
-        <DataTable value={customers2} paginator paginatorTemplate={paginator} first={first1} rows={rows1} onPage={onCustomPage} responsiveLayout="scroll">
-            <Column field="name" header="Name" style={{ width: '25%' }}></Column>
-            <Column field="country.name" header="Country" style={{ width: '25%' }}></Column>
-            <Column field="company" header="Company" style={{ width: '25%' }}></Column>
-            <Column field="representative.name" header="Representative" style={{ width: '25%' }}></Column>
-        </DataTable>
-
     </BasePage>)
 }
 export default CLPCMNM95520;
-
