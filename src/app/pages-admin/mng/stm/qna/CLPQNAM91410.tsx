@@ -87,14 +87,14 @@ const CLPQNAM91410: React.FC = () => {
             field: 'type',
             header: '유형',
             sortable: false,
-            style: {width: '10%'},
+            style: {width: '12%'},
             className: 'text-center'
         },
         {
             field: 'subject',
             header: '질문',
             sortable: false,
-            style: {width: '40%'},
+            style: {width: '38%'},
         },
         {
             field: 'author',

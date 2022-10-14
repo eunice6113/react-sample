@@ -177,6 +177,18 @@ const LNB: React.FC<IProps> = ({open, children}) => {
             ]
         },
         {
+            label:'매뉴얼 관리',
+            expanded: curLocation === 'mnm',
+            visible: true,
+            items:[
+                {
+                    label:'매뉴얼 목록 관리',
+                    url: '/mnm/list',
+                    className: getClsName('/mnm/list')
+                },
+            ]
+        },
+        {
             label:'신청하기 관리',
             expanded: curLocation === 'apm',
             visible: true,
