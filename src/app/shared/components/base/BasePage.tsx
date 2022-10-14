@@ -4,10 +4,11 @@ import adminRoutes from "../../../routes/admin-routes";
 import AdminPageTitle from "../page-title/AdminPageTitle";
 
 interface IProps {
+    className?: string;
     children: React.ReactNode;
 }
 
-export const BasePage: React.FC<IProps> = ({children}) => {
+export const BasePage: React.FC<IProps> = ({className, children}) => {
 
     const location = useLocation();
     const curLocation = location.pathname.split('/')
@@ -15,14 +16,13 @@ export const BasePage: React.FC<IProps> = ({children}) => {
     const routes = adminRoutes;
 
     //route에 정의된 name 에서 페이지 제목을 읽어온다
-    // console.log('curLocation.length', curLocation.length)
+    console.log('curLocation.length', curLocation,  curLocation.length)
     if( curLocation.length === 4 && curLocation[3] && curLocation[3] !== 'list' && curLocation[3] !== 'register' &&  curLocation[3] !== '') {
         curLocation[3] = ':id'
     }
     if( curLocation.length === 3 && curLocation[2] && curLocation[2] !== 'list' && curLocation[2] !== 'register' &&  curLocation[2] !== '') {
         curLocation[2] = ':id'
     }
-    
 
     //이 방법 말고 path + children path 를 / 로 flatten 해서 읽어오게 개선하기
     //breadcrumb 도 개발해야함
@@ -65,7 +65,7 @@ export const BasePage: React.FC<IProps> = ({children}) => {
     
     return(<>
         <AdminPageTitle title={pageTitle} />
-        <div className="pl20 pr20">
+        <div className={`pl20 pr20 basePage ${className}`}>
          {children}
         </div>
     </>)
