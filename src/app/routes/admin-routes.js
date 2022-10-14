@@ -240,9 +240,7 @@ const adminRoutes = [
           {
             path: 'mnm', 
             name: '메뉴 관리', 
-            children: [
-              {path: '', name:'메뉴 관리', state: {name:'hello'}, element: <CLPMNUM90900 />},
-            ]
+            element: <CLPMNUM90900 />
           },
           { path: 'ntc',
             name: '공지사항 관리',

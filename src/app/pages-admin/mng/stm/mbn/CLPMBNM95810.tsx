@@ -8,7 +8,7 @@ import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { paginator } from "../../../../shared/utils/table-paginator";
 import './CLPMBNM95810.css';
-import { noticeDummyData } from '../../../../shared/demo/data/noticeDummyData';
+import { mbnDummyData } from '../../../../shared/demo/data/mbnDummyData';
 import { useBasePage } from '../../../../shared/hooks/base-page.hook';
 import { SearchParams } from '../../../../core/models/search-params';
 
@@ -26,9 +26,11 @@ const CLPMBNM95810: React.FC = () => {
     });
 
     //table
-    const [data, setData] = React.useState([]);
-    const [first, setFirst] = React.useState(0);
-    const [rows, setRows] = React.useState(10);
+    const [data, setData] = React.useState(mbnDummyData);
+
+    //reorder
+    const toast = React.useRef(null);
+    const isMounted = React.useRef(false);
 
     //초기화
     React.useEffect(() => {
@@ -37,6 +39,10 @@ const CLPMBNM95810: React.FC = () => {
 
     React.useEffect(() => {
         console.log('data =>', data)
+
+        if (isMounted.current) {
+            // toast.current.show({severity:'success', summary: 'Rows Reordered', life: 3000});
+        }
     }, [data]); 
 
     //select option dummy data
@@ -56,11 +62,6 @@ const CLPMBNM95810: React.FC = () => {
     const handleChange = (prop: keyof SearchParams, value:any) => {
         setValues({ ...values, [prop]: value });
     };
-
-    const onCustomPage = (event:any) => {
-        setFirst(event.first);
-        setRows(event.rows);
-    }
     
     //table page length
     let pages = 50;
@@ -72,7 +73,7 @@ const CLPMBNM95810: React.FC = () => {
     
     //순서저장 버튼
     const save = (event:any) => {
-
+        console.log('data =>', data)
     }
 
     const goDetail = ( e:any ) => {
@@ -82,56 +83,53 @@ const CLPMBNM95810: React.FC = () => {
 
     const headerTemplate = [
         {
-            field: 'no',
-            header: '순번',
+            field: 'idx',
+            header: '노출 순번',
             sortable: false,
-            style: {width: '10%', textAlign:'center', color:'gray'}
-        },
-        {
-            field: 'type',
-            header: '유형',
-            sortable: false,
-            style: {width: '10%'},
-            className: 'text-center'
         },
         {
             field: 'subject',
             header: '제목',
             sortable: false,
-            style: {width: '40%'},
         },
         {
             field: 'attach',
             header: '첨부파일',
             sortable: false,
-            style: {width: '10%'},
-            className: 'text-center'
         },
         {
             field: 'author',
             header: '등록자',
             sortable: false,
-            style: {width: '8%'},
-            className: 'text-center'
-        },
-        {
-            field: 'hit',
-            header: '조회수',
-            sortable: false,
-            style: {width: '10%'},
-            className: 'text-center'
         },
         {
             field: 'registerDate',
             header: '등록일',
             sortable: false,
-            style: {width: '12%'},
-            className: 'text-center'
+        },
+        {
+            field: 'useYn',
+            header: '사용여부',
+            sortable: true,
+        },
+        {
+            field: 'period',
+            header: '노출기간',
+            sortable: false,
         },
     ]
 
+    const onRowReorder = (e:any) => {
+        console.log(e.value, e, 'onRowReorder')
+        setData(e.value);
+    }
+
+    const onIndexTemplate = (data:any, props:any) => {
+        return props.rowIndex + 1;
+    }
+
     return(
-    <BasePage>
+    <BasePage className='CLPMBNM95810'>
         <div className='searchBar'>
             <Dropdown value={values.type1} options={options1} onChange={(e) => handleChange('type1', e.value)} 
                 optionLabel='name' placeholder='전체' />
@@ -152,14 +150,18 @@ const CLPMBNM95810: React.FC = () => {
             <Button className='outline' label='신규등록' icon='pi pi-pencil' onClick={register} />
         </div>
 
-        <DataTable value={noticeDummyData} paginator paginatorTemplate={paginator} 
+        <DataTable 
+            className='mbn'
+            value={data}
             onRowClick={(e) => goDetail(e)}
-            first={first} rows={rows} 
-            onPage={onCustomPage} responsiveLayout='scroll'>
+            reorderableRows onRowReorder={onRowReorder}
+            responsiveLayout='scroll'>
             {headerTemplate.map((col, index) => (
-                <Column key={col.header} field={col.field} header={col.header} style={col.style} className={col.className}></Column>
+                <Column key={col.header} field={col.field} header={col.header} body={col.field === 'idx' ? onIndexTemplate : null}></Column>
             ))}
+            <Column rowReorder />
         </DataTable>
+
     </BasePage>)
 }
 export default CLPMBNM95810;

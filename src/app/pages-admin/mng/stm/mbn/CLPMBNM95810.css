@@ -1,0 +1,21 @@
+
+.p-datatable.mbn tr th, 
+.p-datatable.mbn tr td:not(:nth-child(2)) {
+    text-align: center;
+}
+.p-datatable.mbn tr th:first-child {
+    width: 7%;
+    color:gray;
+}
+.p-datatable.mbn tr th:nth-child(2) {
+    width: 30%;
+}
+.p-datatable.mbn tr th:nth-child(3) {
+    width: 10%;
+}
+.p-datatable.mbn tr th:nth-child(4) {
+    width: 8%;
+}
+.p-datatable.mbn tr th:nth-child(5) {
+    width: 12%;
+}
