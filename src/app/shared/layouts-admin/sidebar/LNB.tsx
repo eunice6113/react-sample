@@ -105,8 +105,8 @@ const LNB: React.FC<IProps> = ({open, children}) => {
                 },
                 {
                     label:'사용자 접속이력 관리',
-                    url: '',
-                    className: getClsName('/stm/mnm')
+                    url: '/urm/list',
+                    className: getClsName('/urm/list')
                 },
             ]
         },
@@ -173,6 +173,18 @@ const LNB: React.FC<IProps> = ({open, children}) => {
                     label:'이벤트 목록 관리',
                     url: '/evm/list',
                     className: getClsName('/evm/list')
+                },
+            ]
+        },
+        {
+            label:'매뉴얼 관리',
+            expanded: curLocation === 'mnm',
+            visible: true,
+            items:[
+                {
+                    label:'매뉴얼 목록 관리',
+                    url: '/mnm/list',
+                    className: getClsName('/mnm/list')
                 },
             ]
         },
@@ -262,6 +274,10 @@ export default LNB;
 //사이트 관리
 
 CLPMNUM90900 메뉴 관리
+
+CLPUATM90201 사용자 권한 관리
+
+CLPUHTM00301 사용자 접속이력 관리
 
 CLPNTCM91010 공지사항 관리
 CLPNTCM91020 공지사항 관리 상세/수정

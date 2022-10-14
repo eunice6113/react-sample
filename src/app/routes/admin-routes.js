@@ -36,7 +36,8 @@ const TabGuide = Loadable(lazy(() => import('../pages/ui-guide/TabGuide')));
 const ToggleGuide = Loadable(lazy(() => import('../pages/ui-guide/ToggleGuide')));
 
 
-
+//사용자 접속이력 관리 ==================================================================================
+const CLPUHTM00301 = Loadable(lazy(() => import('../pages-admin/mng/urm/CLPUHTM00301')));
 
 //사이트 관리 ==================================================================================
 //메뉴 관리
@@ -227,6 +228,12 @@ const adminRoutes = [
     path: '/',
     element: <FullLayout />,
     children: [
+      { path: 'urm', 
+        name: '사용자 접속이력 관리', 
+        children: [
+          {path: 'list', name:'사용자 접속이력 관리', element: <CLPUHTM00301 />},
+        ],
+      },
       { path: 'stm',
         name: '사이트 관리', 
         children: [

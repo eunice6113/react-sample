@@ -199,7 +199,7 @@ const CLPCATM95610: React.FC = () => {
             <p>총 <span className='pageNm'>{pages}</span>개</p>
             <Button className='ml-auto outline' label='체크리스트 업로드' icon='pi pi-upload' onClick={checkListUpload} />
             <Button className='outline mr8 ml8' label='신청서 업로드' icon='pi pi-upload' onClick={formListUpload} />
-            <SplitButton className="p-button-outlined outline" label="기존 파일 다운로드" icon="pi pi-download" model={items} ></SplitButton>
+            <SplitButton className="p-button-outlined outline mr8" label="기존 파일 다운로드" icon="pi pi-download" model={items} ></SplitButton>
             
             <Dropdown className='' value={sort.sort1} options={options3} onChange={(e) => sortHandleChange('sort1', e.value)} 
                 optionLabel='name' placeholder='전체' />
