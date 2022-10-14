@@ -105,8 +105,8 @@ const LNB: React.FC<IProps> = ({open, children}) => {
                 },
                 {
                     label:'사용자 접속이력 관리',
-                    url: '',
-                    className: getClsName('/stm/mnm')
+                    url: '/urm/list',
+                    className: getClsName('/urm/list')
                 },
             ]
         },
@@ -274,6 +274,10 @@ export default LNB;
 //사이트 관리
 
 CLPMNUM90900 메뉴 관리
+
+CLPUATM90201 사용자 권한 관리
+
+CLPUHTM00301 사용자 접속이력 관리
 
 CLPNTCM91010 공지사항 관리
 CLPNTCM91020 공지사항 관리 상세/수정
