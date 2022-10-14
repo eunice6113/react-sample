@@ -12,15 +12,6 @@ import { mbnDummyData } from '../../../../shared/demo/data/mbnDummyData';
 import { useBasePage } from '../../../../shared/hooks/base-page.hook';
 import { SearchParams } from '../../../../core/models/search-params';
 
-interface OrderData {
-    idx?: number;
-    subject: string;
-    author: string;
-    registerDate: string;
-    useYn: string;
-    period: string;
-}
-
 // 메인배너 관리
 const CLPMBNM95810: React.FC = () => {
     const { goPage } = useBasePage()
@@ -89,9 +80,6 @@ const CLPMBNM95810: React.FC = () => {
         setFirst(event.first);
         setRows(event.rows);
     }
-    
-    //table page length
-    let pages = 50;
     
     //신규 등록 버튼
     const register = (event:any) => {
@@ -186,25 +174,13 @@ const CLPMBNM95810: React.FC = () => {
 
     return(
     <BasePage className='CLPMBNM95810'>
-        <div className='searchBar'>
-            <Dropdown value={values.type1} options={options1} onChange={(e) => handleChange('type1', e.value)} 
-                optionLabel='name' placeholder='전체' />
-            
-            <InputText className='searchTxt mr20' placeholder='검색어를 입력해주세요' value={values.searchValue} onChange={(e) => handleChange('searchValue', e.target.value)} />
-
-            <Dropdown value={values.type2} options={options2} onChange={(e) => handleChange('type2', e.value)} 
-                optionLabel='name' placeholder='전체' />
-            <Calendar dateFormat='yy.mm.dd' value={values.fromDate} onChange={(e) => handleChange('fromDate', e.value)} showIcon />
-            <span className='mt5'>~</span>
-            <Calendar dateFormat='yy.mm.dd' value={values.toDate} onChange={(e) => handleChange('toDate', e.value)} showIcon />
-            <Button label='조회' />
-        </div>
+        
 
         <TabView>
             <TabPanel header='사용 배너'>
                 <div className='d-flex align-end toolbar mb10'>
-                    <p>총 <span className='pageNm'>{pages}</span>개</p>
-                    <p className='infoTxt f13 mb5 d-flex-default ml-auto mr10'><i className='pi pi-exclamation-circle mr5'></i> 오른쪽 <i className='pi pi-bars ml5 mr5'></i> 를 잡고 드래그한 뒤 [순서저장] 버튼을 누르면 순서를 조정하실 수 있습니다</p>
+                    <p>총 <span className='pageNm'>{orderableData.length}</span>개</p>
+                    <p className='infoTxt f13 d-flex-default ml-auto mr10'><i className='pi pi-exclamation-circle mr5'></i> 오른쪽 <i className='pi pi-bars ml5 mr5'></i> 를 잡고 드래그한 뒤 [순서저장] 버튼을 누르면 순서를 조정하실 수 있습니다</p>
                     <Button className='outline mr8' label='순서저장' icon='pi pi-save' onClick={save}/>
                     <Button className='outline' label='신규등록' icon='pi pi-pencil' onClick={register} />
                 </div>
@@ -222,8 +198,22 @@ const CLPMBNM95810: React.FC = () => {
                 </DataTable>
             </TabPanel>
             <TabPanel header='미사용 배너'>
+                <div className='searchBar'>
+                    <Dropdown value={values.type1} options={options1} onChange={(e) => handleChange('type1', e.value)} 
+                        optionLabel='name' placeholder='전체' />
+                    
+                    <InputText className='searchTxt mr20' placeholder='검색어를 입력해주세요' value={values.searchValue} onChange={(e) => handleChange('searchValue', e.target.value)} />
+
+                    <Dropdown value={values.type2} options={options2} onChange={(e) => handleChange('type2', e.value)} 
+                        optionLabel='name' placeholder='전체' />
+                    <Calendar dateFormat='yy.mm.dd' value={values.fromDate} onChange={(e) => handleChange('fromDate', e.value)} showIcon />
+                    <span className='mt5'>~</span>
+                    <Calendar dateFormat='yy.mm.dd' value={values.toDate} onChange={(e) => handleChange('toDate', e.value)} showIcon />
+                    <Button label='조회' />
+                </div>
+            
                 <div className='toolbar mb10'>
-                    <p>총 <span className='pageNm'>{pages}</span>개</p>
+                    <p>총 <span className='pageNm'>{nonOrderableData.length}</span>개</p>
                     <Button className='outline ml-auto' label='신규등록' icon='pi pi-pencil' onClick={register} />
                 </div>
 

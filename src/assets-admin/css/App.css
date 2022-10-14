@@ -7,12 +7,8 @@
   background-color: transparent !important;
   color: #667085 !important;
 }
-  
-.show {
-  
-}
 
-.p-tabview-title {
+.p-tabview-selected .p-tabview-title {
   color: var(--brand-primary);
 }
 
