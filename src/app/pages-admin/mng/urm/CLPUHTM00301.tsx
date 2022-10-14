@@ -72,40 +72,31 @@ const CLPUHTM00301: React.FC = () => {
             field: 'no',
             header: '순번',
             sortable: false,
-            style: {width: '10%', textAlign:'center', color:'gray'}
         },
         {
             field: 'number',
             header: '직번',
             sortable: false,
-            style: {width: '20%'},
-            className: 'text-center'
         },
         {
             field: 'name',
             header: '성명',
             sortable: false,
-            style: {width: '20%'},
-            className: 'text-center'
         },
         {
             field: 'ip',
             header: 'IP',
             sortable: false,
-            style: {width: '25%'},
-            className: 'text-center'
         },
         {
             field: 'loginDate',
             header: '로그인 일시',
             sortable: false,
-            style: {width: '25%'},
-            className: 'text-center'
         },
     ]
 
     return(
-    <BasePage>
+    <BasePage className='CLPUHTM00301'>
         <div className='searchBar'>
             <Dropdown value={values.type1} options={options1} onChange={(e) => handleChange('type1', e.value)} 
                 optionLabel='name' placeholder='전체' />
@@ -124,11 +115,12 @@ const CLPUHTM00301: React.FC = () => {
         </div>
 
         <DataTable value={uhtDummyData} paginator paginatorTemplate={paginator} 
+            className="uht"
             onRowClick={(e) => goDetail(e)}
             first={first} rows={rows} 
             onPage={onCustomPage} responsiveLayout='scroll'>
             {headerTemplate.map((col, index) => (
-                <Column key={col.header} field={col.field} header={col.header} style={col.style} className={col.className}></Column>
+                <Column key={col.header} field={col.field} header={col.header} ></Column>
             ))}
         </DataTable>
     </BasePage>)
