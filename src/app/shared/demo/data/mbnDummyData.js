@@ -2,82 +2,212 @@
 export const mbnDummyData = [
     {
         subject: '제목입니다 1',
-        attach: <i className="pi pi-download"></i>,
-        author: '신재문',
+        author: '신재문(s12345)',
         registerDate: '2022-10-15',
-        useYn: '사용',
-        period:'2023.02.20 ~2023.03.20',
-    },
-    {
-        subject: '제목입니다 2 ',
-        attach: <i className="pi pi-download"></i>,
-        author: '신재문',
-        registerDate: '2022-10-15',
-        useYn: '사용',
-        period:'2023.02.20 ~2023.03.20',
-    },
-    {
-        subject: '제목입니다 3',
-        attach: <i className="pi pi-download"></i>,
-        author: '신재문',
-        registerDate: '2022-10-15',
-        useYn: '사용',
-        period:'2023.02.20 ~2023.03.20',
-    },
-    {
-        subject: '제목입니다 4',
-        attach: <i className="pi pi-download"></i>,
-        author: '신재문',
-        registerDate: '2022-10-15',
-        useYn: '사용',
-        period:'2023.02.20 ~2023.03.20',
-    },
-    {
-        subject: '제목입니다 5',
-        attach: <i className="pi pi-download"></i>,
-        author: '신재문',
-        registerDate: '2022-10-15',
-        useYn: '사용',
-        period:'2023.02.20 ~2023.03.20',
-    },
-    {
-        subject: '제목입니다 6',
-        attach: <i className="pi pi-download"></i>,
-        author: '신재문',
-        registerDate: '2022-10-15',
-        useYn: '사용',
-        period:'2023.02.20 ~2023.03.20',
-    },
-    {
-        subject: '제목입니다 7',
-        attach: <i className="pi pi-download"></i>,
-        author: '신재문',
-        registerDate: '2022-10-15',
-        useYn: '사용',
-        period:'2023.02.20 ~2023.03.20',
-    },
-    {
-        subject: '제목입니다 8',
-        attach: <i className="pi pi-download"></i>,
-        author: '신재문',
-        registerDate: '2022-10-15',
-        useYn: '사용',
-        period:'2023.02.20 ~2023.03.20',
-    },
-    {
-        subject: '제목입니다 9',
-        attach: <i className="pi pi-download"></i>,
-        author: '신재문',
-        registerDate: '2022-10-15',
-        useYn: '사용',
+        useYn: 'Y',
         period:'2023.02.20 ~2023.03.20',
     },
     {
         subject: '제목입니다 10',
-        attach: <i className="pi pi-download"></i>,
-        author: '신재문',
+        author: '신재문(s12345)',
         registerDate: '2022-10-15',
-        useYn: '사용',
+        useYn: 'N',
         period:'2023.02.20 ~2023.03.20',
     },
+    {
+        subject: '제목입니다 2 제목입니다제목입니다제목입니다제목입니다제목입니다제목입니다제목입니다제목입니다제목입니다제목입니다제목입니다제목입니다제목입니다 ',
+        author: '신재문(s12345)',
+        registerDate: '2022-10-15',
+        useYn: 'Y',
+        period:'2023.02.20 ~2023.03.20',
+    },
+    {
+        subject: '제목입니다 3',
+        author: '신재문(s12345)',
+        registerDate: '2022-10-15',
+        useYn: 'Y',
+        period:'2023.02.20 ~2023.03.20',
+    },
+    {
+        subject: '제목입니다 4',
+        author: '신재문(s12345)',
+        registerDate: '2022-10-15',
+        useYn: 'Y',
+        period:'2023.02.20 ~2023.03.20',
+    },
+    {
+        subject: '제목입니다 5',
+        author: '신재문(s12345)',
+        registerDate: '2022-10-15',
+        useYn: 'Y',
+        period:'2023.02.20 ~2023.03.20',
+    },
+    {
+        subject: '제목입니다 6',
+
+        author: '신재문(s12345)',
+        registerDate: '2022-10-15',
+        useYn: 'Y',
+        period:'2023.02.20 ~2023.03.20',
+    },
+    {
+        subject: '제목입니다 7',
+
+        author: '신재문(s12345)',
+        registerDate: '2022-10-15',
+        useYn: 'Y',
+        period:'2023.02.20 ~2023.03.20',
+    },
+    {
+        subject: '제목입니다 10',
+
+        author: '신재문(s12345)',
+        registerDate: '2022-10-15',
+        useYn: 'N',
+        period:'2023.02.20 ~2023.03.20',
+    },
+    {
+        subject: '제목입니다 8',
+
+        author: '신재문(s12345)',
+        registerDate: '2022-10-15',
+        useYn: 'Y',
+        period:'2023.02.20 ~2023.03.20',
+    },
+    {
+        subject: '제목입니다 9',
+
+        author: '신재문(s12345)',
+        registerDate: '2022-10-15',
+        useYn: 'Y',
+        period:'2023.02.20 ~2023.03.20',
+    },
+    {
+        subject: '제목입니다 10',
+
+        author: '신재문(s12345)',
+        registerDate: '2022-10-15',
+        useYn: 'N',
+        period:'2023.02.20 ~2023.03.20',
+    },
+    {
+        subject: '제목입니다 10',
+
+        author: '신재문(s12345)',
+        registerDate: '2022-10-15',
+        useYn: 'Y',
+        period:'2023.02.20 ~2023.03.20',
+    },
+    {
+        subject: '제목입니다 10',
+
+        author: '신재문(s12345)',
+        registerDate: '2022-10-15',
+        useYn: 'N',
+        period:'2023.02.20 ~2023.03.20',
+    },
+    {
+        subject: '제목입니다 10',
+
+        author: '신재문(s12345)',
+        registerDate: '2022-10-15',
+        useYn: 'N',
+        period:'2023.02.20 ~2023.03.20',
+    },
+    {
+        subject: '제목입니다 10',
+
+        author: '신재문(s12345)',
+        registerDate: '2022-10-15',
+        useYn: 'N',
+        period:'2023.02.20 ~2023.03.20',
+    },
+    {
+        subject: '제목입니다 10',
+
+        author: '신재문(s12345)',
+        registerDate: '2022-10-15',
+        useYn: 'N',
+        period:'2023.02.20 ~2023.03.20',
+    },
+    {
+        subject: '제목입니다 10',
+
+        author: '신재문(s12345)',
+        registerDate: '2022-10-15',
+        useYn: 'N',
+        period:'2023.02.20 ~2023.03.20',
+    },
+    {
+        subject: '제목입니다 10',
+
+        author: '신재문(s12345)',
+        registerDate: '2022-10-15',
+        useYn: 'N',
+        period:'2023.02.20 ~2023.03.20',
+    },
+    {
+        subject: '제목입니다 10',
+
+        author: '신재문(s12345)',
+        registerDate: '2022-10-15',
+        useYn: 'N',
+        period:'2023.02.20 ~2023.03.20',
+    },
+    {
+        subject: '제목입니다 10',
+
+        author: '신재문(s12345)',
+        registerDate: '2022-10-15',
+        useYn: 'N',
+        period:'2023.02.20 ~2023.03.20',
+    },
+    {
+        subject: '제목입니다 10',
+
+        author: '신재문(s12345)',
+        registerDate: '2022-10-15',
+        useYn: 'N',
+        period:'2023.02.20 ~2023.03.20',
+    },
+    {
+        subject: '제목입니다 10',
+
+        author: '신재문(s12345)',
+        registerDate: '2022-10-15',
+        useYn: 'N',
+        period:'2023.02.20 ~2023.03.20',
+    },
+    {
+        subject: '제목입니다 10',
+
+        author: '신재문(s12345)',
+        registerDate: '2022-10-15',
+        useYn: 'N',
+        period:'2023.02.20 ~2023.03.20',
+    },
+    {
+        subject: '제목입니다 10',
+
+        author: '신재문(s12345)',
+        registerDate: '2022-10-15',
+        useYn: 'N',
+        period:'2023.02.20 ~2023.03.20',
+    },
+    {
+        subject: '제목입니다 10',
+
+        author: '신재문(s12345)',
+        registerDate: '2022-10-15',
+        useYn: 'N',
+        period:'2023.02.20 ~2023.03.20',
+    },
+    {
+        subject: '제목입니다 10',
+        author: '신재문(s12345)',
+        registerDate: '2022-10-15',
+        useYn: 'N',
+        period:'2023.02.20 ~2023.03.20',
+    },
+    
 ]
