@@ -1,4 +1,4 @@
-import { Calendar, InputText, InputTextarea, RadioButton } from "primereact";
+import { Button, Calendar, InputText, InputTextarea, RadioButton } from "primereact";
 import * as React from "react";
 import { BasePage } from "../../shared/components/base/BasePage";
 import CldFileUpload from "../../shared/components/CldFileUpload";
@@ -176,6 +176,19 @@ const TableGuide: React.FC = () => {
                                     {
                                         values.files.map((file:any, index:number) => (
                                             <li key={file.name+index}><i className='pi pi-download mr5 downloadIco'></i><u>{file.name}</u></li>
+                                        ))
+                                    }
+                                </ul>
+                            </div>
+                            <div className='downloadFiles mt10'>
+                                <ul className='fileList'>
+                                    {
+                                        values.files.map((file:any, index:number) => (
+                                            <li key={file.name+index}><i className='pi pi-download mr5 downloadIco'></i>
+                                            <u>{file.name}</u>
+                                            <span className='ml10'>{file.size}MB</span>
+                                            <Button icon='pi pi-times-circle' className='p-button-text deleteFileBtn' />
+                                            </li>
                                         ))
                                     }
                                 </ul>

@@ -2,6 +2,13 @@
   outline: none;
 }
 
+.deleteFileBtn {
+  height:17px;
+  background-color: transparent !important;
+  color: #667085 !important;
+}
+  
+  
 .show {
   
 }
