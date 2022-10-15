@@ -13,29 +13,28 @@ interface Cols {
 }
 
 interface IProps {
-    title:string;
+    title?:string;
     hasRequired?:boolean;
     mode?: 'view' | 'edit' | 'register';
     rows: Cols[] | object[];
+    colgroups?: string[];
 }
 
-const ViewTemplate: React.FC<IProps> = ({ title, hasRequired, mode = 'view', rows }) => {
+const ViewTemplate: React.FC<IProps> = ({ title, hasRequired, mode = 'view', rows, colgroups = ['15%','35%','15%','35%'] }) => {
 
     return(
     <>
         <div className='view-container'>
+            {title &&
             <h2 className='page-title mb5'>
                 {title}
                 {mode !== 'view' && hasRequired && <span className='infoTxt'>(<span className='required'>*</span> 필수)</span>}
-            </h2>
+            </h2>}
             <div className='cld-table-cover'>
                 <table className='cld-table'>
                     <caption>{title}</caption>
                     <colgroup>
-                        <col width='15%'></col>
-                        <col width='35%'></col>
-                        <col width='15%'></col>
-                        <col width='35%'></col>
+                        {colgroups.map((wid, index) => (<col key={`v-${wid}-${index}`} width={wid}></col>))}
                     </colgroup>
                     <tbody>
                     {
