@@ -100,54 +100,42 @@ const CLPEVNM93710: React.FC = () => {
             field: 'no',
             header: '순번',
             sortable: false,
-            style: {width: '10%', textAlign:'center', color:'gray'}
         },
         {
             field: 'subject',
             header: '이벤트 제목',
             sortable: false,
-            style: {width: '30%'},
         },
         {
             field: 'type',
             header: '이벤트 유형',
             sortable: false,
-            style: {width: '10%'},
-            className: 'text-center'
         },
         {
             field: 'author',
             header: '등록자',
             sortable: false,
-            style: {width: '8%'},
-            className: 'text-center'
         },
         {
             field: 'registerDate',
             header: '등록일자',
             sortable: false,
-            style: {width: '12%'},
-            className: 'text-center'
         },
         {
             field: 'state',
             header: '진행상태',
             sortable: false,
-            style: {width: '10%'},
-            className: 'text-center'
         },
         {
             field: 'period',
             header: '이벤트 기간',
             sortable: false,
-            style: {width: '20%'},
-            className: 'text-center'
         },
         
     ]
 
     return(
-    <BasePage>
+    <BasePage className="CLPEVNM93710">
         <div className='searchBar'>
             <Dropdown value={values.type1} options={options1} onChange={(e) => handleChange('type1', e.value)} 
                 optionLabel='name' placeholder='전체' />
@@ -173,11 +161,12 @@ const CLPEVNM93710: React.FC = () => {
         </div>
 
         <DataTable value={eventDummyData} paginator paginatorTemplate={paginator} 
+            className='evn'
             onRowClick={(e) => goDetail(e)}
             first={first} rows={rows} 
             onPage={onCustomPage} responsiveLayout='scroll'>
             {headerTemplate.map((col, index) => (
-                <Column key={col.header} field={col.field} header={col.header} style={col.style} className={col.className}></Column>
+                <Column key={col.header} field={col.field} header={col.header} ></Column>
             ))}
         </DataTable>
     </BasePage>)

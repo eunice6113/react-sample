@@ -124,56 +124,42 @@ const CLPCATM95610: React.FC = () => {
             field: 'no',
             header: '순번',
             sortable: false,
-            style: {width: '10%', textAlign:'center', color:'gray'}
         },
         {
             field: 'businessName',
             header: '사업명',
             sortable: false,
-            style: {width: '20%'},
         },
         
         {
             field: 'department',
             header: '부서명',
             sortable: false,
-            style: {width: '10%'},
-            className: 'text-center'
         },
         {
             field: 'type',
             header: '신청 유형',
             sortable: false,
-            style: {width: '15%'},
-            className: 'text-center'
         },
         {
             field: 'applicant',
             header: '신청자',
             sortable: false,
-            style: {width: '10%'},
-            className: 'text-center'
         },
         {
             field: 'applicationDate',
             header: '신청일자',
             sortable: false,
-            style: {width: '15%'},
-            className: 'text-center'
         },
         {
             field: 'state',
             header: '진행상태',
             sortable: false,
-            style: {width: '10%'},
-            className: 'text-center'
         },
         {
             field: 'manager',
             header: '담당자',
             sortable: false,
-            style: {width: '10%'},
-            className: 'text-center'
         },
         
     ]
@@ -206,11 +192,12 @@ const CLPCATM95610: React.FC = () => {
         </div>
 
         <DataTable value={tfcDummyData} paginator paginatorTemplate={paginator} 
+            className='tfc'
             onRowClick={(e) => goDetail(e)}
             first={first} rows={rows} 
             onPage={onCustomPage} responsiveLayout='scroll'>
             {headerTemplate.map((col, index) => (
-                <Column key={col.header} field={col.field} header={col.header} style={col.style} className={col.className}></Column>
+                <Column key={col.header} field={col.field} header={col.header}></Column>
             ))}
         </DataTable>
     </BasePage>)
