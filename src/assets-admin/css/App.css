@@ -63,15 +63,31 @@
   align-items: center;
 }
 
+.treeNode .nodeLabel {
+  flex: 1;
+  padding: 10px 0;
+}
+
 .p-tree-toggler-icon.pi-chevron-right:before {
-  /* content: "\e901"; */
   content: "\e963" !important;
 }
 
 .p-tree-toggler-icon.pi-chevron-down:before {
-  /* content: "\e902"; */
   content: "\e963" !important;
 }
+
+/* 빈폴더 */
+/* .p-treenode-leaf>.p-treenode-content .p-tree-toggler {
+  visibility: visible !important;
+}
+.p-tree-toggler-icon[aria-hidden="true"]:before {
+  --webkit-backface-visibility: visible !important;
+  backface-visibility: visible !important;
+}
+.p-tree-toggler-icon[aria-hidden="true"]:after {
+  --webkit-backface-visibility: hidden !important;
+  backface-visibility: hidden !important;
+} */
 
 .p-tree-toggler-icon {
   font-size: 20px;
@@ -92,8 +108,18 @@
   padding: 3px 0;
 }
 
-.p-tree-toggler-icon:after {
-  /* content: "\e90d"; */
+.p-tree-toggler[aria-label="Collapse"] .p-tree-toggler-icon:after {
+  content: '';
+  position: absolute;
+  top: 17px;
+  left: 12px;
+  font-weight: bold;
+  border-top: 2px solid var(--brand-primary);
+  width: 7px;
+  height: 1px;
+}
+
+.p-tree-toggler[aria-label="Expand"] .p-tree-toggler-icon:after {
   content: '+';
   position: absolute;
   top: 9px;
@@ -106,8 +132,6 @@
   background: #EEF2FF;
   color: var(--brand-primary);
 }
-
-
 
 .p-tree {
   border: 0 none;

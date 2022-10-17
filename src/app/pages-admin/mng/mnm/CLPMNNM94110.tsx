@@ -20,7 +20,6 @@ const CLPMNNM94110: React.FC<IProps> = ({children}) => {
     const [value1, setValue1] = React.useState('');
     const [date1, setDate1] = React.useState<Date | Date[] | undefined>(undefined);
 
-
     const cities = [
         { name: 'New York', code: 'NY' },
         { name: 'Rome', code: 'RM' },
@@ -37,7 +36,6 @@ const CLPMNNM94110: React.FC<IProps> = ({children}) => {
     const [customers2, setCustomers2] = React.useState([]);
     const [first1, setFirst1] = React.useState(0);
     const [rows1, setRows1] = React.useState(10);
-
 
     const onCustomPage = (event:any) => {
         setFirst1(event.first);

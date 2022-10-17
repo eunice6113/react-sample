@@ -64,7 +64,14 @@ const nodeDemo = [
             'children': [{ 'key': '2-1-0', 'label': 'Goodfellas', 'data': 'Goodfellas Movie', 'hide': false }, 
             { 'key': '2-1-1', 'label': 'Untouchables', 'data': 'Untouchables Movie', 'hide': false }]
         }]
-    }
+    },
+    {
+        'key': '3',
+        'label': 'Empty',
+        'data': 'Events Folder',
+        'hide': false,
+        'children': []
+    },
 ]
  
 interface MenuNode {
@@ -114,14 +121,13 @@ const CLPMNUM90900: React.FC = () => {
 
     }, [selectedKey]);
 
-    const onNodeSelect = (e:any) => {
-        console.log('onNodeSelect =>', e.node, e)
-
+    const handleNodeSelect = (e:any) => {
+        console.log('handleNodeSelect =>', e.node, e)
         
     }
 
-    const onNodeUnselect = (node:any) => {
-        console.log('onNodeUnselect =>', node)
+    const handleNodeUnselect = (node:any) => {
+        console.log('handleNodeUnselect =>', node)
     }
 
     const expandAll = () => {
@@ -158,9 +164,23 @@ const CLPMNUM90900: React.FC = () => {
         setSelect(e.value);
     }
 
+    const viewNode = ( node:any ) => {
+        console.log('viewNode', node.key as number, node)
+
+        setMode('view')
+    }
+
     const addNode = ( node:any ) => {
         console.log('addNode', node.key as number, node)
-        setMode('view')
+
+        setValues({
+            menuId: 0,
+            menuName: '',
+            link: '',
+            description: '',
+            order: 0
+        })
+        setMode('register')
     }
 
     const editNode = ( node:any ) => {
@@ -181,11 +201,10 @@ const CLPMNUM90900: React.FC = () => {
         })
     }
 
-
     const nodeTemplate = (node:any, options:any) => {
 
         let label = <div className='treeNode'>
-            <div>{node.label}</div>
+            <div className='nodeLabel' onClick={viewNode}>{node.label}</div>
             <div className='ml-auto'>
                 <Button onClick={(e) => {
                     e.preventDefault(); 
@@ -204,9 +223,7 @@ const CLPMNUM90900: React.FC = () => {
         )
     }
 
-    
-
-        // <InputText className="" placeholder="제목을 입력해주세요" value={title} onChange={(e) => setTitle(e.target.value)} />
+    // <InputText className="" placeholder="제목을 입력해주세요" value={title} onChange={(e) => setTitle(e.target.value)} />
 
     const contentsInfo = {
         mode: mode,
@@ -283,22 +300,27 @@ const CLPMNUM90900: React.FC = () => {
                         selectionMode='single' 
                         selectionKeys={selectedKey} 
                         onSelectionChange={(e:any) => setSelectedKey(e.value)}
-                        onSelect={onNodeSelect} 
-                        onUnselect={onNodeUnselect}
+                        onSelect={handleNodeSelect} 
+                        onUnselect={handleNodeUnselect}
                     />
                 </div>
             </div>
             <div className='treeRightContainer ml10'>
                 <h5 className='mb10'>메뉴정보</h5>
                 <div className='box treeBox'>
-
-                    {selectedKey === null && 
+                    {
+                        selectedKey === null ?
                         <div className='treeNodata'>
                             <NoData isTriangleIcon={true} isVertical={true} message='좌측의 메뉴를 선택해주세요.' />
                         </div>
+                        :
+                        // mode === 'register' ?
+                        //새 메뉴 등록일 경우
+                        // <ViewTemplate {...contentsInfo} />
+                        // :
+                        //mode == view, edit 인 경우 표출
+                        <ViewTemplate {...contentsInfo} />
                     }
-
-                    <ViewTemplate {...contentsInfo} />
                 </div>
             </div>
         </div>

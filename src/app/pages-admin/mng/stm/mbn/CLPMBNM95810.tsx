@@ -174,7 +174,6 @@ const CLPMBNM95810: React.FC = () => {
 
     return(
     <BasePage className='CLPMBNM95810'>
-        
 
         <TabView>
             <TabPanel header='사용 배너'>

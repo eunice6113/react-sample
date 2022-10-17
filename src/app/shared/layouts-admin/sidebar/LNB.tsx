@@ -73,6 +73,16 @@ const LNB: React.FC<IProps> = ({open, children}) => {
                     className: getClsName('/ui/table')
                 },
                 {
+                    label:'No Data',
+                    url: '/ui/nodata',
+                    className: getClsName('/ui/nodata')
+                },
+                {
+                    label:'Excel Import/Export',
+                    url: '/ui/excel',
+                    className: getClsName('/ui/excel')
+                },
+                {
                     label:'Chart',
                     url: '/ui/chart',
                     className: getClsName('/ui/chart')
@@ -82,11 +92,7 @@ const LNB: React.FC<IProps> = ({open, children}) => {
                     url: '/ui/upload',
                     className: getClsName('/ui/upload')
                 },
-                {
-                    label:'No Data',
-                    url: '/ui/nodata',
-                    className: getClsName('/ui/nodata')
-                },
+                
             ]
         },
         {
