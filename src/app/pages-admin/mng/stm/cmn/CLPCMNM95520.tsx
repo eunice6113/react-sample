@@ -6,6 +6,7 @@ import './CLPCMNM95520.css';
 import ViewTemplate from '../../../../shared/components/template/ViewTemplate';
 import Comment from '../../../../shared/components/ui/comment/Comment';
 import CommentRegister from '../../../../shared/components/ui/comment/CommentRegister';
+import { registerables } from 'chart.js';
 
 //소통공간 상세
 const CLPCMNM95520:React.FC = () => {
@@ -22,7 +23,8 @@ const CLPCMNM95520:React.FC = () => {
     const remove = () => {
         console.log('삭제')
     }
-
+    const [value1, setValue1] = React.useState('');
+    const [value2, setValue2] = React.useState('');
 
     //api 읽어와서 업데이트 할 내용
     const authorInfo = {
@@ -90,23 +92,41 @@ const CLPCMNM95520:React.FC = () => {
 
 
     const commentList = [
+        {//관리자 이거나 ? 본인이 작성한 것만 수정/삭제 가능
+            editable:true,
+            deletable:true,
+            userName:'권승주',
+            commentContent: '클라우드 Cell은 당대의 빛과 같은 존재로 기은에서 없어서는 안될 존재입니다. 기은의 클라우드를 늘 이끌어주세요~~!!',
+            date:'2022.03.02 09:00:00'
+        },
         {
+            editable:false,
+            deletable:true,
             userName:'홍길동',
             commentContent: '클라우드 Cell은 당대의 빛과 같은 존재로 기은에서 없어서는 안될 존재입니다. 기은의 클라우드를 늘 이끌어주세요~~!!',
             date:'2022.03.02 09:00:00'
         },
         {
+            editable:false,
+            deletable:true,
             userName:'홍길동',
             commentContent: '클라우드 Cell은 당대의 빛과 같은 존재로 기은에서 없어서는 안될 존재입니다. 기은의 클라우드를 늘 이끌어주세요~~!!',
             date:'2022.03.02 09:00:00'
-        },
-        {
-            userName:'홍길동',
-            commentContent: '클라우드 Cell은 당대의 빛과 같은 존재로 기은에서 없어서는 안될 존재입니다. 기은의 클라우드를 늘 이끌어주세요~~!!',
-            date:'2022.03.02 09:00:00'
+
         },
         
     ]
+
+
+    const registration = () => {
+        console.log('등록')
+    }
+    const edit = () => {
+        console.log('편집')
+    }
+    const deleteFunc = () => {
+        console.log('삭제')
+    }
 
     return(
     <BasePage>
@@ -126,17 +146,27 @@ const CLPCMNM95520:React.FC = () => {
             <CommentRegister 
                 title='관리자 댓글을 입력하실 수 있습니다.'
                 total='3'
+                value={value1}
+                // setValue={setValue1}
+                setValue={setValue1}
             />
 
             {
                 commentList.map(( item, index) => (
                     <Comment 
+                        id={index}
+                        editable={item.editable}
+                        deletable={item.deletable}
                         key={'comm'+index}
                         userName={item.userName} 
                         commentContent={item.commentContent}
                         date={item.date}
-                        hasEditBtn={true}
-                        hasRemoveBtn={false}
+                        mode='register'
+                        value={value2} 
+                        setValue={setValue2}
+                        edit={edit}
+                        delt={deleteFunc}
+                        registration={registration}
                         />
                 ))
             
