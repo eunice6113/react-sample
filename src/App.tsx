@@ -11,6 +11,7 @@ import "primeicons/primeicons.css";                                //icons
 // import "../node_modules/sample-design-token/src/styles.css"
 import "./assets-admin/css/token-rewrite.css";
 import './assets-admin/css/App.css';
+import './assets-admin/css/App_ksj.css';
 import adminRoutes from './app/routes/admin-routes';
 import { ConfirmDialog, Toast } from 'primereact';
 

@@ -1,23 +1,12 @@
 import { Button, Calendar, Dropdown, Editor, FileUpload, InputText, InputTextarea, RadioButton } from 'primereact';
 import * as React from 'react';
 import { BasePage } from '../../../../shared/components/base/BasePage';
-import ViewButtonsTemplate from '../../../../shared/components/template/ViewButtonsTemplate';
 import { useBasePage } from '../../../../shared/hooks/base-page.hook';
 import './CLPCMNM95520.css';
 import ViewTemplate from '../../../../shared/components/template/ViewTemplate';
+import Comment from '../../../../shared/components/ui/comment/Comment';
+import CommentRegister from '../../../../shared/components/ui/comment/CommentRegister';
 
-interface File {
-    name:string;
-    size:number;
-}
-interface cmnContent {
-    title: string;
-    content: string;
-    fromDate: Date;
-    toDate: Date;
-    useYn?: boolean;
-    files?: File[];
-}
 //소통공간 상세
 const CLPCMNM95520:React.FC = () => {
     const { goPage } = useBasePage()
@@ -96,8 +85,28 @@ const CLPCMNM95520:React.FC = () => {
             },
             
         ]
+        
     }
 
+
+    const commentList = [
+        {
+            userName:'홍길동',
+            commentContent: '클라우드 Cell은 당대의 빛과 같은 존재로 기은에서 없어서는 안될 존재입니다. 기은의 클라우드를 늘 이끌어주세요~~!!',
+            date:'2022.03.02 09:00:00'
+        },
+        {
+            userName:'홍길동',
+            commentContent: '클라우드 Cell은 당대의 빛과 같은 존재로 기은에서 없어서는 안될 존재입니다. 기은의 클라우드를 늘 이끌어주세요~~!!',
+            date:'2022.03.02 09:00:00'
+        },
+        {
+            userName:'홍길동',
+            commentContent: '클라우드 Cell은 당대의 빛과 같은 존재로 기은에서 없어서는 안될 존재입니다. 기은의 클라우드를 늘 이끌어주세요~~!!',
+            date:'2022.03.02 09:00:00'
+        },
+        
+    ]
 
     return(
     <BasePage>
@@ -111,14 +120,29 @@ const CLPCMNM95520:React.FC = () => {
                 <Button className='secondary' onClick={list}>목록</Button>
                 <Button className='ml-auto' onClick={remove}>삭제</Button>
         </div>
+
         {/* 댓글 */}
-        <div className='commentWRap'>
-            관리자 댓글을 입력하실 수 있습니다.(글 댓글 3)
-            <div className='comment'>
-                <div>홍길동</div>
-                <p>클라우드 Cell은 당대의 빛과 같은 존재로 기은에서 없어서는 안될 존재입니다. 기은의 클라우드를 늘 이끌어주세요~~!!</p>
-                <p>2022.03.02 09:00:00</p>
-            </div>
+        <div className='commentWrap mt30'>
+            <CommentRegister 
+                title='관리자 댓글을 입력하실 수 있습니다.'
+                total='3'
+            />
+
+            {
+                commentList.map(( item, index) => (
+                    <Comment 
+                        key={'comm'+index}
+                        userName={item.userName} 
+                        commentContent={item.commentContent}
+                        date={item.date}
+                        hasEditBtn={true}
+                        hasRemoveBtn={false}
+                        />
+                ))
+            
+            }
+            
+            <Button className='more p-button-text' label='더보기 123댓글' icon='pi pi-angle-down'  iconPos="right"/>
         </div>
     </BasePage>)
 }
