@@ -173,6 +173,10 @@
   color: var(--brand-primary);
 } */
 
+.show {
+  display: block;
+}
+
 .hide {
   display: none;
 }
