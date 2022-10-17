@@ -18,13 +18,14 @@ interface IProps {
     mode?: 'view' | 'edit' | 'register';
     rows: Cols[] | object[];
     colgroups?: string[];
+    className?: string;
 }
 
-const ViewTemplate: React.FC<IProps> = ({ title, hasRequired, mode = 'view', rows, colgroups = ['15%','35%','15%','35%'] }) => {
+const ViewTemplate: React.FC<IProps> = ({ title, hasRequired, mode = 'view', rows, colgroups = ['15%','35%','15%','35%'], className }) => {
 
     return(
     <>
-        <div className='view-container'>
+        <div className={className + ' view-container'}>
             {title &&
             <h2 className='page-title mb5'>
                 {title}
