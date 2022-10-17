@@ -106,6 +106,23 @@ const TableGuide: React.FC = () => {
             {
                 cols: [
                     {
+                        key: '제목만 !!',
+                        value: null
+                    },
+                ]
+            },
+            {
+                cols: [
+                    {
+                        key: null, 
+                        value: '내용만 !!',
+                        editingValue: <InputTextarea rows={5} maxLength={250} placeholder='상세내용을 입력해주세요.(최대 250자)' value={values.content} onChange={(e) => handleChange('content', e.target.value)} />,
+                    },
+                ],
+            },
+            {
+                cols: [
+                    {
                         key: '유형', 
                         value: <span>토스트 팝업</span>,
                         editingValue: <>

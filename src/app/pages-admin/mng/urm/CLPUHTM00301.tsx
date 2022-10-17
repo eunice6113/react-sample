@@ -12,7 +12,7 @@ import { uhtDummyData } from '../../../shared/demo/data/uhtDummyData';
 import { useBasePage } from '../../../shared/hooks/base-page.hook';
 import { SearchParams } from '../../../core/models/search-params';
 
-//공지사항 관리
+//사용자 접속이력 관리
 const CLPUHTM00301: React.FC = () => {
     const { goPage, goBack } = useBasePage()
 

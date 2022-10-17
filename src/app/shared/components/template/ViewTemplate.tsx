@@ -43,6 +43,10 @@ const ViewTemplate: React.FC<IProps> = ({ title, hasRequired, mode = 'view', row
                             <tr key={'tr'+rowIndex} className={ row?.showIf !== undefined && row?.showIf === false ? 'hide':'' }>
                                 {
                                     row?.cols?.map((item:any, index:number) => (
+                                        item.value === null ? <th colSpan={4}>{item?.key}</th> 
+                                        :
+                                        item.key === null ? <td colSpan={4}>{mode === 'view' ? item?.value : item?.editingValue}</td> 
+                                        :
                                         <React.Fragment key={item?.key + index}>
                                             <th>
                                                 {item?.key}
