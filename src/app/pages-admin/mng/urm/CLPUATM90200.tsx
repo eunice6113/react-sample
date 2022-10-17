@@ -263,14 +263,6 @@ const CLPUATM90200: React.FC = () => {
                 ]
             },
             {
-                cols: [ 
-                    {
-                        key: null,
-                        value: '이벤트 내용입니다',
-                    },
-                ]
-            },
-            {
                 cols: [
                     {
                         key: '조직명', 
@@ -311,14 +303,6 @@ const CLPUATM90200: React.FC = () => {
                     {
                         key: '조직별 권한선택',
                         value: null,
-                    },
-                ]
-            },
-            {
-                cols: [ 
-                    {
-                        key: null,
-                        value: '이벤트 내용입니다',
                     },
                 ]
             },
@@ -366,6 +350,7 @@ const CLPUATM90200: React.FC = () => {
                         <Button type='button' className='grayBtn mb10 ml-auto' label={open ? '전체열기':'전체닫기'} onClick={open ? expandAll : collapseAll}  />
                     </div>
                     <Tree 
+                        filter
                         value={nodes} 
                         expandedKeys={expandedKeys} 
                         onToggle={(e:any) => setExpandedKeys(e.value)} 
@@ -394,13 +379,9 @@ const CLPUATM90200: React.FC = () => {
                         // 조회, 수정
                         <ViewTemplate {...contentsInfo} className='mt0' />
                     }
-                    {
-                        mode !== 'view' &&
-                        <div className='text-center mt20'>
-                            <Button className='outline mr10 md' label='취소' />
-                            <Button className='md' label='확인' />
-                        </div>
-                    }
+                    <div className='text-center mt20'>
+                        <Button className='md' label='확인' />
+                    </div>
                 </div>
             </div>
         </div>
