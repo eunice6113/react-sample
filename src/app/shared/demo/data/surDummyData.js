@@ -1,167 +1,157 @@
-//[공지사항]
+import { Button } from "primereact";
+
+//[설문관리]
 export const surDummyData = [
     {
         no: 0,
-        type: '[공지사항]',
+        type: '내부',
         subject: '제목입니다',
-        author: '신재문',
-        hit: 100,
-        registerDate: '2022-10-15'
+        state: '진행중',
+        respondents: <div className="d-flex-default"><snan className="mr8">1,100</snan><Button className="outline" label='결과 보기' /></div>,
+        period: '2022.10.15 ~ 2022.12.20',
+        registrar:'신재문 (12345)',
+        registerDate:'2022.12.05',
     },
     {
         no: 0,
-        type: '[공지사항]',
+        type: '내부',
         subject: '제목입니다',
-        author: '신재문',
-        hit: 100,
-        registerDate: '2022-10-15'
+        state: '진행중',
+        respondents: <div className="d-flex-default"><snan className="mr8">1,100</snan><Button className="outline" label='결과 보기' /></div>,
+        period: '2022.10.15 ~ 2022.12.20',
+        registrar:'신재문 (12345)',
+        registerDate:'2022.12.05',
     },
     {
         no: 0,
-        type: '[공지사항]',
+        type: '내부',
         subject: '제목입니다',
-        author: '신재문',
-        hit: 100,
-        registerDate: '2022-10-15'
+        state: '진행중',
+        respondents: <div className="d-flex-default"><snan className="mr8">1,100</snan><Button className="outline" label='결과 보기' /></div>,
+        period: '2022.10.15 ~ 2022.12.20',
+        registrar:'신재문 (12345)',
+        registerDate:'2022.12.05',
     },
     {
         no: 0,
-        type: '[공지사항]',
+        type: '내부',
         subject: '제목입니다',
-        author: '신재문',
-        hit: 100,
-        registerDate: '2022-10-15'
+        state: '진행중',
+        respondents: <div className="d-flex-default"><snan className="mr8">1,100</snan><Button className="outline" label='결과 보기' /></div>,
+        period: '2022.10.15 ~ 2022.12.20',
+        registrar:'신재문 (12345)',
+        registerDate:'2022.12.05',
     },
     {
         no: 0,
-        type: '[공지사항]',
+        type: '내부',
         subject: '제목입니다',
-        author: '신재문',
-        hit: 100,
-        registerDate: '2022-10-15'
+        state: '진행중',
+        respondents: <div className="d-flex-default"><snan className="mr8">1,100</snan><Button className="outline" label='결과 보기' /></div>,
+        period: '2022.10.15 ~ 2022.12.20',
+        registrar:'신재문 (12345)',
+        registerDate:'2022.12.05',
     },
     {
         no: 0,
-        type: '[공지사항]',
+        type: '내부',
         subject: '제목입니다',
-        author: '신재문',
-        hit: 100,
-        registerDate: '2022-10-15'
+        state: '진행중',
+        respondents: <div className="d-flex-default"><snan className="mr8">1,100</snan><Button className="outline" label='결과 보기' /></div>,
+        period: '2022.10.15 ~ 2022.12.20',
+        registrar:'신재문 (12345)',
+        registerDate:'2022.12.05',
     },
     {
         no: 0,
-        type: '[공지사항]',
+        type: '내부',
         subject: '제목입니다',
-        author: '신재문',
-        hit: 100,
-        registerDate: '2022-10-15'
+        state: '진행중',
+        respondents: <div className="d-flex-default"><snan className="mr8">1,100</snan><Button className="outline" label='결과 보기' /></div>,
+        period: '2022.10.15 ~ 2022.12.20',
+        registrar:'신재문 (12345)',
+        registerDate:'2022.12.05',
     },
     {
         no: 0,
-        type: '[공지사항]',
+        type: '내부',
         subject: '제목입니다',
-        
-        author: '신재문',
-        hit: 100,
-        registerDate: '2022-10-15'
+        state: '진행중',
+        respondents: <div className="d-flex-default"><snan className="mr8">1,100</snan><Button className="outline" label='결과 보기' /></div>,
+        period: '2022.10.15 ~ 2022.12.20',
+        registrar:'신재문 (12345)',
+        registerDate:'2022.12.05',
     },
     {
         no: 0,
-        type: '[공지사항]',
+        type: '내부',
         subject: '제목입니다',
-        author: '신재문',
-        hit: 100,
-        registerDate: '2022-10-15'
+        state: '진행중',
+        respondents: <div className="d-flex-default"><snan className="mr8">1,100</snan><Button className="outline" label='결과 보기' /></div>,
+        period: '2022.10.15 ~ 2022.12.20',
+        registrar:'신재문 (12345)',
+        registerDate:'2022.12.05',
     },
     {
         no: 0,
-        type: '[공지사항]',
+        type: '내부',
         subject: '제목입니다',
-        author: '신재문',
-        hit: 100,
-        registerDate: '2022-10-15'
+        state: '진행중',
+        respondents: <div className="d-flex-default"><snan className="mr8">1,100</snan><Button className="outline" label='결과 보기' /></div>,
+        period: '2022.10.15 ~ 2022.12.20',
+        registrar:'신재문 (12345)',
+        registerDate:'2022.12.05',
     },
     {
         no: 0,
-        type: '[공지사항]',
+        type: '내부',
         subject: '제목입니다',
-        author: '신재문',
-        hit: 100,
-        registerDate: '2022-10-15'
+        state: '진행중',
+        respondents: <div className="d-flex-default"><snan className="mr8">1,100</snan><Button className="outline" label='결과 보기' /></div>,
+        period: '2022.10.15 ~ 2022.12.20',
+        registrar:'신재문 (12345)',
+        registerDate:'2022.12.05',
     },
     {
         no: 0,
-        type: '[공지사항]',
+        type: '내부',
         subject: '제목입니다',
-        
-        author: '신재문',
-        hit: 100,
-        registerDate: '2022-10-15'
+        state: '진행중',
+        respondents: <div className="d-flex-default"><snan className="mr8">1,100</snan><Button className="outline" label='결과 보기' /></div>,
+        period: '2022.10.15 ~ 2022.12.20',
+        registrar:'신재문 (12345)',
+        registerDate:'2022.12.05',
     },
     {
         no: 0,
-        type: '[공지사항]',
+        type: '내부',
         subject: '제목입니다',
-        author: '신재문',
-        hit: 100,
-        registerDate: '2022-10-15'
+        state: '진행중',
+        respondents: <div className="d-flex-default"><snan className="mr8">1,100</snan><Button className="outline" label='결과 보기' /></div>,
+        period: '2022.10.15 ~ 2022.12.20',
+        registrar:'신재문 (12345)',
+        registerDate:'2022.12.05',
     },
     {
         no: 0,
-        type: '[공지사항]',
+        type: '내부',
         subject: '제목입니다',
-        author: '신재문',
-        hit: 100,
-        registerDate: '2022-10-15'
+        state: '진행중',
+        respondents: <div className="d-flex-default"><snan className="mr8">1,100</snan><Button className="outline" label='결과 보기' /></div>,
+        period: '2022.10.15 ~ 2022.12.20',
+        registrar:'신재문 (12345)',
+        registerDate:'2022.12.05',
     },
     {
         no: 0,
-        type: '[공지사항]',
+        type: '내부',
         subject: '제목입니다',
-        author: '신재문',
-        hit: 100,
-        registerDate: '2022-10-15'
+        state: '진행중',
+        respondents: <div className="d-flex-default"><snan className="mr8">1,100</snan><Button className="outline" label='결과 보기' /></div>,
+        period: '2022.10.15 ~ 2022.12.20',
+        registrar:'신재문 (12345)',
+        registerDate:'2022.12.05',
     },
-    {
-        no: 0,
-        type: '[공지사항]',
-        subject: '제목입니다',
-        
-        author: '신재문',
-        hit: 100,
-        registerDate: '2022-10-15'
-    },
-    {
-        no: 0,
-        type: '[공지사항]',
-        subject: '제목입니다',
-        author: '신재문',
-        hit: 100,
-        registerDate: '2022-10-15'
-    },
-    {
-        no: 0,
-        type: '[공지사항]',
-        subject: '제목입니다',
-        author: '신재문',
-        hit: 100,
-        registerDate: '2022-10-15'
-    },
-    {
-        no: 0,
-        type: '[공지사항]',
-        subject: '제목입니다',
-        author: '신재문',
-        hit: 100,
-        registerDate: '2022-10-15'
-    },
-    {
-        no: 0,
-        type: '[공지사항]',
-        subject: '제목입니다',
-        
-        author: '신재문',
-        hit: 100,
-        registerDate: '2022-10-15'
-    },
+    
+    
 ]

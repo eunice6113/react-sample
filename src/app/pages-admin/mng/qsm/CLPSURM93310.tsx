@@ -103,55 +103,47 @@ const CLPSURM93310: React.FC = () => {
         {
             field: 'no',
             header: '순번',
-            sortable: false,
-            style: {width: '10%', textAlign:'center', color:'gray'}
-        },
-        {
-            field: 'subject',
-            header: '이벤트 제목',
-            sortable: false,
-            style: {width: '30%'},
         },
         {
             field: 'type',
-            header: '이벤트 유형',
+            header: '노출구분',
             sortable: false,
-            style: {width: '10%'},
-            className: 'text-center'
         },
         {
-            field: 'author',
+            field: 'subject',
+            header: '설문제목',
+            sortable: false,
+        },
+        {
+            field: 'state',
+            header: '설문상태',
+            sortable: false,
+        },
+        {
+            field: 'respondents',
+            header: '응답자',
+            sortable: false,
+        },
+        {
+            field: 'period',
+            header: '설문기간',
+            sortable: false,
+        },
+        {
+            field: 'registrar',
             header: '등록자',
             sortable: false,
-            style: {width: '8%'},
-            className: 'text-center'
         },
         {
             field: 'registerDate',
             header: '등록일자',
             sortable: false,
-            style: {width: '12%'},
-            className: 'text-center'
-        },
-        {
-            field: 'state',
-            header: '진행상태',
-            sortable: false,
-            style: {width: '10%'},
-            className: 'text-center'
-        },
-        {
-            field: 'period',
-            header: '이벤트 기간',
-            sortable: false,
-            style: {width: '20%'},
-            className: 'text-center'
         },
         
     ]
 
     return(
-    <BasePage>
+    <BasePage className="CLPSURM93310">
         <div className='searchBar'>
             <Dropdown value={values.type1} options={options1} onChange={(e) => handleChange('type1', e.value)} 
                 optionLabel='name' placeholder='전체' />
@@ -176,11 +168,12 @@ const CLPSURM93310: React.FC = () => {
         </div>
 
         <DataTable value={surDummyData} paginator paginatorTemplate={paginator} 
+            className="sur"
             onRowClick={(e) => goDetail(e)}
             first={first} rows={rows} 
             onPage={onCustomPage} responsiveLayout='scroll'>
             {headerTemplate.map((col, index) => (
-                <Column key={col.header} field={col.field} header={col.header} style={col.style} className={col.className}></Column>
+                <Column key={col.header} field={col.field} header={col.header}></Column>
             ))}
         </DataTable>
     </BasePage>)

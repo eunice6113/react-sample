@@ -9,10 +9,6 @@
 }
 .p-datatable.mbn tr th:nth-child(2) {
     width: 33%;
-
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis; 
 }
 .p-datatable.mbn tr th:nth-child(3) {
     width: 10%;
