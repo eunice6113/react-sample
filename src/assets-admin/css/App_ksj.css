@@ -54,3 +54,15 @@
   color:#64748B;
   font-weight: bold;
 }
+
+/* the fast cloud 신청 관리 목록*/
+/* 기존 파일 다운로드 splite button*/
+.p-splitbutton.p-button-outlined > .p-button{
+  color: #ccc;
+}
+.p-splitbutton span{
+  color: var(--brand-primary) !important;
+}
+.p-menuitem {
+  font-size: 13px;
+}
