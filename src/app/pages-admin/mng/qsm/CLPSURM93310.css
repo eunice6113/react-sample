@@ -1,0 +1,32 @@
+.p-datatable .p-datatable-tbody > tr > td:nth-child(2) {
+    color: var(--brand-primary)
+}
+.p-datatable.sur tr th, 
+.p-datatable.sur tr td:not(:nth-child(3)) {
+    text-align: center;
+}
+.p-datatable.sur tr th:first-child {
+    width: 7%;
+    color:gray;
+}
+.p-datatable.sur tr th:nth-child(2) {
+    width: 10%;
+}
+.p-datatable.sur tr th:nth-child(3) {
+    width: 20%;
+}
+.p-datatable.sur tr th:nth-child(4) {
+    width: 10%;
+}
+.p-datatable.sur tr th:nth-child(5) {
+    width: 13%;
+}
+.p-datatable.sur tr th:nth-child(6) {
+    width: 15%;
+}
+.p-datatable.sur tr th:nth-child(7) {
+    width: 15%;
+}
+.p-datatable.sur tr th:nth-child(8) {
+    width: 10%;
+}

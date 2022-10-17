@@ -2,7 +2,7 @@
 export const faqDummyData = [
     {
         no: 0,
-        subject: '제목입니다.제목입니다.제목입니다.제목입니다.제목입니다.제목입니다.제목입니다.',
+        subject: '제목입니다.제목입니다.제목입니다.제목입니다.제목입니다.제목입니다.제목입니다.제목입니다.제목입니다.',
         questioner: '위성규',
         answer: '신재문',
         registerDate: '2022.10.15',
