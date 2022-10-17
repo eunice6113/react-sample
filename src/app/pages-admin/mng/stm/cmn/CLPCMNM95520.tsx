@@ -93,21 +93,18 @@ const CLPCMNM95520:React.FC = () => {
 
     const commentList = [
         {//관리자 이거나 ? 본인이 작성한 것만 수정/삭제 가능
-            editable:true,
             deletable:true,
             userName:'권승주',
             commentContent: '클라우드 Cell은 당대의 빛과 같은 존재로 기은에서 없어서는 안될 존재입니다. 기은의 클라우드를 늘 이끌어주세요~~!!',
             date:'2022.03.02 09:00:00'
         },
         {
-            editable:false,
             deletable:true,
             userName:'홍길동',
             commentContent: '클라우드 Cell은 당대의 빛과 같은 존재로 기은에서 없어서는 안될 존재입니다. 기은의 클라우드를 늘 이끌어주세요~~!!',
             date:'2022.03.02 09:00:00'
         },
         {
-            editable:false,
             deletable:true,
             userName:'홍길동',
             commentContent: '클라우드 Cell은 당대의 빛과 같은 존재로 기은에서 없어서는 안될 존재입니다. 기은의 클라우드를 늘 이끌어주세요~~!!',
@@ -155,7 +152,6 @@ const CLPCMNM95520:React.FC = () => {
                 commentList.map(( item, index) => (
                     <Comment 
                         id={index}
-                        editable={item.editable}
                         deletable={item.deletable}
                         key={'comm'+index}
                         userName={item.userName} 

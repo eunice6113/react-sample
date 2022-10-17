@@ -4,8 +4,8 @@ import { useState } from 'react';
 
 interface IProps {
     id: number;
-    editable: boolean;
-    deletable:boolean;
+    editable?: boolean;
+    deletable?:boolean;
     userName:string;
     commentContent:string;
     date:string;
@@ -16,7 +16,7 @@ interface IProps {
     delt: Function;
     registration: Function;
 }
-const Comment:React.FC<IProps> = ({id, editable, deletable, userName, commentContent, date, mode = 'view',value, setValue, registration, edit, delt}) => {
+const Comment:React.FC<IProps> = ({id, editable=false, deletable=false, userName, commentContent, date, mode = 'view',value, setValue, registration, edit, delt}) => {
    
     const [_mode, _setMode]=React.useState<'view' | 'edit' | 'register'>(mode)
     const _registration = () => {
