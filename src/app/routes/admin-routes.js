@@ -26,6 +26,7 @@ const PopupGuide = Loadable(lazy(() => import('../pages/ui-guide/PopupGuide')));
 const TableGuide = Loadable(lazy(() => import('../pages/ui-guide/TableGuide')));
 const ChartGuide = Loadable(lazy(() => import('../pages/ui-guide/ChartGuide')));
 const UploadGuide = Loadable(lazy(() => import('../pages/ui-guide/UploadGuide')));
+const NoDataGuide = Loadable(lazy(() => import('../pages/ui-guide/NoDataGuide')));
 
 const CheckboxGuide = Loadable(lazy(() => import('../pages/ui-guide/CheckboxGuide')));
 const DatePickerGuide = Loadable(lazy(() => import('../pages/ui-guide/DatePickerGuide')));
@@ -219,6 +220,11 @@ const adminRoutes = [
             path: 'upload', 
             name: 'Upload Guide', 
             element: <UploadGuide />
+          },
+          {
+            path: 'nodata', 
+            name: 'NoData Guide', 
+            element: <NoDataGuide />
           },
         ]
       }

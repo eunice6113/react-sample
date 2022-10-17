@@ -82,6 +82,11 @@ const LNB: React.FC<IProps> = ({open, children}) => {
                     url: '/ui/upload',
                     className: getClsName('/ui/upload')
                 },
+                {
+                    label:'No Data',
+                    url: '/ui/nodata',
+                    className: getClsName('/ui/nodata')
+                },
             ]
         },
         {

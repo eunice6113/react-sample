@@ -1,76 +1,308 @@
-import * as React from "react";
-import { BasePage } from "../../../../shared/components/base/BasePage";
+import * as React from 'react';
+import { BasePage } from '../../../../shared/components/base/BasePage';
 import { Dropdown } from 'primereact/dropdown';
 import { InputText } from 'primereact/inputtext';
-import { Calendar } from 'primereact/calendar';
-import { Button } from "primereact";
-import { DataTable } from 'primereact/datatable';
-import { Column } from 'primereact/column';
-import { paginator } from "../../../../shared/utils/table-paginator";
 import './CLPMNUM90900.css';
+import NoData from '../../../../shared/components/ui/NoData';
+import { Tree } from 'primereact/tree';
+import { Button } from 'primereact/button';
+import TreeNodeShowBtn from '../../../../shared/components/ui/TreeNodeShowBtn';
+import ViewTemplate from '../../../../shared/components/template/ViewTemplate';
+import { confirmDialog, InputNumber } from 'primereact';
+
+const nodeDemo = [
+    {
+        'key': '0',
+        'label': 'Documents',
+        'data': 'Documents Folder',
+        'hide': false,
+        'children': [{
+            'key': '0-0',
+            'label': 'Work',
+            'data': 'Work Folder',
+            'hide': false,
+            'children': [{ 'key': '0-0-0', 'label': 'Expenses.doc', 'data': 'Expenses Document', 'hide': false }, 
+            { 'key': '0-0-1', 'label': 'Resume.doc', 'data': 'Resume Document', 'hide': false }]
+        },
+        {
+            'key': '0-1',
+            'label': 'Home',
+            'data': 'Home Folder',
+            'hide': false,
+            'children': [{ 'key': '0-1-0', 'label': 'Invoices.txt', 'data': 'Invoices for this month', 'hide': false }]
+        }]
+    },
+    {
+        'key': '1',
+        'label': 'Events',
+        'data': 'Events Folder',
+        'hide': false,
+        'children': [
+            { 'key': '1-0', 'label': 'Meeting', 'data': 'Meeting', 'hide': false },
+            { 'key': '1-1', 'label': 'Product Launch', 'data': 'Product Launch', 'hide': false },
+            { 'key': '1-2', 'label': 'Report Review', 'data': 'Report Review', 'hide': false }]
+    },
+    {
+        'key': '2',
+        'label': 'Movies',
+        'data': 'Movies Folder',
+        'hide': false,
+        'children': [{
+            'key': '2-0',
+            'label': 'Al Pacino',
+            'data': 'Pacino Movies',
+            'hide': false,
+            'children': [
+                { 'key': '2-0-0', 'label': 'Scarface', 'data': 'Scarface Movie', 'hide': false }, 
+                { 'key': '2-0-1', 'label': 'Serpico', 'data': 'Serpico Movie', 'hide': false }]
+        },
+        {
+            'key': '2-1',
+            'label': 'Robert De Niro',
+            'data': 'De Niro Movies',
+            'hide': false,
+            'children': [{ 'key': '2-1-0', 'label': 'Goodfellas', 'data': 'Goodfellas Movie', 'hide': false }, 
+            { 'key': '2-1-1', 'label': 'Untouchables', 'data': 'Untouchables Movie', 'hide': false }]
+        }]
+    }
+]
+ 
+interface MenuNode {
+    menuId: number;
+    menuName: string;
+    link: string;
+    description: string;
+    order: number;
+}
 
 //메뉴 관리
 const CLPMNUM90900: React.FC = () => {
 
-    const [select1, setSelect1] = React.useState<any>(null);
-    const [select2, setSelect2] = React.useState<any>(null);
-    const [value1, setValue1] = React.useState('');
-    const [date1, setDate1] = React.useState<Date | Date[] | undefined>(undefined);
+    const [nodes, setNodes] = React.useState<any>([]);
+    const [expandedKeys, setExpandedKeys] = React.useState({});
+    const [open, setOpen] = React.useState(true);
+
+    const [selectedKey, setSelectedKey] = React.useState(null);
+    const [select, setSelect] = React.useState<any>(null);
+
+    const [mode, setMode] = React.useState<'view' | 'edit' | 'register'>('view');
+
+    const [values, setValues] = React.useState<MenuNode>(
+        {
+            menuId: 0,
+            menuName: '',
+            link: '',
+            description: '',
+            order: 0
+        })
+
+    //초기화, 트리 노드 데이터 불러와서 읽힘
+    React.useEffect(() => {
+        setNodes(nodeDemo);
+    }, []);
 
 
-    const cities = [
-        { name: 'New York', code: 'NY' },
-        { name: 'Rome', code: 'RM' },
-        { name: 'London', code: 'LDN' },
-        { name: 'Istanbul', code: 'IST' },
-        { name: 'Paris', code: 'PRS' }
+    // const handleChange = (prop: keyof PopupContent, value:any) => {
+    //     setValues({ ...values, [prop]: value });
+    // };
+    React.useEffect(() => {
+        console.log('selectedKey =>', selectedKey)
+
+        if(selectedKey !== null) {
+            setValues({ ...values, 'menuId': selectedKey })
+        }
+
+    }, [selectedKey]);
+
+    const onNodeSelect = (e:any) => {
+        console.log('onNodeSelect =>', e.node, e)
+
+        
+    }
+
+    const onNodeUnselect = (node:any) => {
+        console.log('onNodeUnselect =>', node)
+    }
+
+    const expandAll = () => {
+        let _expandedKeys = {};
+        for (let node of nodes) {
+            expandNode(node, _expandedKeys);
+        }
+
+        setExpandedKeys(_expandedKeys);
+        setOpen(!open);
+    }
+
+    const collapseAll = () => {
+        setExpandedKeys({});
+        setOpen(!open);
+    }
+
+    const expandNode = (node:any, _expandedKeys:any) => {
+        if (node.children && node.children.length) {
+            _expandedKeys[node.key] = true;
+
+            for (let child of node.children) {
+                expandNode(child, _expandedKeys);
+            }
+        }
+    }
+
+    const options = [
+        { name: '사용자 화면', value: 'user' },
+        { name: '관리자 화면', value: 'admin' },
     ];
 
     const handleChange = (e: { value: any}) => {
-        setSelect1(e.value);
+        setSelect(e.value);
+    }
+
+    const addNode = ( node:any ) => {
+        console.log('addNode', node.key as number, node)
+        setMode('view')
+    }
+
+    const editNode = ( node:any ) => {
+        console.log('editNode', node.key as number, node)
+        setMode('edit')
+    }
+
+    const hideNode = ( node:any ) => {
+        console.log('hideNode', node.key as number, node)
+
+        confirmDialog({
+            message: '해당 메뉴를 숨김처리 하시겠습니까?',
+            rejectLabel: '취소',
+            acceptLabel: '확인',
+            className: 'noHeader',
+            accept: () => {},
+            reject: () => {}
+        })
     }
 
 
-    const [customers2, setCustomers2] = React.useState([]);
-    const [first1, setFirst1] = React.useState(0);
-    const [rows1, setRows1] = React.useState(10);
+    const nodeTemplate = (node:any, options:any) => {
 
+        let label = <div className='treeNode'>
+            <div>{node.label}</div>
+            <div className='ml-auto'>
+                <Button onClick={(e) => {
+                    e.preventDefault(); 
+                    addNode(node)}} className='treeNodeBtn p-button-text' icon='pi pi-plus-circle' />
+                <Button onClick={(e) => editNode(node)} className='treeNodeBtn p-button-text' icon='pi pi-file-edit' />
+                <Button onClick={(e) => hideNode(node)} className='treeNodeBtn p-button-text' icon='pi pi-eye' />
+                {/* <Button className='treeNodeBtn p-button-text' icon='pi pi-eye-slash' /> */}
+                {/* <TreeNodeShowBtn handleClick={(e:any) => hideNode(node)} /> */}
+            </div>
+        </div>;
 
-    const onCustomPage = (event:any) => {
-        setFirst1(event.first);
-        setRows1(event.rows);
+        return (
+            <span className={options.className}>
+                {label}
+            </span>
+        )
     }
 
-    let pages = 50;
+    
 
+        // <InputText className="" placeholder="제목을 입력해주세요" value={title} onChange={(e) => setTitle(e.target.value)} />
+
+    const contentsInfo = {
+        mode: mode,
+        hasRequired: true,
+        colgroups: ['180px', '*'],
+        rows: [
+            {
+                cols: [
+                    {
+                        key: '메뉴ID', 
+                        value: <span> {values.menuId} </span>,
+                        editingValue: <InputText disabled value={values.menuId} onChange={(e) => {}} />,
+                    },
+                ]
+            },
+            {
+                cols: [
+                    {
+                        required: true,
+                        key: '메뉴명', 
+                        value: <span> 클라우드 추진 Cell 소개 </span>,
+                        editingValue: <InputText placeholder="메뉴명을 입력해주세요." value={''} onChange={(e) => {}} />,
+                    },
+                ]
+            },
+            {
+                cols: [
+                    {
+                        required: true,
+                        key: '화면링크', 
+                        value: <span> /stc/ntc/list </span>,
+                        editingValue: <InputText placeholder="URI를 입력해주세요" value={''} onChange={(e) => {}} />,
+                    },
+                ]
+            },
+            {
+                cols: [
+                    {
+                        key: '메뉴설명', 
+                        value: <span> 클라우드 추진 cell소개 콘텐츠 노출 메뉴 </span>,
+                        editingValue: <InputText placeholder="메뉴에 대한 설명을 입력해주세요" value={''} onChange={(e) => {}} />,
+                    },
+                ]
+            },
+            {
+                cols: [
+                    {
+                        key: '노출순서',
+                        value: <span> 1 </span>,
+                        editingValue: <InputNumber value={0} onChange={(e) => {}} />,     
+                    }
+                ]
+            },
+        ]
+    }
     return(
-    <BasePage>
-        <div className="searchBar">
-            <Dropdown className="cld-select" value={select1} options={cities} onChange={handleChange} 
-                optionLabel="name" placeholder="전체" />
-            <Dropdown value={select2} options={cities} onChange={handleChange} 
-                optionLabel="name" placeholder="전체" />
+    <BasePage className='CLPMNUM90900'>
 
-            <InputText className="searchTxt" placeholder="검색어를 입력해주세요" value={value1} onChange={(e) => setValue1(e.target.value)} />
+        <div className='treeContainer mt30'>
+            <div className='treeLeftContainer mr10'>
+                <h5 className='mb10'>전체 메뉴</h5>
+                <div className='box treeBox'>
+                    <Dropdown value={select} options={options} onChange={handleChange} optionLabel='name' placeholder='전체' />
+                    <hr className='innerLine'/>
 
-            <Calendar id="icon" dateFormat="yy.mm.dd" value={date1} onChange={(e) => setDate1(e.value)} showIcon />
-            <Calendar id="icon" dateFormat="yy.mm.dd" value={date1} onChange={(e) => setDate1(e.value)} showIcon />
-            <Button className="cld-button primary" label="조회" />
+                    <div className='d-flex'>
+                        <Button type='button' className='grayBtn mb10 ml-auto' label={open ? '전체열기':'전체닫기'} onClick={open ? expandAll : collapseAll}  />
+                    </div>
+                    <Tree 
+                        value={nodes} 
+                        expandedKeys={expandedKeys} 
+                        onToggle={(e:any) => setExpandedKeys(e.value)} 
+                        nodeTemplate={nodeTemplate}
+                        selectionMode='single' 
+                        selectionKeys={selectedKey} 
+                        onSelectionChange={(e:any) => setSelectedKey(e.value)}
+                        onSelect={onNodeSelect} 
+                        onUnselect={onNodeUnselect}
+                    />
+                </div>
+            </div>
+            <div className='treeRightContainer ml10'>
+                <h5 className='mb10'>메뉴정보</h5>
+                <div className='box treeBox'>
+
+                    {selectedKey === null && 
+                        <div className='treeNodata'>
+                            <NoData isTriangleIcon={true} isVertical={true} message='좌측의 메뉴를 선택해주세요.' />
+                        </div>
+                    }
+
+                    <ViewTemplate {...contentsInfo} />
+                </div>
+            </div>
         </div>
-
-        <div className="toolbar">
-            <p className="mb10">총 <span className="pageNm">{pages}</span>개</p>
-            <Button className="ml-auto cld-button primary outline" label="신규등록" icon='pi pi-pencil' />
-        </div>
-
-        <DataTable value={customers2} paginator paginatorTemplate={paginator} first={first1} rows={rows1} onPage={onCustomPage} responsiveLayout="scroll">
-            <Column field="name" header="Name" style={{ width: '25%' }}></Column>
-            <Column field="country.name" header="Country" style={{ width: '25%' }}></Column>
-            <Column field="company" header="Company" style={{ width: '25%' }}></Column>
-            <Column field="representative.name" header="Representative" style={{ width: '25%' }}></Column>
-        </DataTable>
 
     </BasePage>)
 }
 export default CLPMNUM90900;
-

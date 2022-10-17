@@ -6,14 +6,13 @@ interface IProps {
     children: React.ReactNode;
 }
 
-const CssGuide: React.FC<IProps> = ({children}) => {
+const NoDataGuide: React.FC<IProps> = ({children}) => {
 
     return(
     <BasePage>
-        <h1>CSS Guide</h1>
 
 
 
     </BasePage>)
 }
-export default CssGuide
+export default NoDataGuide

@@ -16,7 +16,7 @@ export const BasePage: React.FC<IProps> = ({className, children}) => {
     const routes = adminRoutes;
 
     //route에 정의된 name 에서 페이지 제목을 읽어온다
-    console.log('curLocation.length', curLocation,  curLocation.length)
+    // console.log('curLocation.length', curLocation,  curLocation.length)
     if( curLocation.length === 4 && curLocation[3] && curLocation[3] !== 'list' && curLocation[3] !== 'register' &&  curLocation[3] !== '') {
         curLocation[3] = ':id'
     }
