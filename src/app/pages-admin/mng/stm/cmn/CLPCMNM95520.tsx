@@ -1,10 +1,10 @@
 import { Button, Calendar, Dropdown, Editor, FileUpload, InputText, InputTextarea, RadioButton } from 'primereact';
 import * as React from 'react';
 import { BasePage } from '../../../../shared/components/base/BasePage';
-import ViewButtonsTemplate from '../../../../shared/components/template/ViewButtonsTemplate';
 import { useBasePage } from '../../../../shared/hooks/base-page.hook';
 import './CLPCMNM95520.css';
 import ViewTemplate from '../../../../shared/components/template/ViewTemplate';
+import { useState } from 'react';
 
 interface File {
     name:string;
@@ -54,6 +54,9 @@ const CLPCMNM95520:React.FC = () => {
         ]
     }
 
+    let userName = '홍길동'
+    const [value1, setValue1] = useState('');
+
     const contentsInfo = {
         title: '상세 내용',
         mode: mode,
@@ -96,6 +99,7 @@ const CLPCMNM95520:React.FC = () => {
             },
             
         ]
+        
     }
 
 
@@ -112,12 +116,34 @@ const CLPCMNM95520:React.FC = () => {
                 <Button className='ml-auto' onClick={remove}>삭제</Button>
         </div>
         {/* 댓글 */}
-        <div className='commentWRap'>
-            관리자 댓글을 입력하실 수 있습니다.(글 댓글 3)
+        <div className='commentWrap'>
+            <p className='titel'><i className='pi pi-comments'></i> 관리자 댓글을 입력하실 수 있습니다.<span className='gray'>(글 댓글 3)</span></p>
+            <div className='commentRegist mb20'>
+                <InputTextarea value={value1} onChange={(e) => setValue1(e.target.value)} rows={5} cols={30} />
+                <div className='btn-container mt4'>
+                    <Button className='ml-auto' onClick={remove}>등록</Button>
+                </div>
+            </div>            
             <div className='comment'>
-                <div>홍길동</div>
-                <p>클라우드 Cell은 당대의 빛과 같은 존재로 기은에서 없어서는 안될 존재입니다. 기은의 클라우드를 늘 이끌어주세요~~!!</p>
-                <p>2022.03.02 09:00:00</p>
+                <div className='d-flex'>
+                    <div className='d-flex-default'>
+                        <span className='profile'>
+                            <i className='pi pi-user'></i>
+                        </span>
+                        <span className='profileName ml8'>{userName}</span>
+                    </div>
+                    
+                    <div className='ml-auto'>
+                    <Button icon="pi pi-check" className="p-button-rounded p-button-text" aria-label="Submit" />
+                    <Button icon="pi pi-check" className="p-button-rounded p-button-text" aria-label="Submit" />
+
+                        <Button icon="pi pi-trash" className="p-button-rounded p-button-info p-button-text p-button-lg icon-" aria-label="trash" />
+                        <Button icon="pi pi-file-edit" className="p-button-rounded p-button-info p-button-text p-button-lg" aria-label="file-edit" />
+                    </div>
+                </div>
+
+                <p className='content mt8 mb8'>클라우드 Cell은 당대의 빛과 같은 존재로 기은에서 없어서는 안될 존재입니다. 기은의 클라우드를 늘 이끌어주세요~~!!</p>
+                <p className='date'>2022.03.02 09:00:00</p>
             </div>
         </div>
     </BasePage>)

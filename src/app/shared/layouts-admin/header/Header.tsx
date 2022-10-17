@@ -46,7 +46,7 @@ const Header: React.FC<IProps> = ({handleOpen, children}) => {
             <InputSwitch className="ml10" checked={theme} onChange={handleTheme} />
 
             <span className="accessInfo">최근 접속 {userAccessInfo}</span>
-            <span className="profile">
+            <span className="profile ml8">
                 <i className="pi pi-user" />
             </span>
             <span>{userName}</span>
