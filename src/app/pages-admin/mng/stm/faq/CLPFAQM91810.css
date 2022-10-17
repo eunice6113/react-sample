@@ -21,8 +21,3 @@
 .p-datatable.faq tr th:nth-child(6) {
     width: 15%;
 }
-.p-datatable.faq tr td {
-    overflow: hidden;
-    white-space: nowrap !important;
-    text-overflow: ellipsis !important;
-}
