@@ -217,43 +217,7 @@ const CLPMNUM90900: React.FC = () => {
             rejectLabel: '취소',
             acceptLabel: '확인',
             className: 'noHeader',
-            accept: () => {
-                if(selectedNode) {
-                    // console.log(':::: 한박자 늦네.. hide selectedNode', selectedNode)
-                    // // console.log(':::: hide selectedNodeItem', selectedNodeItem, 'selectedKey', selectedNodeItem.key)
-                    // setSelectedNode({ ...node, hide: true})
-                    // console.log(':::: 한박자 늦네.. hide selectedNode', selectedNode)
-
-                    /*
-                    let curItem = null;
-                    nodes.forEach((item:any) => {
-
-                        console.log('item', item)
-                        if(item.key === selectedNodeItem.key) curItem = item;
-
-                        item.children?.forEach((sitem:any) => {
-
-                            console.log('sitem', sitem)
-                            if(sitem.key === selectedNodeItem.key) curItem = sitem;
-
-                            sitem.children?.forEach((titem:any) => {
-
-                                console.log('titem', titem)
-                                if(titem.key === selectedNodeItem.key) curItem = titem
-
-                                titem.children?.forEach((fitem:any) => {
-                                
-                                    console.log('fitem', fitem)
-                                    if(fitem.key === selectedNodeItem.key) curItem = fitem
-                                })
-                            })
-                        })
-                    })
-
-                    console.log('curItem ====> ', curItem)
-                    */
-                }
-            },
+            accept: () => {},
             reject: () => {}
         })
     }
@@ -285,13 +249,14 @@ const CLPMNUM90900: React.FC = () => {
         )
     }
 
+    //등록
     const registerInfo = {
         mode: mode,
         hasRequired: true,
         colgroups: ['180px', '*'],
         rows: [
             {
-                cols: [
+                cols: [ 
                     {
                         key: '메뉴ID',
                         value: <span> {newNode.key} </span>,
@@ -340,6 +305,7 @@ const CLPMNUM90900: React.FC = () => {
         ]
     }
 
+    //조회, 수정
     const contentsInfo = {
         mode: mode,
         hasRequired: true,
@@ -432,10 +398,17 @@ const CLPMNUM90900: React.FC = () => {
                         :
                         mode === 'register' ?
                         // 등록
-                        <ViewTemplate {...registerInfo} className={mode === 'register' ? 'show':'hide'} />
+                        <ViewTemplate {...registerInfo} className={mode === 'register' ? 'show mt0':'hide mt0'} />
                         :
                         // 조회, 수정
-                        <ViewTemplate {...contentsInfo} />
+                        <ViewTemplate {...contentsInfo} className='mt0' />
+                    }
+                    {
+                        mode !== 'view' &&
+                        <div className='text-center mt20'>
+                            <Button className='outline mr10 md' label='취소' />
+                            <Button className='md' label='확인' />
+                        </div>
                     }
                 </div>
             </div>
