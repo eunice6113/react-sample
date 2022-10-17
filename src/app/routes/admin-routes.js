@@ -27,6 +27,7 @@ const TableGuide = Loadable(lazy(() => import('../pages/ui-guide/TableGuide')));
 const ChartGuide = Loadable(lazy(() => import('../pages/ui-guide/ChartGuide')));
 const UploadGuide = Loadable(lazy(() => import('../pages/ui-guide/UploadGuide')));
 const NoDataGuide = Loadable(lazy(() => import('../pages/ui-guide/NoDataGuide')));
+const ExcelGuide = Loadable(lazy(() => import('../pages/ui-guide/ExcelGuide')));
 
 const CheckboxGuide = Loadable(lazy(() => import('../pages/ui-guide/CheckboxGuide')));
 const DatePickerGuide = Loadable(lazy(() => import('../pages/ui-guide/DatePickerGuide')));
@@ -175,6 +176,11 @@ const adminRoutes = [
             path: 'table', 
             name: 'Table Guide', 
             element: <TableGuide />
+          },
+          {
+            path: 'excel', 
+            name: 'Excel Import/Export', 
+            element: <ExcelGuide />
           },
           {
             path: 'radio', 

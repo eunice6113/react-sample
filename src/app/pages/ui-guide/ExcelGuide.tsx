@@ -1,40 +1,34 @@
-import { confirmDialog } from "primereact";
-import * as React from "react";
-import { BasePage } from "../../shared/components/base/BasePage";
+import * as React from 'react';
+import { BasePage } from '../../shared/components/base/BasePage';
 import './ui-guide.css';
 
-const ExcelGuide: React.FC = () => {
-
-    
-
-    return(
-    <BasePage>
-        
-    </BasePage>)
-}
-export default ExcelGuide
-
-
-
-
-import React, { useState, useEffect, useRef } from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { Button } from 'primereact/button';
 import { FileUpload } from 'primereact/fileupload';
 import { Tooltip } from 'primereact/tooltip';
 import { Toast } from 'primereact/toast';
-import { ProductService } from '../service/ProductService';
+import NoData from '../../shared/components/ui/NoData';
 
-export const DataTableExportDemo = () => {
-    const [products, setProducts] = useState([]);
-    const [selectedProducts, setSelectedProducts] = useState([]);
-    const [importedData, setImportedData] = useState([]);
-    const [selectedImportedData, setSelectedImportedData] = useState([]);
-    const [importedCols, setImportedCols] = useState([{ field: '', header: 'Header' }]);
-    const dt = useRef(null);
-    const toast = useRef(null);
-    const productService = new ProductService();
+const demoData = [
+    {'id': '1000','code': 'f230fh0g3','name': 'Bamboo Watch','description': 'Product Description','image': 'bamboo-watch.jpg','price': 65,'category': 'Accessories','quantity': 24,'inventoryStatus': 'INSTOCK','rating': 5},
+    {'id': '1001','code': 'nvklal433','name': 'Black Watch','description': 'Product Description','image': 'black-watch.jpg','price': 72,'category': 'Accessories','quantity': 61,'inventoryStatus': 'INSTOCK','rating': 4},
+    {'id': '1002','code': 'zz21cz3c1','name': 'Blue Band','description': 'Product Description','image': 'blue-band.jpg','price': 79,'category': 'Fitness','quantity': 2,'inventoryStatus': 'LOWSTOCK','rating': 3},
+    {'id': '1003','code': '244wgerg2','name': 'Blue T-Shirt','description': 'Product Description','image': 'blue-t-shirt.jpg','price': 29,'category': 'Clothing','quantity': 25,'inventoryStatus': 'INSTOCK','rating': 5},
+    {'id': '1004','code': 'h456wer53','name': 'Bracelet','description': 'Product Description','image': 'bracelet.jpg','price': 15,'category': 'Accessories','quantity': 73,'inventoryStatus': 'INSTOCK','rating': 4},
+    {'id': '1005','code': 'av2231fwg','name': 'Brown Purse','description': 'Product Description','image': 'brown-purse.jpg','price': 120,'category': 'Accessories','quantity': 0,'inventoryStatus': 'OUTOFSTOCK','rating': 4},
+    {'id': '1006','code': 'bib36pfvm','name': 'Chakra Bracelet','description': 'Product Description','image': 'chakra-bracelet.jpg','price': 32,'category': 'Accessories','quantity': 5,'inventoryStatus': 'LOWSTOCK','rating': 3},
+    {'id': '1007','code': 'mbvjkgip5','name': 'Galaxy Earrings','description': 'Product Description','image': 'galaxy-earrings.jpg','price': 34,'category': 'Accessories','quantity': 23,'inventoryStatus': 'INSTOCK','rating': 5},
+    {'id': '1008','code': 'vbb124btr','name': 'Game Controller','description': 'Product Description','image': 'game-controller.jpg','price': 99,'category': 'Electronics','quantity': 2,'inventoryStatus': 'LOWSTOCK','rating': 4},
+    {'id': '1009','code': 'cm230f032','name': 'Gaming Set','description': 'Product Description','image': 'gaming-set.jpg','price': 299,'category': 'Electronics','quantity': 63,'inventoryStatus': 'INSTOCK','rating': 3}
+]
+
+const ExcelGuide: React.FC = () => {
+
+    const [products, setProducts] = React.useState<any>([]);
+    const [importedData, setImportedData] = React.useState([]);
+    const [importedCols, setImportedCols] = React.useState([{ field: '', header: 'Header' }]);
+    const dt = React.useRef<any>(null);
 
     const cols = [
         { field: 'code', header: 'Code' },
@@ -45,26 +39,26 @@ export const DataTableExportDemo = () => {
 
     const exportColumns = cols.map(col => ({ title: col.header, dataKey: col.field }));
 
-    useEffect(() => {
-        productService.getProductsSmall().then(data => setProducts(data));
-    }, []); // eslint-disable-line react-hooks/exhaustive-deps
+    React.useEffect(() => {
+        setProducts(demoData)
+    }, []);
 
-    const importCSV = (e) => {
+    const importCSV = (e:any) => {
         const file = e.files[0];
         const reader = new FileReader();
-        reader.onload = (e) => {
+        reader.onload = (e:any) => {
             const csv = e.target.result;
             const data = csv.split('\n');
 
             // Prepare DataTable
-            const cols = data[0].replace(/['"]+/g, '').split(',');
+            const cols = data[0].replace(/['']+/g, '').split(',');
             data.shift();
 
-            let _importedCols = cols.map(col => ({ field: col, header: toCapitalize(col.replace(/['"]+/g, '')) }));
-            let _importedData = data.map(d => {
+            let _importedCols = cols.map((col:any) => ({ field: col, header: toCapitalize(col.replace(/['']+/g, '')) }));
+            let _importedData = data.map((d:any) => {
                 d = d.split(',');
-                return cols.reduce((obj, c, i) => {
-                    obj[c] = d[i].replace(/['"]+/g, '');
+                return cols.reduce((obj:any, c:any, i:any) => {
+                    obj[c] = d[i].replace(/['']+/g, '');
                     return obj;
                 }, {});
             });
@@ -76,24 +70,25 @@ export const DataTableExportDemo = () => {
         reader.readAsText(file, 'UTF-8');
     }
 
-    const importExcel = (e) => {
+    const importExcel = (e:any) => {
+        console.log('importExcel', e)
         const file = e.files[0];
 
         import('xlsx').then(xlsx => {
             const reader = new FileReader();
-            reader.onload = (e) => {
+            reader.onload = (e:any) => {
                 const wb = xlsx.read(e.target.result, { type: 'array' });
                 const wsname = wb.SheetNames[0];
                 const ws = wb.Sheets[wsname];
                 const data = xlsx.utils.sheet_to_json(ws, { header: 1 });
 
                 // Prepare DataTable
-                const cols = data[0];
+                const cols:any = data[0];
                 data.shift();
 
-                let _importedCols = cols.map(col => ({ field: col, header: toCapitalize(col) }));
-                let _importedData = data.map(d => {
-                    return cols.reduce((obj, c, i) => {
+                let _importedCols:any = cols.map((col:any) => ({ field: col, header: toCapitalize(col) }));
+                let _importedData:any = data.map((d:any) => {
+                    return cols.reduce((obj:any, c:any, i:any) => {
                         obj[c] = d[i];
                         return obj;
                     }, {});
@@ -107,18 +102,8 @@ export const DataTableExportDemo = () => {
         });
     }
 
-    const exportCSV = (selectionOnly) => {
-        dt.current.exportCSV({ selectionOnly });
-    }
-
-    const exportPdf = () => {
-        import('jspdf').then(jsPDF => {
-            import('jspdf-autotable').then(() => {
-                const doc = new jsPDF.default(0, 0);
-                doc.autoTable(exportColumns, products);
-                doc.save('products.pdf');
-            })
-        })
+    const exportCSV = (selectionOnly:any) => {
+        dt?.current?.exportCSV({ selectionOnly });
     }
 
     const exportExcel = () => {
@@ -130,7 +115,7 @@ export const DataTableExportDemo = () => {
         });
     }
 
-    const saveAsExcelFile = (buffer, fileName) => {
+    const saveAsExcelFile = (buffer:any, fileName:any) => {
         import('file-saver').then(module => {
             if (module && module.default) {
                 let EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
@@ -144,70 +129,51 @@ export const DataTableExportDemo = () => {
         });
     }
 
-    const toCapitalize = (s) => {
+    const toCapitalize = (s:any) => {
         return s.charAt(0).toUpperCase() + s.slice(1);
     }
 
     const clear = () => {
         setImportedData([]);
-        setSelectedImportedData([]);
         setImportedCols([{ field: '', header: 'Header' }]);
     }
 
-    const onImportSelectionChange = (e) => {
-        setSelectedImportedData(e.value);
-        const detail = e.value.map(d => Object.values(d)[0]).join(', ');
-        toast.current.show({ severity: 'info', summary: 'Data Selected', detail, life: 3000 });
-    }
+    return(
+    <BasePage>
+        <div className='card'>
+                <h3>Import (작업중입니다)</h3>
 
-    const onSelectionChange = (e) => {
-        setSelectedProducts(e.value);
-    }
-
-    const header = (
-        <div className="flex align-items-center export-buttons">
-            <Button type="button" icon="pi pi-file" onClick={() => exportCSV(false)} className="mr-2" data-pr-tooltip="CSV" />
-            <Button type="button" icon="pi pi-file-excel" onClick={exportExcel} className="p-button-success mr-2" data-pr-tooltip="XLS" />
-            <Button type="button" icon="pi pi-file-pdf" onClick={exportPdf} className="p-button-warning mr-2" data-pr-tooltip="PDF" />
-            <Button type="button" icon="pi pi-filter" onClick={() => exportCSV(true)} className="p-button-info ml-auto" data-pr-tooltip="Selection Only" />
-        </div>
-    );
-
-    return (
-        <div>
-            <div className="card">
-                <h5>Import</h5>
-
-                <Toast ref={toast} />
-
-                <div className="flex align-items-center py-2">
-                    <FileUpload chooseOptions={{ label: 'CSV', icon: 'pi pi-file' }} mode="basic" name="demo[]" auto url="https://primefaces.org/primereact/showcase/upload.php" accept=".csv" className="mr-2" onUpload={importCSV} />
-                    <FileUpload chooseOptions={{ label: 'Excel', icon: 'pi pi-file-excel', className: 'p-button-success' }} mode="basic" name="demo[]" auto url="https://primefaces.org/primereact/showcase/upload.php"
-                        accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" className="mr-2" onUpload={importExcel} />
-                    <Button type="button" label="Clear" icon="pi pi-times" onClick={clear} className="p-button-info ml-auto" />
+                <div className='d-flex-default export-buttons mb10'>
+                    <FileUpload chooseOptions={{ label: 'CSV', icon: 'pi pi-file' }} mode='basic' name='demo[]' auto url='./upload.php' accept='.csv' className='mr5 d-inline-block' onUpload={importCSV} />
+                    <FileUpload chooseOptions={{ label: 'Excel', icon: 'pi pi-file-excel', className: 'p-button-success' }} mode='basic' name='demo[]' auto url='./upload.php'
+                        accept='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel' className='mr5 d-inline-block' onUpload={importExcel} />
+                    <Button type='button' label='Clear' icon='pi pi-times' onClick={clear} className='outline ml-auto mr0' />
                 </div>
 
-                <DataTable value={importedData} emptyMessage="No data" paginator rows={10} alwaysShowPaginator={false} responsiveLayout="scroll"
-                    selectionMode="multiple" selection={selectedImportedData} onSelectionChange={onImportSelectionChange}>
+                <DataTable value={importedData} emptyMessage={<NoData message='데이터가 없습니다' />} paginator rows={10} alwaysShowPaginator={false} responsiveLayout='scroll'>
                     {
-                        importedCols.map((col, index) => <Column key={index} field={col.field} header={col.header} />)
+                        importedCols.map((col:any, index:number) => <Column key={index} field={col.field} header={col.header} />)
                     }
                 </DataTable>
             </div>
 
-            <div className="card">
-                <h5>Export</h5>
+            <div className='card'>
+                <h3>Export</h3>
 
-                <Tooltip target=".export-buttons>button" position="bottom" />
+                <Tooltip target='.export-buttons>button' position='bottom' />
 
-                <DataTable ref={dt} value={products} header={header} dataKey="id" responsiveLayout="scroll"
-                    selectionMode="multiple" selection={selectedProducts} onSelectionChange={onSelectionChange}>
+                <div className='d-flex-default export-buttons mb10'>
+                    <Button type='button' icon='pi pi-file' label='CSV' onClick={() => exportCSV(false)} className='ml-auto mr0' data-pr-tooltip='CSV' />
+                    <Button type='button' icon='pi pi-file-excel' label='Excel' onClick={exportExcel} className='p-button-success ml10 mr0' data-pr-tooltip='XLS' />
+                </div>
+
+                <DataTable ref={dt} value={products} dataKey='id' responsiveLayout='scroll'>
                     {
-                        cols.map((col, index) => <Column key={index} field={col.field} header={col.header} />)
+                        cols.map((col:any, index:number) => <Column key={index} field={col.field} header={col.header} />)
                     }
                 </DataTable>
             </div>
-        </div>
-    );
+    </BasePage>)
 }
-                 
+export default ExcelGuide
+
