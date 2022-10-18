@@ -7305,7 +7305,7 @@ body {
   display: flex !important; }
 
 .d-inline-block {
-  display: inline-block; }
+  display: inline-block !important; }
 
 .d-block {
   display: block; }

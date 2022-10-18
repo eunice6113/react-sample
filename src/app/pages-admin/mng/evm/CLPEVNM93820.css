@@ -1,0 +1,11 @@
+.eventWinList{
+    width:800px;
+    margin: 0 auto;
+}
+.eventWinList th{
+    width:25%;
+    
+}
+.eventWinList td{
+    text-align: center;
+}

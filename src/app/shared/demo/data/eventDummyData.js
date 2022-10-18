@@ -1,4 +1,4 @@
-//[공지사항]
+//[이벤트]
 export const eventDummyData = [
     {
         no: 0,

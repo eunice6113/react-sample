@@ -6,7 +6,6 @@ import './CLPCMNM95520.css';
 import ViewTemplate from '../../../../shared/components/template/ViewTemplate';
 import Comment from '../../../../shared/components/ui/comment/Comment';
 import CommentRegister from '../../../../shared/components/ui/comment/CommentRegister';
-import { registerables } from 'chart.js';
 
 //소통공간 상세
 const CLPCMNM95520:React.FC = () => {
@@ -80,7 +79,7 @@ const CLPCMNM95520:React.FC = () => {
             {
                 cols: [
                     {
-                        
+                        key:null,
                         value: <span>내용노출 영역</span>,
                     }
                 ]
