@@ -22,6 +22,8 @@ const CLPCMNM95520:React.FC = () => {
     const remove = () => {
         console.log('삭제')
     }
+
+    //comment 댓글입력
     const [value1, setValue1] = React.useState('');
     const [value2, setValue2] = React.useState('');
 
@@ -141,7 +143,7 @@ const CLPCMNM95520:React.FC = () => {
         <div className='commentWrap mt30'>
             <CommentRegister 
                 title='관리자 댓글을 입력하실 수 있습니다.'
-                total='3'
+                total='글 댓글 3'
                 value={value1}
                 // setValue={setValue1}
                 setValue={setValue1}

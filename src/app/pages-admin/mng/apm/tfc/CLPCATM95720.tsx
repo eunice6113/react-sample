@@ -1,11 +1,12 @@
-import { Calendar, Dropdown, Editor, FileUpload, InputText, InputTextarea, RadioButton } from 'primereact';
+import { Button,Calendar, Dropdown, Editor, FileUpload, InputText, InputTextarea, RadioButton } from 'primereact';
 import * as React from 'react';
 import { BasePage } from '../../../../shared/components/base/BasePage';
-import ViewButtonsTemplate from '../../../../shared/components/template/ViewButtonsTemplate';
 import { useBasePage } from '../../../../shared/hooks/base-page.hook';
 import './CLPCATM95720.css';
 import ViewTemplate from '../../../../shared/components/template/ViewTemplate';
 import CldFileUpload from '../../../../shared/components/CldFileUpload';
+import Comment from '../../../../shared/components/ui/comment/Comment';
+import CommentRegister from '../../../../shared/components/ui/comment/CommentRegister';
 
 interface File {
     name:string;
@@ -37,18 +38,15 @@ const CLPCATM95720:React.FC = () => {
         files: [{name: '파일1.xlsx', size:0}, {name:'파일2.png', size:10}],
     });
 
-    const handleChange = (prop: keyof FaqContent, value:any) => {
-        setValues({ ...values, [prop]: value });
-    };
 
     //목록 버튼
     const list = () => {
-        goPage('/stm/faq/list')
+        goPage('/apm/tfc/list')
     }
 
     //수정 버튼
     const edit = () => {
-        setMode('edit');
+        //setMode('edit');
         console.log('mode =>', mode)
     }
 
@@ -69,18 +67,31 @@ const CLPCATM95720:React.FC = () => {
         setMode('view')
     }
 
+    //comment 댓글입력
+    const [value1, setValue1] = React.useState('');
+    const [value2, setValue2] = React.useState('');
+
+    //comment 등록
+    const registration = () => {
+        console.log('등록')
+    }
+    
+    const deleteFunc = () => {
+        console.log('삭제')
+    }
+
     //api 읽어와서 업데이트 할 내용
     const authorInfo = {
-        title: '등록자 정보',
+        title: '신청자 정보',
         rows: [
             {
                 cols: [
                     {
-                        key: '등록자', 
+                        key: '신청자', 
                         value: '신재문 (12345)'
                     },
                     {
-                        key: '등록일시', 
+                        key: '신청일시', 
                         value: '2023.03.02. 15:00:00'
                     },
                 ]
@@ -89,48 +100,37 @@ const CLPCATM95720:React.FC = () => {
     }
 
     const contentsInfo = {
-        title: '등록 내용',
+        title: '신청 내용',
         mode: mode,
         rows: [
             {
                 cols: [
                     {
-                        key: '제목', 
-                        value: <span> 클라우드 포탈 소식 전해드립니다프라이빗 클라우드를 통해 스마트뱅킹 기능을 내부적으로 테스트하는 방법을 알고 싶습니다.</span>,
-                        editingValue: <InputText maxLength={100} placeholder='제목을 입력해주세요.(최대 100자)' value={values.title} onChange={(e) => handleChange('title', e.target.value)} />,
-                    },
-                ]
-            },
-            {
-                cols: [
-                    {
-                        key: '내용', 
-                        value: <span>클라우드 포탈 소식 전해드립니다프라이빗 클라우드를 통해 스마트뱅킹 기능을 내부적으로 테스트하는 방법을 알고 싶습니다.</span>,
-                        editingValue: <InputTextarea rows={5} maxLength={250} placeholder='상세내용을 입력해주세요.(최대 250자)' value={values.content} onChange={(e) => handleChange('content', e.target.value)} />,
-                    }
-                ]
-            },
-            
-        ]
-    }
-
-    const answer = {
-        title: '건의 및 개선 답변',
-        mode: mode,
-        rows: [
-            {
-                cols: [
-                    {
-                        key: '답변', 
-                        value: <span>클라우드 포탈 소식 전해드립니다프라이빗 클라우드를 통해 스마트뱅킹 기능을 내부적으로 테스트하는 방법을 알고 싶습니다.</span>,
-                        editingValue: <InputTextarea rows={5} maxLength={250} placeholder='답변 내용을 입력해주세요.' value={values.content} onChange={(e) => handleChange('content', e.target.value)} />,
+                        key: '사업명', 
+                        value: <span>여신 정보화사업 클라우드 전환 업무</span>,
                     }
                 ]
             },
             {
                 cols: [
                     {
-                        key: '파일첨부', 
+                        key: '신청 유형', 
+                        value: <span>소요예산 사전 신청</span>,
+                    }
+                ]
+            },
+            {
+                cols: [
+                    {
+                        key: '부서명', 
+                        value: <span>IT 그룹</span>,
+                    }
+                ]
+            },
+            {
+                cols: [
+                    {
+                        key: '신청 파일', 
                         value: <>
                             <div className='downloadFiles'>
                                 <ul className='fileList'>
@@ -157,10 +157,74 @@ const CLPCATM95720:React.FC = () => {
                     }
                 ]
             },
+            {
+                cols: [
+                    {
+                        key: '진행상태', 
+                        value: <span>신청</span>,
+                    }
+                ]
+            },
+            {
+                cols: [
+                    {
+                        key: '진행상태', 
+                        value: <span className='error-text'>반려</span>,
+                    }
+                ]
+            },
+            {
+                cols: [
+                    {
+                        key: '반려사유', 
+                        value: <span className='error-text'>사업계획서 내용 미진으로 인한 p10 개선도출안 변경 독려를 위한 반려</span>,
+                    }
+                ]
+            },
+            {
+                cols: [
+                    {
+                        key: '진행상태', 
+                        value: <span>완료</span>,
+                    },
+                    {
+                        key: '담당자', 
+                        value: <span>안광훈(1232456)</span>,
+                    }
+                ]
+            },
             
         ]
     }
 
+    const commentList = [
+        {//관리자 이거나 ? 본인이 작성한 것만 수정/삭제 가능
+            deletable:true,
+            editable:true,
+            profileable:false,
+            userName:'권승주',
+            commentContent: '클라우드 Cell은 당대의 빛과 같은 존재로 기은에서 없어서는 안될 존재입니다. 기은의 클라우드를 늘 이끌어주세요~~!!',
+            date:'2022.03.02 09:00:00'
+        },
+        {
+            deletable:true,
+            editable:true,
+            profileable:false,
+            userName:'홍길동',
+            commentContent: '클라우드 Cell은 당대의 빛과 같은 존재로 기은에서 없어서는 안될 존재입니다. 기은의 클라우드를 늘 이끌어주세요~~!!',
+            date:'2022.03.02 09:00:00'
+        },
+        {
+            deletable:true,
+            editable:true,
+            profileable:false,
+            userName:'홍길동',
+            commentContent: '클라우드 Cell은 당대의 빛과 같은 존재로 기은에서 없어서는 안될 존재입니다. 기은의 클라우드를 늘 이끌어주세요~~!!',
+            date:'2022.03.02 09:00:00'
+
+        },
+        
+    ]
     return(
     <BasePage>
         {/* 등록자 정보 */}
@@ -169,26 +233,63 @@ const CLPCATM95720:React.FC = () => {
         {/* 등록 내용 */}
         <ViewTemplate {...contentsInfo} />
 
-        {/* 답변 */}
-        <ViewTemplate {...answer} />
+        {/* 버튼영역 */}
+         <div className='btn-container cld-row mb30 justify-center'>
+            <div className='cld-col-3'>
+                <Button className='secondary' onClick={list}>목록</Button>
+            </div>
+               
+            <div className='cld-col-6 text-center'>
+            <>
+                <Button className='lg outline' onClick={cancel}>반려</Button>
+                <Button className='lg ml5' onClick={confirm}>승인</Button>
+                <Button className='lg ml5' onClick={confirm}>완료</Button>
 
-        {/* 
-            버튼영역 
-            mode={mode} 편집모드 'view' | 'edit' | 'register'
-            list={list} 목록 버튼
-            edit={edit} 수정 버튼
-            remove={remove} 삭제 버튼
-            cancel={cancel} 수정모드 > 취소 버튼
-            confirm={confirm} 수정모드 > 확인 버튼
-        */}
-        <ViewButtonsTemplate 
-            mode={mode}
-            list={list}
-            edit={edit}
-            remove={remove}
-            cancel={cancel}
-            confirm={confirm}
-        />
+            </>
+            
+            </div>
+            <div className='cld-col-3 d-flex'>
+            <>
+               
+            </>
+            
+            </div>
+        </div>
+
+        {/* 댓글 */}
+        <div className='commentWrap mt30'>
+            <CommentRegister 
+                title='진행 내용'
+                total='3'
+                value={value1}
+                // setValue={setValue1}
+                setValue={setValue1}
+            />
+
+            {
+                commentList.map(( item, index) => (
+                    <Comment 
+                        id={index}
+                        deletable={item.deletable}
+                        editable={item.editable}
+                        profileable={item.profileable}
+                        key={'comm'+index}
+                        userName={item.userName} 
+                        commentContent={item.commentContent}
+                        date={item.date}
+                        mode='register'
+                        value={value2} 
+                        setValue={setValue2}
+                        edit={edit}
+                        delt={deleteFunc}
+                        registration={registration}
+                        />
+                ))
+            
+            }
+            
+            <Button className='more p-button-text' label='더보기 123댓글' icon='pi pi-angle-down'  iconPos="right"/>
+        </div>
     </BasePage>)
 }
 export default CLPCATM95720;

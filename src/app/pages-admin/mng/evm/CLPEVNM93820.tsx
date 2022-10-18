@@ -90,7 +90,7 @@ const CLPEVNM93820:React.FC = () => {
                     },
                     {
                         key: '이벤트 기간', 
-                        value: <span>2022-08-30 ~ 2022-09-03</span>,
+                        value: <span>2022.08.30 ~ 2022.09.03</span>,
                     }
                 ]
             },
@@ -99,6 +99,10 @@ const CLPEVNM93820:React.FC = () => {
                     {
                         key: '조회수', 
                         value: <span>1,234</span>,
+                    },
+                    {
+                        key: '퀴즈 정답', 
+                        value: <span>정답노출영역</span>,
                     }
                 ]
             },
@@ -151,6 +155,16 @@ const CLPEVNM93820:React.FC = () => {
             header: '직번',
             sortable: false,
         },
+        {
+            field: 'department',
+            header: '부서',
+            sortable: false,
+        },
+        {
+            field: 'comment',
+            header: '댓글',
+            sortable: false,
+        },
         
        
     ]
@@ -166,6 +180,7 @@ const CLPEVNM93820:React.FC = () => {
 
         <div className='btn-container cld-row mb30'>
                 <Button className='secondary' onClick={list}>목록</Button>
+                <Button className='ml-auto' onClick={remove}>당첨발표하기</Button>
                 <Button className='ml-auto' onClick={remove}>삭제</Button>
         </div>
 
@@ -197,58 +212,15 @@ const CLPEVNM93820:React.FC = () => {
                 </div>
                 
             </AccordionTab>
-            <AccordionTab header="이벤트 당첨 리스트(29)">
-                <table className='cld-table eventWinList'>
-                    <caption>이벤트 당첨 리스트</caption>
-                    <tr>
-                        <th>성명</th>
-                        <th>직번</th>
-                        <th>성명</th>
-                        <th>직번</th>
-                    </tr>
-                    <tr>
-                        <td>권승주</td>
-                        <td>12345</td>
-                        <td>이윤경</td>
-                        <td>45678</td>
-                    </tr>
-                    <tr>
-                        <td>권승주</td>
-                        <td>12345</td>
-                        <td>이윤경</td>
-                        <td>45678</td>
-                    </tr>
-                    <tr>
-                        <td>권승주</td>
-                        <td>12345</td>
-                        <td>이윤경</td>
-                        <td>45678</td>
-                    </tr>
-                    <tr>
-                        <td>권승주</td>
-                        <td>12345</td>
-                        <td>이윤경</td>
-                        <td>45678</td>
-                    </tr>
-                    <tr>
-                        <td>권승주</td>
-                        <td>12345</td>
-                        <td>이윤경</td>
-                        <td>45678</td>
-                    </tr>
-                    <tr>
-                        <td>권승주</td>
-                        <td>12345</td>
-                        <td>이윤경</td>
-                        <td>45678</td>
-                    </tr>
-                    <tr>
-                        <td>권승주</td>
-                        <td>12345</td>
-                        <td>이윤경</td>
-                        <td>45678</td>
-                    </tr>
-                </table>
+            <AccordionTab header="이벤트 당첨 리스트 (29)">
+                <DataTable value={eventWinData} paginator paginatorTemplate={paginator} 
+                    className='evn'
+                    first={first} rows={rows} 
+                    onPage={onCustomPage} responsiveLayout='scroll'>
+                    {headerTemplate.map((col, index) => (
+                        <Column key={col.header} field={col.field} header={col.header} ></Column>
+                    ))}
+                </DataTable>
             </AccordionTab>
         </Accordion>
 

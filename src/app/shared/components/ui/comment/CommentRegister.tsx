@@ -16,7 +16,7 @@ const CommentRegister:React.FC<IProps> = ({title, total, value, setValue}) => {
     }
     return (
         <div>
-            <p className='titel'><i className='pi pi-comments'></i> {title} <span className='gray'>(글 댓글 {total})</span></p>
+            <p className='titel'><i className='pi pi-comments'></i> {title} <span className='gray'>({total})</span></p>
             <div className='commentRegist mb20'>
                 <InputTextarea value={value} onChange={(e) => setValue(e.target.value)} rows={5} cols={30} />
                 <div className='btn-container mt4'>

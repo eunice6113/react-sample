@@ -1,11 +1,9 @@
-.eventWinList{
+.p-datatable {
     width:800px;
     margin: 0 auto;
 }
-.eventWinList th{
-    width:25%;
-    
-}
-.eventWinList td{
+.p-datatable.evn tr th, 
+.p-datatable.evn tr td {
     text-align: center;
+    width:25%;
 }

@@ -15,6 +15,11 @@
   border-radius: 10px;
   padding: 12px;
   margin-bottom: 16px;
+  display: flex;
+  justify-content: space-between;
+}
+.comment .commentContents{
+  display: flex;flex-direction: column;flex: 1;
 }
 .comment .contnet{
   color: #333;
@@ -89,3 +94,8 @@
   background: #fff;
   border: 1px solid #e6e6e6;
 }
+.error-text{
+  color:var(--brand-error);
+}
+
+

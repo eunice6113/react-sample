@@ -6,6 +6,7 @@ interface IProps {
     id: number;
     editable?: boolean;
     deletable?:boolean;
+    profileable?:boolean;
     userName:string;
     commentContent:string;
     date:string;
@@ -16,7 +17,7 @@ interface IProps {
     delt: Function;
     registration: Function;
 }
-const Comment:React.FC<IProps> = ({id, editable=false, deletable=false, userName, commentContent, date, mode = 'view',value, setValue, registration, edit, delt}) => {
+const Comment:React.FC<IProps> = ({id, editable=false, deletable=false,profileable=true, userName, commentContent, date, mode = 'view',value, setValue, registration, edit, delt}) => {
    
     const [_mode, _setMode]=React.useState<'view' | 'edit' | 'register'>(mode)
     const _registration = () => {
@@ -36,34 +37,36 @@ const Comment:React.FC<IProps> = ({id, editable=false, deletable=false, userName
     return (
                
             <div className='comment'>
-                <div className='d-flex'>
-                    <div className='d-flex-default'>
+                <div className='commentContents'>
+                    {profileable && 
+                    <div className=''>
                         <span className='profile'>
                             <i className='pi pi-user'></i>
                         </span>
                         <span className='profileName ml8'>{userName}</span>
                     </div>
-                    
-                    <div className='ml-auto'>
-                        {editable && <Button className='iconBtn p-button-text mr10' icon='pi pi-file-edit' onClick={_edit} />}
-                        {deletable && <Button className='iconBtn p-button-text' icon='pi pi-trash' onClick={_delete}/>}
-                    </div>
+                    }
+                    <p className='content mt8 mb8'>
+                        {
+                            _mode === 'edit' ?
+                            <>
+                                <InputTextarea value={value} onChange={(e) => setValue(e.target.value)} rows={5} cols={30} />
+                                <div className='btn-container mt4'>
+                                    <Button className='ml-auto' onClick={_registration}>등록</Button>
+                                </div>
+                            </>
+                            :
+                            commentContent
+                        }
+                    </p>
+                    <p className='date'>{date}</p>
                 </div>
 
-                <p className='content mt8 mb8'>
-                    {
-                        _mode === 'edit' ?
-                        <>
-                            <InputTextarea value={value} onChange={(e) => setValue(e.target.value)} rows={5} cols={30} />
-                            <div className='btn-container mt4'>
-                                <Button className='ml-auto' onClick={_registration}>등록</Button>
-                            </div>
-                        </>
-                        :
-                        commentContent
-                    }
-                </p>
-                <p className='date'>{date}</p>
+                
+                <div className='ml8'>
+                    {editable && <Button className='iconBtn p-button-text mr10' icon='pi pi-file-edit' onClick={_edit} />}
+                    {deletable && <Button className='iconBtn p-button-text' icon='pi pi-trash' onClick={_delete}/>}
+                </div>
             </div>
     )
 }
