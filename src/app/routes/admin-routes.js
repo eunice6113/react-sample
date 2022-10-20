@@ -2,18 +2,14 @@ import { lazy } from 'react';
 import { Navigate } from 'react-router-dom';
 import Loadable from '../shared/layouts/loader/Loadable';
 
-// import BlankLayout from '../shared/layouts/BlankLayout';
-// import FullLayout from '../shared/layouts-admin/FullLayout';
-
 //https://reactnavigation.org/docs/getting-started/
-//
 
 //:::::::::::::::::::::::::::::::::::::::: Layouts ::::::::::::::::::::::::::::::::::::::::::
 
 const Callback = Loadable(lazy(() => import('../pages/auth/Callback')));
 
 const BlankLayout = Loadable(lazy(() => import('../shared/layouts/BlankLayout')));
-const FullLayout = Loadable(lazy(() => import('../shared/layouts-admin/FullLayout')));
+const FullLayout = Loadable(lazy(() => import('../shared/layouts/FullLayout')));
 
 // :::::::::::::::::::::::::::::::::::::::: Pages :::::::::::::::::::::::::::::::::::::::::::
 
@@ -40,61 +36,61 @@ const ToggleGuide = Loadable(lazy(() => import('../pages/ui-guide/ToggleGuide'))
 
 //사용자 관리 ==================================================================================
 //사용자 권한관리 
-const CLPUATM90200 = Loadable(lazy(() => import('../pages-admin/mng/urm/CLPUATM90200')));
+const CLPUATM90200 = Loadable(lazy(() => import('../pages/mng/urm/CLPUATM90200')));
 //사용자 접속이력 관리
-const CLPUHTM00301 = Loadable(lazy(() => import('../pages-admin/mng/urm/CLPUHTM00301')));
+const CLPUHTM00301 = Loadable(lazy(() => import('../pages/mng/urm/CLPUHTM00301')));
 
 //사이트 관리 ==================================================================================
 //메뉴 관리
-const CLPMNUM90900 = Loadable(lazy(() => import('../pages-admin/mng/stm/mnu/CLPMNUM90900')));
+const CLPMNUM90900 = Loadable(lazy(() => import('../pages/mng/stm/mnu/CLPMNUM90900')));
 
 //공지사항
-const CLPNTCM91010 = Loadable(lazy(() => import('../pages-admin/mng/stm/ntc/CLPNTCM91010')));
-const CLPNTCM91020 = Loadable(lazy(() => import('../pages-admin/mng/stm/ntc/CLPNTCM91020')));
+const CLPNTCM91010 = Loadable(lazy(() => import('../pages/mng/stm/ntc/CLPNTCM91010')));
+const CLPNTCM91020 = Loadable(lazy(() => import('../pages/mng/stm/ntc/CLPNTCM91020')));
 
 //자주묻는질문
-const CLPQNAM91410 = Loadable(lazy(() => import('../pages-admin/mng/stm/qna/CLPQNAM91410')));
-const CLPQNAM91520 = Loadable(lazy(() => import('../pages-admin/mng/stm/qna/CLPQNAM91520')));
+const CLPQNAM91410 = Loadable(lazy(() => import('../pages/mng/stm/qna/CLPQNAM91410')));
+const CLPQNAM91520 = Loadable(lazy(() => import('../pages/mng/stm/qna/CLPQNAM91520')));
 
 // 건의및개선
-const CLPFAQM91810 = Loadable(lazy(() => import('../pages-admin/mng/stm/faq/CLPFAQM91810')));
-const CLPFAQM91920 = Loadable(lazy(() => import('../pages-admin/mng/stm/faq/CLPFAQM91920')));
+const CLPFAQM91810 = Loadable(lazy(() => import('../pages/mng/stm/faq/CLPFAQM91810')));
+const CLPFAQM91920 = Loadable(lazy(() => import('../pages/mng/stm/faq/CLPFAQM91920')));
 
 // 팝업관리
-const CLPPOPM92110 = Loadable(lazy(() => import('../pages-admin/mng/stm/pop/CLPPOPM92110')));
-const CLPPOPM92220 = Loadable(lazy(() => import('../pages-admin/mng/stm/pop/CLPPOPM92220')));
-const CLPPOPM92230 = Loadable(lazy(() => import('../pages-admin/mng/stm/pop/CLPPOPM92230')));
+const CLPPOPM92110 = Loadable(lazy(() => import('../pages/mng/stm/pop/CLPPOPM92110')));
+const CLPPOPM92220 = Loadable(lazy(() => import('../pages/mng/stm/pop/CLPPOPM92220')));
+const CLPPOPM92230 = Loadable(lazy(() => import('../pages/mng/stm/pop/CLPPOPM92230')));
 
 // 소통공간
-const CLPCMNM95410 = Loadable(lazy(() => import('../pages-admin/mng/stm/cmn/CLPCMNM95410')));
-const CLPCMNM95520 = Loadable(lazy(() => import('../pages-admin/mng/stm/cmn/CLPCMNM95520')));
+const CLPCMNM95410 = Loadable(lazy(() => import('../pages/mng/stm/cmn/CLPCMNM95410')));
+const CLPCMNM95520 = Loadable(lazy(() => import('../pages/mng/stm/cmn/CLPCMNM95520')));
 
 // 메인배너
-const CLPMBNM95810 = Loadable(lazy(() => import('../pages-admin/mng/stm/mbn/CLPMBNM95810')));
-const CLPMBNM95920 = Loadable(lazy(() => import('../pages-admin/mng/stm/mbn/CLPMBNM95920')));
+const CLPMBNM95810 = Loadable(lazy(() => import('../pages/mng/stm/mbn/CLPMBNM95810')));
+const CLPMBNM95920 = Loadable(lazy(() => import('../pages/mng/stm/mbn/CLPMBNM95920')));
 
 // 설문관리 ===================================================================================
-const CLPSURM93310 = Loadable(lazy(() => import('../pages-admin/mng/qsm/CLPSURM93310')));
-const CLPSURM93420 = Loadable(lazy(() => import('../pages-admin/mng/qsm/CLPSURM93420')));
-const CLPSURM93430 = Loadable(lazy(() => import('../pages-admin/mng/qsm/CLPSURM93430')));
-const CLPSURM93600 = Loadable(lazy(() => import('../pages-admin/mng/qsm/CLPSURM93600')));
+const CLPSURM93310 = Loadable(lazy(() => import('../pages/mng/qsm/CLPSURM93310')));
+const CLPSURM93420 = Loadable(lazy(() => import('../pages/mng/qsm/CLPSURM93420')));
+const CLPSURM93430 = Loadable(lazy(() => import('../pages/mng/qsm/CLPSURM93430')));
+const CLPSURM93600 = Loadable(lazy(() => import('../pages/mng/qsm/CLPSURM93600')));
 
 // 이벤트관리 ==================================================================================
-const CLPEVNM93710 = Loadable(lazy(() => import('../pages-admin/mng/evm/CLPEVNM93710')));
-const CLPEVNM93820 = Loadable(lazy(() => import('../pages-admin/mng/evm/CLPEVNM93820')));
+const CLPEVNM93710 = Loadable(lazy(() => import('../pages/mng/evm/CLPEVNM93710')));
+const CLPEVNM93820 = Loadable(lazy(() => import('../pages/mng/evm/CLPEVNM93820')));
 
 // 매뉴얼 관리 =================================================================================
-const CLPMNNM94110 = Loadable(lazy(() => import('../pages-admin/mng/mnm/CLPMNNM94110')));
-const CLPMNNM94220 = Loadable(lazy(() => import('../pages-admin/mng/mnm/CLPMNNM94220')));
+const CLPMNNM94110 = Loadable(lazy(() => import('../pages/mng/mnm/CLPMNNM94110')));
+const CLPMNNM94220 = Loadable(lazy(() => import('../pages/mng/mnm/CLPMNNM94220')));
 
 // 신청하기 관리 ================================================================================
 //서비스 카탈로그 관리
-const CLPCATM94510 = Loadable(lazy(() => import('../pages-admin/mng/apm/cat/CLPCATM94510')));
-const CLPCATM94620 = Loadable(lazy(() => import('../pages-admin/mng/apm/cat/CLPCATM94620')));
+const CLPCATM94510 = Loadable(lazy(() => import('../pages/mng/apm/cat/CLPCATM94510')));
+const CLPCATM94620 = Loadable(lazy(() => import('../pages/mng/apm/cat/CLPCATM94620')));
 
 //The fast cloud 신청
-const CLPCATM95610 = Loadable(lazy(() => import('../pages-admin/mng/apm/tfc/CLPCATM95610')));
-const CLPCATM95720 = Loadable(lazy(() => import('../pages-admin/mng/apm/tfc/CLPCATM95720')));
+const CLPCATM95610 = Loadable(lazy(() => import('../pages/mng/apm/tfc/CLPCATM95610')));
+const CLPCATM95720 = Loadable(lazy(() => import('../pages/mng/apm/tfc/CLPCATM95720')));
 
 
 //운영 관리(크로센트) ==================================================================================

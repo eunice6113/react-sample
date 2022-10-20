@@ -1,42 +1,39 @@
 import * as React from 'react';
 import { BasePage } from '../../../shared/components/base/BasePage';
-import { Dropdown } from 'primereact/dropdown';
 import { InputText } from 'primereact/inputtext';
 import './CLPUATM90200.css';
 import NoData from '../../../shared/components/ui/NoData';
 import { Tree } from 'primereact/tree';
 import { Button } from 'primereact/button';
 import ViewTemplate from '../../../shared/components/template/ViewTemplate';
-import { confirmDialog, InputNumber, RadioButton } from 'primereact';
+import { confirmDialog, RadioButton } from 'primereact';
 
 const nodeDemo = [
     {
         key: '0',
         department: '기업고객그룹',
+        // name: '신재문',
         children: [{
             key: '0-0',
             department: 'IT그룹',
             children: [
-                { key: '0-0-0', department: 'IT그룹', name: '김디비'}, 
-                { key: '0-0-1', department: 'IT그룹', name: '김자바'}]
+                { key: '0-0-0', department: 'IT그룹', name: '신재문'}, 
+                { key: '0-0-1', department: 'IT그룹', name: '신재문'}]
         },
         {
             key: '0-1',
             department: '자산관리그룹',
-            children: [{ key: '0-1-0', department: '자산관리그룹', name: '김자산'}]
+            // name: '신재문',
+            children: [{ key: '0-1-0', department: '자산관리그룹', name: '신재문'}]
         }]
     },
     {
         key: '1',
         department: '경영지원그룹',
+        // name: '신재문',
         children: [
-            { key: '1-0', department: '경영지원그룹', name: '김경영'},
-            { key: '1-1', department: '경영지원그룹', name: '김파업'}],
-    },
-    {
-        key: '3',
-        department: '디지털그룹',
-        children: []
+            { key: '1-0', department: '경영지원그룹', name: '신재문'},
+            { key: '1-1', department: '경영지원그룹', name: '신재문'}],
     },
 ]
  
@@ -61,13 +58,17 @@ const CLPUATM90200: React.FC = () => {
     const [selectedKey, setSelectedKey] = React.useState(null);
 
     //선택한 노드
-    const [selectedNode, setSelectedNode] = React.useState<any>({
+    const [selectedNode, setSelectedNode] = React.useState<AutMenuNode>({
         key: '0',
         department: '',
         name: '',
         children: [],
     });
 
+    //검색
+    const [search, setSearch] = React.useState<string>('');
+
+    //권한선택 라디오 버튼
     const authority = [
         {name: '일반사용자', key: 'user'}, 
         {name: '관리자', key: 'admin'}];
@@ -82,15 +83,14 @@ const CLPUATM90200: React.FC = () => {
     React.useEffect(() => {
         console.log('selectedKey =>', selectedKey)
 
-
     }, [selectedKey]);
 
     //노드 선택시
     const handleNodeSelect = (e:any) => {
         console.log('handleNodeSelect =>', e.node, e)
+        console.log('handleNodeSelect children =>', e.children)
 
         setSelectedNode( e.node )
-
     }
 
     const handleNodeUnselect = (node:any) => {
@@ -131,7 +131,7 @@ const CLPUATM90200: React.FC = () => {
         {/* 트리 이름 - children 이 있으면 그룹 이름, 없으면 개인 이름을 뿌려준다 */}
         let label = <div className='treeNode'>
             <div className='nodeLabel' onClick={viewNode}>{
-                node.children.length > 0 ? node.department : node.name
+                node?.children?.length > 0 ? node.department : node.name
             }</div>
         </div>;
 
@@ -142,15 +142,38 @@ const CLPUATM90200: React.FC = () => {
         )
     }
 
-     //선택한 메뉴 조회
-     const viewNode = ( node:any ) => {
+    //선택한 메뉴 조회
+    const viewNode = ( node:any ) => {
         console.log('viewNode', node.key as number, node)
 
     }
 
     //검색
-    const search = () => {
-        
+    const handleSearch = () => {
+
+
+        confirmDialog({
+            message: '검색결과가 없습니다.',
+            acceptLabel: '확인',
+            className: 'noHeader oneButton',
+            accept: () => {
+
+            },
+        })
+    }
+
+    //확인
+    const confirm = () => {
+
+        confirmDialog({
+            message: `${selectedNode.department}에 속한\n조직원들의 권한 부여가 완료되었습니다`,
+            acceptLabel: '확인',
+            className: 'noHeader oneButton',
+            accept: () => {
+                
+            },
+        })
+
     }
 
     //권한 변경
@@ -159,12 +182,9 @@ const CLPUATM90200: React.FC = () => {
         colgroups: ['180px', '*'],
         rows: [
             {
-                cols: [ 
-                    {
-                        key: '조직별 권한선택',
-                        value: null,
-                    },
-                ]
+                thOnly: {
+                    key: selectedNode?.children === undefined ? '개인별 권한선택' : '조직별 권한선택',
+                },
             },
             {
                 cols: [
@@ -175,7 +195,7 @@ const CLPUATM90200: React.FC = () => {
                 ]
             },
             {
-                showIf: selectedNode?.name !== null,
+                showIf: selectedNode?.children === undefined,
                 cols: [
                     {
                         key: '성명', 
@@ -191,7 +211,9 @@ const CLPUATM90200: React.FC = () => {
                         {
                             authority.map((aut) => (
                                 <span key={'aut' + aut.key} className='field-radiobutton mr20'>
-                                    <RadioButton inputId={aut.key} name='auth' value={aut} onChange={(e) => setSelectedAuthority(e.value)} checked={selectedAuthority.key === aut.key} disabled={aut.key === 'R'} />
+                                    <RadioButton inputId={aut.key} name='auth' value={aut} 
+                                        onChange={(e) => setSelectedAuthority(e.value)} 
+                                        checked={selectedAuthority.key === aut.key} disabled={aut.key === 'R'} />
                                     <label htmlFor={aut.key}>{aut.name}</label>
                                 </span>
                             ))
@@ -212,8 +234,8 @@ const CLPUATM90200: React.FC = () => {
                 <div className='box treeBox'>
 
                     <div className='d-flex'>
-                        <InputText placeholder='조직명, 성명으로 검색하세요.' value='' />
-                        <Button type='button' className='ml10' label='조회' onClick={search}  />
+                        <InputText placeholder='조직명, 성명으로 검색하세요.' value={search} onChange={(e) => setSearch(e.target.value)} />
+                        <Button type='button' className='md ml10' label='조회' onClick={handleSearch}  />
                     </div>
                     <hr className='innerLine'/>
 
@@ -241,11 +263,11 @@ const CLPUATM90200: React.FC = () => {
                             <NoData isTriangleIcon={true} isVertical={true} message='좌측의 조직, 성명을 선택해주세요.' />
                         </div>
                         :
-                        // 권한 수정
+                        // 권한 조회/수정
                         <ViewTemplate {...contentsInfo} className='mt0' />
                     }
                     <div className='text-center mt20'>
-                        <Button className='md' label='확인' />
+                        <Button className='md' onClick={confirm} label='확인' />
                     </div>
                 </div>
             </div>

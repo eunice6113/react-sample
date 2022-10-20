@@ -6,10 +6,9 @@ import { Link } from 'react-router-dom';
 interface IProps {
     title: string;
     breadcrumbs?: string[];
-    subTitle?: string;
 }
 
-const PageTitle: React.FC<IProps> = ({title, breadcrumbs, subTitle}) => {
+const PageTitle: React.FC<IProps> = ({title, breadcrumbs}) => {
 
     React.useEffect(() => {
 
@@ -76,21 +75,17 @@ const PageTitle: React.FC<IProps> = ({title, breadcrumbs, subTitle}) => {
 
     return(
     <div className='pageTitleContainer'>
-        <div className='pageTitle'>
-            <h1>{title}</h1>
+        <h1>{title}</h1>
 
-            <div className='breadCrumbs'>
-                <Link to='/' className='menuTxt'>Home</Link> 
-                <i className='pi pi-chevron-right' />
-                <Menubar model={items} />
-                <i className='pi pi-chevron-right' />
-                <Menubar model={items2} />
-                <i className='pi pi-chevron-right' />
-                <Menubar model={items3} />
-            </div>
+        <div className='breadCrumbs'>
+            <Link to='/' className='menuTxt'>Home</Link> 
+            <i className='pi pi-chevron-right' />
+            <Menubar model={items} />
+            <i className='pi pi-chevron-right' />
+            <Menubar model={items2} />
+            <i className='pi pi-chevron-right' />
+            <Menubar model={items3} />
         </div>
-        
-        <div className='subTitle'>{subTitle}</div>
     </div>
     )
 }

@@ -104,22 +104,16 @@ const TableGuide: React.FC = () => {
         hasRequired: true,
         rows: [
             {
-                cols: [
-                    {
-                        key: '제목만 !!',
-                        value: null
-                    },
-                ]
+                thOnly: {
+                    key: '제목만 !!',
+                },
             },
             {
-                cols: [
-                    {
-                        key: null, 
-                        value: '내용만 !!',
-                        editingValue: <InputTextarea rows={5} maxLength={250} placeholder='상세내용을 입력해주세요.(최대 250자)' value={values.content} onChange={(e) => handleChange('content', e.target.value)} />,
-                    },
-                ],
-            },
+                tdOnly: {
+                    value: '내용만 !!',
+                    editingValue: <InputTextarea rows={5} maxLength={250} placeholder='상세내용을 입력해주세요.(최대 250자)' value={values.content} onChange={(e) => handleChange('content', e.target.value)} />,
+                },
+        },
             {
                 cols: [
                     {

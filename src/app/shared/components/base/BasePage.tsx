@@ -1,7 +1,6 @@
 import * as React from "react";
 import { useLocation } from "react-router-dom";
 import adminRoutes from "../../../routes/admin-routes";
-import AdminPageTitle from "../page-title/AdminPageTitle";
 import PageTitle from "../page-title/PageTitle";
 
 interface IProps {
@@ -60,15 +59,14 @@ export const BasePage: React.FC<IProps> = ({className, children}) => {
     // console.log(flat);
 
     pageTitle= '공지사항'
-    subTitle='클라우드 포탈의 다양한 내용을 확인하세요.'
+    
     //새로운 곳으로 이동시 페이지 상단으로 스크롤 이동
     React.useEffect(() => {
         window.scrollTo(0, 0);
     }, [location.pathname]);
     
     return(<>
-        <PageTitle title={pageTitle} subTitle={subTitle} />
-        {/* <AdminPageTitle title={pageTitle} /> */}
+        <PageTitle title={pageTitle} />
         <div className={`pl20 pr20 basePage ${className}`}>
          {children}
         </div>

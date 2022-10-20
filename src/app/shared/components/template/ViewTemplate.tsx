@@ -22,7 +22,15 @@ interface IProps {
     className?: string;
 }
 
-const ViewTemplate: React.FC<IProps> = ({ title, hasRequired, mode = 'view', status = 'ongoing', rows, colgroups = ['15%','35%','15%','35%'], className }) => {
+const ViewTemplate: React.FC<IProps> = ({ 
+    title, 
+    hasRequired, 
+    mode = 'view', 
+    status = 'ongoing', 
+    rows, 
+    colgroups = ['15%','35%','15%','35%'], 
+    className 
+}) => {
 
     return(
     <>
@@ -43,11 +51,13 @@ const ViewTemplate: React.FC<IProps> = ({ title, hasRequired, mode = 'view', sta
                         rows?.map((row:any, rowIndex:number) => (
                             <tr key={'tr'+rowIndex} className={ row?.showIf !== undefined && row?.showIf === false ? 'hide':'' }>
                                 {
+                                    row?.thOnly ?
+                                        <th colSpan={4}>{row?.thOnly?.key}</th>
+                                    :
+                                    row?.tdOnly ?
+                                        <td colSpan={4}>{mode === 'view' ? row?.tdOnly?.value : row?.tdOnly?.editingValue}</td>
+                                    :
                                     row?.cols?.map((item:any, index:number) => (
-                                        item.value === null ? <th colSpan={4}>{item?.key}</th> 
-                                        :
-                                        item.key === null ? <td colSpan={4}>{mode === 'view' ? item?.value : item?.editingValue}</td> 
-                                        :
                                         <React.Fragment key={item?.key + index}>
                                             <th>
                                                 {item?.key}
