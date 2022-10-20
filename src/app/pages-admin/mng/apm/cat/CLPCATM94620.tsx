@@ -25,7 +25,9 @@ const CLPCATM94620:React.FC = () => {
     const { goPage } = useBasePage()
 
     const [mode, setMode] = React.useState<'view' | 'edit' | 'register'>('view');
-    
+
+    //approval: 승인 완료, reject: 반려, ongoing: 진행중
+    const [status, setStatus] = React.useState<'approval' | 'reject' | 'ongoing'>('ongoing');
 
     const [values, setValues] = React.useState<any>({
         title: '',
@@ -44,27 +46,18 @@ const CLPCATM94620:React.FC = () => {
         goPage('/apm/cat/list')
     }
 
-    //수정 버튼
-    const edit = () => {
-        //setMode('edit');
-        console.log('mode =>', mode)
+    //반려 버튼
+    const reject = () => {
+        console.log('반려')
     }
 
-    //삭제 버튼
-    const remove = () => {
-        console.log('삭제')
+    //승인 버튼
+    const approval = () => {
+        console.log('승인')
     }
-
-    //취소 버튼
-    const cancel = () => {
-        console.log('취소')
-
-        setMode('view')
-    }
-
-    //확인 버튼
-    const confirm = () => {
-        setMode('view')
+    //완료 버튼
+    const success = () => {
+        console.log('완료')
     }
 
     //comment 댓글입력
@@ -76,8 +69,15 @@ const CLPCATM94620:React.FC = () => {
         console.log('등록')
     }
     
+    //comment 삭제
     const deleteFunc = () => {
         console.log('삭제')
+    }
+
+    //comment 수정 버튼
+    const edit = () => {
+        setMode('edit');
+        console.log('mode =>', mode)
     }
 
     //api 읽어와서 업데이트 할 내용
@@ -108,7 +108,7 @@ const CLPCATM94620:React.FC = () => {
     
     const contentsInfo = {
         title: '신청 내용',
-        mode: mode,
+        status: status,
         rows: [
             {
                 cols: [
@@ -128,22 +128,24 @@ const CLPCATM94620:React.FC = () => {
             },
             
             {
+                showIf: status !== 'approval',
                 cols: [
                     {
                         key: '진행상태', 
-                        value: <span>신청</span>,
+                        value: 
+                        <>
+                        {
+                            status === 'reject' ? <span className='color-red'>반려</span>
+                            :
+                            status === 'ongoing' ? <span>진행</span>
+                            :
+                            <span>완료</span>
+                        }
+                        </>,
                     }
                 ]
             },
-            {   
-                cols: [
-                    {
-                        key: '진행상태', 
-                        value: <span className='error-text'>반려</span>,
-                    }
-                ]
-            },
-            {
+            {   showIf: status === 'reject',
                 cols: [
                     {
                         key: '반려사유', 
@@ -152,11 +154,19 @@ const CLPCATM94620:React.FC = () => {
                 ]
             },
             {
-                
+                showIf: status === 'approval',
                 cols: [
                     {
                         key: '진행상태', 
-                        value: <span>완료</span>,
+                        value: <>
+                            {
+                                status === 'reject' ? <span className='color-red'>반려</span>
+                                :
+                                status === 'ongoing' ? <span>진행</span>
+                                :
+                                <span>완료</span>
+                            }
+                        </>,
                     },
                     {
                         key: '담당자', 
@@ -211,12 +221,20 @@ const CLPCATM94620:React.FC = () => {
             </div>
                
             <div className='cld-col-6 text-center'>
-            <>
-                <Button className='lg outline' onClick={cancel}>반려</Button>
-                <Button className='lg ml5' onClick={confirm}>승인</Button>
-                <Button className='lg ml5' onClick={confirm}>완료</Button>
-
-            </>
+            {
+                    status === 'ongoing' ?
+                    <>
+                        <Button className='lg outline' onClick={reject}>반려</Button>
+                        <Button className='lg ml5' onClick={approval}>승인</Button>
+                    </>
+                    :
+                    status === 'approval' ?
+                    <>
+                        <Button className='lg ml5' onClick={success}>완료</Button>
+                    </>
+                    :
+                    <></>
+                }
             
             </div>
             <div className='cld-col-3 d-flex'>

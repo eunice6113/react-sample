@@ -16,12 +16,13 @@ interface IProps {
     title?:string;
     hasRequired?:boolean;
     mode?: 'view' | 'edit' | 'register';
+    status? : 'approval' | 'reject' | 'ongoing'; //approval: 승인, reject: 반려, ongoing: 진행중
     rows: Cols[] | object[];
     colgroups?: string[];
     className?: string;
 }
 
-const ViewTemplate: React.FC<IProps> = ({ title, hasRequired, mode = 'view', rows, colgroups = ['15%','35%','15%','35%'], className }) => {
+const ViewTemplate: React.FC<IProps> = ({ title, hasRequired, mode = 'view', status = 'ongoing', rows, colgroups = ['15%','35%','15%','35%'], className }) => {
 
     return(
     <>

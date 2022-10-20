@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Menubar } from 'primereact/menubar';
-import './page-title.css'
+import './admin-page-title.css'
 import { Link } from 'react-router-dom';
 
 interface IProps {

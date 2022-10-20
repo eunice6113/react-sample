@@ -282,7 +282,7 @@ table .required {
 
 .searchBar {
   display: flex;
-  
+  margin: 30px 0;
 }
 .searchBar > * {
   margin-right: 10px;
@@ -314,42 +314,3 @@ table .required {
   display: flex;
   align-items: center;
 }
-
-/* boardDtail table */
-.boardDtailTable td, .p-datatable td{
-  padding:20px;
-}
-.boardDtailTable .tableInfo .title{
-  color:#333;
-}
-.boardDtailTable .downloadFiles{
-  border:none;
-  padding:0px;
-}
-.boardDtailTable .info {
-  list-style: none;
-  display: flex;
-}
-.boardDtailTable .info span {
-  font-weight: 500;
-  margin-right:4px;
-}
-.boardDtailPagination td{
-  padding:10px 24px;
-}
-.boardDtailPagination td a{
-  color:#333 !important;
-  font-weight: 500 !important;
-}
-.boardDtailPagination td a:hover{
-  color: var(--brand-primary) !important;
-}
-.boardDtailPagination td .iconTitle {
-  color:#667085;
-  margin-right: 20px;
-}
-.boardDtailPagination .iconArrow{
-  font-size: 12px;
-  margin-left:10px;
-}
-

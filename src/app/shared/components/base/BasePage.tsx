@@ -2,6 +2,7 @@ import * as React from "react";
 import { useLocation } from "react-router-dom";
 import adminRoutes from "../../../routes/admin-routes";
 import AdminPageTitle from "../page-title/AdminPageTitle";
+import PageTitle from "../page-title/PageTitle";
 
 interface IProps {
     className?: string;
@@ -13,6 +14,7 @@ export const BasePage: React.FC<IProps> = ({className, children}) => {
     const location = useLocation();
     const curLocation = location.pathname.split('/')
     let pageTitle = '';
+    let subTitle = '';
     const routes = adminRoutes;
 
     //route에 정의된 name 에서 페이지 제목을 읽어온다
@@ -57,14 +59,16 @@ export const BasePage: React.FC<IProps> = ({className, children}) => {
     // let flat = getFlat([routes]);
     // console.log(flat);
 
-
+    pageTitle= '공지사항'
+    subTitle='클라우드 포탈의 다양한 내용을 확인하세요.'
     //새로운 곳으로 이동시 페이지 상단으로 스크롤 이동
     React.useEffect(() => {
         window.scrollTo(0, 0);
     }, [location.pathname]);
     
     return(<>
-        <AdminPageTitle title={pageTitle} />
+        <PageTitle title={pageTitle} subTitle={subTitle} />
+        {/* <AdminPageTitle title={pageTitle} /> */}
         <div className={`pl20 pr20 basePage ${className}`}>
          {children}
         </div>

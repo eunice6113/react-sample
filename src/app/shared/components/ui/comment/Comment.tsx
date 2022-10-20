@@ -39,7 +39,7 @@ const Comment:React.FC<IProps> = ({id, editable=false, deletable=false,profileab
             <div className='comment'>
                 <div className='commentContents'>
                     {profileable && 
-                    <div className=''>
+                    <div>
                         <span className='profile'>
                             <i className='pi pi-user'></i>
                         </span>
