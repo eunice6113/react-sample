@@ -7,67 +7,44 @@ import NoData from '../../../shared/components/ui/NoData';
 import { Tree } from 'primereact/tree';
 import { Button } from 'primereact/button';
 import ViewTemplate from '../../../shared/components/template/ViewTemplate';
-import { confirmDialog, InputNumber } from 'primereact';
+import { confirmDialog, InputNumber, RadioButton } from 'primereact';
 
 const nodeDemo = [
     {
         key: '0',
-        order: '0',
-        menuName: '본부',
-        description: '본부 본부',
-        link: '/stc',
-        hideYn: 'N',
+        department: '기업고객그룹',
         children: [{
             key: '0-0',
-            order: '0-0',
-            menuName: '임원실',
-            description: '임원실임원실',
-            link: '/stc/mnm',
-            hideYn: 'N',
+            department: 'IT그룹',
             children: [
-                { key: '0-0-0', order: '0-0-0', menuName: '기업고객그룹', description: 'Expenses Document', link: '/stc/mnm/list', hideYn: 'N' }, 
-                { key: '0-0-1', order: '0-0-1', menuName: '혁신금융그룹', description: 'Resume Document', link: '/stc/mnm/0', hideYn: 'N' }]
+                { key: '0-0-0', department: 'IT그룹', name: '김디비'}, 
+                { key: '0-0-1', department: 'IT그룹', name: '김자바'}]
         },
         {
             key: '0-1',
-            order: '0-1',
-            menuName: '그룹',
-            description: '그룹그룹',
-            link: '/stc/mnm',
-            hideYn: 'N',
-            children: [{ key: '0-1-0', order: '0-1-0', menuName: '자산관리그룹', description: 'Invoices for this month', link: '', hideYn: 'N' }]
+            department: '자산관리그룹',
+            children: [{ key: '0-1-0', department: '자산관리그룹', name: '김자산'}]
         }]
     },
     {
         key: '1',
-        order: '1',
-        menuName: '경영지원그룹',
-        description: '경영지원그룹경영지원그룹',
-        link: '/stc/mnm',
-        hideYn: 'N',
+        department: '경영지원그룹',
         children: [
-            { key: '1-0', order: '1-0', menuName: '디지털그룹', description: 'Meeting', link: '/stc/mnm/list', hideYn: 'N' },
-            { key: '1-1', order: '1-1', menuName: '여신운영그룹', description: 'Product Launch', link: '/stc/mnm/list', hideYn: 'N' }],
+            { key: '1-0', department: '경영지원그룹', name: '김경영'},
+            { key: '1-1', department: '경영지원그룹', name: '김파업'}],
     },
     {
         key: '3',
-        order: '3',
-        menuName: 'Empty',
-        description: 'Events Folder',
-        hideYn: 'N',
-        link: '/stc/mnm/list',
+        department: '디지털그룹',
         children: []
     },
 ]
  
-interface MenuNode {
+interface AutMenuNode {
     key: string;
-    menuName: string;
-    link: string;
-    description?: string;
-    order: string;
-    hideYn: string;
-    children?: MenuNode[];
+    department: string;
+    name?: string;
+    children?: AutMenuNode[];
 }
 
 //사용자 권한 관리
@@ -86,18 +63,15 @@ const CLPUATM90200: React.FC = () => {
     //선택한 노드
     const [selectedNode, setSelectedNode] = React.useState<any>({
         key: '0',
-        menuName: '',
-        link: '',
-        description: '',
-        order: '0',
-        hideYn: 'N',
+        department: '',
+        name: '',
+        children: [],
     });
 
-    //드롭다운 (관리자, 사용자)
-    const [select, setSelect] = React.useState<any>(null);
-
-    //선택모드 (조회, 수정, 등록)
-    const [mode, setMode] = React.useState<'view' | 'edit' | 'register'>('view');
+    const authority = [
+        {name: '일반사용자', key: 'user'}, 
+        {name: '관리자', key: 'admin'}];
+    const [selectedAuthority, setSelectedAuthority] = React.useState(authority[0]);
 
     //초기화, 트리 노드 데이터 불러와서 읽힘
     React.useEffect(() => {
@@ -107,6 +81,7 @@ const CLPUATM90200: React.FC = () => {
     //왼쪽 선택한 트리의 key 값을 오른쪽 메뉴정보 영역에 메뉴 ID 값에 넣어준다
     React.useEffect(() => {
         console.log('selectedKey =>', selectedKey)
+
 
     }, [selectedKey]);
 
@@ -150,95 +125,14 @@ const CLPUATM90200: React.FC = () => {
         }
     }
 
-    //전체 메뉴 선택 옵션
-    const options = [
-        { name: '사용자 화면', value: 'user' },
-        { name: '관리자 화면', value: 'admin' },
-    ];
-
-    //전체 메뉴 선택
-    const handleChange = (e: { value: any}) => {
-        setSelect(e.value);
-    }
-
-    //선택한 메뉴 조회
-    const viewNode = ( node:any ) => {
-        console.log('viewNode', node.key as number, node)
-
-        setMode('view')
-    }
-
-    const [newNode, setNewNode] = React.useState<MenuNode>(
-        {
-            key: '0',
-            menuName: '',
-            link: '',
-            description: '',
-            order: '0',
-            hideYn: 'N',
-        })
-
-
-    //선택한 메뉴 추가
-    const addNode = ( node:any ) => {
-        console.log('addNode', node.key as number, node)
-
-        setNewNode({
-            key: '0',
-            menuName: '',
-            link: '',
-            description: '',
-            order: '0',
-            hideYn: 'N'
-        })
-        setMode('register')
-    }
-
-    //선택한 메뉴 수정
-    const editNode = ( node:any ) => {
-        console.log('editNode', node.key as number, node)
-        
-        setSelectedNode(node)
-        setMode('edit')
-    }
-
-    let selectedNodeItem:any = null
-
-    //선택한 메뉴 숨김처리
-    const hideNode = ( node:any ) => {
-        console.log('hideNode', node.key as number, node)
-
-        setSelectedNode(node)
-        selectedNodeItem = node;
-
-        confirmDialog({
-            message: '해당 메뉴를 숨김처리 하시겠습니까?',
-            rejectLabel: '취소',
-            acceptLabel: '확인',
-            className: 'noHeader',
-            accept: () => {},
-            reject: () => {}
-        })
-    }
-
-    //각 메뉴 노드 디자인
+    //각 트리 노드 디자인
     const nodeTemplate = (node:any, options:any) => {
 
+        {/* 트리 이름 - children 이 있으면 그룹 이름, 없으면 개인 이름을 뿌려준다 */}
         let label = <div className='treeNode'>
-            {/* 메뉴 이름 */}
-            <div className='nodeLabel' onClick={viewNode}>{node.menuName}</div>
-            <div className='ml-auto'>
-                {/* 메뉴 추가 버튼 */}
-                <Button onClick={(e) => {
-                    e.preventDefault(); 
-                    addNode(node)}} className='treeNodeBtn p-button-text' icon='pi pi-plus-circle' />
-                
-                {/* 메뉴 수정 버튼 */}
-                <Button onClick={(e) => editNode(node)} className='treeNodeBtn p-button-text' icon='pi pi-file-edit' />
-
-                {/* 메뉴 숨김 버튼 */}
-                <Button onClick={(e) => hideNode(node)} className='treeNodeBtn p-button-text' icon={node.hide ? 'pi pi-eye-slash':'pi pi-eye'} />
-            </div>
+            <div className='nodeLabel' onClick={viewNode}>{
+                node.children.length > 0 ? node.department : node.name
+            }</div>
         </div>;
 
         return (
@@ -248,53 +142,19 @@ const CLPUATM90200: React.FC = () => {
         )
     }
 
-    //등록
-    const registerInfo = {
-        mode: mode,
-        hasRequired: false,
-        colgroups: ['180px', '*'],
-        rows: [
-            {
-                cols: [ 
-                    {
-                        key: '조직별 권한선택',
-                        value: null,
-                    },
-                ]
-            },
-            {
-                cols: [
-                    {
-                        key: '조직명', 
-                        value: <span>{newNode.menuName}</span>,
-                        editingValue: <InputText placeholder='메뉴명을 입력해주세요.' value={newNode.menuName} onChange={(e) => {}} />,
-                    },
-                ]
-            },
-            {
-                cols: [
-                    {
-                        key: '성명', 
-                        value: <span>{newNode.link}</span>,
-                        editingValue: <InputText placeholder='URI를 입력해주세요' value={newNode.link} onChange={(e) => {}} />,
-                    },
-                ]
-            },
-            {
-                cols: [
-                    {
-                        key: '권한',
-                        value: <span>{newNode.order}</span>,
-                        editingValue: <InputText value={newNode.order} onChange={(e) => {}} />//<InputNumber value={newNode.order} onChange={(e) => {}} />,     
-                    }
-                ]
-            },
-        ]
+     //선택한 메뉴 조회
+     const viewNode = ( node:any ) => {
+        console.log('viewNode', node.key as number, node)
+
     }
 
-    //조회, 수정
+    //검색
+    const search = () => {
+        
+    }
+
+    //권한 변경
     const contentsInfo = {
-        mode: mode,
         hasRequired: true,
         colgroups: ['180px', '*'],
         rows: [
@@ -310,17 +170,16 @@ const CLPUATM90200: React.FC = () => {
                 cols: [
                     {
                         key: '조직명', 
-                        value: <span>{selectedNode?.menuName}</span>,
-                        editingValue: <InputText placeholder='메뉴명을 입력해주세요.' value={selectedNode?.menuName} onChange={(e) => {}} />,
+                        value: <span>{selectedNode?.department}</span>,
                     },
                 ]
             },
             {
+                showIf: selectedNode?.name !== null,
                 cols: [
                     {
                         key: '성명', 
-                        value: <span>{selectedNode.link}</span>, /* /stc/ntc/list */
-                        editingValue: <InputText placeholder='URI를 입력해주세요' value={selectedNode.link} onChange={(e) => {}} />,
+                        value: <span>{selectedNode.name}</span>,
                     },
                 ]
             },
@@ -328,8 +187,16 @@ const CLPUATM90200: React.FC = () => {
                 cols: [
                     {
                         key: '권한',
-                        value: <span>{selectedNode.order}</span>,
-                        editingValue: <InputText value={selectedNode.order} onChange={(e) => {}} />,//<InputNumber value={selectedNode.order} onChange={(e) => {}} />,     
+                        value: <>
+                        {
+                            authority.map((aut) => (
+                                <span key={'aut' + aut.key} className='field-radiobutton mr20'>
+                                    <RadioButton inputId={aut.key} name='auth' value={aut} onChange={(e) => setSelectedAuthority(e.value)} checked={selectedAuthority.key === aut.key} disabled={aut.key === 'R'} />
+                                    <label htmlFor={aut.key}>{aut.name}</label>
+                                </span>
+                            ))
+                        }
+                        </>
                     }
                 ]
             },
@@ -343,14 +210,17 @@ const CLPUATM90200: React.FC = () => {
             <div className='treeLeftContainer mr10'>
                 <h5 className='mb10'>전체 메뉴</h5>
                 <div className='box treeBox'>
-                    <Dropdown value={select} options={options} onChange={handleChange} optionLabel='name' placeholder='전체' />
+
+                    <div className='d-flex'>
+                        <InputText placeholder='조직명, 성명으로 검색하세요.' value='' />
+                        <Button type='button' className='ml10' label='조회' onClick={search}  />
+                    </div>
                     <hr className='innerLine'/>
 
                     <div className='d-flex'>
                         <Button type='button' className='grayBtn mb10 ml-auto' label={open ? '전체열기':'전체닫기'} onClick={open ? expandAll : collapseAll}  />
                     </div>
                     <Tree 
-                        filter
                         value={nodes} 
                         expandedKeys={expandedKeys} 
                         onToggle={(e:any) => setExpandedKeys(e.value)} 
@@ -364,7 +234,6 @@ const CLPUATM90200: React.FC = () => {
                 </div>
             </div>
             <div className='treeRightContainer ml10'>
-                <h5 className='mb10'>메뉴정보</h5>
                 <div className='box treeBox'>
                     {
                         selectedKey === null ?
@@ -372,11 +241,7 @@ const CLPUATM90200: React.FC = () => {
                             <NoData isTriangleIcon={true} isVertical={true} message='좌측의 조직, 성명을 선택해주세요.' />
                         </div>
                         :
-                        mode === 'register' ?
-                        // 등록
-                        <ViewTemplate {...registerInfo} className={mode === 'register' ? 'show mt0':'hide mt0'} />
-                        :
-                        // 조회, 수정
+                        // 권한 수정
                         <ViewTemplate {...contentsInfo} className='mt0' />
                     }
                     <div className='text-center mt20'>

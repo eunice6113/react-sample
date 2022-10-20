@@ -31,13 +31,12 @@ const RadioGuide: React.FC = () => {
     <br/>
 
     {
-        categories.map((category) => {
-            return (
-                <span key={category.key} className="field-radiobutton mr20">
-                    <RadioButton inputId={category.key} name="category" value={category} onChange={(e) => setSelectedCategory(e.value)} checked={selectedCategory.key === category.key} disabled={category.key === 'R'} />
-                    <label htmlFor={category.key}>{category.name}</label>
-                </span>
-        )})
+        categories.map((category) => (
+            <span key={category.key} className="field-radiobutton mr20">
+                <RadioButton inputId={category.key} name="category" value={category} onChange={(e) => setSelectedCategory(e.value)} checked={selectedCategory.key === category.key} disabled={category.key === 'R'} />
+                <label htmlFor={category.key}>{category.name}</label>
+            </span>
+        ))
     }
     
     </BasePage>)
