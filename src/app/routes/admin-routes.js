@@ -129,6 +129,8 @@ CLPRSQM05510 자원 목록
 
 const Error = Loadable(lazy(() => import('../pages/auth/Error')));
 
+const loaderFunc = () => { return 0}
+
 // Routes ================================================================
 const adminRoutes = [
   // {
@@ -149,7 +151,7 @@ const adminRoutes = [
           {
             path: 'guide', 
             name: 'CSS Guide', 
-            element: <UI_GUIDE />
+            element: <UI_GUIDE />,
           },
           {
             path: 'button', 

@@ -106,7 +106,7 @@ const LNB: React.FC<IProps> = ({open, children}) => {
             //         </a>
             //     );
             // },
-            expanded: curLocation === 'usr',
+            expanded: curLocation === 'urm',
             visible: true,
             items:[
                 {

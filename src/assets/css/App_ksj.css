@@ -15,6 +15,8 @@
   margin-bottom: 16px;
   display: flex;
   justify-content: space-between;
+  white-space: break-spaces;
+  word-break: break-all;
 }
 .comment .commentContents{
   display: flex;flex-direction: column;flex: 1;

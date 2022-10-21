@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react';
-import { useRoutes } from 'react-router-dom';
-
+import { /* Router,*/ useRoutes, BrowserRouter as Router, } from 'react-router-dom';
+import { Route, Routes } from "react-router";
 import "primereact/resources/themes/lara-light-indigo/theme.css";  //theme
 import "primereact/resources/primereact.min.css";                  //core css
 import "primeicons/primeicons.css";                                //icons
@@ -14,7 +14,10 @@ import { ConfirmDialog, Toast } from 'primereact';
 import adminRoutes from './app/routes/admin-routes';
 
 function App() {
-  const routing = useRoutes(adminRoutes)
+  const routes = useRoutes(adminRoutes)
+
+  console.log('routes', routes)
+  const routes2 = adminRoutes;
 
   return (
     <>
@@ -22,8 +25,15 @@ function App() {
     <Toast />
     
     {/* <Suspense fallback={<Loader />}> */}
-        {routing}
+        {routes}
     {/* </Suspense> */}
+{/* 
+    <Router>
+        <Routes>
+          
+        </Routes>
+    </Router> */}
+
     </>
   );
 }

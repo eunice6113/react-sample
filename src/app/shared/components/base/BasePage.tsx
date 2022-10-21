@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useMatches } from "react-router-dom";
 import adminRoutes from "../../../routes/admin-routes";
 import PageTitle from "../page-title/PageTitle";
 
@@ -15,6 +15,20 @@ export const BasePage: React.FC<IProps> = ({className, children}) => {
     let pageTitle = '';
     let subTitle = '';
     const routes = adminRoutes;
+
+    // const matches = useMatches();
+
+    // let crumbs = matches
+    // // first get rid of any matches that don't have handle and crumb
+    // .filter((match) => {
+    //     console.log('match', match)
+    //     // Boolean(match.handle?.crumb)
+    // } )
+    // now map them into an array of elements, passing the loader
+    // data to each one
+    // .map((match) => match.handle.crumb(match.data));
+    // console.log('matches', matches)
+
 
     //route에 정의된 name 에서 페이지 제목을 읽어온다
     // console.log('curLocation.length', curLocation,  curLocation.length)
@@ -58,8 +72,6 @@ export const BasePage: React.FC<IProps> = ({className, children}) => {
     // let flat = getFlat([routes]);
     // console.log(flat);
 
-    pageTitle= '공지사항'
-    
     //새로운 곳으로 이동시 페이지 상단으로 스크롤 이동
     React.useEffect(() => {
         window.scrollTo(0, 0);

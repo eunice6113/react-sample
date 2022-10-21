@@ -40,7 +40,6 @@ const SelectGuide: React.FC = () => {
         })
     }
 
-
     return(
     <BasePage>
         <Button label='제목이 있는 팝업' onClick={showTitlePopup} />

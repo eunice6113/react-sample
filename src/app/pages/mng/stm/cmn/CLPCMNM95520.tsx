@@ -1,4 +1,4 @@
-import { Button, Calendar, Dropdown, Editor, FileUpload, InputText, InputTextarea, RadioButton } from 'primereact';
+import { Button } from 'primereact';
 import * as React from 'react';
 import { BasePage } from '../../../../shared/components/base/BasePage';
 import { useBasePage } from '../../../../shared/hooks/base-page.hook';
@@ -6,13 +6,12 @@ import './CLPCMNM95520.css';
 import ViewTemplate from '../../../../shared/components/template/ViewTemplate';
 import Comment from '../../../../shared/components/ui/comment/Comment';
 import CommentRegister from '../../../../shared/components/ui/comment/CommentRegister';
+import { IComment } from '../../../../core/models/i-comment';
 
 //소통공간 상세
 const CLPCMNM95520:React.FC = () => {
     const { goPage } = useBasePage()
 
-    const [mode, setMode] = React.useState<'view' | 'edit' | 'register'>('view');
-   
     //목록 버튼
     const list = () => {
         goPage('/stm/cmn/list')
@@ -25,7 +24,6 @@ const CLPCMNM95520:React.FC = () => {
 
     //comment 댓글입력
     const [value1, setValue1] = React.useState('');
-    const [value2, setValue2] = React.useState('');
 
     //api 읽어와서 업데이트 할 내용
     const authorInfo = {
@@ -48,7 +46,6 @@ const CLPCMNM95520:React.FC = () => {
 
     const contentsInfo = {
         title: '상세 내용',
-        mode: mode,
         rows: [
             {
                 cols: [
@@ -79,52 +76,71 @@ const CLPCMNM95520:React.FC = () => {
                 ]
             },
             {
-                cols: [
-                    {
-                        key:null,
-                        value: <span>내용노출 영역</span>,
-                    }
-                ]
+                tdOnly: {
+                    value: <span>내용노출 영역</span>,
+                }
             },
             
         ]
         
     }
 
-
-    const commentList = [
-        {//관리자 이거나 ? 본인이 작성한 것만 수정/삭제 가능
+    //댓글목록, 관리자면 삭제 가능
+    const initialComments:IComment[] = [
+        {
+            id: 'c0',
             deletable:true,
             userName:'권승주',
-            commentContent: '클라우드 Cell은 당대의 빛과 같은 존재로 기은에서 없어서는 안될 존재입니다. 기은의 클라우드를 늘 이끌어주세요~~!!',
+            value: '클라우드 Cell은 당대의 빛과 같은 존재로 기은에서 없어서는 안될 존재입니다. 기은의 클라우드를 늘 이끌어주세요~~!!',
             date:'2022.03.02 09:00:00'
         },
         {
+            id: 'c1',
             deletable:true,
             userName:'홍길동',
-            commentContent: '클라우드 Cell은 당대의 빛과 같은 존재로 기은에서 없어서는 안될 존재입니다. 기은의 클라우드를 늘 이끌어주세요~~!!',
+            value: '클라우드 Cell은 당대의 빛과 같은 존재로 기은에서 없어서는 안될 존재입니다. 기은의 클라우드를 늘 이끌어주세요~~!!',
             date:'2022.03.02 09:00:00'
         },
         {
+            id: 'c2',
             deletable:true,
             userName:'홍길동',
-            commentContent: '클라우드 Cell은 당대의 빛과 같은 존재로 기은에서 없어서는 안될 존재입니다. 기은의 클라우드를 늘 이끌어주세요~~!!',
+            value: '클라우드 Cell은 당대의 빛과 같은 존재로 기은에서 없어서는 안될 존재입니다. 기은의 클라우드를 늘 이끌어주세요~~!!',
             date:'2022.03.02 09:00:00'
-
         },
-        
     ]
 
+    //댓글 목록
+    const [comments, setComments] = React.useState<IComment[]>([])
 
-    const registration = () => {
+    React.useEffect(() => {
+        //댓글 목록 초기화
+        setComments(initialComments);
+    }, [])
+
+    //댓글 등록
+    const register = () => {
         console.log('등록')
     }
-    const edit = () => {
-        console.log('편집')
+
+    //댓글 삭제 버튼
+    const deleteFunc = ( e:Event, id:any ) => {
+        console.log('삭제', id)
+
+        setComments(
+            comments.filter(c =>
+                c.id !== id
+            )
+        );
     }
-    const deleteFunc = () => {
-        console.log('삭제')
+
+    //댓글 더보기 버튼
+    const moreComment = () => {
+        console.log('댓글 더보기')
     }
+
+    //더보기 할 댓글수
+    let moreCommentLen = 120;
 
     return(
     <BasePage>
@@ -134,42 +150,36 @@ const CLPCMNM95520:React.FC = () => {
         {/* 등록 내용 */}
         <ViewTemplate {...contentsInfo} />
 
-        <div className='btn-container cld-row'>
-                <Button className='secondary' onClick={list}>목록</Button>
-                <Button className='ml-auto' onClick={remove}>삭제</Button>
+        <div className='btn-container'>
+            <Button className='secondary' onClick={list}>목록</Button>
+            <Button className='ml-auto' onClick={remove}>삭제</Button>
         </div>
 
         {/* 댓글 */}
         <div className='commentWrap mt30'>
             <CommentRegister 
                 title='관리자 댓글을 입력하실 수 있습니다.'
-                total='글 댓글 3'
+                total={`글 댓글 ${comments.length}`}
                 value={value1}
-                // setValue={setValue1}
                 setValue={setValue1}
+                register={register}
             />
 
             {
-                commentList.map(( item, index) => (
+                comments.map(( item, index ) => (
                     <Comment 
-                        id={index}
+                        id={item.id}
                         deletable={item.deletable}
                         key={'comm'+index}
                         userName={item.userName} 
-                        commentContent={item.commentContent}
+                        value={item.value}
                         date={item.date}
-                        mode='register'
-                        value={value2} 
-                        setValue={setValue2}
-                        edit={edit}
-                        delt={deleteFunc}
-                        registration={registration}
-                        />
+                        delt={(e:Event) => deleteFunc(e, item.id)}
+                    />
                 ))
-            
             }
             
-            <Button className='more p-button-text' label='더보기 123댓글' icon='pi pi-angle-down'  iconPos="right"/>
+            <Button onClick={moreComment} label={`더보기 ${moreCommentLen} 댓글`} className='more p-button-text' icon='pi pi-angle-down' iconPos='right'/>
         </div>
     </BasePage>)
 }

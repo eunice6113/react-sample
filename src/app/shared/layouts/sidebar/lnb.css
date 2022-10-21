@@ -51,7 +51,7 @@
     border-radius: var(--borderRadius-sm) !important;
 }
 .cldLnb .p-panelmenu-content .p-menuitem .p-menuitem-link {
-    padding: 0.6rem 0.75rem !important;
+    padding: 10px !important;
 }
 
 .cldLnb .selected a {

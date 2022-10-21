@@ -13,7 +13,7 @@ export const useBasePage = () => {
     const params = useParams();
 
     const paramId = params.id;
-    console.log(params.id);
+    // console.log('params.id', params.id);
 
     const goBack = () => {
         navigator(-1);

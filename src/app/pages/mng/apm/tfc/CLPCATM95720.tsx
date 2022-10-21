@@ -5,18 +5,17 @@ import { useBasePage } from '../../../../shared/hooks/base-page.hook';
 import './CLPCATM95720.css';
 import ViewTemplate from '../../../../shared/components/template/ViewTemplate';
 import CldFileUpload from '../../../../shared/components/CldFileUpload';
-import Comment from '../../../../shared/components/ui/comment/Comment';
 import CommentRegister from '../../../../shared/components/ui/comment/CommentRegister';
-
+import { IComment } from '../../../../core/models/i-comment';
+import Comment from '../../../../shared/components/ui/comment/Comment';
+import { updateItemInList } from '../../../../shared/utils/com-utils';
 
 //The fast cloud 신청 관리 상세 상세/수정
 const CLPCATM95720:React.FC = () => {
     const { goPage } = useBasePage()
 
-    const [mode, setMode] = React.useState<'view' | 'edit' | 'register'>('view');
-
     //approval: 승인 완료, reject: 반려, ongoing: 진행중
-    const [status, setStatus] = React.useState<'approval' | 'reject' | 'ongoing'>('approval');
+    const [status, setStatus] = React.useState<'approval' | 'reject' | 'ongoing'>('ongoing');
     
     const [values, setValues] = React.useState<any>({
         title: '',
@@ -27,7 +26,51 @@ const CLPCATM95720:React.FC = () => {
         files: [{name: '파일1.xlsx', size:0}, {name:'파일2.png', size:10}],
     });
 
+    //관리자만 삭제 가능한 댓글 목록, id 값 필수
+    const initialComments:IComment[] = [
+        {
+            id: 'c0',
+            mode:'view',
+            deletable:true,
+            editable:true,
+            showProfile:false,
+            userName:'권승주',
+            value: '1111 클라우드 Cell은 당대의 빛과 같은 존재로 기은에서 없어서는 안될 존재입니다. 기은의 클라우드를 늘 이끌어주세요~~!!',
+            date:'2022.03.02 09:00:00'
+        },
+        {
+            id: 'c1',
+            mode:'view',
+            deletable:true,
+            editable:true,
+            showProfile:false,
+            userName:'홍길동',
+            value: '2222 클라우드 Cell은 당대의 빛과 같은 존재로 기은에서 없어서는 안될 존재입니다. 기은의 클라우드를 늘 이끌어주세요~~!!',
+            date:'2022.03.02 09:00:00'
+        },
+        {
+            id: 'c2',
+            mode:'view',
+            deletable:true,
+            editable:true,
+            showProfile:false,
+            userName:'홍길동',
+            value: '3333 클라우드 Cell은 당대의 빛과 같은 존재로 기은에서 없어서는 안될 존재입니다. 기은의 클라우드를 늘 이끌어주세요~~!!',
+            date:'2022.03.02 09:00:00'
+        },
+    ]
 
+    //(하나만 있는) 댓글 등록
+    const [comment, setComment] = React.useState('');
+
+    //댓글 목록
+    const [comments, setComments] = React.useState<IComment[]>([])
+
+    React.useEffect(() => {
+        //댓글 목록 초기화
+        setComments(initialComments);
+    }, [])
+    
     //목록 버튼
     const list = () => {
         goPage('/apm/tfc/list')
@@ -42,28 +85,61 @@ const CLPCATM95720:React.FC = () => {
     const approval = () => {
         console.log('승인')
     }
+
     //완료 버튼
     const success = () => {
         console.log('완료')
     }
-    //comment 댓글입력
-    const [value1, setValue1] = React.useState('');
-    const [value2, setValue2] = React.useState('');
 
-    //comment 등록
-    const registration = () => {
-        console.log('등록')
-    }
-     //comment 삭제 버튼
-    const deleteFunc = () => {
-        console.log('삭제')
+    
+    //댓글 목록 ===================================================
+
+    //댓글 삭제 버튼
+    const deleteFunc = ( e:Event, id:any ) => {
+        console.log('삭제', id)
+
+        setComments(
+            comments.filter(c =>
+                c.id !== id
+            )
+        );
     }
 
-    //comment 수정 버튼
-    const edit = () => {
-        setMode('edit');
-        console.log('mode =>', mode)
+    // Start 댓글 수정 버튼 눌렀을 때 나오는 버튼들 ---------------
+    //댓글 취소
+    const cancel = ( e:Event, id:any ) => {
+        console.log('취소', id)
+
+        //댓글 목록의 해당 댓글 모드를 view 로 바꾼다
+        updateItemInList(id, 'mode', 'view', comments, setComments)
     }
+
+    //댓글 등록
+    const register = ( e:Event, id:any ) => {
+        console.log('등록', id)
+
+        //댓글 목록의 해당 댓글 모드를 view 로 바꾼다
+        updateItemInList(id, 'mode', 'view', comments, setComments)
+    }
+    // End 댓글 수정 버튼 눌렀을 때 나오는 버튼들 ---------------
+
+
+    //댓글 수정 버튼
+    const edit = ( e:Event, id:any ) => {
+        console.log('수정', id)
+
+        //댓글 목록의 해당 댓글 모드를 edit 로 바꾼다
+        updateItemInList(id, 'mode', 'edit', comments, setComments)
+    }
+
+    //댓글 내용 수정
+    const editValue = ( e:any, id:any ) => {
+        console.log('댓글 내용 수정', id, e.target.value)
+
+        //댓글 목록의 해당 댓글 값을 업데이트한다
+        updateItemInList(id, 'value', e.target.value, comments, setComments)
+    }
+
 
     //api 읽어와서 업데이트 할 내용
     const authorInfo = {
@@ -86,7 +162,6 @@ const CLPCATM95720:React.FC = () => {
 
     const contentsInfo = {
         title: '신청 내용',
-        // mode: mode,
         status: status,
         rows: [
             {
@@ -194,35 +269,15 @@ const CLPCATM95720:React.FC = () => {
             
         ]
     }
+   
+    //댓글 더보기 버튼
+    const moreComment = () => {
+        console.log('댓글 더보기')
+    }
 
-    const commentList = [
-        {//관리자 이거나 ? 본인이 작성한 것만 수정/삭제 가능
-            deletable:true,
-            editable:true,
-            profileable:false,
-            userName:'권승주',
-            commentContent: '클라우드 Cell은 당대의 빛과 같은 존재로 기은에서 없어서는 안될 존재입니다. 기은의 클라우드를 늘 이끌어주세요~~!!',
-            date:'2022.03.02 09:00:00'
-        },
-        {
-            deletable:true,
-            editable:true,
-            profileable:false,
-            userName:'홍길동',
-            commentContent: '클라우드 Cell은 당대의 빛과 같은 존재로 기은에서 없어서는 안될 존재입니다. 기은의 클라우드를 늘 이끌어주세요~~!!',
-            date:'2022.03.02 09:00:00'
-        },
-        {
-            deletable:true,
-            editable:true,
-            profileable:false,
-            userName:'홍길동',
-            commentContent: '클라우드 Cell은 당대의 빛과 같은 존재로 기은에서 없어서는 안될 존재입니다. 기은의 클라우드를 늘 이끌어주세요~~!!',
-            date:'2022.03.02 09:00:00'
+    //더보기 할 댓글수
+    let moreCommentLen = 120;
 
-        },
-        
-    ]
     return(
     <BasePage>
         {/* 등록자 정보 */}
@@ -253,14 +308,8 @@ const CLPCATM95720:React.FC = () => {
                     :
                     <></>
                 }
-                    
             </div>
-            <div className='cld-col-3 d-flex'>
-            <>
-               
-            </>
-            
-            </div>
+            <div className='cld-col-3 d-flex'></div>
         </div>
 
         {/* 댓글 */}
@@ -268,34 +317,34 @@ const CLPCATM95720:React.FC = () => {
             <CommentRegister 
                 title='진행 내용'
                 total='3'
-                value={value1}
-                // setValue={setValue1}
-                setValue={setValue1}
+                value={comment}
+                setValue={setComment}
+                register={register}
             />
 
             {
-                commentList.map(( item, index) => (
+                comments.map(( item, index) => (
                     <Comment 
-                        id={index}
+                        key={'comm'+index}
+                        id={item.id}
                         deletable={item.deletable}
                         editable={item.editable}
-                        profileable={item.profileable}
-                        key={'comm'+index}
+                        showProfile={item.showProfile}
                         userName={item.userName} 
-                        commentContent={item.commentContent}
+                        value={item.value}
+                        setValue={(e:Event) => editValue(e, item.id)}
                         date={item.date}
-                        mode='register'
-                        value={value2} 
-                        setValue={setValue2}
-                        edit={edit}
-                        delt={deleteFunc}
-                        registration={registration}
-                        />
+                        mode={item.mode}
+                        edit={(e:Event) => edit(e, item.id)}
+                        delt={(e:Event) => deleteFunc(e, item.id)}
+                        register={(e:Event) => register(e, item.id)}
+                        cancel={(e:Event) => cancel(e, item.id)}
+                    />
                 ))
-            
             }
-            
-            <Button className='more p-button-text' label='더보기 123댓글' icon='pi pi-angle-down'  iconPos="right"/>
+
+            <Button onClick={moreComment} label={`더보기 ${moreCommentLen} 댓글`} className='more p-button-text' icon='pi pi-angle-down' iconPos="right"/>
+        
         </div>
     </BasePage>)
 }
