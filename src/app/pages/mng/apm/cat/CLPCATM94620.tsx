@@ -28,6 +28,7 @@ const CLPCATM94620:React.FC = () => {
     const { goPage } = useBasePage()
 
     //approval: 승인 완료, reject: 반려, ongoing: 진행중
+    //상태를 바꾸면 UI 분기처리한 부분이 보입니다~!
     const [status, setStatus] = React.useState<'approval' | 'reject' | 'ongoing'>('ongoing');
 
     const [values, setValues] = React.useState<any>({
@@ -224,7 +225,7 @@ const CLPCATM94620:React.FC = () => {
         ]
     }
 
-    
+
     //더보기 할 댓글수
     let moreCommentLen = 120;
 
