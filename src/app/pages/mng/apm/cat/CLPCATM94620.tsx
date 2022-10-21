@@ -46,8 +46,16 @@ const CLPCATM94620:React.FC = () => {
     //관리자만 삭제 가능한 댓글 목록, id 값 필수
     const initialComments:IComment[] = commDummyData
 
-    //(하나만 있는) 댓글 등록
+    //(하나만 있는) 댓글 입력 처리
     const [comment, setComment] = React.useState('');
+
+    //(하나만 있는) 댓글 등록
+    const registerComment = () => {
+        console.log('등록')
+    }
+    
+
+
 
     //댓글 목록
     const [comments, setComments] = React.useState<IComment[]>([])
@@ -276,7 +284,7 @@ const CLPCATM94620:React.FC = () => {
                 total='3'
                 value={comment}
                 setValue={setComment}
-                register={register}
+                register={registerComment}
             />
 
             {
