@@ -9606,157 +9606,432 @@ $color-mobile-click-sub: #3CC6F0;
   height: 20px;
   font-size: 11px; }
 
-.p-button, .p-splitbutton .p-button {
+.p-button,
+.p-splitbutton .p-button {
   padding: 0 10px;
   border: none;
   color: #ffffff;
   background-color: #1d5dc4; }
-  .p-button:disabled, .p-splitbutton .p-button:disabled {
+  .p-button:disabled,
+  .p-splitbutton .p-button:disabled {
     color: #777777;
     background-color: #333333; }
-  .p-button:not([disabled]):hover, .p-splitbutton .p-button:not([disabled]):hover {
+  .p-button:not([disabled]):hover,
+  .p-splitbutton .p-button:not([disabled]):hover {
     color: #ffffff;
     background-color: #4881de; }
-  .p-button.outline, .p-button.p-button-outlined, .p-button.p-button-outlined .p-button, .p-button.p-button-outlined.p-splitbutton .p-button, .p-splitbutton .p-button.outline, .p-splitbutton .p-button.p-button-outlined, .p-splitbutton .p-button.p-button-outlined .p-button, .p-splitbutton .p-button.p-button-outlined.p-splitbutton .p-button {
+  .p-button.outline, .p-button.p-button-outlined,
+  .p-button.p-button-outlined .p-button,
+  .p-button.p-button-outlined.p-splitbutton .p-button,
+  .p-splitbutton .p-button.outline,
+  .p-splitbutton .p-button.p-button-outlined,
+  .p-splitbutton .p-button.p-button-outlined .p-button,
+  .p-splitbutton .p-button.p-button-outlined.p-splitbutton .p-button {
     color: #ffffff;
     border: 1px solid #ffffff;
     background-color: #222222; }
-    .p-button.outline:disabled, .p-button.p-button-outlined:disabled, .p-button.p-button-outlined .p-button:disabled, .p-button.p-button-outlined.p-splitbutton .p-button:disabled, .p-splitbutton .p-button.outline:disabled, .p-splitbutton .p-button.p-button-outlined:disabled, .p-splitbutton .p-button.p-button-outlined .p-button:disabled, .p-splitbutton .p-button.p-button-outlined.p-splitbutton .p-button:disabled {
+    .p-button.outline:disabled, .p-button.p-button-outlined:disabled,
+    .p-button.p-button-outlined .p-button:disabled,
+    .p-button.p-button-outlined.p-splitbutton .p-button:disabled,
+    .p-splitbutton .p-button.outline:disabled,
+    .p-splitbutton .p-button.p-button-outlined:disabled,
+    .p-splitbutton .p-button.p-button-outlined .p-button:disabled,
+    .p-splitbutton .p-button.p-button-outlined.p-splitbutton .p-button:disabled {
       color: #777777;
       border: 1px solid #3c3c3c;
       background-color: #444444; }
-      .p-button.outline:disabled i, .p-button.p-button-outlined:disabled i, .p-button.p-button-outlined .p-button:disabled i, .p-button.p-button-outlined.p-splitbutton .p-button:disabled i, .p-splitbutton .p-button.outline:disabled i, .p-splitbutton .p-button.p-button-outlined:disabled i, .p-splitbutton .p-button.p-button-outlined .p-button:disabled i, .p-splitbutton .p-button.p-button-outlined.p-splitbutton .p-button:disabled i {
+      .p-button.outline:disabled i, .p-button.p-button-outlined:disabled i,
+      .p-button.p-button-outlined .p-button:disabled i,
+      .p-button.p-button-outlined.p-splitbutton .p-button:disabled i,
+      .p-splitbutton .p-button.outline:disabled i,
+      .p-splitbutton .p-button.p-button-outlined:disabled i,
+      .p-splitbutton .p-button.p-button-outlined .p-button:disabled i,
+      .p-splitbutton .p-button.p-button-outlined.p-splitbutton .p-button:disabled i {
         color: #777777; }
-    .p-button.outline:not([disabled]):hover, .p-button.p-button-outlined:not([disabled]):hover, .p-button.p-button-outlined .p-button:not([disabled]):hover, .p-button.p-button-outlined.p-splitbutton .p-button:not([disabled]):hover, .p-splitbutton .p-button.outline:not([disabled]):hover, .p-splitbutton .p-button.p-button-outlined:not([disabled]):hover, .p-splitbutton .p-button.p-button-outlined .p-button:not([disabled]):hover, .p-splitbutton .p-button.p-button-outlined.p-splitbutton .p-button:not([disabled]):hover {
+    .p-button.outline:not([disabled]):hover, .p-button.p-button-outlined:not([disabled]):hover,
+    .p-button.p-button-outlined .p-button:not([disabled]):hover,
+    .p-button.p-button-outlined.p-splitbutton .p-button:not([disabled]):hover,
+    .p-splitbutton .p-button.outline:not([disabled]):hover,
+    .p-splitbutton .p-button.p-button-outlined:not([disabled]):hover,
+    .p-splitbutton .p-button.p-button-outlined .p-button:not([disabled]):hover,
+    .p-splitbutton .p-button.p-button-outlined.p-splitbutton .p-button:not([disabled]):hover {
       color: #4881de;
       border: 1px solid #000000;
       background-color: #000000; }
-  body.theme-light .p-button, body.theme-light .p-splitbutton .p-button {
+  body.theme-light .p-button, body.theme-light
+  .p-splitbutton .p-button {
     padding: 0 10px;
     border: none;
     color: #ffffff;
     background-color: #1d5dc4; }
-    body.theme-light .p-button:disabled, body.theme-light .p-splitbutton .p-button:disabled {
+    body.theme-light .p-button:disabled, body.theme-light
+    .p-splitbutton .p-button:disabled {
       color: #ffffff;
       background-color: #cccccc; }
-    body.theme-light .p-button:not([disabled]):hover, body.theme-light .p-splitbutton .p-button:not([disabled]):hover {
+    body.theme-light .p-button:not([disabled]):hover, body.theme-light
+    .p-splitbutton .p-button:not([disabled]):hover {
       color: #ffffff;
       background-color: #4881de; }
-    body.theme-light .p-button.outline, body.theme-light .p-button.p-button-outlined, body.theme-light .p-button.p-button-outlined .p-button, body.theme-light .p-button.p-button-outlined.p-splitbutton .p-button, body.theme-light .p-splitbutton .p-button.outline, body.theme-light .p-splitbutton .p-button.p-button-outlined, body.theme-light .p-splitbutton .p-button.p-button-outlined .p-button, body.theme-light .p-splitbutton .p-button.p-button-outlined.p-splitbutton .p-button {
+    body.theme-light .p-button.outline, body.theme-light .p-button.p-button-outlined,
+    body.theme-light .p-button.p-button-outlined .p-button,
+    body.theme-light .p-button.p-button-outlined.p-splitbutton .p-button, body.theme-light
+    .p-splitbutton .p-button.outline, body.theme-light
+    .p-splitbutton .p-button.p-button-outlined,
+    body.theme-light
+    .p-splitbutton .p-button.p-button-outlined .p-button,
+    body.theme-light
+    .p-splitbutton .p-button.p-button-outlined.p-splitbutton .p-button {
       color: #1d5dc4;
       border: 1px solid #cccccc;
       background-color: #ffffff; }
-      body.theme-light .p-button.outline:disabled, body.theme-light .p-button.p-button-outlined:disabled, body.theme-light .p-button.p-button-outlined .p-button:disabled, body.theme-light .p-button.p-button-outlined.p-splitbutton .p-button:disabled, body.theme-light .p-splitbutton .p-button.outline:disabled, body.theme-light .p-splitbutton .p-button.p-button-outlined:disabled, body.theme-light .p-splitbutton .p-button.p-button-outlined .p-button:disabled, body.theme-light .p-splitbutton .p-button.p-button-outlined.p-splitbutton .p-button:disabled {
+      body.theme-light .p-button.outline:disabled, body.theme-light .p-button.p-button-outlined:disabled,
+      body.theme-light .p-button.p-button-outlined .p-button:disabled,
+      body.theme-light .p-button.p-button-outlined.p-splitbutton .p-button:disabled, body.theme-light
+      .p-splitbutton .p-button.outline:disabled, body.theme-light
+      .p-splitbutton .p-button.p-button-outlined:disabled,
+      body.theme-light
+      .p-splitbutton .p-button.p-button-outlined .p-button:disabled,
+      body.theme-light
+      .p-splitbutton .p-button.p-button-outlined.p-splitbutton .p-button:disabled {
         color: #cccccc;
         border: 1px solid #cccccc;
         background-color: #00000000; }
-        body.theme-light .p-button.outline:disabled i, body.theme-light .p-button.p-button-outlined:disabled i, body.theme-light .p-button.p-button-outlined .p-button:disabled i, body.theme-light .p-button.p-button-outlined.p-splitbutton .p-button:disabled i, body.theme-light .p-splitbutton .p-button.outline:disabled i, body.theme-light .p-splitbutton .p-button.p-button-outlined:disabled i, body.theme-light .p-splitbutton .p-button.p-button-outlined .p-button:disabled i, body.theme-light .p-splitbutton .p-button.p-button-outlined.p-splitbutton .p-button:disabled i {
+        body.theme-light .p-button.outline:disabled i, body.theme-light .p-button.p-button-outlined:disabled i,
+        body.theme-light .p-button.p-button-outlined .p-button:disabled i,
+        body.theme-light .p-button.p-button-outlined.p-splitbutton .p-button:disabled i, body.theme-light
+        .p-splitbutton .p-button.outline:disabled i, body.theme-light
+        .p-splitbutton .p-button.p-button-outlined:disabled i,
+        body.theme-light
+        .p-splitbutton .p-button.p-button-outlined .p-button:disabled i,
+        body.theme-light
+        .p-splitbutton .p-button.p-button-outlined.p-splitbutton .p-button:disabled i {
           color: #cccccc; }
-      body.theme-light .p-button.outline:not([disabled]):hover, body.theme-light .p-button.p-button-outlined:not([disabled]):hover, body.theme-light .p-button.p-button-outlined .p-button:not([disabled]):hover, body.theme-light .p-button.p-button-outlined.p-splitbutton .p-button:not([disabled]):hover, body.theme-light .p-splitbutton .p-button.outline:not([disabled]):hover, body.theme-light .p-splitbutton .p-button.p-button-outlined:not([disabled]):hover, body.theme-light .p-splitbutton .p-button.p-button-outlined .p-button:not([disabled]):hover, body.theme-light .p-splitbutton .p-button.p-button-outlined.p-splitbutton .p-button:not([disabled]):hover {
+      body.theme-light .p-button.outline:not([disabled]):hover, body.theme-light .p-button.p-button-outlined:not([disabled]):hover,
+      body.theme-light .p-button.p-button-outlined .p-button:not([disabled]):hover,
+      body.theme-light .p-button.p-button-outlined.p-splitbutton .p-button:not([disabled]):hover, body.theme-light
+      .p-splitbutton .p-button.outline:not([disabled]):hover, body.theme-light
+      .p-splitbutton .p-button.p-button-outlined:not([disabled]):hover,
+      body.theme-light
+      .p-splitbutton .p-button.p-button-outlined .p-button:not([disabled]):hover,
+      body.theme-light
+      .p-splitbutton .p-button.p-button-outlined.p-splitbutton .p-button:not([disabled]):hover {
         color: #4881de;
         border: 1px solid #4881de;
         background-color: #00000000; }
-  body.theme-dark .p-button, body.theme-dark .p-splitbutton .p-button {
+  body.theme-dark .p-button, body.theme-dark
+  .p-splitbutton .p-button {
     padding: 0 10px;
     border: none;
     color: #ffffff;
     background-color: #1d5dc4; }
-    body.theme-dark .p-button:disabled, body.theme-dark .p-splitbutton .p-button:disabled {
+    body.theme-dark .p-button:disabled, body.theme-dark
+    .p-splitbutton .p-button:disabled {
       color: #777777;
       background-color: #333333; }
-    body.theme-dark .p-button:not([disabled]):hover, body.theme-dark .p-splitbutton .p-button:not([disabled]):hover {
+    body.theme-dark .p-button:not([disabled]):hover, body.theme-dark
+    .p-splitbutton .p-button:not([disabled]):hover {
       color: #ffffff;
       background-color: #4881de; }
-    body.theme-dark .p-button.outline, body.theme-dark .p-button.p-button-outlined, body.theme-dark .p-button.p-button-outlined .p-button, body.theme-dark .p-button.p-button-outlined.p-splitbutton .p-button, body.theme-dark .p-splitbutton .p-button.outline, body.theme-dark .p-splitbutton .p-button.p-button-outlined, body.theme-dark .p-splitbutton .p-button.p-button-outlined .p-button, body.theme-dark .p-splitbutton .p-button.p-button-outlined.p-splitbutton .p-button {
+    body.theme-dark .p-button.outline, body.theme-dark .p-button.p-button-outlined,
+    body.theme-dark .p-button.p-button-outlined .p-button,
+    body.theme-dark .p-button.p-button-outlined.p-splitbutton .p-button, body.theme-dark
+    .p-splitbutton .p-button.outline, body.theme-dark
+    .p-splitbutton .p-button.p-button-outlined,
+    body.theme-dark
+    .p-splitbutton .p-button.p-button-outlined .p-button,
+    body.theme-dark
+    .p-splitbutton .p-button.p-button-outlined.p-splitbutton .p-button {
       color: #ffffff;
       border: 1px solid #ffffff;
       background-color: #222222; }
-      body.theme-dark .p-button.outline:disabled, body.theme-dark .p-button.p-button-outlined:disabled, body.theme-dark .p-button.p-button-outlined .p-button:disabled, body.theme-dark .p-button.p-button-outlined.p-splitbutton .p-button:disabled, body.theme-dark .p-splitbutton .p-button.outline:disabled, body.theme-dark .p-splitbutton .p-button.p-button-outlined:disabled, body.theme-dark .p-splitbutton .p-button.p-button-outlined .p-button:disabled, body.theme-dark .p-splitbutton .p-button.p-button-outlined.p-splitbutton .p-button:disabled {
+      body.theme-dark .p-button.outline:disabled, body.theme-dark .p-button.p-button-outlined:disabled,
+      body.theme-dark .p-button.p-button-outlined .p-button:disabled,
+      body.theme-dark .p-button.p-button-outlined.p-splitbutton .p-button:disabled, body.theme-dark
+      .p-splitbutton .p-button.outline:disabled, body.theme-dark
+      .p-splitbutton .p-button.p-button-outlined:disabled,
+      body.theme-dark
+      .p-splitbutton .p-button.p-button-outlined .p-button:disabled,
+      body.theme-dark
+      .p-splitbutton .p-button.p-button-outlined.p-splitbutton .p-button:disabled {
         color: #777777;
         border: 1px solid #3c3c3c;
         background-color: #444444; }
-        body.theme-dark .p-button.outline:disabled i, body.theme-dark .p-button.p-button-outlined:disabled i, body.theme-dark .p-button.p-button-outlined .p-button:disabled i, body.theme-dark .p-button.p-button-outlined.p-splitbutton .p-button:disabled i, body.theme-dark .p-splitbutton .p-button.outline:disabled i, body.theme-dark .p-splitbutton .p-button.p-button-outlined:disabled i, body.theme-dark .p-splitbutton .p-button.p-button-outlined .p-button:disabled i, body.theme-dark .p-splitbutton .p-button.p-button-outlined.p-splitbutton .p-button:disabled i {
+        body.theme-dark .p-button.outline:disabled i, body.theme-dark .p-button.p-button-outlined:disabled i,
+        body.theme-dark .p-button.p-button-outlined .p-button:disabled i,
+        body.theme-dark .p-button.p-button-outlined.p-splitbutton .p-button:disabled i, body.theme-dark
+        .p-splitbutton .p-button.outline:disabled i, body.theme-dark
+        .p-splitbutton .p-button.p-button-outlined:disabled i,
+        body.theme-dark
+        .p-splitbutton .p-button.p-button-outlined .p-button:disabled i,
+        body.theme-dark
+        .p-splitbutton .p-button.p-button-outlined.p-splitbutton .p-button:disabled i {
           color: #777777; }
-      body.theme-dark .p-button.outline:not([disabled]):hover, body.theme-dark .p-button.p-button-outlined:not([disabled]):hover, body.theme-dark .p-button.p-button-outlined .p-button:not([disabled]):hover, body.theme-dark .p-button.p-button-outlined.p-splitbutton .p-button:not([disabled]):hover, body.theme-dark .p-splitbutton .p-button.outline:not([disabled]):hover, body.theme-dark .p-splitbutton .p-button.p-button-outlined:not([disabled]):hover, body.theme-dark .p-splitbutton .p-button.p-button-outlined .p-button:not([disabled]):hover, body.theme-dark .p-splitbutton .p-button.p-button-outlined.p-splitbutton .p-button:not([disabled]):hover {
+      body.theme-dark .p-button.outline:not([disabled]):hover, body.theme-dark .p-button.p-button-outlined:not([disabled]):hover,
+      body.theme-dark .p-button.p-button-outlined .p-button:not([disabled]):hover,
+      body.theme-dark .p-button.p-button-outlined.p-splitbutton .p-button:not([disabled]):hover, body.theme-dark
+      .p-splitbutton .p-button.outline:not([disabled]):hover, body.theme-dark
+      .p-splitbutton .p-button.p-button-outlined:not([disabled]):hover,
+      body.theme-dark
+      .p-splitbutton .p-button.p-button-outlined .p-button:not([disabled]):hover,
+      body.theme-dark
+      .p-splitbutton .p-button.p-button-outlined.p-splitbutton .p-button:not([disabled]):hover {
         color: #4881de;
         border: 1px solid #000000;
         background-color: #000000; }
 
-.cld-button.secondary, .p-button.secondary, .p-splitbutton .p-button.secondary {
+.p-button.p-button-text,
+.p-button.p-button-link {
+  background-color: transparent !important;
+  border: none;
+  color: #ffffff; }
+  .p-button.p-button-text:disabled,
+  .p-button.p-button-link:disabled {
+    color: #777777; }
+  .p-button.p-button-text:not([disabled]):hover,
+  .p-button.p-button-link:not([disabled]):hover {
+    color: #ffffff; }
+  body.theme-light .p-button.p-button-text, body.theme-light
+  .p-button.p-button-link {
+    color: #ffffff; }
+    body.theme-light .p-button.p-button-text:disabled, body.theme-light
+    .p-button.p-button-link:disabled {
+      color: #ffffff; }
+    body.theme-light .p-button.p-button-text:not([disabled]):hover, body.theme-light
+    .p-button.p-button-link:not([disabled]):hover {
+      color: #ffffff; }
+  body.theme-dark .p-button.p-button-text, body.theme-dark
+  .p-button.p-button-link {
+    color: #ffffff; }
+    body.theme-dark .p-button.p-button-text:disabled, body.theme-dark
+    .p-button.p-button-link:disabled {
+      color: #777777; }
+    body.theme-dark .p-button.p-button-text:not([disabled]):hover, body.theme-dark
+    .p-button.p-button-link:not([disabled]):hover {
+      color: #ffffff; }
+
+.cld-button.secondary,
+.p-button.secondary,
+.p-splitbutton .p-button.secondary {
   padding: 0 10px;
   border: none;
   color: #EBF0FA;
   background-color: #222222; }
-  .cld-button.secondary:disabled, .p-button.secondary:disabled, .p-splitbutton .p-button.secondary:disabled {
+  .cld-button.secondary:disabled,
+  .p-button.secondary:disabled,
+  .p-splitbutton .p-button.secondary:disabled {
     color: #eee;
     background-color: #cccccc; }
-  .cld-button.secondary:not([disabled]):hover, .p-button.secondary:not([disabled]):hover, .p-splitbutton .p-button.secondary:not([disabled]):hover {
+  .cld-button.secondary:not([disabled]):hover,
+  .p-button.secondary:not([disabled]):hover,
+  .p-splitbutton .p-button.secondary:not([disabled]):hover {
     color: #1D5DC4;
     background-color: #EBF0FA; }
-  .cld-button.secondary.outline, .cld-button.secondary.p-button-outlined, .cld-button.secondary.p-button-outlined .p-button, .p-button.secondary.outline, .p-button.secondary.p-button-outlined, .p-button.secondary.p-button-outlined .p-button, .p-splitbutton .p-button.secondary.outline, .p-splitbutton .p-button.secondary.p-button-outlined, .p-splitbutton .p-button.secondary.p-button-outlined .p-button {
+  .cld-button.secondary.outline, .cld-button.secondary.p-button-outlined,
+  .cld-button.secondary.p-button-outlined .p-button,
+  .p-button.secondary.outline,
+  .p-button.secondary.p-button-outlined,
+  .p-button.secondary.p-button-outlined .p-button,
+  .p-splitbutton .p-button.secondary.outline,
+  .p-splitbutton .p-button.secondary.p-button-outlined,
+  .p-splitbutton .p-button.secondary.p-button-outlined .p-button {
     color: #1d5dc4;
     border: 1px solid #EBF0FA;
     background-color: transparent; }
-    .cld-button.secondary.outline:disabled, .cld-button.secondary.p-button-outlined:disabled, .cld-button.secondary.p-button-outlined .p-button:disabled, .p-button.secondary.outline:disabled, .p-button.secondary.p-button-outlined:disabled, .p-button.secondary.p-button-outlined .p-button:disabled, .p-splitbutton .p-button.secondary.outline:disabled, .p-splitbutton .p-button.secondary.p-button-outlined:disabled, .p-splitbutton .p-button.secondary.p-button-outlined .p-button:disabled {
+    .cld-button.secondary.outline:disabled, .cld-button.secondary.p-button-outlined:disabled,
+    .cld-button.secondary.p-button-outlined .p-button:disabled,
+    .p-button.secondary.outline:disabled,
+    .p-button.secondary.p-button-outlined:disabled,
+    .p-button.secondary.p-button-outlined .p-button:disabled,
+    .p-splitbutton .p-button.secondary.outline:disabled,
+    .p-splitbutton .p-button.secondary.p-button-outlined:disabled,
+    .p-splitbutton .p-button.secondary.p-button-outlined .p-button:disabled {
       color: #cccccc;
       border: 1px solid #cccccc;
       background-color: #00000000; }
-      .cld-button.secondary.outline:disabled i, .cld-button.secondary.p-button-outlined:disabled i, .cld-button.secondary.p-button-outlined .p-button:disabled i, .p-button.secondary.outline:disabled i, .p-button.secondary.p-button-outlined:disabled i, .p-button.secondary.p-button-outlined .p-button:disabled i, .p-splitbutton .p-button.secondary.outline:disabled i, .p-splitbutton .p-button.secondary.p-button-outlined:disabled i, .p-splitbutton .p-button.secondary.p-button-outlined .p-button:disabled i {
+      .cld-button.secondary.outline:disabled i, .cld-button.secondary.p-button-outlined:disabled i,
+      .cld-button.secondary.p-button-outlined .p-button:disabled i,
+      .p-button.secondary.outline:disabled i,
+      .p-button.secondary.p-button-outlined:disabled i,
+      .p-button.secondary.p-button-outlined .p-button:disabled i,
+      .p-splitbutton .p-button.secondary.outline:disabled i,
+      .p-splitbutton .p-button.secondary.p-button-outlined:disabled i,
+      .p-splitbutton .p-button.secondary.p-button-outlined .p-button:disabled i {
         color: #cccccc; }
-    .cld-button.secondary.outline:not([disabled]):hover, .cld-button.secondary.p-button-outlined:not([disabled]):hover, .cld-button.secondary.p-button-outlined .p-button:not([disabled]):hover, .p-button.secondary.outline:not([disabled]):hover, .p-button.secondary.p-button-outlined:not([disabled]):hover, .p-button.secondary.p-button-outlined .p-button:not([disabled]):hover, .p-splitbutton .p-button.secondary.outline:not([disabled]):hover, .p-splitbutton .p-button.secondary.p-button-outlined:not([disabled]):hover, .p-splitbutton .p-button.secondary.p-button-outlined .p-button:not([disabled]):hover {
+    .cld-button.secondary.outline:not([disabled]):hover, .cld-button.secondary.p-button-outlined:not([disabled]):hover,
+    .cld-button.secondary.p-button-outlined .p-button:not([disabled]):hover,
+    .p-button.secondary.outline:not([disabled]):hover,
+    .p-button.secondary.p-button-outlined:not([disabled]):hover,
+    .p-button.secondary.p-button-outlined .p-button:not([disabled]):hover,
+    .p-splitbutton .p-button.secondary.outline:not([disabled]):hover,
+    .p-splitbutton .p-button.secondary.p-button-outlined:not([disabled]):hover,
+    .p-splitbutton .p-button.secondary.p-button-outlined .p-button:not([disabled]):hover {
       color: #4881de;
       border: 1px solid #4881de;
       background-color: transparent; }
-  body.theme-light .cld-button.secondary, body.theme-light .p-button.secondary, body.theme-light .p-splitbutton .p-button.secondary {
+  body.theme-light .cld-button.secondary, body.theme-light
+  .p-button.secondary, body.theme-light
+  .p-splitbutton .p-button.secondary {
     padding: 0 10px;
     border: none;
     color: #1D5DC4;
     background-color: #EBF0FA; }
-    body.theme-light .cld-button.secondary:disabled, body.theme-light .p-button.secondary:disabled, body.theme-light .p-splitbutton .p-button.secondary:disabled {
+    body.theme-light .cld-button.secondary:disabled, body.theme-light
+    .p-button.secondary:disabled, body.theme-light
+    .p-splitbutton .p-button.secondary:disabled {
       color: #eee;
       background-color: #cccccc; }
-    body.theme-light .cld-button.secondary:not([disabled]):hover, body.theme-light .p-button.secondary:not([disabled]):hover, body.theme-light .p-splitbutton .p-button.secondary:not([disabled]):hover {
+    body.theme-light .cld-button.secondary:not([disabled]):hover, body.theme-light
+    .p-button.secondary:not([disabled]):hover, body.theme-light
+    .p-splitbutton .p-button.secondary:not([disabled]):hover {
       color: #1D5DC4;
       background-color: #d3e2ff; }
-    body.theme-light .cld-button.secondary.outline, body.theme-light .cld-button.secondary.p-button-outlined, body.theme-light .cld-button.secondary.p-button-outlined .p-button, body.theme-light .p-button.secondary.outline, body.theme-light .p-button.secondary.p-button-outlined, body.theme-light .p-button.secondary.p-button-outlined .p-button, body.theme-light .p-splitbutton .p-button.secondary.outline, body.theme-light .p-splitbutton .p-button.secondary.p-button-outlined, body.theme-light .p-splitbutton .p-button.secondary.p-button-outlined .p-button {
+    body.theme-light .cld-button.secondary.outline, body.theme-light .cld-button.secondary.p-button-outlined,
+    body.theme-light .cld-button.secondary.p-button-outlined .p-button, body.theme-light
+    .p-button.secondary.outline, body.theme-light
+    .p-button.secondary.p-button-outlined,
+    body.theme-light
+    .p-button.secondary.p-button-outlined .p-button, body.theme-light
+    .p-splitbutton .p-button.secondary.outline, body.theme-light
+    .p-splitbutton .p-button.secondary.p-button-outlined,
+    body.theme-light
+    .p-splitbutton .p-button.secondary.p-button-outlined .p-button {
       color: #1d5dc4;
       border: 1px solid #EBF0FA;
       background-color: transparent; }
-      body.theme-light .cld-button.secondary.outline:disabled, body.theme-light .cld-button.secondary.p-button-outlined:disabled, body.theme-light .cld-button.secondary.p-button-outlined .p-button:disabled, body.theme-light .p-button.secondary.outline:disabled, body.theme-light .p-button.secondary.p-button-outlined:disabled, body.theme-light .p-button.secondary.p-button-outlined .p-button:disabled, body.theme-light .p-splitbutton .p-button.secondary.outline:disabled, body.theme-light .p-splitbutton .p-button.secondary.p-button-outlined:disabled, body.theme-light .p-splitbutton .p-button.secondary.p-button-outlined .p-button:disabled {
+      body.theme-light .cld-button.secondary.outline:disabled, body.theme-light .cld-button.secondary.p-button-outlined:disabled,
+      body.theme-light .cld-button.secondary.p-button-outlined .p-button:disabled, body.theme-light
+      .p-button.secondary.outline:disabled, body.theme-light
+      .p-button.secondary.p-button-outlined:disabled,
+      body.theme-light
+      .p-button.secondary.p-button-outlined .p-button:disabled, body.theme-light
+      .p-splitbutton .p-button.secondary.outline:disabled, body.theme-light
+      .p-splitbutton .p-button.secondary.p-button-outlined:disabled,
+      body.theme-light
+      .p-splitbutton .p-button.secondary.p-button-outlined .p-button:disabled {
         color: #cccccc;
         border: 1px solid #cccccc;
         background-color: #00000000; }
-        body.theme-light .cld-button.secondary.outline:disabled i, body.theme-light .cld-button.secondary.p-button-outlined:disabled i, body.theme-light .cld-button.secondary.p-button-outlined .p-button:disabled i, body.theme-light .p-button.secondary.outline:disabled i, body.theme-light .p-button.secondary.p-button-outlined:disabled i, body.theme-light .p-button.secondary.p-button-outlined .p-button:disabled i, body.theme-light .p-splitbutton .p-button.secondary.outline:disabled i, body.theme-light .p-splitbutton .p-button.secondary.p-button-outlined:disabled i, body.theme-light .p-splitbutton .p-button.secondary.p-button-outlined .p-button:disabled i {
+        body.theme-light .cld-button.secondary.outline:disabled i, body.theme-light .cld-button.secondary.p-button-outlined:disabled i,
+        body.theme-light .cld-button.secondary.p-button-outlined .p-button:disabled i, body.theme-light
+        .p-button.secondary.outline:disabled i, body.theme-light
+        .p-button.secondary.p-button-outlined:disabled i,
+        body.theme-light
+        .p-button.secondary.p-button-outlined .p-button:disabled i, body.theme-light
+        .p-splitbutton .p-button.secondary.outline:disabled i, body.theme-light
+        .p-splitbutton .p-button.secondary.p-button-outlined:disabled i,
+        body.theme-light
+        .p-splitbutton .p-button.secondary.p-button-outlined .p-button:disabled i {
           color: #cccccc; }
-      body.theme-light .cld-button.secondary.outline:not([disabled]):hover, body.theme-light .cld-button.secondary.p-button-outlined:not([disabled]):hover, body.theme-light .cld-button.secondary.p-button-outlined .p-button:not([disabled]):hover, body.theme-light .p-button.secondary.outline:not([disabled]):hover, body.theme-light .p-button.secondary.p-button-outlined:not([disabled]):hover, body.theme-light .p-button.secondary.p-button-outlined .p-button:not([disabled]):hover, body.theme-light .p-splitbutton .p-button.secondary.outline:not([disabled]):hover, body.theme-light .p-splitbutton .p-button.secondary.p-button-outlined:not([disabled]):hover, body.theme-light .p-splitbutton .p-button.secondary.p-button-outlined .p-button:not([disabled]):hover {
+      body.theme-light .cld-button.secondary.outline:not([disabled]):hover, body.theme-light .cld-button.secondary.p-button-outlined:not([disabled]):hover,
+      body.theme-light .cld-button.secondary.p-button-outlined .p-button:not([disabled]):hover, body.theme-light
+      .p-button.secondary.outline:not([disabled]):hover, body.theme-light
+      .p-button.secondary.p-button-outlined:not([disabled]):hover,
+      body.theme-light
+      .p-button.secondary.p-button-outlined .p-button:not([disabled]):hover, body.theme-light
+      .p-splitbutton .p-button.secondary.outline:not([disabled]):hover, body.theme-light
+      .p-splitbutton .p-button.secondary.p-button-outlined:not([disabled]):hover,
+      body.theme-light
+      .p-splitbutton .p-button.secondary.p-button-outlined .p-button:not([disabled]):hover {
         color: #4881de;
         border: 1px solid #4881de;
         background-color: transparent; }
-  body.theme-dark .cld-button.secondary, body.theme-dark .p-button.secondary, body.theme-dark .p-splitbutton .p-button.secondary {
+  body.theme-dark .cld-button.secondary, body.theme-dark
+  .p-button.secondary, body.theme-dark
+  .p-splitbutton .p-button.secondary {
     padding: 0 10px;
     border: none;
     color: #EBF0FA;
     background-color: #222222; }
-    body.theme-dark .cld-button.secondary:disabled, body.theme-dark .p-button.secondary:disabled, body.theme-dark .p-splitbutton .p-button.secondary:disabled {
+    body.theme-dark .cld-button.secondary:disabled, body.theme-dark
+    .p-button.secondary:disabled, body.theme-dark
+    .p-splitbutton .p-button.secondary:disabled {
       color: #eee;
       background-color: #cccccc; }
-    body.theme-dark .cld-button.secondary:not([disabled]):hover, body.theme-dark .p-button.secondary:not([disabled]):hover, body.theme-dark .p-splitbutton .p-button.secondary:not([disabled]):hover {
+    body.theme-dark .cld-button.secondary:not([disabled]):hover, body.theme-dark
+    .p-button.secondary:not([disabled]):hover, body.theme-dark
+    .p-splitbutton .p-button.secondary:not([disabled]):hover {
       color: #1D5DC4;
       background-color: #EBF0FA; }
-    body.theme-dark .cld-button.secondary.outline, body.theme-dark .cld-button.secondary.p-button-outlined, body.theme-dark .cld-button.secondary.p-button-outlined .p-button, body.theme-dark .p-button.secondary.outline, body.theme-dark .p-button.secondary.p-button-outlined, body.theme-dark .p-button.secondary.p-button-outlined .p-button, body.theme-dark .p-splitbutton .p-button.secondary.outline, body.theme-dark .p-splitbutton .p-button.secondary.p-button-outlined, body.theme-dark .p-splitbutton .p-button.secondary.p-button-outlined .p-button {
+    body.theme-dark .cld-button.secondary.outline, body.theme-dark .cld-button.secondary.p-button-outlined,
+    body.theme-dark .cld-button.secondary.p-button-outlined .p-button, body.theme-dark
+    .p-button.secondary.outline, body.theme-dark
+    .p-button.secondary.p-button-outlined,
+    body.theme-dark
+    .p-button.secondary.p-button-outlined .p-button, body.theme-dark
+    .p-splitbutton .p-button.secondary.outline, body.theme-dark
+    .p-splitbutton .p-button.secondary.p-button-outlined,
+    body.theme-dark
+    .p-splitbutton .p-button.secondary.p-button-outlined .p-button {
       color: #1d5dc4;
       border: 1px solid #EBF0FA;
       background-color: transparent; }
-      body.theme-dark .cld-button.secondary.outline:disabled, body.theme-dark .cld-button.secondary.p-button-outlined:disabled, body.theme-dark .cld-button.secondary.p-button-outlined .p-button:disabled, body.theme-dark .p-button.secondary.outline:disabled, body.theme-dark .p-button.secondary.p-button-outlined:disabled, body.theme-dark .p-button.secondary.p-button-outlined .p-button:disabled, body.theme-dark .p-splitbutton .p-button.secondary.outline:disabled, body.theme-dark .p-splitbutton .p-button.secondary.p-button-outlined:disabled, body.theme-dark .p-splitbutton .p-button.secondary.p-button-outlined .p-button:disabled {
+      body.theme-dark .cld-button.secondary.outline:disabled, body.theme-dark .cld-button.secondary.p-button-outlined:disabled,
+      body.theme-dark .cld-button.secondary.p-button-outlined .p-button:disabled, body.theme-dark
+      .p-button.secondary.outline:disabled, body.theme-dark
+      .p-button.secondary.p-button-outlined:disabled,
+      body.theme-dark
+      .p-button.secondary.p-button-outlined .p-button:disabled, body.theme-dark
+      .p-splitbutton .p-button.secondary.outline:disabled, body.theme-dark
+      .p-splitbutton .p-button.secondary.p-button-outlined:disabled,
+      body.theme-dark
+      .p-splitbutton .p-button.secondary.p-button-outlined .p-button:disabled {
         color: #cccccc;
         border: 1px solid #cccccc;
         background-color: #00000000; }
-        body.theme-dark .cld-button.secondary.outline:disabled i, body.theme-dark .cld-button.secondary.p-button-outlined:disabled i, body.theme-dark .cld-button.secondary.p-button-outlined .p-button:disabled i, body.theme-dark .p-button.secondary.outline:disabled i, body.theme-dark .p-button.secondary.p-button-outlined:disabled i, body.theme-dark .p-button.secondary.p-button-outlined .p-button:disabled i, body.theme-dark .p-splitbutton .p-button.secondary.outline:disabled i, body.theme-dark .p-splitbutton .p-button.secondary.p-button-outlined:disabled i, body.theme-dark .p-splitbutton .p-button.secondary.p-button-outlined .p-button:disabled i {
+        body.theme-dark .cld-button.secondary.outline:disabled i, body.theme-dark .cld-button.secondary.p-button-outlined:disabled i,
+        body.theme-dark .cld-button.secondary.p-button-outlined .p-button:disabled i, body.theme-dark
+        .p-button.secondary.outline:disabled i, body.theme-dark
+        .p-button.secondary.p-button-outlined:disabled i,
+        body.theme-dark
+        .p-button.secondary.p-button-outlined .p-button:disabled i, body.theme-dark
+        .p-splitbutton .p-button.secondary.outline:disabled i, body.theme-dark
+        .p-splitbutton .p-button.secondary.p-button-outlined:disabled i,
+        body.theme-dark
+        .p-splitbutton .p-button.secondary.p-button-outlined .p-button:disabled i {
           color: #cccccc; }
-      body.theme-dark .cld-button.secondary.outline:not([disabled]):hover, body.theme-dark .cld-button.secondary.p-button-outlined:not([disabled]):hover, body.theme-dark .cld-button.secondary.p-button-outlined .p-button:not([disabled]):hover, body.theme-dark .p-button.secondary.outline:not([disabled]):hover, body.theme-dark .p-button.secondary.p-button-outlined:not([disabled]):hover, body.theme-dark .p-button.secondary.p-button-outlined .p-button:not([disabled]):hover, body.theme-dark .p-splitbutton .p-button.secondary.outline:not([disabled]):hover, body.theme-dark .p-splitbutton .p-button.secondary.p-button-outlined:not([disabled]):hover, body.theme-dark .p-splitbutton .p-button.secondary.p-button-outlined .p-button:not([disabled]):hover {
+      body.theme-dark .cld-button.secondary.outline:not([disabled]):hover, body.theme-dark .cld-button.secondary.p-button-outlined:not([disabled]):hover,
+      body.theme-dark .cld-button.secondary.p-button-outlined .p-button:not([disabled]):hover, body.theme-dark
+      .p-button.secondary.outline:not([disabled]):hover, body.theme-dark
+      .p-button.secondary.p-button-outlined:not([disabled]):hover,
+      body.theme-dark
+      .p-button.secondary.p-button-outlined .p-button:not([disabled]):hover, body.theme-dark
+      .p-splitbutton .p-button.secondary.outline:not([disabled]):hover, body.theme-dark
+      .p-splitbutton .p-button.secondary.p-button-outlined:not([disabled]):hover,
+      body.theme-dark
+      .p-splitbutton .p-button.secondary.p-button-outlined .p-button:not([disabled]):hover {
         color: #4881de;
         border: 1px solid #4881de;
         background-color: transparent; }
+
+.p-button.p-button-text,
+.p-button.p-button-link {
+  background-color: transparent !important;
+  border: none;
+  color: #EBF0FA; }
+  .p-button.p-button-text:disabled,
+  .p-button.p-button-link:disabled {
+    color: #eee; }
+  .p-button.p-button-text:not([disabled]):hover,
+  .p-button.p-button-link:not([disabled]):hover {
+    color: #1D5DC4; }
+  body.theme-light .p-button.p-button-text, body.theme-light
+  .p-button.p-button-link {
+    color: #1D5DC4; }
+    body.theme-light .p-button.p-button-text:disabled, body.theme-light
+    .p-button.p-button-link:disabled {
+      color: #eee; }
+    body.theme-light .p-button.p-button-text:not([disabled]):hover, body.theme-light
+    .p-button.p-button-link:not([disabled]):hover {
+      color: #1D5DC4; }
+  body.theme-dark .p-button.p-button-text, body.theme-dark
+  .p-button.p-button-link {
+    color: #EBF0FA; }
+    body.theme-dark .p-button.p-button-text:disabled, body.theme-dark
+    .p-button.p-button-link:disabled {
+      color: #eee; }
+    body.theme-dark .p-button.p-button-text:not([disabled]):hover, body.theme-dark
+    .p-button.p-button-link:not([disabled]):hover {
+      color: #1D5DC4; }
 
 .commonBtn {
   min-width: 85px !important;
