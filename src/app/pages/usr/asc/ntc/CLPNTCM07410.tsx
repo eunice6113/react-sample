@@ -2,14 +2,12 @@ import * as React from "react";
 import { BasePage } from "../../../../shared/components/base/BasePage";
 import { Dropdown } from 'primereact/dropdown';
 import { InputText } from 'primereact/inputtext';
-import { Calendar } from 'primereact/calendar';
 import { Button } from 'primereact';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { paginator } from '../../../../shared/utils/table-paginator';
 import './CLPNTCM07410.css';
 import { noticeDummyData } from '../../../../shared/demo/data/noticeDummyData';
-import { useSearchParams } from "react-router-dom";
 import { SearchParams } from "../../../../core/models/search-params";
 import { useBasePage } from '../../../../shared/hooks/base-page.hook';
 
