@@ -10663,6 +10663,20 @@ textarea:focus {
   body.theme-dark .editText {
     color: #ffffff; }
 
+.p-inputswitch.p-inputswitch-checked .p-inputswitch-slider {
+  background: #7dd6ff; }
+  body.theme-light .p-inputswitch.p-inputswitch-checked .p-inputswitch-slider {
+    background: #1d5dc4; }
+  body.theme-dark .p-inputswitch.p-inputswitch-checked .p-inputswitch-slider {
+    background: #7dd6ff; }
+
+.p-inputswitch.p-inputswitch-checked:not(.p-disabled):hover .p-inputswitch-slider {
+  background: #7dd6ff; }
+  body.theme-light .p-inputswitch.p-inputswitch-checked:not(.p-disabled):hover .p-inputswitch-slider {
+    background: #1d5dc4; }
+  body.theme-dark .p-inputswitch.p-inputswitch-checked:not(.p-disabled):hover .p-inputswitch-slider {
+    background: #7dd6ff; }
+
 .dateToggleBtn {
   margin-top: 12px;
   height: 32px; }
