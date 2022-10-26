@@ -164,7 +164,6 @@ const CLPSURM93430:React.FC = () => {
 
 
 
-    //redux 로 설문 만들기 !!!!!!!!!!!
 
     /*
     
@@ -172,6 +171,9 @@ const CLPSURM93430:React.FC = () => {
     ㄴquestion[]
       ㄴradio[]
       ㄴcheckbox[]
+
+        redux 로 설문 만들기 !!!!!!!!!!!
+        최하위에서 값이 바뀔때 useEffect 에서 redux 에 설문 저장해버리기
 
       
     */
