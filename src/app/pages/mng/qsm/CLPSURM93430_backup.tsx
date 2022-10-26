@@ -16,7 +16,8 @@ import QuestionnaireItem from '../../../shared/components/survey/QuestionnaireIt
 
 
 //설문 관리 등록
-const CLPSURM93430:React.FC = () => {
+//state 통합하기 전
+const CLPSURM93430_backup:React.FC = () => {
     const { goPage } = useBasePage()
 
     //제목
@@ -88,7 +89,6 @@ const CLPSURM93430:React.FC = () => {
             requiredToggle: false, //필수 스위치 
             answer: '', //단답형 질문
 
-
             //체크박스
             checkBoxOptions: [
                 {name: '복수선택1', key: 'chk0'}, 
@@ -133,10 +133,6 @@ const CLPSURM93430:React.FC = () => {
         { name: '날짜선택', value: 'date' },
     ];
 
-
-
-    //설문 2 depth ****************************************************************************
-
     //설문 문항 복제 버튼
     const copy = ( e:Event, index:number ) => {
         console.log('복제')
@@ -147,13 +143,16 @@ const CLPSURM93430:React.FC = () => {
         console.log('삭제')
     }
 
+
+    //목록화 ******************************************************************************
+
     //질문유형 선택
     const [answerType, setAnswerType] = React.useState<any[]>([]);
 
     //필수 스위치 
     const [requiredToggle, setRequiredToggle] = React.useState<boolean[]>([]);
     // const [requiredToggle, setRequiredToggle] = useState(false);
-
+    
     const handleAnswerTypeChange = (e: { value: any}) => {
         setAnswerType(e.value);
     }
@@ -161,36 +160,6 @@ const CLPSURM93430:React.FC = () => {
     //단답형 질문
     const [answer, setAnswer] = React.useState<string[]>([]);
 
-
-
-
-    //redux 로 설문 만들기 !!!!!!!!!!!
-
-    /*
-    
-    survey[] 
-    ㄴquestion[]
-      ㄴradio[]
-      ㄴcheckbox[]
-
-      
-    */
-
-
-
-
-    //설문 3 depth ****************************************************************************
-
-
-
-
-
-
-
-
-    
-
-    
 
 
 
@@ -556,4 +525,4 @@ const CLPSURM93430:React.FC = () => {
         </div>
     </BasePage>)
 }
-export default CLPSURM93430;
+export default CLPSURM93430_backup;

@@ -10,16 +10,18 @@ import { IMeasure } from '../../../core/models/i-measure';
 import './questionnaire-item.css';
 
 interface IQuestion {
-
+    question: any;
     copy: Function;
     delt: Function;
 }
 
 const QuestionnaireItem: React.FC<IQuestion> = ({
-
+    question,
     copy,
     delt,
 }) => {
+
+    console.log(question)
 
     //스위치 
     const [requiredToggle, setRequiredToggle] = useState(false);
@@ -188,7 +190,9 @@ const QuestionnaireItem: React.FC<IQuestion> = ({
     <div className='surveyBox'>
         <div className='mb10'>
             <div className='d-flex mb10'>
-                <InputText className='mr10' placeholder='질문을 입력해주세요.' value={answer} onChange={(e) => setAnswer(e.target.value)} />
+                <InputText className='mr10' placeholder='질문을 입력해주세요.' 
+                    value={question.answer} 
+                    onChange={(e) => setAnswer(e.target.value)} />
                 <div className='d-flex-default'>
                     <span className='swichText'>필수</span>
                     <InputSwitch checked={requiredToggle} onChange={(e) => setRequiredToggle(e.value)} />
@@ -263,6 +267,87 @@ const QuestionnaireItem: React.FC<IQuestion> = ({
             }
             </div>
         </div>
+
+        <>
+        {/* <div className='mb10'>
+            <div className='d-flex mb10'>
+                <InputText className='mr10' placeholder='질문을 입력해주세요.' value={answer} onChange={(e) => setAnswer(e.target.value)} />
+                <div className='d-flex-default'>
+                    <span className='swichText'>필수</span>
+                    <InputSwitch checked={requiredToggle} onChange={(e) => setRequiredToggle(e.value)} />
+                </div>
+            </div>
+            <Dropdown className='mb10' value={answerType} options={answerTypeOptions} onChange={handleAnswerTypeChange} optionLabel='name' placeholder='전체' />
+
+            <CldFileUpload name='files' url={''} onUpload={() => {}} multiple accept='image/*' maxFileSize={5000000} maxFileCnt={5} acceptFileType='png,jpg' />
+
+            <div className='mt10'>
+            { 
+                // 객관식 질문(단수)  
+                answerType === 'singularQ' ?
+                <>
+                {
+                    radios.map((item, index) => (
+                        <div key={item.key} className='field-radiobutton mb10 d-flex-default'>
+                            <RadioButton inputId={item.key} name='radios' value={item} onChange={(e) => setselectedRadio(e.value)} checked={selectedRadio.key === item.key} disabled={item.key === 'R'} />
+                            <InputText className='mr10 ml10' placeholder='옵션' value={item.name} onChange={(e) => handleRadioChange('name', item.key, e.target.value)} />
+                            <Button className='iconBtn p-button-text mr10' icon='pi pi-times' onClick={(e) => deltRadio(e, item.key)} />
+                        </div>
+                    ))
+                }
+                <Button onClick={addRadio} icon='pi pi-plus' label='추가' className="p-button-text mb10" />
+                </>
+                :
+                // 객관식 질문(복수)  
+                answerType === 'mulipleQ' ?
+                <>
+                {
+                    checkboxs.map((item) => (
+                        <div key={item.key} className='field-checkbox mb10 d-flex-default'>
+                            <Checkbox inputId={item.key} name='check' value={item} onChange={onCheckboxChange} 
+                                checked={selectedCheckboxs.some((item:any) => item.key === item.key)} disabled={item.key === 'R'} />
+                            <InputText className='mr10 ml10' placeholder='옵션' value={item.name} onChange={(e) => handleCheckboxChange('name', item.key, e.target.value)} />
+                            <Button className='iconBtn p-button-text mr10' icon='pi pi-times' onClick={(e) => deltCheckbox(e, item.key)} />
+                        </div>
+                ))
+                }
+                <Button onClick={addCheckbox} icon='pi pi-plus' label='추가' className="p-button-text mb10" />
+                </>
+                :
+                // 척도선택  
+                answerType === 'measure' ?
+                <div>
+                    <Dropdown className='mb10' value={measure.from} options={measureNumOpt} onChange={(e) => handleMeasureChange('from', e.target.value)} optionLabel='name' placeholder='전체' />
+                    <span className='ml10 mr10'>~</span>
+                    <Dropdown className='mb10' value={measure.to} options={measureNumOpt} onChange={(e) => handleMeasureChange('to', e.target.value)} optionLabel='name' placeholder='전체' />
+                    {
+                        measure?.from !== undefined &&
+                        <div className='d-flex-default'>
+                            <span className='mr10 text-bold labelScale'>{measure.from}</span>
+                            <InputText className='mr10' placeholder='라벨을 입력해주세요(예. 아주 안좋음)' value={measure.fromLabel} onChange={(e) => handleMeasureChange('fromLabel', e.target.value)} /> 
+                        </div>
+                    }
+                    {
+                        measure?.to !== undefined &&
+                        <div className='d-flex-default mt10'>
+                            <span className='mr10 text-bold labelScale' flex-col='1'>{measure.to}</span>
+                            <InputText className='mr10' placeholder='라벨을 입력해주세요(예. 아주 좋음)' value={measure.toLabel} onChange={(e) => handleMeasureChange('toLabel', e.target.value)} /> 
+                        </div>
+                    }
+                </div>
+                :
+                // 날짜선택  
+                answerType === 'date' ?
+                <div className=''>
+                    <Calendar dateFormat='yy.mm.dd' value={date.fromDate} onChange={(e) => handleChange('fromDate', e.value)} showIcon />
+                </div>
+                :
+                <></>
+            }
+            </div>
+        </div> */}
+        </>
+        
         
         <div className='d-flex'>
             <Button onClick={(e) => copy} label='복제' className='ml-auto outline text-bold mr5' />
