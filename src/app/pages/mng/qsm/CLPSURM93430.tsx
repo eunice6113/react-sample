@@ -10,9 +10,6 @@ import { useState } from 'react';
 import CldFileUpload from "../../../shared/components/CldFileUpload";
 
 
-interface IProps {
-    children: React.ReactNode;
-}
 //설문 관리 등록
 const CLPSURM93430:React.FC = () => {
     const { goPage } = useBasePage()
@@ -138,9 +135,11 @@ const CLPSURM93430:React.FC = () => {
         { name: '9', code: 'num9' },
         { name: '10', code: 'num10' },
     ];
+
     const handleChange3 = (e: { value: any}) => {
         setSelectNum2(e.value);
     }
+
     //제목 input
     const [title, setTitle] = React.useState('');
 
@@ -259,15 +258,13 @@ const CLPSURM93430:React.FC = () => {
                             <th>노출구분</th>
                             <td>
                                 {
-                                    typeCategories.map((category) => {
-                                        return (
-                                            <span key={category.key} className="field-radiobutton mr20">
-                                                <RadioButton inputId={category.key} name="category" value={category} onChange={(e) => setTypeCategory(e.value)} checked={typeCategory.key === category.key} disabled={category.key === 'R'} />
-                                                <label htmlFor={category.key}>{category.name}</label>
-                                            </span>
-                                    )})
+                                    typeCategories.map((category) => (
+                                        <span key={category.key} className="field-radiobutton mr20">
+                                            <RadioButton inputId={category.key} name="category" value={category} onChange={(e) => setTypeCategory(e.value)} checked={typeCategory.key === category.key} disabled={category.key === 'R'} />
+                                            <label htmlFor={category.key}>{category.name}</label>
+                                        </span>
+                                    ))
                                 }
-                                
                             </td>
 
                         </tr>
@@ -293,19 +290,7 @@ const CLPSURM93430:React.FC = () => {
                                             
                                             <Dropdown className='mb10' value={select1} options={options1} onChange={handleChange1} optionLabel="name" placeholder="전체" />
                                            
-                                            <CldFileUpload 
-                                            name='demo[]'
-                                            url='https://primefaces.org/primereact/showcase/upload.php'
-                                            onSelect={onSelect}
-                                            onUpload={onUpload} 
-                                            onFileRemove={onFileRemove}
-                                            onError={onClear} 
-                                            onClear={onClear}
-                                            multiple={true}
-                                            accept='image/*'
-                                            maxFileSize={1000000}
-                                            totalSize={totalSize}
-                                        />
+                                            <CldFileUpload name='files' url={''} onUpload={() => {}} multiple accept='image/*' maxFileSize={5000000} maxFileCnt={5} acceptFileType='png,jpg' />
                                         </div>
                                         
                                         <div className='d-flex'>
@@ -326,19 +311,7 @@ const CLPSURM93430:React.FC = () => {
                                             
                                             <Dropdown className='mb10' value={select1} options={options1} onChange={handleChange1} optionLabel="name" placeholder="전체" />
                                            
-                                            <CldFileUpload 
-                                            name='demo[]'
-                                            url='https://primefaces.org/primereact/showcase/upload.php'
-                                            onSelect={onSelect}
-                                            onUpload={onUpload} 
-                                            onFileRemove={onFileRemove}
-                                            onError={onClear} 
-                                            onClear={onClear}
-                                            multiple={true}
-                                            accept='image/*'
-                                            maxFileSize={1000000}
-                                            totalSize={totalSize}
-                                            />
+                                            <CldFileUpload name='files' url={''} onUpload={() => {}} multiple accept='image/*' maxFileSize={5000000} maxFileCnt={5} acceptFileType='png,jpg' />
                                         </div>
                                         
                                         <div className='d-flex'>
@@ -358,19 +331,7 @@ const CLPSURM93430:React.FC = () => {
                                             
                                             <Dropdown className='mb10' value={select1} options={options1} onChange={handleChange1} optionLabel="name" placeholder="전체" />
                                            
-                                            <CldFileUpload 
-                                            name='demo[]'
-                                            url='https://primefaces.org/primereact/showcase/upload.php'
-                                            onSelect={onSelect}
-                                            onUpload={onUpload} 
-                                            onFileRemove={onFileRemove}
-                                            onError={onClear} 
-                                            onClear={onClear}
-                                            multiple={true}
-                                            accept='image/*'
-                                            maxFileSize={1000000}
-                                            totalSize={totalSize}
-                                            />
+                                            <CldFileUpload name='files' url={''} onUpload={() => {}} multiple accept='image/*' maxFileSize={5000000} maxFileCnt={5} acceptFileType='png,jpg' />
                                         </div>
                                         <div>
                                         {
@@ -401,19 +362,7 @@ const CLPSURM93430:React.FC = () => {
                                             
                                             <Dropdown className='mb10' value={select1} options={options1} onChange={handleChange1} optionLabel="name" placeholder="전체" />
                                            
-                                            <CldFileUpload 
-                                            name='demo[]'
-                                            url='https://primefaces.org/primereact/showcase/upload.php'
-                                            onSelect={onSelect}
-                                            onUpload={onUpload} 
-                                            onFileRemove={onFileRemove}
-                                            onError={onClear} 
-                                            onClear={onClear}
-                                            multiple={true}
-                                            accept='image/*'
-                                            maxFileSize={1000000}
-                                            totalSize={totalSize}
-                                            />
+                                            <CldFileUpload name='files' url={''} onUpload={() => {}} multiple accept='image/*' maxFileSize={5000000} maxFileCnt={5} acceptFileType='png,jpg' />
                                         </div>
                                         <div>
                                             {
@@ -446,19 +395,7 @@ const CLPSURM93430:React.FC = () => {
                                             
                                             <Dropdown className='mb10' value={select1} options={options1} onChange={handleChange1} optionLabel="name" placeholder="전체" />
                                            
-                                            <CldFileUpload 
-                                            name='demo[]'
-                                            url='https://primefaces.org/primereact/showcase/upload.php'
-                                            onSelect={onSelect}
-                                            onUpload={onUpload} 
-                                            onFileRemove={onFileRemove}
-                                            onError={onClear} 
-                                            onClear={onClear}
-                                            multiple={true}
-                                            accept='image/*'
-                                            maxFileSize={1000000}
-                                            totalSize={totalSize}
-                                            />
+                                            <CldFileUpload name='files' url={''} onUpload={() => {}} multiple accept='image/*' maxFileSize={5000000} maxFileCnt={5} acceptFileType='png,jpg' />
                                         </div>
                                         <div>
                                             <Dropdown className='mb10' value={selectNum1} options={selectNumOpt} onChange={handleChange2} optionLabel="name" placeholder="전체" />
@@ -492,19 +429,7 @@ const CLPSURM93430:React.FC = () => {
                                             
                                             <Dropdown className='mb10' value={select1} options={options1} onChange={handleChange1} optionLabel="name" placeholder="전체" />
                                            
-                                            <CldFileUpload 
-                                            name='demo[]'
-                                            url='https://primefaces.org/primereact/showcase/upload.php'
-                                            onSelect={onSelect}
-                                            onUpload={onUpload} 
-                                            onFileRemove={onFileRemove}
-                                            onError={onClear} 
-                                            onClear={onClear}
-                                            multiple={true}
-                                            accept='image/*'
-                                            maxFileSize={1000000}
-                                            totalSize={totalSize}
-                                            />
+                                            <CldFileUpload name='files' url={''} onUpload={() => {}} multiple accept='image/*' maxFileSize={5000000} maxFileCnt={5} acceptFileType='png,jpg' />
                                         </div>
                                         <div className=''>
                                             <Calendar dateFormat='yy.mm.dd' value={values.fromDate} onChange={(e) => handleChange('fromDate', e.value)} showIcon />
@@ -522,8 +447,6 @@ const CLPSURM93430:React.FC = () => {
                             </td>
                         </tr>
                     </tbody>
-                    
-
                 </table>
             </div>
         </div>

@@ -50,19 +50,7 @@ const UploadGuide: React.FC<IProps> = ({children}) => {
 
     return(
     <BasePage>
-        <CldFileUpload 
-            name='demo[]'
-            url='https://primefaces.org/primereact/showcase/upload.php'
-            onSelect={onSelect}
-            onUpload={onUpload} 
-            onFileRemove={onFileRemove}
-            onError={onClear} 
-            onClear={onClear}
-            multiple={true}
-            accept='image/*'
-            maxFileSize={1000000}
-            totalSize={totalSize}
-        />
+        <CldFileUpload name='files' url={''} onUpload={() => {}} multiple accept='image/*' maxFileSize={5000000} maxFileCnt={5} acceptFileType='png,jpg' />
     </BasePage>)
 }
 export default UploadGuide

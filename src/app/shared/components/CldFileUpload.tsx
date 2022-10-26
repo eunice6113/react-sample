@@ -18,9 +18,11 @@ interface FileUploadProps {
     accept?: string;
     maxFileSize?: number;
     totalSize?: number;
+    maxFileCnt:number;
+    acceptFileType:string;
 }
 
-const CldFileUpload: React.FC<FileUploadProps> = ({name = 'files', url, onSelect, onUpload, onFileRemove, onError, onClear, totalSize, multiple = false, accept = 'image/*', maxFileSize = 1000000}) => {
+const CldFileUpload: React.FC<FileUploadProps> = ({name = 'files', url, onSelect, onUpload, onFileRemove, onError, onClear, totalSize, multiple = false, accept = 'image/*', maxFileSize = 1000000, maxFileCnt, acceptFileType}) => {
     const fileUploadRef:any = React.useRef(null);
 
     const headerTemplate = (options:any) => {
