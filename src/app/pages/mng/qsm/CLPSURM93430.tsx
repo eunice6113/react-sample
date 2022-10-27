@@ -204,7 +204,7 @@ const CLPSURM93430:React.FC = () => {
                 return item
             }
         });
-        console.log('updateQuestions', updateQuestions)
+        // console.log('updateQuestions', updateQuestions)
         setSurvey({ ...survey, questions: updateQuestions });
     }
     
@@ -260,33 +260,6 @@ const CLPSURM93430:React.FC = () => {
         console.log(q_id, '삭제')
     }
 
-    //질문유형 선택
-    // const [questionType, setQuestionType] = React.useState<any[]>([]);
-    const [questionType, setQuestionType] = React.useState<any>();
-
-    //필수 스위치 
-    // const [requiredToggle, setRequiredToggle] = React.useState<boolean[]>([]);
-    const [requiredToggle, setRequiredToggle] = useState(false);
-
-    const handlequestionTypeChange = (e: { value: any}) => {
-        setQuestionType(e.value);
-    }
-
-    //단답형 질문
-    const [question, setQuestion] = React.useState<string>('');
-    // const [question, setQuestion] = React.useState<string[]>([]);
-
-
-    /*
-    
-    survey[] 
-    ㄴquestion[]
-      ㄴradio[]
-      ㄴcheckbox[]
-
-        redux 로 설문 만들기 !!!!!!!!!!!
-        최하위에서 값이 바뀔때 useEffect 에서 redux 에 설문 저장해버리기
-    */
 
     //복수형 객관식 ================================================================================================
     //체크박스
