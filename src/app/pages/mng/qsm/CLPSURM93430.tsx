@@ -9,9 +9,7 @@ import TextEditor from '../../../shared/components/ui/text-editor/TextEditor';
 import { useState } from 'react';
 import CldFileUpload from '../../../shared/components/CldFileUpload';
 import { updateItemInList } from '../../../shared/utils/com-utils';
-import { IRadio } from '../../../core/models/i-radio';
-import { ICheckbox } from '../../../core/models/i-checkbox';
-import { IMeasure } from '../../../core/models/i-measure';
+import { QMeasure, Survey, Question, Qoption, Qdaterange } from '../../../core/models/survey';
 import QuestionnaireItem from '../../../shared/components/survey/QuestionnaireItem';
 
 
@@ -19,29 +17,7 @@ import QuestionnaireItem from '../../../shared/components/survey/QuestionnaireIt
 const CLPSURM93430:React.FC = () => {
     const { goPage } = useBasePage()
 
-    //제목
-    const [title, setTitle] = React.useState('');
 
-    //노출구분 라디오
-    const typeCategories = [
-        {name: '내부', key: 'inside'}, 
-        {name: '외부', key: 'outside'},
-    ];
-    const [typeCategory, setTypeCategory] = React.useState(typeCategories[1]);
-
-    //설문내용 텍스트 에디터
-    const [content, setContent] = React.useState('');
-
-    //설문 기간
-    const [daterange, setDaterange] = React.useState<SearchParams>({
-        fromDate: undefined,
-        toDate: undefined,
-    });
-
-    //설문 기간 입력
-    const handleDaterangeChange = (prop: keyof SearchParams, value:any) => {
-        setDaterange({ ...daterange, [prop]: value });
-    };
 
     //목록 버튼
     const list = () => {
@@ -68,64 +44,190 @@ const CLPSURM93430:React.FC = () => {
         goPage('/qsm/register')
     }
 
-    
+    //설문지 초기화
+    let survey_initialize:Survey = {
+        title: '',                          //설문 제목
+        type: {name: '내부', key: 'inside'}, //노출구분 라디오
+        daterange: {                        //설문기간
+            fromDate: new Date(),
+            toDate: new Date()
+        },
+        content: '',                        //설문 내용
+        questions: [                        //설문 질문지들
+            {
+                question: '',               //질문 입력 인풋
+                requiredToggle: false,      //필수 여부 토글 
+                questionType: '',           //질문유형 선택
 
-    interface Question {
-        name: string;
-        key: any;
-        answerType: string; //질문유형 선택
-        requiredToggle: boolean; //필수 스위치 
-        answer: string; //단답형 질문
-
-        // 복제
-        // 삭제
-
+                selectedOption: [],         //객관식 질문 - 단수형, 복수형 선택시
+                options: [                  //객관식 질문 옵션목록 
+                    {name: '선택 1', key: 'opt0'}, 
+                ],
+                date: {                     //날짜형
+                    fromDate: new Date(),
+                    toDate: new Date()
+                },
+                measure: {                  //척도형
+                    from: '',
+                    to: '',
+                    fromLabel: '',
+                    toLabel: '',
+                }
+            }
+        ]
     }
-
-    let question_items = [
-        {
-            answerType: '', //질문유형 선택
-            requiredToggle: false, //필수 스위치 
-            answer: '', //단답형 질문
+    
+    //설문지 전체 데이터
+    const [survey, setSurvey] = React.useState<Survey>(survey_initialize)
 
 
-            //체크박스
-            checkBoxOptions: [
-                {name: '복수선택1', key: 'chk0'}, 
-            ],
-            checkboxs: [],
+    // 설문 > id 번째 문항 내 라디오, 체크박스 옵션 추가 
+    const addOption = ( qst_id:any, qst_opts:any ) => {
 
-        }
-    ]
-
-
-    React.useEffect(()=>{
-        setQuestions(question_items)
-    }, [])
-
-    const [questions, setQuestions] = React.useState<any[]>([])
-
-    //설문 문항 추가
-    const addQuestion = () => {
-        const newQ = {
+        const newOption = {
             name: ''
-            , key: 'survey' + questions.length
-            , answerType: ''
-            , requiredToggle: false
-            , answer: ''
-            , 
+            , key: 'opt' + qst_id + Math.random()*100
         };
-        setQuestions([...questions, newQ])
+
+        const questions = survey.questions.map(( question, i ) => {
+            if( i === qst_id ) {
+                const options = [ ...question.options, newOption ]
+                return { ...question, options }
+            }
+            return question;
+        })
+
+        setSurvey({
+            ...survey, 
+            questions
+        })
     }
 
+    // 설문 > id 번째 문항 내 라디오, 체크박스 옵션 삭제
+    const deltOption = ( qst_id:any, opt_key:any ) => {
+        const questions = survey.questions.map((question, i) => {
+            if( i === qst_id ) {
+                const options = question.options.filter((item:any) => item.key !== opt_key )
+                return { ...question, options }
+            }
+            return question;
+        })
+
+        setSurvey({
+            ...survey,
+            questions
+        })
+    }
+
+    // 설문 > id 번째 문항 내 라디오, 체크박스 옵션 수정
+    const updateOption = ( qst_id:any, opt_id:any, opt_key:any, opt_type:any, opt_value:any ) => {
+
+        // console.log('updateOption qst_id', qst_id, 'opt_id', opt_id, 'opt_key', opt_key, 'opt_type', opt_type, 'opt_value', opt_value)
+        const questions = survey.questions.map(( question, i ) => {
+            if( i === qst_id ) {
+                
+                const options = question.options.map((item:any, oid) => {
+                    // console.log('item[opt_key]', item[opt_key], oid, opt_id)
+                    if (oid === opt_id) {
+                      return {
+                        ...item,
+                        [opt_type]: opt_value
+                      };
+                    } else {
+                        return item
+                    }
+                });
+                return { ...question, options }
+            }
+            return question;
+        })
+
+        setSurvey({
+            ...survey, 
+            questions
+        })
+    }
+    
+    // 설문 문항 추가
+    const addQuestion = () => {
+
+        const newQuestion:Question = {
+            question: '',               //질문 입력 인풋
+            requiredToggle: false,      //필수 여부 토글 
+            questionType: '',           //질문유형 선택
+
+            selectedOption: [],         //객관식 질문 - 단수형, 복수형 선택시
+            options: [                  //객관식 질문 옵션목록 
+                {name: '선택 1', key: 'opt0'}, 
+            ],
+            date: {                     //날짜형
+                fromDate: new Date(),
+                toDate: new Date()
+            },
+            measure: {                  //척도형
+                from: '',
+                to: '',
+                fromLabel: '',
+                toLabel: '',
+            }
+        }
+
+        setSurvey(prevState => ({
+            ...prevState,        
+            questions: [            
+              ...prevState.questions, 
+              newQuestion   
+            ]
+        }));
+    }
+
+    // 설문 제목, 설문기간, 노출구분
+    const handleSurveyChange = ( prop:any, value:any ) => {
+        setSurvey({ ...survey, [prop]: value });
+    };
+
+    // 설문내용
+    const handleContentSurveyChange = ( value?:any ) => {
+        setSurvey({ ...survey, content: value });
+    };
+
+    // 설문 > 질문 내용 업데이트
+    const handleSurveyQuestionChange = ( q_id:any, type:any, value:any ) => {
+
+        const updateQuestions:any[] = survey.questions.map((item:any, i:number ) => {
+            if (i === q_id) {
+              return {
+                ...item,
+                [type]: value
+              };
+            } else {
+                return item
+            }
+        });
+        console.log('updateQuestions', updateQuestions)
+        setSurvey({ ...survey, questions: updateQuestions });
+    }
     
 
+    React.useEffect(() => {
+
+        console.log('survey ==>', survey)
+
+    }, [survey])
 
 
-    //설문 공통****************************************************************************
+
+    //설문 공통 ****************************************************************************
     
-    const answerTypeOptions = [
-        { name: '단답형', value: 'answer' },
+    //노출구분 라디오
+    const expsOpt = [
+        {name: '내부', key: 'inside'}, 
+        {name: '외부', key: 'outside'},
+    ];
+    const [typeCategory, setTypeCategory] = React.useState(expsOpt[1]);
+    
+    const questionTypeOptions = [
+        { name: '단답형', value: 'question' },
         { name: '장문형', value: 'longForm' },
         { name: '객관식 질문(단수)', value: 'singularQ' },
         { name: '객관식 질문(복수)', value: 'mulipleQ' },
@@ -133,36 +235,46 @@ const CLPSURM93430:React.FC = () => {
         { name: '날짜선택', value: 'date' },
     ];
 
-
+    const measureNumOpt = [
+        { name: '1', value: '1' },
+        { name: '2', value: '2' },
+        { name: '3', value: '3' },
+        { name: '4', value: '4' },
+        { name: '5', value: '5' },
+        { name: '6', value: '6' },
+        { name: '7', value: '7' },
+        { name: '8', value: '8' },
+        { name: '9', value: '9' },
+        { name: '10', value: '10' },
+    ];
 
     //설문 2 depth ****************************************************************************
 
     //설문 문항 복제 버튼
-    const copy = ( e:Event, index:number ) => {
-        console.log('복제')
+    const copy = ( e:any, q_id:number ) => {
+        console.log(q_id, '복제')
     }
 
     //설문 문항 삭제
-    const delt = ( e:Event, index:number ) => {
-        console.log('삭제')
+    const delt = ( e:any, q_id:number ) => {
+        console.log(q_id, '삭제')
     }
 
     //질문유형 선택
-    const [answerType, setAnswerType] = React.useState<any[]>([]);
+    // const [questionType, setQuestionType] = React.useState<any[]>([]);
+    const [questionType, setQuestionType] = React.useState<any>();
 
     //필수 스위치 
-    const [requiredToggle, setRequiredToggle] = React.useState<boolean[]>([]);
-    // const [requiredToggle, setRequiredToggle] = useState(false);
+    // const [requiredToggle, setRequiredToggle] = React.useState<boolean[]>([]);
+    const [requiredToggle, setRequiredToggle] = useState(false);
 
-    const handleAnswerTypeChange = (e: { value: any}) => {
-        setAnswerType(e.value);
+    const handlequestionTypeChange = (e: { value: any}) => {
+        setQuestionType(e.value);
     }
 
     //단답형 질문
-    const [answer, setAnswer] = React.useState<string[]>([]);
-
-
-
+    const [question, setQuestion] = React.useState<string>('');
+    // const [question, setQuestion] = React.useState<string[]>([]);
 
 
     /*
@@ -174,44 +286,17 @@ const CLPSURM93430:React.FC = () => {
 
         redux 로 설문 만들기 !!!!!!!!!!!
         최하위에서 값이 바뀔때 useEffect 에서 redux 에 설문 저장해버리기
-
-      
     */
-
-
-
-
-    //설문 3 depth ****************************************************************************
-
-
-
-
-
-
-
-
-    
-
-    
-
-
-
-
-    //반복문 ******************************************************************************
-
-
-
-    
-
 
     //복수형 객관식 ================================================================================================
     //체크박스
+    
     const checkBoxOptions = [
         {name: '복수선택1', key: 'chk0'}, 
     ];
 
     //체크박스 전체
-    const [checkboxs, setCheckboxs] = React.useState<ICheckbox[]>(checkBoxOptions);
+    const [checkboxs, setCheckboxs] = React.useState<Qoption[]>(checkBoxOptions);
 
     //선택한 체크박스 옵션
     const [selectedCheckboxs, setSelectedCheckboxs] = React.useState<any>(checkBoxOptions.slice(1,3));
@@ -247,7 +332,7 @@ const CLPSURM93430:React.FC = () => {
         // console.log('삭제', e, key)
 
         setCheckboxs(
-            checkboxs.filter((c:ICheckbox) =>
+            checkboxs.filter((c:Qoption) =>
                 c.key !== key
             )
         );
@@ -262,17 +347,14 @@ const CLPSURM93430:React.FC = () => {
         setCheckboxs([...checkboxs, newOpt])
     }
 
-
-
-
     //단수형 객관식 ================================================================================================
     //라디오
-    const radioOptions:IRadio[] = [
+    const radioOptions:Qoption[] = [
         {name: '옵션1', key: 'radio0'}, 
     ];
 
     //라디오 전체
-    const [radios, setRadios] = React.useState<IRadio[]>(radioOptions);
+    const [radios, setRadios] = React.useState<Qoption[]>(radioOptions);
 
     //선택한 라디오 옵션
     const [selectedRadio, setselectedRadio] = React.useState(radioOptions[0]);
@@ -287,7 +369,7 @@ const CLPSURM93430:React.FC = () => {
         // console.log('삭제', e, key)
 
         setRadios(
-            radios.filter((c:IRadio) =>
+            radios.filter((c:Qoption) =>
                 c.key !== key
             )
         );
@@ -302,35 +384,19 @@ const CLPSURM93430:React.FC = () => {
         setRadios([...radios, newRadioOpt])
     }
 
-
-
     //척도선택 ================================================================================================
-    const measureNumOpt = [
-        { name: '1', value: '1' },
-        { name: '2', value: '2' },
-        { name: '3', value: '3' },
-        { name: '4', value: '4' },
-        { name: '5', value: '5' },
-        { name: '6', value: '6' },
-        { name: '7', value: '7' },
-        { name: '8', value: '8' },
-        { name: '9', value: '9' },
-        { name: '10', value: '10' },
-    ];
-
-    const [measure, setMeasure] = React.useState<IMeasure>({
+    
+    const [measure, setMeasure] = React.useState<QMeasure>({
         from: undefined,
         fromLabel: '',
         to: undefined,
         toLabel: '',
     });
 
-    const handleMeasureChange = (prop: keyof IMeasure, value:any) => {
+    const handleMeasureChange = (prop: keyof QMeasure, value:any) => {
         setMeasure({ ...measure, [prop]: value });
         // console.log('measure =>', measure)
     };
-
-
 
     //날짜선택 ================================================================================================
     const [date, setDate] = React.useState<SearchParams>({
@@ -341,9 +407,6 @@ const CLPSURM93430:React.FC = () => {
     const handleChange = (prop: keyof SearchParams, value:any) => {
         setDate({ ...date, [prop]: value });
     };
-
-
-
 
 
     //api 읽어와서 업데이트 할 내용
@@ -369,7 +432,7 @@ const CLPSURM93430:React.FC = () => {
     return(
     <BasePage>
         {/* 등록자 정보 */}
-        <ViewTemplate {...authorInfo} />
+        {/* <ViewTemplate {...authorInfo} /> */}
 
         {/* 상세 내용 */}
         <div className='view-container'>
@@ -387,44 +450,44 @@ const CLPSURM93430:React.FC = () => {
                         <tr>
                             <th>제목 <span className='required'>*</span></th>
                             <td colSpan={3}>
-                            <div><InputText placeholder='설문 제목을 입력해주세요.' value={title} onChange={(e) => setTitle(e.target.value)} /></div>
+                            <div><InputText placeholder='설문 제목을 입력해주세요.' value={survey.title} onChange={(e) => handleSurveyChange('title', e.target.value)} /></div>
                             </td>
-                           
                         </tr>
                         <tr>
                             <th>설문기간 <span className='required'>*</span></th>
                             <td>
                                 <div className='d-flex'>
-                                <Calendar dateFormat='yy.mm.dd' value={daterange.fromDate} onChange={(e) => handleDaterangeChange('fromDate', e.value)} showIcon />
+                                <Calendar dateFormat='yy.mm.dd' value={survey.daterange.fromDate} onChange={(e) => handleSurveyChange('daterange.fromDate', e.value)} showIcon />
                                 <span className='mt5 mr5 ml5'>~</span>
-                                <Calendar dateFormat='yy.mm.dd' value={daterange.toDate} onChange={(e) => handleDaterangeChange('toDate', e.value)} showIcon />
+                                <Calendar dateFormat='yy.mm.dd' value={survey.daterange.toDate} onChange={(e) => handleSurveyChange('daterange.toDate', e.value)} showIcon />
                                 </div>
                             </td>
                             <th>노출구분</th>
                             <td>
-                                {
-                                    typeCategories.map((category) => (
-                                        <span key={category.key} className='field-radiobutton mr20'>
-                                            <RadioButton inputId={category.key} name='category' value={category} onChange={(e) => setTypeCategory(e.value)} checked={typeCategory.key === category.key} disabled={category.key === 'R'} />
-                                            <label htmlFor={category.key}>{category.name}</label>
-                                        </span>
-                                    ))
-                                }
+                            {
+                                expsOpt.map((category) => (
+                                    <span key={category.key} className='field-radiobutton mr20'>
+                                        <RadioButton inputId={category.key} name='category' value={category} 
+                                            onChange={(e) => { handleSurveyChange('type', e.value)}} 
+                                            checked={survey.type.key === category.key} 
+                                            disabled={category.key === 'R'} 
+                                        />
+                                        <label htmlFor={category.key}>{category.name}</label>
+                                    </span>
+                                ))
+                            }
                             </td>
-
                         </tr>
                         <tr>
                             <th>설문내용</th>
                             <td colSpan={3}>
-                            <TextEditor value={content} onTextChange={setContent} />
+                            <TextEditor value={survey.content} onTextChange={handleContentSurveyChange} />
                             </td>
                         </tr>
-
                         <tr>
                             <td colSpan={4}>
-
-
-                                <div className='survey'>
+<>
+                                {/* <div className='survey'>
                                     {
                                         questions.map((item, index) => 
                                             <QuestionnaireItem 
@@ -436,64 +499,76 @@ const CLPSURM93430:React.FC = () => {
                                         )
                                     }
 
-                                    {/* 설문 질문 추가 버튼 */}
                                     <div className='d-flex justify-center'>
                                         <Button className='iconBtnAdd p-button-text mr10' icon='pi pi-plus-circle' 
                                                 onClick={addQuestion} />
                                     </div>
-                                </div>
+                                </div> */}
+</>
+                                <div className='survey'>
+                                    {/* 복제, 삭제, 추가 범위 시작 --------------------------------------------------------------------------------------- */}
+                                    {
+                                        survey.questions.map(( question, q_id ) => (
 
-
-                                <>
-                                {/* <div className='survey'>
-                                    <div className='surveyBox'>
-                                        <div className='mb10'>
-                                            <div className='d-flex mb10'>
-                                                <InputText className='mr10' placeholder='질문을 입력해주세요.' value={answer} onChange={(e) => setAnswer(e.target.value)} />
-                                                <div className='d-flex-default'>
-                                                    <span className='swichText'>필수</span>
-                                                    <InputSwitch checked={requiredToggle} onChange={(e) => setRequiredToggle(e.value)} />
+                                        <div className='surveyBox' key={`survey-q-${q_id}`}>
+                                            <div className='mb10'>
+                                                <div className='d-flex mb10'>
+                                                    <InputText className='mr10' placeholder='질문을 입력해주세요.' value={question.question} 
+                                                                onChange={(e) => handleSurveyQuestionChange(q_id, 'question', e.target.value)} />
+                                                    <div className='d-flex-default'>
+                                                        <span className='swichText'>필수</span>
+                                                        <InputSwitch checked={question.requiredToggle} 
+                                                                onChange={(e) => handleSurveyQuestionChange(q_id, 'requiredToggle', e.value)} />
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <Dropdown className='mb10' value={answerType} options={answerTypeOptions} onChange={handleAnswerTypeChange} optionLabel='name' placeholder='전체' />
+                                                <Dropdown className='mb10' value={question.questionType} options={questionTypeOptions} 
+                                                        onChange={(e) => handleSurveyQuestionChange(q_id, 'questionType', e.value)} optionLabel='name' placeholder='전체' />
 
-                                            <CldFileUpload name='files' url={''} onUpload={() => {}} multiple accept='image/*' maxFileSize={5000000} maxFileCnt={5} acceptFileType='png,jpg' />
+                                                {/* 파일 업로드 부분은 따로 연동을 안했어요~!! */}
+                                                <CldFileUpload name='files' url={''} onUpload={() => {}} multiple accept='image/*' maxFileSize={5000000} maxFileCnt={5} acceptFileType='png,jpg' />
 
-                                            <div className='mt10'>
-                                            { 
-                                                // 객관식 질문(단수)  
-                                                answerType === 'singularQ' ?
+                                                <div className='mt10'>
+                                                { 
+                                                // 객관식 질문(단수) ************************************************************************************
+                                                question.questionType === 'singularQ' ?
                                                 <>
                                                 {
-                                                    radios.map((item, index) => (
+                                                    question.options.map((item, opt_id) => (
                                                         <div key={item.key} className='field-radiobutton mb10 d-flex-default'>
-                                                            <RadioButton inputId={item.key} name='radios' value={item} onChange={(e) => setselectedRadio(e.value)} checked={selectedRadio.key === item.key} disabled={item.key === 'R'} />
-                                                            <InputText className='mr10 ml10' placeholder='옵션' value={item.name} onChange={(e) => handleRadioChange('name', item.key, e.target.value)} />
-                                                            <Button className='iconBtn p-button-text mr10' icon='pi pi-times' onClick={(e) => deltRadio(e, item.key)} />
+                                                            <RadioButton inputId={item.key} name='radios' value={item} 
+                                                                        onChange={(e) => setselectedRadio(e.value)} 
+                                                                        checked={selectedRadio.key === item.key} disabled={item.key === 'R'} />
+                                                            <InputText className='mr10 ml10' placeholder='옵션' value={item.name} 
+                                                                        onChange={(e) => updateOption(q_id, opt_id, item.key, 'name', e.target.value)} />
+                                                            <Button className='iconBtn p-button-text mr10' icon='pi pi-times'
+                                                                    onClick={(e) => deltOption(q_id, item.key)} />
                                                         </div>
                                                     ))
                                                 }
-                                                <Button onClick={addRadio} icon='pi pi-plus' label='추가' className="p-button-text mb10" />
+                                                <Button onClick={(e) => addOption(q_id, question.options)} icon='pi pi-plus' label='추가' className="p-button-text mb10" />
                                                 </>
                                                 :
-                                                // 객관식 질문(복수)  
-                                                answerType === 'mulipleQ' ?
+                                                // 객관식 질문(복수) ************************************************************************************
+                                                question.questionType === 'mulipleQ' ?
                                                 <>
                                                 {
-                                                    checkboxs.map((item) => (
+                                                    question.options.map((item, opt_id) => (
                                                         <div key={item.key} className='field-checkbox mb10 d-flex-default'>
-                                                            <Checkbox inputId={item.key} name='check' value={item} onChange={onCheckboxChange} 
-                                                                checked={selectedCheckboxs.some((item:any) => item.key === item.key)} disabled={item.key === 'R'} />
-                                                            <InputText className='mr10 ml10' placeholder='옵션' value={item.name} onChange={(e) => handleCheckboxChange('name', item.key, e.target.value)} />
-                                                            <Button className='iconBtn p-button-text mr10' icon='pi pi-times' onClick={(e) => deltCheckbox(e, item.key)} />
+                                                            <Checkbox inputId={item.key} name='check' value={item} 
+                                                                      onChange={onCheckboxChange} 
+                                                                      checked={selectedCheckboxs.some((item:any) => item.key === item.key)} disabled={item.key === 'R'} />
+                                                            <InputText className='mr10 ml10' placeholder='옵션' value={item.name} 
+                                                                       onChange={(e) => updateOption(q_id, opt_id, item.key, 'name', e.target.value)} />
+                                                            <Button className='iconBtn p-button-text mr10' icon='pi pi-times' 
+                                                                    onClick={(e) => deltOption(q_id, item.key)} />
                                                         </div>
                                                 ))
                                                 }
-                                                <Button onClick={addCheckbox} icon='pi pi-plus' label='추가' className="p-button-text mb10" />
+                                                <Button onClick={(e) => addOption(q_id, question.options)} icon='pi pi-plus' label='추가' className="p-button-text mb10" />
                                                 </>
                                                 :
-                                                // 척도선택  
-                                                answerType === 'measure' ?
+                                                // 척도선택 ************************************************************************************ 
+                                                question.questionType === 'measure' ?
                                                 <div>
                                                     <Dropdown className='mb10' value={measure.from} options={measureNumOpt} onChange={(e) => handleMeasureChange('from', e.target.value)} optionLabel='name' placeholder='전체' />
                                                     <span className='ml10 mr10'>~</span>
@@ -514,29 +589,34 @@ const CLPSURM93430:React.FC = () => {
                                                     }
                                                 </div>
                                                 :
-                                                // 날짜선택  
-                                                answerType === 'date' ?
+                                                // 날짜선택 ************************************************************************************
+                                                question.questionType === 'date' ?
                                                 <div className=''>
-                                                    <Calendar dateFormat='yy.mm.dd' value={date.fromDate} onChange={(e) => handleChange('fromDate', e.value)} showIcon />
+                                                    {/* <Calendar dateFormat='yy.mm.dd' value={question.date.fromDate} 
+                                                              onChange={(e) => handleSurveyQuestionChange(q_id, 'date.fromDate', e.value)} showIcon /> */}
                                                 </div>
                                                 :
                                                 <></>
                                             }
                                             </div>
+                                            </div>
+                                            
+                                            <div className='d-flex'>
+                                                <Button className='ml-auto outline text-bold mr5' onClick={(e) => copy(e, q_id)}>복제</Button>
+                                                <Button className='' onClick={(e) => delt(e, q_id)}>삭제</Button>
+                                            </div>
                                         </div>
-                                        
-                                        <div className='d-flex'>
-                                            <Button className='ml-auto outline text-bold mr5' onClick={copy}>복제</Button>
-                                            <Button className='' onClick={delt}>삭제</Button>
-                                        </div>
-                                    </div>
 
-                                    //추가 버튼
+                                        ))
+                                    }
+                                    
+                                    {/* 복제, 삭제, 추가 범위 끝 ---------------------------------------------------------------------------------------- */}
+
+                                    {/* 추가 버튼 */}
                                     <div className='d-flex justify-center'>
-                                        <Button className='iconBtnAdd p-button-text mr10' icon='pi pi-plus-circle' onClick={copy} />
+                                        <Button className='iconBtnAdd p-button-text mr10' icon='pi pi-plus-circle' onClick={addQuestion} />
                                     </div>
-                                </div> */}
-                                </>
+                                </div>
                             </td>
                         </tr>
 

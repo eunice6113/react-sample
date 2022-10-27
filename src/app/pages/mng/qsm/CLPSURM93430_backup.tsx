@@ -9,9 +9,7 @@ import TextEditor from '../../../shared/components/ui/text-editor/TextEditor';
 import { useState } from 'react';
 import CldFileUpload from '../../../shared/components/CldFileUpload';
 import { updateItemInList } from '../../../shared/utils/com-utils';
-import { IRadio } from '../../../core/models/i-radio';
-import { ICheckbox } from '../../../core/models/i-checkbox';
-import { IMeasure } from '../../../core/models/i-measure';
+import { QMeasure, Qoption } from '../../../core/models/survey';
 import QuestionnaireItem from '../../../shared/components/survey/QuestionnaireItem';
 
 
@@ -178,7 +176,7 @@ const CLPSURM93430_backup:React.FC = () => {
     ];
 
     //체크박스 전체
-    const [checkboxs, setCheckboxs] = React.useState<ICheckbox[]>(checkBoxOptions);
+    const [checkboxs, setCheckboxs] = React.useState<Qoption[]>(checkBoxOptions);
 
     //선택한 체크박스 옵션
     const [selectedCheckboxs, setSelectedCheckboxs] = React.useState<any>(checkBoxOptions.slice(1,3));
@@ -214,7 +212,7 @@ const CLPSURM93430_backup:React.FC = () => {
         // console.log('삭제', e, key)
 
         setCheckboxs(
-            checkboxs.filter((c:ICheckbox) =>
+            checkboxs.filter((c:Qoption) =>
                 c.key !== key
             )
         );
@@ -234,12 +232,12 @@ const CLPSURM93430_backup:React.FC = () => {
 
     //단수형 객관식 ================================================================================================
     //라디오
-    const radioOptions:IRadio[] = [
+    const radioOptions:Qoption[] = [
         {name: '옵션1', key: 'radio0'}, 
     ];
 
     //라디오 전체
-    const [radios, setRadios] = React.useState<IRadio[]>(radioOptions);
+    const [radios, setRadios] = React.useState<Qoption[]>(radioOptions);
 
     //선택한 라디오 옵션
     const [selectedRadio, setselectedRadio] = React.useState(radioOptions[0]);
@@ -254,7 +252,7 @@ const CLPSURM93430_backup:React.FC = () => {
         // console.log('삭제', e, key)
 
         setRadios(
-            radios.filter((c:IRadio) =>
+            radios.filter((c:Qoption) =>
                 c.key !== key
             )
         );
@@ -285,14 +283,14 @@ const CLPSURM93430_backup:React.FC = () => {
         { name: '10', value: '10' },
     ];
 
-    const [measure, setMeasure] = React.useState<IMeasure>({
+    const [measure, setMeasure] = React.useState<QMeasure>({
         from: undefined,
         fromLabel: '',
         to: undefined,
         toLabel: '',
     });
 
-    const handleMeasureChange = (prop: keyof IMeasure, value:any) => {
+    const handleMeasureChange = (prop: keyof QMeasure, value:any) => {
         setMeasure({ ...measure, [prop]: value });
         // console.log('measure =>', measure)
     };
