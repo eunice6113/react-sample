@@ -317,13 +317,11 @@ const CLPSURM93600: React.FC = () => {
                         <tr>
                             <td colSpan={4}>
                                 <div className='survey'>
-
                                 {
                                     surveyResult.answersit.map((answer:any, answer_id:number) => (
 
                                     <div className='surveyBox' key={`as-${answer_id}`}>
-                                        <h3 className='mb10'>{answer_id}. {answer.question}</h3>
-                                        
+                                        <h3 className='mb10'>{answer_id + 1}. {answer.question}</h3>
                                         {
                                             answer.type === 'question' ?
                                             <>
