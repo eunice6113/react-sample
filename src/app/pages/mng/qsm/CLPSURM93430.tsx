@@ -97,7 +97,7 @@ const CLPSURM93430:React.FC = () => {
 
         const questions = survey.questions.map(( question, i ) => {
             if( i === qst_id ) {
-                const options = [ ...question.options, newOption ]
+                const options = question.options !== undefined ? [ ...question.options, newOption ] : [ newOption ]
                 return { ...question, options }
             }
             return question;
@@ -113,7 +113,7 @@ const CLPSURM93430:React.FC = () => {
     const deltOption = ( qst_id:any, opt_key:any ) => {
         const questions = survey.questions.map((question, i) => {
             if( i === qst_id ) {
-                const options = question.options.filter((item:any) => item.key !== opt_key )
+                const options = question?.options?.filter((item:any) => item.key !== opt_key )
                 return { ...question, options }
             }
             return question;
@@ -132,7 +132,7 @@ const CLPSURM93430:React.FC = () => {
         const questions = survey.questions.map(( question, i ) => {
             if( i === qst_id ) {
                 
-                const options = question.options.map((item:any, oid) => {
+                const options = question?.options?.map((item:any, oid) => {
                     // console.log('item[opt_key]', item[opt_key], oid, opt_id)
                     if (oid === opt_id) {
                       return {

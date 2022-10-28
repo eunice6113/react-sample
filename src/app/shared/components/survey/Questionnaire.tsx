@@ -60,7 +60,7 @@ const Questionnaire: React.FC<IQuestion> = ({
                 question.questionType === 'singularQ' ?
                 <>
                 {
-                    question.options.map((item, opt_id) => (
+                    question?.options?.map((item, opt_id) => (
                         <div key={item.key} className='field-radiobutton mb10 d-flex-default'>
                             <RadioButton inputId={item.key} name='radios' value={item} 
                                         onChange={(e) => handleSurveyQuestionChange(q_id, 'selectedRadio', e.value)} 
@@ -79,7 +79,7 @@ const Questionnaire: React.FC<IQuestion> = ({
                 question.questionType === 'mulipleQ' ?
                 <>
                 {
-                    question.options.map((item, opt_id) => (
+                    question?.options?.map((item, opt_id) => (
                         <div key={item.key} className='field-checkbox mb10 d-flex-default'>
                             <Checkbox inputId={item.key} name='check' value={item} 
                                         onChange={(e) => handleSurveyQuestionChkChange(e, q_id, question.selectedCheck)} 

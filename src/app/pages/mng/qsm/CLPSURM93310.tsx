@@ -8,7 +8,7 @@ import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { paginator } from "../../../shared/utils/table-paginator";
 import './CLPSURM93310.css';
-import { surDummyData } from '../../../shared/demo/data/surDummyData';
+// import { surDummyData } from '../../../shared/demo/data/surDummyData';
 import { useBasePage } from '../../../shared/hooks/base-page.hook';
 import { SearchParams } from '../../../core/models/search-params';
 import { TableSortParams } from '../../../core/models/table-sort-params';
@@ -16,6 +16,29 @@ import { TableSortParams } from '../../../core/models/table-sort-params';
 //설문 관리 
 const CLPSURM93310: React.FC = () => {
     const { goPage, goBack } = useBasePage()
+
+    const surDummyData = [
+        {
+            no: 0,
+            type: '내부',
+            subject: '제목입니다',
+            state: '진행중',
+            respondents: <div className="d-flex-default"><span className="mr8">1,100</span><Button className="outline" onClick={(e) => goPage('/qsm/result')} label='결과보기' /></div>,
+            period: '2022.10.15 ~ 2022.12.20',
+            registrar:'신재문 (12345)',
+            registerDate:'2022.12.05',
+        },
+        {
+            no: 0,
+            type: '내부',
+            subject: '제목입니다',
+            state: '진행중',
+            respondents: <div className="d-flex-default"><span className="mr8">1,100</span><Button className="outline" onClick={(e) => goPage('/qsm/result')} label='결과보기' /></div>,
+            period: '2022.10.15 ~ 2022.12.20',
+            registrar:'신재문 (12345)',
+            registerDate:'2022.12.05',
+        },
+    ]
 
     //검색 조건
     const [values, setValues] = React.useState<SearchParams>({
