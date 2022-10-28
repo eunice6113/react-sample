@@ -10,7 +10,7 @@ import { useState } from 'react';
 import CldFileUpload from '../../../shared/components/CldFileUpload';
 import { updateItemInList } from '../../../shared/utils/com-utils';
 import { QMeasure, Qoption } from '../../../core/models/survey';
-import QuestionnaireItem from '../../../shared/components/survey/QuestionnaireItem';
+import Questionnaire from '../../../shared/components/survey/Questionnaire';
 
 
 //설문 관리 등록
@@ -389,10 +389,10 @@ const CLPSURM93430_backup:React.FC = () => {
                             <td colSpan={4}>
 
 
-                                <div className='survey'>
+                                {/* <div className='survey'>
                                     {
                                         questions.map((item, index) => 
-                                            <QuestionnaireItem 
+                                            <Questionnaire 
                                                 key={`q-${index}`}
                                                 question={question_items}
                                                 copy={(e:any) => copy(e, index)}
@@ -401,12 +401,12 @@ const CLPSURM93430_backup:React.FC = () => {
                                         )
                                     }
 
-                                    {/* 설문 질문 추가 버튼 */}
+                                    //설문 질문 추가 버튼 
                                     <div className='d-flex justify-center'>
                                         <Button className='iconBtnAdd p-button-text mr10' icon='pi pi-plus-circle' 
                                                 onClick={addQuestion} />
                                     </div>
-                                </div>
+                                </div> */}
 
 
                                 <>
