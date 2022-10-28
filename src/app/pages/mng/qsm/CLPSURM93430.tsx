@@ -1,4 +1,4 @@
-import { Dropdown, Editor, FileUpload, InputText, RadioButton, Button, Checkbox, Calendar, InputSwitch } from 'primereact';
+import { Dropdown, InputText, RadioButton, Button, Checkbox, Calendar, InputSwitch } from 'primereact';
 import * as React from 'react';
 import { BasePage } from '../../../shared/components/base/BasePage';
 import { useBasePage } from '../../../shared/hooks/base-page.hook';
@@ -6,45 +6,47 @@ import './CLPSURM93430.css';
 import ViewTemplate from '../../../shared/components/template/ViewTemplate';
 import { SearchParams } from '../../../core/models/search-params';
 import TextEditor from '../../../shared/components/ui/text-editor/TextEditor';
-import { useState } from 'react';
 import CldFileUpload from '../../../shared/components/CldFileUpload';
 import { updateItemInList } from '../../../shared/utils/com-utils';
 import { QMeasure, Survey, Question, Qoption, Qdaterange } from '../../../core/models/survey';
-import QuestionnaireItem from '../../../shared/components/survey/QuestionnaireItem';
 
 
 //설문 관리 등록
 const CLPSURM93430:React.FC = () => {
     const { goPage } = useBasePage()
 
-
-
-    //목록 버튼
-    const list = () => {
-        goPage('/qsm/list')
-    }
-
-    //삭제 버튼
-    const remove = () => {
-        console.log('삭제')
-    }
-
-    //수정 버튼
-    const edit = () => {
-        console.log('수정')
-    }
+    //설문 공통 ****************************************************************************
     
-    //취소 버튼
-    const cancel = () => {
-        console.log('취소')
-    }
+    //노출구분 라디오
+    const expsOpt = [
+        {name: '내부', key: 'inside'}, 
+        {name: '외부', key: 'outside'},
+    ];
+    
+    const questionTypeOptions = [
+        { name: '단답형', value: 'question' },
+        { name: '장문형', value: 'longForm' },
+        { name: '객관식 질문(단수)', value: 'singularQ' },
+        { name: '객관식 질문(복수)', value: 'mulipleQ' },
+        { name: '척도선택', value: 'measure' },
+        { name: '날짜선택', value: 'date' },
+    ];
 
-    //결과보기 버튼
-    const result =() => {
-        goPage('/qsm/register')
-    }
+    const measureNumOpt = [
+        { name: '1', value: '1' },
+        { name: '2', value: '2' },
+        { name: '3', value: '3' },
+        { name: '4', value: '4' },
+        { name: '5', value: '5' },
+        { name: '6', value: '6' },
+        { name: '7', value: '7' },
+        { name: '8', value: '8' },
+        { name: '9', value: '9' },
+        { name: '10', value: '10' },
+    ];
 
-    //설문지 초기화
+
+    //설문지 초기값
     let survey_initialize:Survey = {
         title: '',                          //설문 제목
         type: {name: '내부', key: 'inside'}, //노출구분 라디오
@@ -59,14 +61,12 @@ const CLPSURM93430:React.FC = () => {
                 requiredToggle: false,      //필수 여부 토글 
                 questionType: '',           //질문유형 선택
 
-                selectedOption: [],         //객관식 질문 - 단수형, 복수형 선택시
+                selectedRadio: {name:'', key:''},  //객관식 질문 - 단수형
+                selectedCheck: [],          //객관식 질문 - 복수형 선택시
                 options: [                  //객관식 질문 옵션목록 
                     {name: '선택 1', key: 'opt0'}, 
                 ],
-                date: {                     //날짜형
-                    fromDate: new Date(),
-                    toDate: new Date()
-                },
+                date: new Date(),           //날짜형
                 measure: {                  //척도형
                     from: '',
                     to: '',
@@ -79,6 +79,13 @@ const CLPSURM93430:React.FC = () => {
     
     //설문지 전체 데이터
     const [survey, setSurvey] = React.useState<Survey>(survey_initialize)
+
+
+    React.useEffect(() => {
+
+        console.log('survey ==>', survey)
+
+    }, [survey])
 
 
     // 설문 > id 번째 문항 내 라디오, 체크박스 옵션 추가 
@@ -156,14 +163,12 @@ const CLPSURM93430:React.FC = () => {
             requiredToggle: false,      //필수 여부 토글 
             questionType: '',           //질문유형 선택
 
-            selectedOption: [],         //객관식 질문 - 단수형, 복수형 선택시
+            selectedRadio: {name:'', key:''},  //객관식 질문 - 단수형
+            selectedCheck: [],         //객관식 질문 - 복수형
             options: [                  //객관식 질문 옵션목록 
                 {name: '선택 1', key: 'opt0'}, 
             ],
-            date: {                     //날짜형
-                fromDate: new Date(),
-                toDate: new Date()
-            },
+            date: new Date(),           //날짜형
             measure: {                  //척도형
                 from: '',
                 to: '',
@@ -207,57 +212,84 @@ const CLPSURM93430:React.FC = () => {
         // console.log('updateQuestions', updateQuestions)
         setSurvey({ ...survey, questions: updateQuestions });
     }
-    
 
-    React.useEffect(() => {
+    // 설문 > 질문 중 체크박스 업데이트
+    const handleSurveyQuestionChkChange = ( e: { value: any, checked: boolean }, q_id:any, checkedList:any ) => {
 
-        console.log('survey ==>', survey)
+        let _selectedCheckboxs = [...checkedList];
 
-    }, [survey])
+        if (e.checked) {
+            _selectedCheckboxs.push(e.value);
+        }
+        else {
+            for (let i = 0; i < _selectedCheckboxs.length; i++) {
+                const selected = _selectedCheckboxs[i];
 
+                if (selected.key === e.value.key) {
+                    _selectedCheckboxs.splice(i, 1);
+                    break;
+                }
+            }
+        }
 
+        // console.log('_selectedCheckboxs', _selectedCheckboxs)
 
-    //설문 공통 ****************************************************************************
-    
-    //노출구분 라디오
-    const expsOpt = [
-        {name: '내부', key: 'inside'}, 
-        {name: '외부', key: 'outside'},
-    ];
-    const [typeCategory, setTypeCategory] = React.useState(expsOpt[1]);
-    
-    const questionTypeOptions = [
-        { name: '단답형', value: 'question' },
-        { name: '장문형', value: 'longForm' },
-        { name: '객관식 질문(단수)', value: 'singularQ' },
-        { name: '객관식 질문(복수)', value: 'mulipleQ' },
-        { name: '척도선택', value: 'measure' },
-        { name: '날짜선택', value: 'date' },
-    ];
+        const updateQuestions:any[] = survey.questions.map((item:any, i:number ) => {
+            if (i === q_id) {
+              return {
+                ...item,
+                selectedCheck: _selectedCheckboxs
+              };
+            } else {
+                return item
+            }
+        });
+        // console.log('updateQuestions', updateQuestions)
 
-    const measureNumOpt = [
-        { name: '1', value: '1' },
-        { name: '2', value: '2' },
-        { name: '3', value: '3' },
-        { name: '4', value: '4' },
-        { name: '5', value: '5' },
-        { name: '6', value: '6' },
-        { name: '7', value: '7' },
-        { name: '8', value: '8' },
-        { name: '9', value: '9' },
-        { name: '10', value: '10' },
-    ];
+        setSurvey({ ...survey, questions: updateQuestions });
+    }
 
-    //설문 2 depth ****************************************************************************
+    // 설문 > 질문 중 척도형 업데이트
+    const handleSurveyMeasureChange = ( q_id:any, type:any, value:any ) => {
+
+        const updateQuestions:any[] = survey.questions.map((item:any, i:number ) => {
+            if (i === q_id) {
+                let measure = Object.assign(item.measure, {[type]: value})
+                return {
+                    ...item,
+                    measure
+                };
+            } else {
+                return item
+            }
+        });
+        // console.log('updateQuestions Measure', updateQuestions)
+        setSurvey({ ...survey, questions: updateQuestions });
+    }
 
     //설문 문항 복제 버튼
-    const copy = ( e:any, q_id:number ) => {
-        console.log(q_id, '복제')
+    const duplicate = ( e:any, quastion:Question ) => {
+        console.log(quastion, '설문 문항 복제')
+
+        setSurvey(prevState => ({
+            ...prevState,        
+            questions: [            
+              ...prevState.questions, 
+              quastion   
+            ]
+        }));
     }
 
     //설문 문항 삭제
     const delt = ( e:any, q_id:number ) => {
-        console.log(q_id, '삭제')
+        console.log(q_id, '설문 문항 삭제')
+
+        const questions = survey.questions.filter((question, i) => i !== q_id )
+
+        setSurvey({
+            ...survey,
+            questions
+        })
     }
 
 
@@ -295,92 +327,30 @@ const CLPSURM93430:React.FC = () => {
         setSelectedCheckboxs(_selectedCheckboxs);
     }
 
-    //체크박스 입력
-    const handleCheckboxChange = (prop: any, key:any, value:any) => {
-        updateItemInList(key, 'name', value, checkboxs, setCheckboxs, 'key')
-    };
-
-    //체크박스 옵션 삭제
-    const deltCheckbox = ( e:any, key:any ) => {
-        // console.log('삭제', e, key)
-
-        setCheckboxs(
-            checkboxs.filter((c:Qoption) =>
-                c.key !== key
-            )
-        );
-    }
-
-    //체크박스 옵션 추가 
-    const addCheckbox = () => {
-        const newOpt = {
-            name: ''
-            , key: 'chk' + checkboxs.length
-        };
-        setCheckboxs([...checkboxs, newOpt])
-    }
-
     //단수형 객관식 ================================================================================================
     //라디오
     const radioOptions:Qoption[] = [
         {name: '옵션1', key: 'radio0'}, 
     ];
 
-    //라디오 전체
-    const [radios, setRadios] = React.useState<Qoption[]>(radioOptions);
-
     //선택한 라디오 옵션
     const [selectedRadio, setselectedRadio] = React.useState(radioOptions[0]);
 
-    //라디오 입력
-    const handleRadioChange = (prop: any, key:any, value:any) => {
-        updateItemInList(key, 'name', value, radios, setRadios, 'key')
-    };
 
-    //라디오 삭제
-    const deltRadio = ( e:any, key:any ) => {
-        // console.log('삭제', e, key)
-
-        setRadios(
-            radios.filter((c:Qoption) =>
-                c.key !== key
-            )
-        );
+    //목록 버튼
+    const list = () => {
+        goPage('/qsm/list')
     }
-
-    //라디오 추가
-    const addRadio = () => {
-        const newRadioOpt = {
-            name: ''
-            , key: 'radio' + radios.length
-        };
-        setRadios([...radios, newRadioOpt])
-    }
-
-    //척도선택 ================================================================================================
     
-    const [measure, setMeasure] = React.useState<QMeasure>({
-        from: undefined,
-        fromLabel: '',
-        to: undefined,
-        toLabel: '',
-    });
+    //취소 버튼
+    const cancel = () => {
+        console.log('취소')
+    }
 
-    const handleMeasureChange = (prop: keyof QMeasure, value:any) => {
-        setMeasure({ ...measure, [prop]: value });
-        // console.log('measure =>', measure)
-    };
-
-    //날짜선택 ================================================================================================
-    const [date, setDate] = React.useState<SearchParams>({
-        fromDate: undefined,
-        toDate: undefined,
-    });
-
-    const handleChange = (prop: keyof SearchParams, value:any) => {
-        setDate({ ...date, [prop]: value });
-    };
-
+    //완료 버튼
+    const confirm =() => {
+        console.log('완료')
+    }
 
     //api 읽어와서 업데이트 할 내용
     const authorInfo = {
@@ -405,7 +375,7 @@ const CLPSURM93430:React.FC = () => {
     return(
     <BasePage>
         {/* 등록자 정보 */}
-        {/* <ViewTemplate {...authorInfo} /> */}
+        <ViewTemplate {...authorInfo} />
 
         {/* 상세 내용 */}
         <div className='view-container'>
@@ -459,31 +429,13 @@ const CLPSURM93430:React.FC = () => {
                         </tr>
                         <tr>
                             <td colSpan={4}>
-<>
-                                {/* <div className='survey'>
-                                    {
-                                        questions.map((item, index) => 
-                                            <QuestionnaireItem 
-                                                key={`q-${index}`}
-                                                question={question_items}
-                                                copy={(e:any) => copy(e, index)}
-                                                delt={(e:any) => delt(e, index)}
-                                            />
-                                        )
-                                    }
-
-                                    <div className='d-flex justify-center'>
-                                        <Button className='iconBtnAdd p-button-text mr10' icon='pi pi-plus-circle' 
-                                                onClick={addQuestion} />
-                                    </div>
-                                </div> */}
-</>
                                 <div className='survey'>
                                     {/* 복제, 삭제, 추가 범위 시작 --------------------------------------------------------------------------------------- */}
                                     {
                                         survey.questions.map(( question, q_id ) => (
 
-                                        <div className='surveyBox' key={`survey-q-${q_id}`}>
+                                        <React.Fragment key={`survey-q-${q_id}`}>
+                                            <div className='surveyBox'>
                                             <div className='mb10'>
                                                 <div className='d-flex mb10'>
                                                     <InputText className='mr10' placeholder='질문을 입력해주세요.' value={question.question} 
@@ -509,8 +461,8 @@ const CLPSURM93430:React.FC = () => {
                                                     question.options.map((item, opt_id) => (
                                                         <div key={item.key} className='field-radiobutton mb10 d-flex-default'>
                                                             <RadioButton inputId={item.key} name='radios' value={item} 
-                                                                        onChange={(e) => setselectedRadio(e.value)} 
-                                                                        checked={selectedRadio.key === item.key} disabled={item.key === 'R'} />
+                                                                        onChange={(e) => handleSurveyQuestionChange(q_id, 'selectedRadio', e.value)} 
+                                                                        checked={question?.selectedRadio?.key === item.key} disabled={item.key === 'R'} />
                                                             <InputText className='mr10 ml10' placeholder='옵션' value={item.name} 
                                                                         onChange={(e) => updateOption(q_id, opt_id, item.key, 'name', e.target.value)} />
                                                             <Button className='iconBtn p-button-text mr10' icon='pi pi-times'
@@ -528,8 +480,8 @@ const CLPSURM93430:React.FC = () => {
                                                     question.options.map((item, opt_id) => (
                                                         <div key={item.key} className='field-checkbox mb10 d-flex-default'>
                                                             <Checkbox inputId={item.key} name='check' value={item} 
-                                                                      onChange={onCheckboxChange} 
-                                                                      checked={selectedCheckboxs.some((item:any) => item.key === item.key)} disabled={item.key === 'R'} />
+                                                                      onChange={(e) => handleSurveyQuestionChkChange(e, q_id, question.selectedCheck)} 
+                                                                      checked={question?.selectedCheck?.some((c:any) => c.key === item.key)} disabled={item.key === 'R'} />
                                                             <InputText className='mr10 ml10' placeholder='옵션' value={item.name} 
                                                                        onChange={(e) => updateOption(q_id, opt_id, item.key, 'name', e.target.value)} />
                                                             <Button className='iconBtn p-button-text mr10' icon='pi pi-times' 
@@ -543,21 +495,27 @@ const CLPSURM93430:React.FC = () => {
                                                 // 척도선택 ************************************************************************************ 
                                                 question.questionType === 'measure' ?
                                                 <div>
-                                                    <Dropdown className='mb10' value={measure.from} options={measureNumOpt} onChange={(e) => handleMeasureChange('from', e.target.value)} optionLabel='name' placeholder='전체' />
+                                                    <Dropdown className='mb10' value={question?.measure?.from} options={measureNumOpt} 
+                                                            onChange={(e) => handleSurveyMeasureChange(q_id, 'from', e.target.value)} optionLabel='name' placeholder='전체' />
                                                     <span className='ml10 mr10'>~</span>
-                                                    <Dropdown className='mb10' value={measure.to} options={measureNumOpt} onChange={(e) => handleMeasureChange('to', e.target.value)} optionLabel='name' placeholder='전체' />
+                                                    <Dropdown className='mb10' value={question?.measure?.to} options={measureNumOpt} 
+                                                            onChange={(e) => handleSurveyMeasureChange(q_id, 'to', e.target.value)} optionLabel='name' placeholder='전체' />
                                                     {
-                                                        measure?.from !== undefined &&
+                                                        question?.measure?.from !== undefined && question?.measure?.from !== '' &&
                                                         <div className='d-flex-default'>
-                                                            <span className='mr10 text-bold labelScale'>{measure.from}</span>
-                                                            <InputText className='mr10' placeholder='라벨을 입력해주세요(예. 아주 안좋음)' value={measure.fromLabel} onChange={(e) => handleMeasureChange('fromLabel', e.target.value)} /> 
+                                                            <span className='mr10 text-bold labelScale'>{question?.measure?.from}</span>
+                                                            <InputText className='mr10' placeholder='라벨을 입력해주세요(예. 아주 안좋음)' 
+                                                                    value={question?.measure?.fromLabel} 
+                                                                    onChange={(e) => handleSurveyMeasureChange(q_id, 'fromLabel', e.target.value)} /> 
                                                         </div>
                                                     }
                                                     {
-                                                        measure?.to !== undefined &&
+                                                        question?.measure?.to !== undefined && question?.measure?.to !== '' &&
                                                         <div className='d-flex-default mt10'>
-                                                            <span className='mr10 text-bold labelScale' flex-col='1'>{measure.to}</span>
-                                                            <InputText className='mr10' placeholder='라벨을 입력해주세요(예. 아주 좋음)' value={measure.toLabel} onChange={(e) => handleMeasureChange('toLabel', e.target.value)} /> 
+                                                            <span className='mr10 text-bold labelScale' flex-col='1'>{question?.measure?.to}</span>
+                                                            <InputText className='mr10' placeholder='라벨을 입력해주세요(예. 아주 좋음)' 
+                                                                    value={question?.measure?.toLabel} 
+                                                                    onChange={(e) => handleSurveyMeasureChange(q_id, 'toLabel', e.target.value)} /> 
                                                         </div>
                                                     }
                                                 </div>
@@ -565,26 +523,24 @@ const CLPSURM93430:React.FC = () => {
                                                 // 날짜선택 ************************************************************************************
                                                 question.questionType === 'date' ?
                                                 <div className=''>
-                                                    {/* <Calendar dateFormat='yy.mm.dd' value={question.date.fromDate} 
-                                                              onChange={(e) => handleSurveyQuestionChange(q_id, 'date.fromDate', e.value)} showIcon /> */}
+                                                    <Calendar dateFormat='yy.mm.dd' value={question?.date} 
+                                                              onChange={(e) => handleSurveyQuestionChange(q_id, 'date', e.value)} showIcon />
                                                 </div>
                                                 :
                                                 <></>
                                             }
                                             </div>
                                             </div>
-                                            
                                             <div className='d-flex'>
-                                                <Button className='ml-auto outline text-bold mr5' onClick={(e) => copy(e, q_id)}>복제</Button>
+                                                <Button className='ml-auto outline text-bold mr5' onClick={(e) => duplicate(e, question)}>복제</Button>
                                                 <Button className='' onClick={(e) => delt(e, q_id)}>삭제</Button>
                                             </div>
                                         </div>
-
+                                        </React.Fragment>
                                         ))
                                     }
-                                    
                                     {/* 복제, 삭제, 추가 범위 끝 ---------------------------------------------------------------------------------------- */}
-
+                                    
                                     {/* 추가 버튼 */}
                                     <div className='d-flex justify-center'>
                                         <Button className='iconBtnAdd p-button-text mr10' icon='pi pi-plus-circle' onClick={addQuestion} />
@@ -605,8 +561,8 @@ const CLPSURM93430:React.FC = () => {
             </div>
             <div className='cld-col-6 text-center'></div>
             <div className='cld-col-3 d-flex'>
-                <Button className='ml-auto outline' onClick={edit}>수정</Button>
-                <Button className='ml5' onClick={remove}>삭제</Button>
+                <Button className='ml-auto outline' onClick={cancel}>취소</Button>
+                <Button className='ml5' onClick={confirm}>완료</Button>
             </div>
         </div>
     </BasePage>)

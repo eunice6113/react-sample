@@ -25,11 +25,12 @@ export interface Question {
     questionType: string; //질문유형 선택
 
     //객관식 질문 - 단수형, 복수형 선택시
-    selectedOption?: any[]; //선택한 것 - 등록시는 비어도 됨. 라디오는 1개만, 체크는 여러개 key 를 가질 수 있다
+    selectedRadio?: Qoption; //선택한 것 - 등록시는 비어도 됨. 라디오는 1개만, 체크는 여러개 key 를 가질 수 있다
+    selectedCheck?: Qoption[]; //선택한 것 - 등록시는 비어도 됨. 라디오는 1개만, 체크는 여러개 key 를 가질 수 있다
     options: Qoption[];
 
     //날짜형
-    date?: Qdaterange;
+    date?: Date;
 
     //척도형
     measure?: QMeasure;
