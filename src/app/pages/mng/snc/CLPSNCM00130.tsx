@@ -1,12 +1,12 @@
 import * as React from 'react';
+import { Button, confirmDialog, InputText } from "primereact";
 import { BasePage } from '../../../shared/components/base/BasePage';
-import { InputText } from 'primereact/inputtext';
-import './CLPUATM90200.css';
-import NoData from '../../../shared/components/ui/NoData';
+import './CLPSNCM00130.css';
+import { DataTable } from 'primereact/datatable';
+import { Column } from 'primereact/column';
 import { Tree } from 'primereact/tree';
-import { Button } from 'primereact/button';
-import ViewTemplate from '../../../shared/components/template/ViewTemplate';
-import { confirmDialog, RadioButton } from 'primereact';
+import { asignDummyData } from '../../../shared/demo/data/asignDummyData';
+
 
 const nodeDemo = [
     {
@@ -44,8 +44,9 @@ interface AutMenuNode {
     children?: AutMenuNode[];
 }
 
-//사용자 권한 관리
-const CLPUATM90200: React.FC = () => {
+//설문 관리 상세/수정
+const CLPSNCM00130:React.FC = () => {
+
 
     //기본 트리 노드 데이터
     const [nodes, setNodes] = React.useState<any>([]);
@@ -67,12 +68,6 @@ const CLPUATM90200: React.FC = () => {
 
     //검색
     const [search, setSearch] = React.useState<string>('');
-
-    //권한선택 라디오 버튼
-    const authority = [
-        {name: '일반사용자', key: 'user'}, 
-        {name: '관리자', key: 'admin'}];
-    const [selectedAuthority, setSelectedAuthority] = React.useState(authority[0]);
 
     //초기화, 트리 노드 데이터 불러와서 읽힘
     React.useEffect(() => {
@@ -141,13 +136,11 @@ const CLPUATM90200: React.FC = () => {
             </span>
         )
     }
-
     //선택한 메뉴 조회
     const viewNode = ( node:any ) => {
         console.log('viewNode', node.key as number, node)
 
     }
-
     //검색
     const handleSearch = () => {
 
@@ -160,76 +153,67 @@ const CLPUATM90200: React.FC = () => {
             },
         })
     }
+    
+    //table page length
+    let pages = 5;
 
-    //확인
-    const confirm = () => {
+    //table
+    const [first, setFirst] = React.useState(0);
+    const [rows, setRows] = React.useState(5);
+
+    const goDetail = ( e:any ) => {
+        console.log('clicked row =>', e.index)
+    }
+
+    const onCustomPage = (event:any) => {
+        setFirst(event.first);
+        setRows(event.rows);
+    }
+
+ //결재구분 리스트
+ const headerTemplateAsign = [
+    {
+        field: 'no',
+        header: '',
+        sortable: false,
+    },
+    {
+        field: 'department',
+        header: '부서',
+        sortable: false,
+    },
+    {
+        field: 'name',
+        header: '성명',
+        sortable: false,
+    },
+    {
+        field: 'position',
+        header: '직급',
+        sortable: false,
+    },
+    {
+        field: 'delt',
+        header: '직급',
+        sortable: false,
+    },
+]
+    
+
+
+    //alert
+    // confirm
+    
+    const showTitlePopup = () => {
 
         confirmDialog({
-            message: `${selectedNode.department}에 속한\n조직원들의 권한 부여가 완료되었습니다`,
-            acceptLabel: '확인',
-            className: 'noHeader oneButton',
-            accept: () => {
-                
-            },
-        })
-
-    }
-
-    //권한 변경
-    const contentsInfo = {
-        hasRequired: true,
-        colgroups: ['180px', '*'],
-        rows: [
-            {
-                thOnly: {
-                    key: selectedNode?.children === undefined ? '개인별 권한선택' : '조직별 권한선택',
-                },
-            },
-            {
-                cols: [
-                    {
-                        key: '조직명', 
-                        value: <span>{selectedNode?.department}</span>,
-                    },
-                ]
-            },
-            {
-                showIf: selectedNode?.children === undefined,
-                cols: [
-                    {
-                        key: '성명', 
-                        value: <span>{selectedNode.name}</span>,
-                    },
-                ]
-            },
-            {
-                cols: [
-                    {
-                        key: '권한',
-                        value: <>
-                        {
-                            authority.map((aut) => (
-                                <span key={'aut' + aut.key} className='field-radiobutton mr20'>
-                                    <RadioButton inputId={aut.key} name='auth' value={aut} 
-                                        onChange={(e) => setSelectedAuthority(e.value)} 
-                                        checked={selectedAuthority.key === aut.key} disabled={aut.key === 'R'} />
-                                    <label htmlFor={aut.key}>{aut.name}</label>
-                                </span>
-                            ))
-                        }
-                        </>
-                    }
-                ]
-            },
-        ]
-    }
-    
-    return(
-    <BasePage className='CLPMNUM90900'>
-
-        <div className='treeContainer mt30'>
+            header: '결재요청 팝업',
+            message: 
+                <>
+                <div>
+    <div className='treeContainer mt30'>
             <div className='treeLeftContainer mr10'>
-                <h5 className='mb10'>전체 메뉴</h5>
+               
                 <div className='box treeBox'>
 
                     <div className='d-flex'>
@@ -255,23 +239,36 @@ const CLPUATM90200: React.FC = () => {
                 </div>
             </div>
             <div className='treeRightContainer ml10'>
-                <div className='box treeBox'>
-                    {
-                        selectedKey === null ?
-                        <div className='treeNodata'>
-                            <NoData isTriangleIcon={true} isVertical={true} message='좌측의 조직, 성명을 선택해주세요.' />
-                        </div>
-                        :
-                        // 권한 조회/수정
-                        <ViewTemplate {...contentsInfo} className='mt0' />
-                    }
-                    <div className='text-center mt20'>
-                        <Button className='md' onClick={confirm} label='확인' />
-                    </div>
+                <h5 className='mb10'>기본 결재선 지정</h5>
+                <DataTable value={asignDummyData} 
+                    className="asign"
+                    onRowClick={(e) => goDetail(e)}
+                    first={first} rows={rows} 
+                    onPage={onCustomPage} responsiveLayout='scroll'>
+                    {headerTemplateAsign.map((col, index) => (
+                        <Column key={col.header} field={col.field} header={col.header} ></Column>
+                    ))}
+                </DataTable>
+                <div className='justify-center d-flex mt20'>
                 </div>
             </div>
         </div>
+    </div>
+                </>
+            ,
+            rejectLabel: '취소',
+            acceptLabel: '확인',
+            accept: () => {},
+            reject: () => {}
+        })
+    }
 
+    
+   
+    return(
+        <BasePage className='CLPSNCM00130'>
+        <Button label='제목이 있는 팝업' onClick={showTitlePopup} />
+       
     </BasePage>)
 }
-export default CLPUATM90200;
+export default CLPSNCM00130;

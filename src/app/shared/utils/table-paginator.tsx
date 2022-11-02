@@ -1,7 +1,7 @@
 import { classNames, Dropdown, Ripple } from "primereact";
 
 export const paginator:any = {
-    layout: 'PrevPageLink PageLinks NextPageLink RowsPerPageDropdown CurrentPageReport',
+    layout: 'PrevPageLink PageLinks NextPageLink RowsPerPageDropdown',
     'PrevPageLink': (options:any) => {
         return (
             <button type="button" className={options.className} onClick={options.onClick} disabled={options.disabled}>
@@ -34,6 +34,7 @@ export const paginator:any = {
     },
     'RowsPerPageDropdown': (options:any) => {
         const dropdownOptions = [
+            { label: 5, value: 5 },
             { label: 10, value: 10 },
             { label: 20, value: 20 },
             { label: 50, value: 50 },

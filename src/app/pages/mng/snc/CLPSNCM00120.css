@@ -1,0 +1,71 @@
+.p-datatable .p-datatable-tbody > tr > td:nth-child(2) {
+    color: var(--brand-primary)
+}
+.p-datatable.snc tr th, 
+.p-datatable.snc tr td {
+    text-align: center;
+}
+.p-datatable.snc tr th:first-child {
+    width: 10%;
+    color:gray;
+}
+.p-datatable.snc tr th:nth-child(2) {
+    width: 20%;
+}
+.p-datatable.snc tr th:nth-child(3) {
+    width: 45%;
+}
+.p-datatable.snc tr th:nth-child(4) {
+    width: 25%;
+}
+
+.approvalTable{
+    display: flex;
+    width:100%;
+    gap: 20px;
+    align-items: flex-start;
+}
+.approvalTable .p-datatable {
+    width:400px;
+}
+.approvalTable .viewTempWrap{
+    flex:1 1;
+}
+.approvalTable .view-container{
+    margin-top: 0;
+}
+.taskInpWrap{
+    display: flex;
+    gap: 8px;
+}
+.taskInpWrap .taskCode {
+    width:100px;
+}
+.taskInpWrap .taskName {
+    flex: 1.1;
+}
+
+.p-datatable.asign tr th, 
+.p-datatable.asign tr td {
+    text-align: center;
+}
+.p-datatable.asign tr th:first-child {
+    width: 13%;
+    color:gray;
+}
+.p-datatable.asign tr th:nth-child(2) {
+    width: 26%;
+}
+.p-datatable.asign tr th:nth-child(3) {
+    width: 26%;
+}
+.p-datatable.asign tr th:nth-child(4) {
+    width: 26%;
+}
+.p-datatable.asign tr th:nth-child(5) {
+    width: 7%;
+}
+.asign .iconBtn .p-button-icon {
+    color: var(--brand-primary) !important;
+    font-size: 20px;
+}

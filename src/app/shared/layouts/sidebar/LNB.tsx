@@ -250,6 +250,23 @@ const LNB: React.FC<IProps> = ({open, children}) => {
                 },
             ]
         },
+        {
+            label:'결재업무 관리',
+            expanded: curLocation === 'snc',
+            visible: getIsAdmin(),
+            items:[
+                {
+                    label:'결재업무 관리',
+                    url: '/snc',
+                    className: getClsName('/snc')
+                },
+                {
+                    label:'결재요청 팝업',
+                    url: '/snc/popup',
+                    className: getClsName('/snc/popup')
+                },
+            ]
+        },
     ];
 
     React.useEffect(() => {
