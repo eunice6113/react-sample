@@ -154,7 +154,7 @@ const CLPPOPM92220:React.FC = () => {
                         </div>
                     </>,
                     editingValue: <>
-                        <CldFileUpload url='' onUpload={()=>{ }} />
+                        <CldFileUpload name='files' url={''} onUpload={() => {}} multiple accept='image/*' maxFileSize={5000000} maxFileCnt={5} acceptFileType='png,jpg' />
                         <div className='downloadFiles mt10'>
                             <ul className='fileList'>
                                 {

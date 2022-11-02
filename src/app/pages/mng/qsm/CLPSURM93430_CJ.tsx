@@ -6,8 +6,8 @@ import './CLPSURM93430.css';
 import ViewTemplate from '../../../shared/components/template/ViewTemplate';
 import TextEditor from '../../../shared/components/ui/text-editor/TextEditor';
 import CldFileUpload from '../../../shared/components/CldFileUpload';
-import { Survey, Question } from '../../../core/models/survey';
-import Questionnaire from '../../../shared/components/survey/Questionnaire';
+import { Survey, Question } from '../../../core/models/survey_CJ';
+import Questionnaire_CJ from '../../../shared/components/survey/Questionnaire_CJ';
 
 
 //설문 등록
@@ -48,7 +48,7 @@ const CLPSURM93430:React.FC = () => {
     //설문지 초기값
     let survey_initialize:Survey = {
         title: '',                          //설문 제목
-        type: {name: '내부', key: 'inside'}, //노출구분 라디오
+        type: {optCon: '내부', key: 'inside'}, //노출구분 라디오
         daterange: {                        //설문기간
             fromDate: new Date(),
             toDate: new Date()
@@ -60,10 +60,10 @@ const CLPSURM93430:React.FC = () => {
                 requiredToggle: false,      //필수 여부 토글 
                 questionType: '',           //질문유형 선택
 
-                selectedRadio: {name:'', key:''},  //객관식 질문 - 단수형
+                selectedRadio: {optCon:'', key:''},  //객관식 질문 - 단수형
                 selectedCheck: [],          //객관식 질문 - 복수형 선택시
                 options: [                  //객관식 질문 옵션목록 
-                    {name: '선택 1', key: 'opt0'}, 
+                    {optCon: '선택 1', key: 0, optIdx:0 ,optSqc:0 }, 
                 ],
                 date: new Date(),           //날짜형
                 measure: {                  //척도형
@@ -86,13 +86,25 @@ const CLPSURM93430:React.FC = () => {
 
     }, [survey])
 
+    
+    React.useEffect(() => {
+
+        //console.log('여기타나 ==>', survey.questions)
+
+    }, [survey.questions])
+
 
     // 설문 > id 번째 문항 내 라디오, 체크박스 옵션 추가 
     const addOption = ( qst_id:any, qst_opts:any ) => {
 
+        console.log('qst_opts=>',qst_opts)
         const newOption = {
-            name: ''
-            , key: 'opt' + qst_id + Math.random()*100
+            optCon: ''
+            ,key: 'opt' + qst_id + Math.random()*100
+            ,optIdx:qst_id
+            ,optSqc:qst_opts.length +1
+            //,key:''
+            
         };
 
         const questions = survey.questions.map(( question, i ) => {
@@ -114,6 +126,16 @@ const CLPSURM93430:React.FC = () => {
         const questions = survey.questions.map((question, i) => {
             if( i === qst_id ) {
                 const options = question?.options?.filter((item:any) => item.key !== opt_key )
+                
+                // const options = optionssss?.map((item:any, index) => {
+                  
+                //     return {
+                //       ...item,
+                //       optSqc:index
+                //     };
+                  
+                // });
+
                 return { ...question, options }
             }
             return question;
@@ -128,7 +150,12 @@ const CLPSURM93430:React.FC = () => {
     // 설문 > id 번째 문항 내 라디오, 체크박스 옵션 수정
     const updateOption = ( qst_id:any, opt_id:any, opt_key:any, opt_type:any, opt_value:any ) => {
 
-        // console.log('updateOption qst_id', qst_id, 'opt_id', opt_id, 'opt_key', opt_key, 'opt_type', opt_type, 'opt_value', opt_value)
+        console.log('updateOption qst_id', qst_id,
+                     'opt_id', opt_id, 
+                     'opt_key', opt_key, 
+                     'opt_type', opt_type, 
+                     'opt_value', opt_value)
+
         const questions = survey.questions.map(( question, i ) => {
             if( i === qst_id ) {
                 
@@ -137,7 +164,8 @@ const CLPSURM93430:React.FC = () => {
                     if (oid === opt_id) {
                       return {
                         ...item,
-                        [opt_type]: opt_value
+                        [opt_type]: opt_value,
+                        optSqc:opt_id
                       };
                     } else {
                         return item
@@ -162,10 +190,10 @@ const CLPSURM93430:React.FC = () => {
             requiredToggle: false,      //필수 여부 토글 
             questionType: '',           //질문유형 선택
 
-            selectedRadio: {name:'', key:''},  //객관식 질문 - 단수형
+            selectedRadio: {optCon:'', key:''},  //객관식 질문 - 단수형
             selectedCheck: [],         //객관식 질문 - 복수형
             options: [                  //객관식 질문 옵션목록 
-                {name: '선택 1', key: 'opt0'}, 
+                {optCon: '선택 1', key: 0,optIdx:0,optSqc:0}, 
             ],
             date: new Date(),           //날짜형
             measure: {                  //척도형
@@ -262,7 +290,10 @@ const CLPSURM93430:React.FC = () => {
                 return item
             }
         });
-        // console.log('updateQuestions Measure', updateQuestions)
+        
+        console.log('updateQuestions Measure', updateQuestions)
+        
+        
         setSurvey({ ...survey, questions: updateQuestions });
     }
 
@@ -270,10 +301,12 @@ const CLPSURM93430:React.FC = () => {
     const duplicate = ( e:any, quastion:Question ) => {
         console.log(quastion, '설문 문항 복제')
 
-        setSurvey(prevState => ({
+
+         setSurvey(prevState => ({
             ...prevState,        
             questions: [            
               ...prevState.questions, 
+              //quastion
               quastion   
             ]
         }));
@@ -303,8 +336,84 @@ const CLPSURM93430:React.FC = () => {
 
     //완료 버튼
     const confirm =() => {
-        console.log('완료')
+        test()
+
     }
+
+    const test =() => {
+      
+        console.log('조립전 ==>', survey)
+
+
+
+        const questions = survey.questions?.map((question, i:any) => {
+           
+            console.log('test~~ ==>',i,'번째', question)
+           
+            // const justOption = question.questionType == "measure"?
+            // {
+            //  return [{optCon:question.measure?.fromLabel, key: 0, optIdx:0 ,optSqc:question.measure?.from },
+            //         {optCon: question.measure?.toLabel, key: 1, optIdx:0 ,optSqc:question.measure?.to }]
+            
+            // }
+
+           // console.log('justOption', justOption)
+
+            //const justOption = question?.options
+
+            // if(question.questionType == "measure"){
+                
+            //     const test ={optCon:question.measure?.fromLabel, key: 0, optIdx:0 ,optSqc:question.measure?.from },
+            //         {optCon: question.measure?.toLabel, key: 1, optIdx:0 ,optSqc:question.measure?.to };
+            
+            //     //console.log('test~~ ==>',i,'번째 question.measure:', question.measure)
+            //     question.options?.concat(test)
+              
+            //     return {
+            //         ...question,
+            //         options: [{optCon:question.measure?.fromLabel, key: 0, optIdx:0 ,optSqc:question.measure?.from },
+            //             {optCon: question.measure?.toLabel, key: 1, optIdx:0 ,optSqc:question.measure?.to }]
+            //     };
+            // }else{
+            //     return {
+            //         ...question,
+            //         options: question?.options
+            //     };
+            // }
+   
+
+            const newOption = question?.options?.map((item:any, index) => {
+                return {
+                    ...item,
+                    optIdx:i,
+                    optSqc:index
+                };
+
+            });
+
+
+            return {
+                ...question,
+                bigidx:i,
+                options: newOption
+            };
+
+        })
+
+   
+        //console.log('조립후!!!!!!!!!=>', newQuestion)
+        console.log('조립후!!!!!!!!!=>', questions)
+
+
+        setSurvey({
+            ...survey,
+            questions
+        })
+       // setSurvey({ ...survey, questions: updateQuestions });
+        console.log('완료 ==>', survey)
+
+    }
+
 
     //api 읽어와서 업데이트 할 내용
     const authorInfo = {
@@ -387,7 +496,7 @@ const CLPSURM93430:React.FC = () => {
                                     {/* 복제, 삭제, 추가 범위 시작 --------------------------------------------------------------------------------------- */}
                                     {
                                         survey.questions.map(( question, q_id ) => (
-                                            <Questionnaire 
+                                            <Questionnaire_CJ 
                                                 key={`survey-q-${q_id}`}
                                                 q_id={q_id}
                                                 question={question}

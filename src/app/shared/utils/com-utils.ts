@@ -1,9 +1,18 @@
-export const updateItemInList = ( id:number, type:any, typeValue:any, items:any, setItemsFunction:Function ) => {
+export const updateItemInList = ( 
+    id:any, 
+    type:any, 
+    typeValue:any, 
+    items:any, 
+    setItemsFunction:Function, 
+    key?:any
+) => {
+
+    key = key === undefined ? 'id' : key;
 
     const updateItems:any[] = items.map((item:any) => {
         // console.log('updateItems item.id', item.id, 'id', id)
         
-        if (item.id === id) {
+        if (item[key] === id) {
           return {
             ...item,
             [type]: typeValue

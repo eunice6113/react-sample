@@ -19,8 +19,6 @@ const Comment:React.FC<IComment> = ({
     delt
 }) => {
    
-    console.log('Comment id =>', id)
-
     //등록
     const _register = () => {
         register && register()
@@ -58,7 +56,6 @@ const Comment:React.FC<IComment> = ({
                         <>
                             <InputTextarea value={value} 
                                            onChange={setValue}
-                                        //    onChange={(e) => setValue(e.target.value)} 
                                            rows={5} cols={30} />
                             <div className='btn-container mt4'>
                                 <Button className='ml-auto outline' onClick={_cancel}>취소</Button>

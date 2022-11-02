@@ -1,0 +1,55 @@
+.CLPSURM93600 .subDate {
+    background-color: #EDF4FF !important;
+    color: #333;
+}
+
+.CLPSURM93600 .subDate .p-button-label {
+    color: #333;
+}
+
+.CLPSURM93600 .dateLabel {
+    margin-right: 5px;
+}
+
+.CLPSURM93600 .dateLabel:last-child {
+    margin-right: 0;
+}
+
+.CLPSURM93600 .surveyInfo {
+    font-size: 14px;
+    color: var(--label-off-text-color);
+}
+
+.CLPSURM93600 .surveyAnswerBox {
+    padding: 10px;
+    background-color: #F7F8F9;
+    border-radius: var(--borderRadius-lg);
+    margin-bottom: 10px;
+}
+
+.CLPSURM93600 .surveyAnswerBox:last-child {
+    margin-bottom: 0;
+}
+
+.CLPSURM93600 .pieChart {
+    width: 200px;
+    margin:0 auto;
+}
+
+.CLPSURM93600 .horBarChart {
+    width:100%;
+}
+
+.CLPSURM93600 .barChart {
+    width:100%;
+}
+
+.CLPSURM93600 .voteDate {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.CLPSURM93600 .voteDate:last-child {
+    margin-bottom: 0;
+}

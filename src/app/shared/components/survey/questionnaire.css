@@ -1,0 +1,70 @@
+
+/* 설문 관리 */
+.survey {
+  margin:20px 10px;
+}
+
+.surveyBox {
+  padding: 10px;
+  width:100%;
+  border: 1px solid var(--global-border-color);
+  border-radius: var(--borderRadius-sm);
+  margin-bottom: 20px;
+}
+
+.scaleWrap {
+  display: flex;
+  align-items: center;
+}
+.scale{
+  position:relative;
+  display: inline-block;
+  height: 40px;
+  width:16px;
+  margin-right: 20px;
+}
+.scale .p-radiobutton {
+  position:absolute;
+  top:20px;
+  left:50%;
+  margin-left:-8px;
+}
+.scale label{
+  width:100%;
+  text-align: center;
+  display:inline-block;
+  font-size: 11px;
+  color:#888888;
+}
+.surveyBox .swichText{
+  width:30px;
+  display: block;
+}
+.iconBtn{
+  width: 23px;
+  height: 23px;
+  background: transparent !important;
+}
+.iconBtn .p-button-icon {
+  color: var(--brand-brand-gray) !important;
+  font-size: 23px;
+}
+.iconBtn .p-button-icon:hover{
+  color: var(--brand-primary) !important;
+}
+.labelScale{
+  width:var(--space-md);
+}
+.iconBtnAdd{
+  background: transparent !important;
+  width: 50px;
+  height: 50px;
+  color:#ccc;
+}
+.iconBtnAdd .p-button-icon {
+  color: var(--gray-scale-gray500) !important;
+  font-size: 48px;
+}
+.iconBtnAdd .p-button-icon:hover {
+  color: var(--gray-scale-gray800) !important;
+}

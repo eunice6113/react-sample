@@ -129,9 +129,9 @@ const CLPNTCM91020:React.FC = () => {
                     {
                         key: '첨부파일', 
                         value: <><i className='pi pi-download mr5 downloadIco'></i><u>파일명.xlsx</u></>,
-                        editingValue: <CldFileUpload url='' onUpload={()=>{ }} />
+                        editingValue: <CldFileUpload name='files' url={''} onUpload={() => {}} multiple accept='image/*' maxFileSize={5000000} maxFileCnt={5} acceptFileType='png,jpg' />
                     },
-                ]
+            ]
             },
             {
                 cols: [
