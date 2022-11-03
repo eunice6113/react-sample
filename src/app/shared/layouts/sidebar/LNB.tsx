@@ -265,6 +265,11 @@ const LNB: React.FC<IProps> = ({open, children}) => {
                     url: '/snc/popup',
                     className: getClsName('/snc/popup')
                 },
+                {
+                    label:'결재내역(승인/반려)',
+                    url: '/snc/list',
+                    className: getClsName('/snc/list')
+                },
             ]
         },
     ];

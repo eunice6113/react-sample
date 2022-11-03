@@ -95,6 +95,7 @@ const CLPCATM95720 = Loadable(lazy(() => import('../pages/mng/apm/tfc/CLPCATM957
 //결재업무 관리
 const CLPSNCM00120 = Loadable(lazy(() => import('../pages/mng/snc/CLPSNCM00120')));
 const CLPSNCM00130 = Loadable(lazy(() => import('../pages/mng/snc/CLPSNCM00130')));
+const CLPSNCM00140 = Loadable(lazy(() => import('../pages/mng/snc/CLPSNCM00140')));
 
 
 //운영 관리(크로센트) ==================================================================================
@@ -360,6 +361,7 @@ const adminRoutes = [
         children: [
           {path: '', name:'사용자 권한 관리', element: <CLPSNCM00120 />},
           {path: 'popup', name:'사용자 접속이력 관리', element: <CLPSNCM00130 />},
+          {path: 'list', name:'사용자 접속이력 관리', element: <CLPSNCM00140 />},
         ],
       },
       

@@ -1,11 +1,15 @@
 import * as React from 'react';
-import { Button, confirmDialog, InputText } from "primereact";
+import { Button, InputText, InputTextarea, confirmDialog } from "primereact";
 import { BasePage } from '../../../shared/components/base/BasePage';
 import './CLPSNCM00130.css';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { Tree } from 'primereact/tree';
 import { asignDummyData } from '../../../shared/demo/data/asignDummyData';
+import { Dialog } from 'primereact/dialog';
+import { useState } from 'react';
+import ViewTemplate from '../../../shared/components/template/ViewTemplate';
+import CldFileUpload from "../../../shared/components/CldFileUpload";
 
 
 const nodeDemo = [
@@ -144,14 +148,7 @@ const CLPSNCM00130:React.FC = () => {
     //검색
     const handleSearch = () => {
 
-        confirmDialog({
-            message: '검색결과가 없습니다.',
-            acceptLabel: '확인',
-            className: 'noHeader oneButton',
-            accept: () => {
-
-            },
-        })
+        
     }
     
     //table page length
@@ -170,105 +167,194 @@ const CLPSNCM00130:React.FC = () => {
         setRows(event.rows);
     }
 
- //결재구분 리스트
- const headerTemplateAsign = [
-    {
-        field: 'no',
-        header: '',
-        sortable: false,
-    },
-    {
-        field: 'department',
-        header: '부서',
-        sortable: false,
-    },
-    {
-        field: 'name',
-        header: '성명',
-        sortable: false,
-    },
-    {
-        field: 'position',
-        header: '직급',
-        sortable: false,
-    },
-    {
-        field: 'delt',
-        header: '직급',
-        sortable: false,
-    },
-]
-    
+    //결재구분 리스트
+    const headerTemplateAsign = [
+        {
+            field: 'no',
+            header: '',
+            sortable: false,
+        },
+        {
+            field: 'department',
+            header: '부서',
+            sortable: false,
+        },
+        {
+            field: 'name',
+            header: '성명',
+            sortable: false,
+        },
+        {
+            field: 'position',
+            header: '직급',
+            sortable: false,
+        },
+        {
+            field: 'delt',
+            header: '직급',
+            sortable: false,
+        },
+    ]
+        
 
+    //dialog
+    const [mode, setMode] = React.useState<'view' | 'edit' | 'register'>('edit');
+    const [displayBasic2, setDisplayBasic2] = useState(false);
+    const [position, setPosition] = useState('center');
+    const [taskID, setTaskID] = React.useState('');
+    const [content, setContent] = React.useState('');
 
-    //alert
-    // confirm
-    
-    const showTitlePopup = () => {
+    const onClick = (name:any, position?:any) => {
+        setDisplayBasic2(true)
 
-        confirmDialog({
-            header: '결재요청 팝업',
-            message: 
-                <>
-                <div>
-    <div className='treeContainer mt30'>
-            <div className='treeLeftContainer mr10'>
-               
-                <div className='box treeBox'>
-
-                    <div className='d-flex'>
-                        <InputText placeholder='조직명, 성명으로 검색하세요.' value={search} onChange={(e) => setSearch(e.target.value)} />
-                        <Button type='button' className='md ml10' label='조회' onClick={handleSearch}  />
-                    </div>
-                    <hr className='innerLine'/>
-
-                    <div className='d-flex'>
-                        <Button type='button' className='grayBtn mb10 ml-auto' label={open ? '전체열기':'전체닫기'} onClick={open ? expandAll : collapseAll}  />
-                    </div>
-                    <Tree 
-                        value={nodes} 
-                        expandedKeys={expandedKeys} 
-                        onToggle={(e:any) => setExpandedKeys(e.value)} 
-                        nodeTemplate={nodeTemplate}
-                        selectionMode='single' 
-                        selectionKeys={selectedKey} 
-                        onSelectionChange={(e:any) => setSelectedKey(e.value)}
-                        onSelect={handleNodeSelect} 
-                        onUnselect={handleNodeUnselect}
-                    />
-                </div>
-            </div>
-            <div className='treeRightContainer ml10'>
-                <h5 className='mb10'>기본 결재선 지정</h5>
-                <DataTable value={asignDummyData} 
-                    className="asign"
-                    onRowClick={(e) => goDetail(e)}
-                    first={first} rows={rows} 
-                    onPage={onCustomPage} responsiveLayout='scroll'>
-                    {headerTemplateAsign.map((col, index) => (
-                        <Column key={col.header} field={col.field} header={col.header} ></Column>
-                    ))}
-                </DataTable>
-                <div className='justify-center d-flex mt20'>
-                </div>
-            </div>
-        </div>
-    </div>
-                </>
-            ,
-            rejectLabel: '취소',
-            acceptLabel: '확인',
-            accept: () => {},
-            reject: () => {}
-        })
+        if (position) {
+            setPosition(position);
+        }
     }
 
+    const onHide = (name:string) => {
+        setDisplayBasic2(false)
+    }
+
+    const renderFooter = (name:any) => {
+        return (
+            <div className='buttonGrp'>
+                <Button label="취소" onClick={() => onHide(name)} className="outline md " />
+                <Button label="확인" onClick={() => onHide(name)} autoFocus className="md" />
+            </div>
+        );
+    }
+
+    
+    const tableContent= {
+        mode: mode,
+        hasRequired: true,
+        colgroups: ['150px', '*'],
+        rows: [
+            {
+                cols: [
+                    {
+                        required: true,
+                        key: '제목', 
+                        editingValue: <InputText className="" placeholder="업무화면 ID를 입력해주세요." value={taskID} onChange={(e) => setTaskID(e.target.value)} />,
+
+                    },
+                ]
+            },
+            {
+                cols: [
+                    {
+                        required: true,
+                        key: '결재요청 내용', 
+                        editingValue: <InputTextarea value={content} onChange={(e) => setContent(e.target.value)} rows={5} cols={30} />
+
+
+                    },
+                ]
+            },
+            {
+                cols: [
+                    {
+                        required: true,
+                        key: '결재요청 내용', 
+                        editingValue:<CldFileUpload name='files' url={''} onUpload={() => {}} multiple accept='image/*' maxFileSize={5000000} maxFileCnt={5} acceptFileType='png,jpg' />
+
+
+
+                    },
+                ]
+            },
+            
+        ]
+    }
     
    
     return(
         <BasePage className='CLPSNCM00130'>
-        <Button label='제목이 있는 팝업' onClick={showTitlePopup} />
+            <Button label="결제요청 팝업" onClick={() => onClick('displayBasic2')} />
+                <Dialog header="결제요청 팝업" visible={displayBasic2} style={{ width: '80vw' }} footer={renderFooter('displayBasic2')} onHide={() => onHide('displayBasic2')}>
+
+                <>
+                    <div className='popupContents'>
+                        <div className='treeContainer '>
+                            <div className='treeLeftContainer mr10'>
+                            
+                                <div className='box treeBox'>
+
+                                    <div className='d-flex'>
+                                        <InputText placeholder='조직명, 성명으로 검색하세요.' value={search} onChange={(e) => setSearch(e.target.value)} />
+                                        <Button type='button' className='md ml10' label='조회' onClick={handleSearch}  />
+                                    </div>
+                                    <hr className='innerLine'/>
+
+                                    <div className='d-flex'>
+                                        <Button type='button' className='grayBtn mb10 ml-auto' label={open ? '전체열기':'전체닫기'} onClick={open ? expandAll : collapseAll}  />
+                                    </div>
+                                    <Tree 
+                                        value={nodes} 
+                                        expandedKeys={expandedKeys} 
+                                        onToggle={(e:any) => setExpandedKeys(e.value)} 
+                                        nodeTemplate={nodeTemplate}
+                                        selectionMode='single' 
+                                        selectionKeys={selectedKey} 
+                                        onSelectionChange={(e:any) => setSelectedKey(e.value)}
+                                        onSelect={handleNodeSelect} 
+                                        onUnselect={handleNodeUnselect}
+                                    />
+                                </div>
+                            </div>
+                            <div className='treeRightContainer ml10'>
+                                <DataTable value={asignDummyData} 
+                                    className="asign"
+                                    onRowClick={(e) => goDetail(e)}
+                                    first={first} rows={rows} 
+                                    onPage={onCustomPage} responsiveLayout='scroll'>
+                                    {headerTemplateAsign.map((col, index) => (
+                                        <Column key={col.header} field={col.field} header={col.header} ></Column>
+                                    ))}
+                                </DataTable>
+                                <div className='justify-center d-flex mt20'>
+                                </div>
+                            </div>
+                        </div>
+                        <div className='request'>
+                        <table className='cld-table requestTb'>
+                                        <tr>
+                                            <th>팀원</th>
+                                            <th>팀장</th>
+                                            <th>부점장</th>
+                                            
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                요청<br />
+                                                <span className='color-primary'>허승회</span><br />
+                                                과장
+                                            </td>
+                                            <td>
+                                                요청<br />
+                                                <span className='color-primary'>허승회</span><br />
+                                                과장
+                                            </td>
+                                            <td>
+                                                요청<br />
+                                                <span className='color-primary'>허승회</span><br />
+                                                과장
+                                            </td>
+                                        </tr>
+                                </table>
+                            <ViewTemplate {...tableContent} />
+                                
+
+
+                        </div>
+                    </div>
+                </>
+
+                </Dialog>
+
+                
        
-    </BasePage>)
+        </BasePage>)
 }
 export default CLPSNCM00130;

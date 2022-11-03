@@ -168,3 +168,15 @@
 .iconBtnAdd .p-button-icon:hover {
   color: var(--gray-scale-gray800) !important;
 }
+.p-dialog .p-dialog-footer{
+  border-top: 1px solid var(--global-border-color) !important;
+  padding: 10px 20px !important;
+  justify-content: center;
+}
+.buttonGrp {
+  display: flex;
+  justify-content: space-between;
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+}
