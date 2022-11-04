@@ -1,6 +1,11 @@
 .CLPSNCM00130 .p-confirm-dialog{
     width:800px !important; 
 }
+.popupContents .treeBox{
+    max-height: 400px;
+    overflow-y: scroll;
+    margin-bottom: 20px;
+}
 .popupContents .treeContainer .treeLeftContainer{
     width:300px;
 }

@@ -4,25 +4,37 @@
 .popupContents .treeContainer .treeLeftContainer{
     width:300px;
 }
-.p-datatable.asign tr th, 
-.p-datatable.asign tr td {
+.p-datatable.approvalList tr th, 
+.p-datatable.approvalList tr td {
     text-align: center;
 }
-.p-datatable.asign tr th:first-child {
-    width: 13%;
+.p-datatable.approvalList tr th:first-child {
+    width: 2%;
     color:gray;
 }
-.p-datatable.asign tr th:nth-child(2) {
-    width: 26%;
+.p-datatable.approvalList tr th:nth-child(2) {
+    width: 3%;
 }
-.p-datatable.asign tr th:nth-child(3) {
-    width: 26%;
-}
-.p-datatable.asign tr th:nth-child(4) {
-    width: 26%;
-}
-.p-datatable.asign tr th:nth-child(5) {
+.p-datatable.approvalList tr th:nth-child(3) {
     width: 7%;
+}
+.p-datatable.approvalList tr th:nth-child(4) {
+    width: 9%;
+}
+.p-datatable.approvalList tr th:nth-child(5) {
+    width: 19%;
+}
+.p-datatable.approvalList tr th:nth-child(6) {
+    width: 15%;
+}
+.p-datatable.approvalList tr th:nth-child(7) {
+    width: 15%;
+}
+.p-datatable.approvalList tr th:nth-child(8) {
+    width: 15%;
+}
+.p-datatable.approvalList tr th:nth-child(9) {
+    width: 15%;
 }
 .request {
      display: flex;
