@@ -13,8 +13,9 @@ export const BasePage: React.FC<IProps> = ({className, children}) => {
     const location = useLocation();
     const curLocation = location.pathname.split('/')
     let pageTitle = '';
-    let subTitle = '';
     const routes = adminRoutes;
+
+    console.log('location.pathname', location.pathname)
 
     // const matches = useMatches();
 
@@ -78,9 +79,12 @@ export const BasePage: React.FC<IProps> = ({className, children}) => {
     }, [location.pathname]);
     
     return(<>
-        <PageTitle title={pageTitle} />
+        {
+            location.pathname !== '/man' && <PageTitle title={pageTitle} />
+        }
+        
         <div className={`pl20 pr20 basePage ${className}`}>
-         {children}
+            {children}
         </div>
     </>)
 }

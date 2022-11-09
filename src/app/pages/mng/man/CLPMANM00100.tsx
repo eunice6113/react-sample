@@ -1,4 +1,3 @@
-import { Chip } from 'primereact';
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { BasePage } from '../../../shared/components/base/BasePage';
