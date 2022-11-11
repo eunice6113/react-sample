@@ -24,7 +24,6 @@ const ChartGuide = Loadable(lazy(() => import('../pages/ui-guide/ChartGuide')));
 const UploadGuide = Loadable(lazy(() => import('../pages/ui-guide/UploadGuide')));
 const NoDataGuide = Loadable(lazy(() => import('../pages/ui-guide/NoDataGuide')));
 const ExcelGuide = Loadable(lazy(() => import('../pages/ui-guide/ExcelGuide')));
-
 const CheckboxGuide = Loadable(lazy(() => import('../pages/ui-guide/CheckboxGuide')));
 const DatePickerGuide = Loadable(lazy(() => import('../pages/ui-guide/DatePickerGuide')));
 const InfoGuide = Loadable(lazy(() => import('../pages/ui-guide/InfoGuide')));
@@ -33,6 +32,8 @@ const RadioGuide = Loadable(lazy(() => import('../pages/ui-guide/RadioGuide')));
 const TabGuide = Loadable(lazy(() => import('../pages/ui-guide/TabGuide')));
 const ToggleGuide = Loadable(lazy(() => import('../pages/ui-guide/ToggleGuide')));
 
+//메인
+const CLPMANM00100 = Loadable(lazy(() => import('../pages/mng/man/CLPMANM00100')));
 
 //사용자 관리 ==================================================================================
 //사용자 권한관리 
@@ -144,13 +145,14 @@ const adminRoutes = [
   // },
   {
     path: '/',
-    element: <Navigate to='/ui/guide' />,
+    element: <Navigate to='/man' />,
   },
   {
     path: '/',
     element: <FullLayout />,
     children: [
-      { path: 'ui',
+      { 
+        path: 'ui',
         name: 'UI guide', 
         children: [
           {
@@ -239,14 +241,14 @@ const adminRoutes = [
             element: <NoDataGuide />
           },
         ]
-      }
-    ]
-  },
-  {
-    path: '/',
-    element: <FullLayout />,
-    children: [
-      { path: 'urm', 
+      },
+      {
+        path: 'man',
+        name: 'Main',
+        element: <CLPMANM00100 />
+      },
+      { 
+        path: 'urm', 
         name: '사용자 접속이력 관리', 
         children: [
           {path: 'role', name:'사용자 권한 관리', element: <CLPUATM90200 />},
@@ -364,8 +366,11 @@ const adminRoutes = [
           {path: 'list', name:'사용자 접속이력 관리', element: <CLPSNCM00140 />},
         ],
       },
-      
     ]
+  },
+  {
+    path: '/callback',
+    element: <Callback />,
   },
   {
     path: '/auth',

@@ -1,0 +1,143 @@
+body.theme-dark .CLPMANM00100 {
+    background-color: #333;
+}
+
+body.theme-light .CLPMANM00100 {
+    background-color: #f4f4f4;
+}
+
+.card {
+    position: relative;
+    top:0;
+    left:0;
+    width: 100%;
+    padding: 15px;
+    border: 1px solid var(--global-border-color);
+    box-shadow: 0px 4px 8px -2px rgba(16, 24, 40, 0.1), 0px 2px 4px -2px rgba(16, 24, 40, 0.06);
+    border-radius: var(--borderRadius-sm);
+    background-color: var(--dialog-background-color);
+}
+
+.blueBox {
+    background: #E8F1FF;
+    text-align: center;
+    border-radius: var(--borderRadius-sm);
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.blueBox:last-child {
+    margin-right: 0;
+    margin-bottom: 0;
+}
+
+.blueBox > p {
+    font-size: 12px;
+    color: #333;
+    /* color: var(--global-text-color); */
+}
+
+.blueBox h2 {
+    font-size: 20px;
+    color: var(--brand-primary)
+}
+
+.card.dataCard {
+    padding: 7px 15px;
+    height: 110px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.num.underline {
+    border-bottom: 1px solid var(--brand-primary);
+}
+
+.card.dataCard .data {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    font-size: 12px;
+}
+
+.card .listTable {
+    width: 100%;
+    min-height: 150px;
+}
+
+.card .listTable th {
+    text-align: center;
+    background-color: var( --table-header-background-color);
+    font-weight: bold;
+    font-size: 14px;
+    padding: 5px;
+}
+
+.card .data .num {
+    color: var(--brand-primary);
+    font-weight: bold;
+    font-size: 24px;
+
+}
+
+.card .listTable tr {
+    height: 30px;
+}
+.card .listTable td {
+    font-size: 14px;
+    color: var(--global-text-color);
+    padding: 5px 10px;
+    height: 30px;
+}
+
+.card .listTable td:last-child {
+    text-align: center;
+}
+
+.card .titleArea {
+    display: flex;
+    align-items: center;
+    color: var(--global-text-color);
+    font-weight: bold;
+}
+
+.card .titleArea > a {
+    color: var(--global-text-color);
+    font-weight: bold;
+}
+
+.card .titleArea .tag {
+    margin-left: auto;
+}
+
+.labelWrap .p-chip{
+    height: 25px;
+    font-size: 13px;
+    font-weight: bold;
+    margin-right: 8px;
+}
+
+.tag {
+    border-radius: 20px;
+    padding: 5px 10px;
+    font-size: 12px;
+}
+
+.tag-update{
+     background: #FFE5E8;
+     color:#D20319;
+}
+
+.tag-info{
+    background: #E8F1FF;
+    color:#0250EC;
+}
+
+.tag-new{
+    background: #FEE598;
+    color:#56481E;
+}
+
