@@ -42,18 +42,17 @@ const CldFileUpload: React.FC<FileUploadProps> = ({name = 'files', url, onSelect
 
     const itemTemplate = (file:any, props:any) => {
         return (
-            <div className="flex align-items-center flex-wrap">
-                <div className="flex align-items-center" style={{width: '40%'}}>
-                    <img alt={file.name} role="presentation" src={file.objectURL} width={100} />
-                    <span className="flex flex-column text-left ml-3">
-                        {file.name}
-                        <small>{new Date().toLocaleDateString()}</small>
-                    </span>
+            <div className="d-flex align-items-center flex-wrap fileUpload">
+                <div><img alt={file.name} role="presentation" src={file.objectURL} width={100} /></div>
+                <div className="flex-column text-left ml-3">
+                    {file.name}<br />
+                    <small>{new Date().toLocaleDateString()}</small>
                 </div>
-                <Tag value={props.formatSize} severity="warning" className="px-3 py-2" />
-                <Button type="button" icon="pi pi-times" 
+                <div className='text-center'><Tag value={props.formatSize} severity="warning" className="px-3 py-2" /></div>
+                <div className='text-right'><Button type="button" icon="pi pi-times" 
                     className="p-button-outlined p-button-rounded p-button-danger ml-auto" 
                     onClick={() => onFileRemove(file, props.onFileRemove)} />
+                    </div>
             </div>
         )
     }
