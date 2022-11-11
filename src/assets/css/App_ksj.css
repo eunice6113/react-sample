@@ -180,3 +180,9 @@
   width: 100%;
   text-align: center;
 }
+
+/* fileUpload */
+.fileUpload > div {
+  width:25%;
+  text-align: left;
+}
