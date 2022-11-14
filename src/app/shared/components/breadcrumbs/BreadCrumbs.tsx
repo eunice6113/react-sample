@@ -1,149 +1,72 @@
 import * as React from 'react';
-import { Menubar } from 'primereact/menubar';
-import { Link, useLocation, useMatch } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import './bread-crumbs.css';
 import adminRoutes from '../../../routes/admin-routes';
 
 const BreadCrumbs: React.FC = () => {
 
     const location = useLocation();
-    const matches = useMatch;
     const routes = adminRoutes;
-    
-    let list:any = []
-    let flatList:any = []
-    
-
-    console.log(location, location.pathname, matches)
+    const curLocation = location.pathname.split('/')
+    const mainPath = `/${curLocation[1]}`
+    const subPath = `/${curLocation[1]}/${curLocation[2]}`
+    let list:any = null
 
     const setList = () => {
-        list = routes[1]?.children?.map((item:any, i) => {
-            // console.log(item, i)
-
+        list = routes[1]?.children?.map((item:any) => {
             let obj = {
-                label: item?.path,
+                label: item?.name,
+                url: `/${item.path}`,
                 items: item?.children?.map((sitem:any) => {
                     return { label: sitem.name, url: `/${item.path}/${sitem.path}` }
                 })
             }
-
-            console.log('obj', obj)
             return obj;
-            // list.push(obj)
         })
-
-        console.log('list =>', list)
-
         return list
     }
 
-    // const setFlatList = () => {
-    //     flatList = routes[1]?.children?.map((item:any, i) => {
-    //         // console.log(item, i)
+    //list 한 번만 만들어서 (list 값이 없으면 setList 돌리고 아니면 list 리턴) 렌더링시마다 재사용 (useMemo)
+    const lists = React.useMemo(() => setList(), [list]).filter((menu:any) => menu.url !== 'ui' && menu.url !== 'man') //메인화면, ui 가이드는 제외
+    let curMenus:any[] = [];
 
-    //         let obj = {
-    //             label: item?.path,
-    //             items: item?.children?.map((sitem:any) => {
-    //                 return { label: sitem.name, url: `/${item.path}/${sitem.path}` }
-    //             })
-    //         }
-    //         console.log('obj', obj)
-    //         return obj;
-    //     })
-
-    //     console.log('flatList =>', flatList)
-
-    //     return flatList
-    // }
-
-
-    const lists = React.useMemo(() => setList(), [list])
-    // const lists2 = React.useMemo(() => setFlatList(), [flatList])
-
-    console.log('lists ===>', lists)
+    const [menus, setMenus] = React.useState<any[]>([])
 
     React.useEffect(() => {
-
-        console.log('BreadCrumbs routes', routes)
-
-
-
+        curMenus = [];
+        lists.forEach((item:any) => { 
+            if(item.url === mainPath) {
+                curMenus.push(item)
+                item.items?.forEach((sitem:any) => {
+                    if(sitem.url === subPath) {
+                        curMenus.push(sitem)
+                        return false;
+                    }
+                })
+            }
+        })
+        setMenus(curMenus)
     }, [])
 
-    const items = [
-        {
-            label: 'menu1',
-            items: [
-                {
-                    label: 'Left',
-                    url: '',
-                },
-                {
-                    label: 'Right',
-                    url: '',
-                },
-                {
-                    label: 'Center',
-                    url: '',
-                },
-                {
-                    label: 'Justify',
-                    url: '',
-                },
-
-            ]
-        },
-    ];
-
-    const items2 = [
-        {
-            label: 'menu2',
-            items: [
-                {
-                    label: 'Left',
-                    url: '',
-                },
-                {
-                    label: 'Right',
-                    url: '',
-                },
-
-            ]
-        },
-    ];
-
-    const items3 = [
-        {
-            label: 'menu3',
-            items: [
-                {
-                    label: 'Left',
-                    url: '',
-                },
-                {
-                    label: 'Right',
-                    url: '',
-                },
-
-            ]
-        },
-    ];
 
     return(
         <>
-            <BreadCrumbs />
-
-            <div className='breadCrumbs'>zz
+            <div className='breadCrumbs'>
                 <Link to='/' className='menuTxt'>Home</Link> 
                 <i className='pi pi-chevron-right' />
-                <Menubar model={items} />
-                <i className='pi pi-chevron-right' />
-                <Menubar model={items2} />
-                <i className='pi pi-chevron-right' />
-                <Menubar model={items3} />
+                {
+                    menus.map((menu, index) => (
+                        <React.Fragment key={`breadCrumb-${index}`}>
+                            <span className='menuTxt'>{menu.label}</span>
+                            {
+                                menus.length-1 === index ? null :
+                                <i className='pi pi-chevron-right' />
+                            }
+                        </React.Fragment>
+                    ))
+                }
             </div>
         </>
-        
     )
 }
 export default BreadCrumbs
