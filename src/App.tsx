@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, useCallback } from 'react';
 import { /* Router,*/ useRoutes, BrowserRouter as Router, } from 'react-router-dom';
 import { Route, Routes } from "react-router";
 import "primereact/resources/themes/lara-light-indigo/theme.css";  //theme
@@ -16,8 +16,6 @@ import adminRoutes from './app/routes/admin-routes';
 function App() {
   const routes = useRoutes(adminRoutes)
 
-  console.log('routes', routes)
-  const routes2 = adminRoutes;
 
   return (
     <>
@@ -27,12 +25,6 @@ function App() {
     {/* <Suspense fallback={<Loader />}> */}
         {routes}
     {/* </Suspense> */}
-{/* 
-    <Router>
-        <Routes>
-          
-        </Routes>
-    </Router> */}
 
     </>
   );

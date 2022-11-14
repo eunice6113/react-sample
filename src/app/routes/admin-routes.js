@@ -249,7 +249,7 @@ const adminRoutes = [
       },
       { 
         path: 'urm', 
-        name: '사용자 접속이력 관리', 
+        name: '사용자 관리', 
         children: [
           {path: 'role', name:'사용자 권한 관리', element: <CLPUATM90200 />},
           {path: 'list', name:'사용자 접속이력 관리', element: <CLPUHTM00301 />},
@@ -316,7 +316,7 @@ const adminRoutes = [
       { path: 'qsm', 
         name: '설문 관리', 
         children: [
-          {path: 'list', name:'설문 관리', element: <CLPSURM93310 />},
+          {path: 'list', name:'설문 목록 관리', element: <CLPSURM93310 />},
           {path: ':id', name:'설문 상세/수정', element: <CLPSURM93420 />},
           {path: 'register', name:'설문 등록', element: <CLPSURM93430 />},
           {path: 'result', name:'설문 결과', element: <CLPSURM93600 />},

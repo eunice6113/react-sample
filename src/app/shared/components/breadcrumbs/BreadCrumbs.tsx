@@ -23,11 +23,15 @@ const BreadCrumbs: React.FC = () => {
             }
             return obj;
         })
+
+        //메인화면, ui 가이드는 제외
+        list = list.filter((menu:any) => menu.url !== '/ui' && menu.url !== '/man') 
+
         return list
     }
 
     //list 한 번만 만들어서 (list 값이 없으면 setList 돌리고 아니면 list 리턴) 렌더링시마다 재사용 (useMemo)
-    const lists = React.useMemo(() => setList(), [list]).filter((menu:any) => menu.url !== 'ui' && menu.url !== 'man') //메인화면, ui 가이드는 제외
+    const lists = React.useMemo(() => setList(), [list])
     let curMenus:any[] = [];
 
     const [menus, setMenus] = React.useState<any[]>([])

@@ -12,6 +12,9 @@
     font-size: 14px;
     border: 0 none !important;
     background-color: transparent !important;
+    
+}
+.breadCrumbs span.menuTxt {
     cursor: default;
 }
 .breadCrumbs .pi-chevron-right {
