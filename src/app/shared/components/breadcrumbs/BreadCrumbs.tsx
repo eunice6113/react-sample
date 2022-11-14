@@ -37,28 +37,28 @@ const BreadCrumbs: React.FC = () => {
         return list
     }
 
-    const setFlatList = () => {
-        flatList = routes[1]?.children?.map((item:any, i) => {
-            // console.log(item, i)
+    // const setFlatList = () => {
+    //     flatList = routes[1]?.children?.map((item:any, i) => {
+    //         // console.log(item, i)
 
-            let obj = {
-                label: item?.path,
-                items: item?.children?.map((sitem:any) => {
-                    return { label: sitem.name, url: `/${item.path}/${sitem.path}` }
-                })
-            }
-            console.log('obj', obj)
-            return obj;
-        })
+    //         let obj = {
+    //             label: item?.path,
+    //             items: item?.children?.map((sitem:any) => {
+    //                 return { label: sitem.name, url: `/${item.path}/${sitem.path}` }
+    //             })
+    //         }
+    //         console.log('obj', obj)
+    //         return obj;
+    //     })
 
-        console.log('flatList =>', flatList)
+    //     console.log('flatList =>', flatList)
 
-        return flatList
-    }
+    //     return flatList
+    // }
 
 
     const lists = React.useMemo(() => setList(), [list])
-    const lists2 = React.useMemo(() => setFlatList(), [flatList])
+    // const lists2 = React.useMemo(() => setFlatList(), [flatList])
 
     console.log('lists ===>', lists)
 

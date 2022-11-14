@@ -2,6 +2,7 @@ import * as React from "react";
 import { useLocation, useMatches } from "react-router-dom";
 import adminRoutes from "../../../routes/admin-routes";
 import PageTitle from "../page-title/PageTitle";
+import './base-page.css';
 
 interface IProps {
     className?: string;
