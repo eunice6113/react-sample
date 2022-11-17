@@ -23,9 +23,7 @@ const CLPSNCM00140:React.FC = () => {
     //table
     const [mode, setMode] = React.useState<'view' | 'edit' | 'register'>('view');
     const [taskID, setTaskID] = React.useState('');
-    const [content, setContent] = React.useState('');
 
-    const [data, setData] = React.useState([]);
     const [first, setFirst] = React.useState(0);
     const [rows, setRows] = React.useState(5);
     const [selectedProducts12, setSelectedProducts12] = useState(null);
