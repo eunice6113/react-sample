@@ -8,10 +8,6 @@ const FullLayout: React.FC = () => {
 
     const [naviOpen, setNaviOpen] = React.useState(true)
 
-    React.useEffect(() => {
-
-    }, [])
-
     const handleOpen = () => {
         console.log('handle open')
 

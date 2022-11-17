@@ -27,7 +27,7 @@ const Header: React.FC<IProps> = ({handleOpen, children}) => {
         }
     }
 
-    let userAccessInfo = `xxx.xxx.xxx.xxx YYYY.MM.DD HH:MM:SS`
+    let userAccessInfo = `YYYY.MM.DD HH:MM:SS`
 
     let userName = '홍길동'
 

@@ -148,13 +148,15 @@ const CLPMANM00100:React.FC = () => {
                                 <col width='20%' />
                             </colgroup>
                             <thead>
-                                <th>서비스 그룹명</th>
-                                <th>신청자</th>
+                                <tr>
+                                    <th>서비스 그룹명</th>
+                                    <th>신청자</th>
+                                </tr>
                             </thead>
                             <tbody>
                                 {
                                     list.map((item, index) => 
-                                        <tr>
+                                        <tr key={`$serv-${index}`}>
                                             <td>{item.title}</td>
                                             <td>{item.author}</td>
                                         </tr>
@@ -181,13 +183,15 @@ const CLPMANM00100:React.FC = () => {
                                 <col width='20%' />
                             </colgroup>
                             <thead>
-                                <th>요청명</th>
-                                <th>요청자</th>
+                                <tr>
+                                    <th>요청명</th>
+                                    <th>요청자</th>
+                                </tr>
                             </thead>
                             <tbody>
                                 {
                                     list.map((item, index) => 
-                                        <tr>
+                                        <tr key={`$sppr-${index}`}>
                                             <td>{item.title}</td>
                                             <td>{item.author}</td>
                                         </tr>
@@ -216,13 +220,15 @@ const CLPMANM00100:React.FC = () => {
                                 <col width='20%' />
                             </colgroup>
                             <thead>
-                                <th>신청구분</th>
-                                <th>신청자</th>
+                                <tr>
+                                    <th>신청구분</th>
+                                    <th>신청자</th>
+                                </tr>
                             </thead>
                             <tbody>
                                 {
                                     list.map((item, index) => 
-                                        <tr>
+                                        <tr key={`$appl-${index}`}>
                                             <td>{item.title}</td>
                                             <td>{item.author}</td>
                                         </tr>
@@ -251,14 +257,16 @@ const CLPMANM00100:React.FC = () => {
                                 <col width='20%' />
                             </colgroup>
                             <thead>
-                                <th>사업명</th>
-                                <th>신청유형</th>
-                                <th>신청자</th>
+                                <tr>
+                                    <th>사업명</th>
+                                    <th>신청유형</th>
+                                    <th>신청자</th>
+                                </tr>
                             </thead>
                             <tbody>
                                 {
                                     list2.map((item, index) => 
-                                        <tr>
+                                        <tr key={`$biz-${index}`}>
                                             <td>{item.title}</td>
                                             <td className='text-center'>{item.type}</td>
                                             <td>{item.author}</td>
