@@ -601,7 +601,7 @@ body.theme-dark {
   --button-primary-cta-disabled-border-color: #333333;
   --button-primary-cta-disabled-background-color: #333333;
   --button-primary-outline-default-color: #ffffff;
-  --button-primary-outline-default-border-color: #ffffff;
+  --button-primary-outline-default-border-color: #222222;
   --button-primary-outline-default-background-color: #222222;
   --button-primary-outline-hover-color: #4881de;
   --button-primary-outline-hover-border-color: #000000;
@@ -9628,7 +9628,7 @@ $color-mobile-click-sub: #3CC6F0;
   .p-splitbutton .p-button.p-button-outlined .p-button,
   .p-splitbutton .p-button.p-button-outlined.p-splitbutton .p-button {
     color: #ffffff;
-    border: 1px solid #ffffff;
+    border: 1px solid #222222;
     background-color: #222222; }
     .p-button.outline:disabled, .p-button.p-button-outlined:disabled,
     .p-button.p-button-outlined .p-button:disabled,
@@ -9742,7 +9742,7 @@ $color-mobile-click-sub: #3CC6F0;
     body.theme-dark
     .p-splitbutton .p-button.p-button-outlined.p-splitbutton .p-button {
       color: #ffffff;
-      border: 1px solid #ffffff;
+      border: 1px solid #222222;
       background-color: #222222; }
       body.theme-dark .p-button.outline:disabled, body.theme-dark .p-button.p-button-outlined:disabled,
       body.theme-dark .p-button.p-button-outlined .p-button:disabled,
@@ -10187,7 +10187,7 @@ a:hover {
 
 .mat-stroked-button.mat-primary {
   color: #ffffff;
-  border: 1px solid #ffffff;
+  border: 1px solid #222222;
   background-color: #222222; }
   .mat-stroked-button.mat-primary:not([disabled]):hover {
     color: #4881de !important;
@@ -10203,7 +10203,7 @@ a:hover {
       background-color: #00000000 !important; }
   body.theme-dark .mat-stroked-button.mat-primary {
     color: #ffffff;
-    border: 1px solid #ffffff;
+    border: 1px solid #222222;
     background-color: #222222; }
     body.theme-dark .mat-stroked-button.mat-primary:not([disabled]):hover {
       color: #4881de !important;
@@ -11065,6 +11065,10 @@ textarea:focus {
 
 .p-paginator .p-paginator-pages .p-paginator-page:first-child {
   border-left: 1px solid #000000; }
+  body.theme-light .p-paginator .p-paginator-pages .p-paginator-page:first-child {
+    border-left: 1px solid #d0d5dd; }
+  body.theme-dark .p-paginator .p-paginator-pages .p-paginator-page:first-child {
+    border-left: 1px solid #000000; }
 
 .p-paginator .p-paginator-pages .p-paginator-page {
   background-color: transparent;
@@ -11090,7 +11094,6 @@ textarea:focus {
     color: #ffffff; }
 
 .p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
-  border: 1px solid #d0d5dd;
   background: #eafaff;
   color: #000000; }
   body.theme-light .p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
@@ -11323,14 +11326,14 @@ textarea:focus {
 
 .p-confirm-dialog .p-button.p-confirm-dialog-reject {
   color: #ffffff;
-  border: 1px solid #ffffff;
+  border: 1px solid #222222;
   background-color: transparent !important; }
   body.theme-light .p-confirm-dialog .p-button.p-confirm-dialog-reject {
     color: #1d5dc4;
     border: 1px solid #cccccc; }
   body.theme-dark .p-confirm-dialog .p-button.p-confirm-dialog-reject {
     color: #ffffff;
-    border: 1px solid #ffffff; }
+    border: 1px solid #222222; }
 
 /* 버튼 하나만 있는 alert dialog */
 .p-confirm-dialog.oneButton .p-button.p-confirm-dialog-reject {

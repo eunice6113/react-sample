@@ -132,7 +132,7 @@ const CLPMANM00100:React.FC = () => {
         <h1 className='mt30 mb5'>결재 진행 업무 리스트</h1>
 
         <div className='cld-row'>
-            <div className='cld-col-6'>
+            <div className='cld-col-6 cld-col-lg-6 cld-col-xl-4'>
                 <div className='card'>
                     <div className='titleArea'>
                         <Link to=''>서비스그룹 신청 건</Link>
@@ -167,7 +167,7 @@ const CLPMANM00100:React.FC = () => {
                     </div>
                 </div>
             </div>
-            <div className='cld-col-6'>
+            <div className='cld-col-6 cld-col-lg-6 cld-col-xl-4'>
                 <div className='card'>
                     <div className='titleArea'>
                         <Link to=''>지원 요청 건</Link>
@@ -202,9 +202,8 @@ const CLPMANM00100:React.FC = () => {
                     </div>
                 </div>
             </div>
-        </div>
-        <div className='cld-row'>
-            <div className='cld-col-6'>
+        
+            <div className='cld-col-6 cld-col-lg-6 cld-col-xl-4'>
                 <div className='card'>
                     <div className='titleArea'>
                         <Link to=''>서비스 카탈로그 신청 건</Link>
@@ -239,7 +238,7 @@ const CLPMANM00100:React.FC = () => {
                     </div>
                 </div>
             </div>
-            <div className='cld-col-6'>
+            <div className='cld-col-6 cld-col-lg-6 cld-col-xl-4'>
                 <div className='card'>
                     <div className='titleArea'>
                         <Link to=''>The-Fast Cloud 신청 건</Link>

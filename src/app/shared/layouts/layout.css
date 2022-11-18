@@ -16,6 +16,10 @@
     box-shadow: 4px 0px 4px rgba(0, 0, 0, 0.1);
 }
 
+body.theme-dark .pageContainer {
+    background: #454545;
+}
+
 .pageContainer {
     position: relative;
     top:0;

@@ -18,11 +18,12 @@
   white-space: break-spaces;
   word-break: break-all;
 }
+
 .comment .commentContents{
   display: flex;flex-direction: column;flex: 1;
 }
 .comment .content{
-  color: #333;
+  color:var(--global-text-color);
   font-size: 13px;
 }
 .comment .date{
@@ -59,6 +60,15 @@
   color:#64748B;
   font-weight: bold;
 }
+body.theme-dark .comment{
+  background-color: var(--dialog-background-color);
+}
+body.theme-dark .profileName{
+  color:#fff;
+}
+body.theme-dark .comment .date{
+  color:#e6e6e6;
+}
 
 /* the fast cloud 신청 관리 목록*/
 /* 기존 파일 다운로드 splite button*/
@@ -88,12 +98,31 @@
 .p-accordion .p-accordion-header:not(.p-disabled).p-highlight .p-accordion-header-link{
   background-color: var(--layout-background);
   color: var(--global-text-color);
-  border: 1px solid #e6e6e6;
+  border: 1px solid var(--global-border-color);
 }
 .p-accordion .p-accordion-header .p-accordion-header-link {
-  background: #fff;
-  border: 1px solid #e6e6e6;
+  background: transparent;
+  border: 1px solid var(--global-border-color);
 }
+.p-accordion .p-accordion-content {
+  background: transparent;
+  border: 1px solid var(--global-border-color);
+  border-top: none;
+}
+body.theme-dark .p-accordion .p-accordion-header:not(.p-disabled).p-highlight:hover .p-accordion-header-link,
+body.theme-dark .p-accordion .p-accordion-header:not(.p-highlight):not(.p-disabled):hover .p-accordion-header-link {
+  background: #666;
+  color:#fff;
+}
+body.theme-dark .p-accordion .p-accordion-header .p-accordion-header-link {
+  color:#fff;
+  background-color: #333;
+}
+body.theme-dark .p-accordion .p-accordion-header:not(.p-disabled).p-highlight .p-accordion-header-link,
+body.theme-dark .p-accordion .p-accordion-content {
+  background-color: #333;
+}
+
 
 .error-text{
   color:var(--brand-error);
@@ -200,7 +229,9 @@ body.theme-dark .p-paginator .p-paginator-pages .p-paginator-page.p-highlight{
 body.theme-dark .p-paginator .p-paginator-pages .p-paginator-page.p-highlight{
   border: 1px solid #000;
 }
-.searchBar .pi-calendar:before {
+
+/* calendar icon 배경 */
+.pi-calendar:before {
   background: url(../../assets/images/btn-icon-calandar.svg) no-repeat;
   content: '';
   height: 18px;
@@ -208,15 +239,43 @@ body.theme-dark .p-paginator .p-paginator-pages .p-paginator-page.p-highlight{
   display: inline-block;
   background-size: contain;
 }
-
-.searchBar .p-button.p-datepicker-trigger {
-  background-color: transparent;
-  border:1px solid var(--global-border-color);
-  border-left: none;
+.p-button.p-datepicker-trigger {
+  background-color: transparent !important;
+  border:1px solid var(--global-border-color) !important;
+  border-left: none !important;
 }
-.searchBar .p-calendar .p-inputtext{
+.p-calendar .p-inputtext{
   border-right: none !important;
 }
-.searchBar .p-button.p-datepicker-trigger:not([disabled]):hover, .p-splitbutton .p-button.p-datepicker-trigger:not([disabled]):hover{
+.p-button.p-datepicker-trigger:not([disabled]):hover, .p-splitbutton .p-button.p-datepicker-trigger:not([disabled]):hover{
   background: transparent;
+}
+
+.p-tabview .p-tabview-nav .p-tabview-ink-bar{
+  background-color:var(--brand-primary);
+}
+
+body.theme-dark .p-panelmenu .p-panelmenu-header > a{
+  color:#fff;
+}
+
+/* fileUpload */
+.fileUpload > div {
+  width:25%;
+  text-align: left;
+}
+.p-tabview .p-tabview-nav li:not(.p-highlight):not(.p-disabled):hover .p-tabview-nav-link{
+  background: transparent;
+}
+.p-tabview .p-tabview-nav .p-tabview-ink-bar{
+  background-color:var(--brand-primary);
+}
+body.theme-dark .p-fileupload .p-fileupload-buttonbar {
+  border:1px solid var(--global-border-color) !important;
+  background-color: var(--dialog-background-color) !important;
+  border-bottom: 0 !important;
+}
+body.theme-dark .p-fileupload .p-fileupload-content{
+  background-color: var(--dialog-background-color);
+  border:1px solid var(--global-border-color) !important;
 }
