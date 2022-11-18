@@ -78,7 +78,7 @@
   font-weight: bold;
   text-align: left;
   padding:10px 20px;
-  color:#333;
+  color: var(--global-text-color);
 }
 /** accordion **/
 .p-accordion .p-accordion-tab {
@@ -86,8 +86,8 @@
   margin-bottom: 12px;
 }
 .p-accordion .p-accordion-header:not(.p-disabled).p-highlight .p-accordion-header-link{
-  background-color: #fff;
-  color: #333;
+  background-color: var(--layout-background);
+  color: var(--global-text-color);
   border: 1px solid #e6e6e6;
 }
 .p-accordion .p-accordion-header .p-accordion-header-link {
@@ -185,4 +185,38 @@
 .fileUpload > div {
   width:25%;
   text-align: left;
+}
+body.theme-dark .cld-table th, body.theme-dark .cld-table .p-datatable-thead tr th, body.theme-dark .p-datatable th, body.theme-dark .p-datatable .p-datatable-thead tr th{
+  border-bottom:1px solid #333;
+}
+body.theme-dark .cld-table td, body.theme-dark .p-datatable td{
+  border-bottom:1px solid #333;
+  cursor: pointer;
+}
+body.theme-dark .p-paginator .p-paginator-pages .p-paginator-page.p-highlight{
+  background: #666;
+  color:#fff;
+}
+body.theme-dark .p-paginator .p-paginator-pages .p-paginator-page.p-highlight{
+  border: 1px solid #000;
+}
+.searchBar .pi-calendar:before {
+  background: url(../../assets/images/btn-icon-calandar.svg) no-repeat;
+  content: '';
+  height: 18px;
+  width: 18px;
+  display: inline-block;
+  background-size: contain;
+}
+
+.searchBar .p-button.p-datepicker-trigger {
+  background-color: transparent;
+  border:1px solid var(--global-border-color);
+  border-left: none;
+}
+.searchBar .p-calendar .p-inputtext{
+  border-right: none !important;
+}
+.searchBar .p-button.p-datepicker-trigger:not([disabled]):hover, .p-splitbutton .p-button.p-datepicker-trigger:not([disabled]):hover{
+  background: transparent;
 }

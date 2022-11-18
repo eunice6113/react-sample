@@ -136,6 +136,10 @@
   background: #EEF2FF;
   color: var(--brand-primary);
 }
+body.theme-dark .p-tree .p-tree-container .p-treenode .p-treenode-content.p-highlight {
+  background:#667085;
+  color: var(--brand-primary);
+}
 
 .p-tree {
   border: 0 none;
@@ -143,6 +147,9 @@
   color: #495057;
   padding: 0;
   border-radius: 6px;
+}
+body.theme-dark .p-tree {
+  color:#fff !important;
 }
 
 .p-treenode-label {
