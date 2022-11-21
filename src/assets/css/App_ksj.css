@@ -251,12 +251,76 @@ body.theme-dark .p-paginator .p-paginator-pages .p-paginator-page.p-highlight{
   background: transparent;
 }
 
-.p-tabview .p-tabview-nav .p-tabview-ink-bar{
+f.p-tabview .p-tabview-nav .p-tabview-ink-bar{
   background-color:var(--brand-primary);
 }
 
 body.theme-dark .p-panelmenu .p-panelmenu-header > a{
   color:#fff;
+}
+
+
+/* editor 수정*/
+.p-editor-container .p-editor-toolbar.ql-snow .ql-stroke {
+  stroke: var(--global-text-color);
+}
+.p-editor-container .p-editor-toolbar.ql-snow .ql-picker .ql-picker-label {
+  color: var(--global-text-color);
+}
+body.theme-dark .p-editor-container .p-editor-toolbar {
+  background-color: var(--dialog-background-color);
+}
+body.theme-dark .p-editor-container .p-editor-toolbar.ql-snow {
+  border: var(--global-border-color)
+}
+.p-editor-container .p-editor-content .ql-editor {
+  background-color: var(--input-background-color);
+}
+.p-editor-container .p-editor-content.ql-snow {
+  border: 1px solid var(--global-border-color) !important;
+}
+.p-editor-container .p-editor-content .ql-editor {
+  color: var(--global-text-color);
+}
+
+body.theme-dark .infoBoard{
+  border:none;
+  background-color: #454545;
+}
+body.theme-dark .infoBoard .titleArea {
+  background-color: #333;
+  border-radius: 8px 8px 0 0;
+}
+body.theme-dark .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link .p-menuitem-text{
+  color:#fff;
+}
+body.theme-dark .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link .p-submenu-icon{
+ color:#fff; 
+}
+body.theme-dark .p-tabview .p-tabview-panels,
+body.theme-dark .p-tabview .p-tabview-nav {
+  background-color: transparent;
+  color:#fff;
+}
+body.theme-dark .p-tabview .p-tabview-nav li .p-tabview-nav-link {
+  background-color: transparent;
+  color:#fff !important;
+}
+body.theme-dark .p-tabview .p-tabview-nav li .p-tabview-nav-link:hover{
+  color:#E6E6E6 !important;
+}
+body.theme-dark .boardDtailPagination td a {
+  color:#cccccc !important;
+}
+
+body.theme-dark .boardDtailPagination td a {
+    color: #cccccc !important;
+}
+body.theme-dark .boardDtailPagination td a:hover {
+    color: var(--brand-primary) !important;
+}
+body.theme-dark .boardDtailPagination td .iconTitle {
+  color:#999;
 }
 
 /* fileUpload */

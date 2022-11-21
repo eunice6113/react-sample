@@ -8,7 +8,7 @@
     height: 55px;
     background-color: #1d5dc4;
     z-index: var(--z-index-header);
-    min-width: calc(1180px + 230px);
+    min-width: calc(1420px - 230px);
 }
 
 .customHeader .headerInnerContents {
@@ -18,7 +18,9 @@
     padding: 0 20px 0 0;
     /* max-width: calc(1180px + 230px); */
     height: 55px;
-    min-width: 1180px;
+    min-width:1180px;
+    min-width: calc(1180px - 230px);
+
 }
 .customHeader a {
     color: #fff !important;
