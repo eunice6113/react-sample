@@ -4,7 +4,7 @@
     /* padding-top: 55px; */
     display: flex;
     width: 100%;
-    min-width: 1180px;
+    min-width: calc(1410px - 220px);
 }
 
 .mainContainer .lnbContainer {
