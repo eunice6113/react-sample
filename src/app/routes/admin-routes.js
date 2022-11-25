@@ -98,6 +98,12 @@ const CLPSNCM00120 = Loadable(lazy(() => import('../pages/mng/snc/CLPSNCM00120')
 const CLPSNCM00130 = Loadable(lazy(() => import('../pages/mng/snc/CLPSNCM00130')));
 const CLPSNCM00140 = Loadable(lazy(() => import('../pages/mng/snc/CLPSNCM00140')));
 
+//제휴관리
+const CLPBWSM97110 = Loadable(lazy(() => import('../pages/mng/cpc/bws/CLPBWSM97110')));
+const CLPBWSM97220 = Loadable(lazy(() => import('../pages/mng/cpc/bws/CLPBWSM97220')));
+const CLPBWSM97320 = Loadable(lazy(() => import('../pages/mng/cpc/bws/CLPBWSM97320')));
+
+
 
 //운영 관리(크로센트) ==================================================================================
 /*
@@ -359,11 +365,20 @@ const adminRoutes = [
       },
       {
         path: 'snc', 
-        name: '결제업무 관리', 
+        name: '결재업무 관리', 
         children: [
-          {path: '', name:'사용자 권한 관리', element: <CLPSNCM00120 />},
+          {path: '', name:'결재업무 관리', element: <CLPSNCM00120 />},
           {path: 'popup', name:'사용자 접속이력 관리', element: <CLPSNCM00130 />},
           {path: 'list', name:'사용자 접속이력 관리', element: <CLPSNCM00140 />},
+        ],
+      },
+      {
+        path: 'cpc', 
+        name: '업무시스템 관리', 
+        children: [
+          {path: 'bws', name:'업무시스템 관리', element: <CLPBWSM97110 />},
+          {path: 'bws/register', name:'업무시스템 등록', element: <CLPBWSM97220 />},
+          {path: 'bws/apiRegister', name:'API 등록', element: <CLPBWSM97320 />},
         ],
       },
     ]

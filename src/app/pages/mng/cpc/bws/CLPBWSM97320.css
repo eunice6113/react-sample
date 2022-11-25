@@ -1,0 +1,25 @@
+.p-datatable.bwCodePop tr th, 
+.p-datatable.bwCodePop tr td:not(:nth-child(3)) {
+    text-align: center;
+}
+.p-datatable .p-datatable-tbody > tr > td:nth-child(1) {
+    color: var(--brand-primary);
+    text-decoration: underline;
+}
+
+.p-datatable.bwsApi tr th, 
+.p-datatable.bwsApi tr td {
+    text-align: center !important;
+}
+.p-datatable.bwsApi tr th:first-child {
+    width: 2%;
+}
+.p-datatable.bwsApi tr th:nth-child(2) {
+    width: 18%;
+}
+.p-datatable.bwsApi tr th:nth-child(3) {
+    width: 20%;
+}
+.p-datatable.bwsApi tr th:nth-child(4) {
+    width: 60%;
+}

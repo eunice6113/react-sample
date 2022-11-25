@@ -272,6 +272,28 @@ const LNB: React.FC<IProps> = ({open, children}) => {
                 },
             ]
         },
+        {
+            label:'제휴인증 관리',
+            expanded: curLocation === 'cpc',
+            visible: getIsAdmin(),
+            items:[
+                {
+                    label:'업무시스템 관리',
+                    url: '/cpc/bws',
+                    className: getClsName('/cpc/bws')
+                },
+                {
+                    label:'업무시스템 등록',
+                    url: '/cpc/popup',
+                    className: getClsName('/snc/popup')
+                },
+                {
+                    label:'결재내역(승인/반려)',
+                    url: '/snc/list',
+                    className: getClsName('/snc/list')
+                },
+            ]
+        },
     ];
 
     React.useEffect(() => {
