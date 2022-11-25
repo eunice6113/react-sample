@@ -98,11 +98,14 @@ const CLPSNCM00120 = Loadable(lazy(() => import('../pages/mng/snc/CLPSNCM00120')
 const CLPSNCM00130 = Loadable(lazy(() => import('../pages/mng/snc/CLPSNCM00130')));
 const CLPSNCM00140 = Loadable(lazy(() => import('../pages/mng/snc/CLPSNCM00140')));
 
-//제휴관리
+//제휴인증======================================================================================
+//업무시스템 관리
 const CLPBWSM97110 = Loadable(lazy(() => import('../pages/mng/cpc/bws/CLPBWSM97110')));
 const CLPBWSM97220 = Loadable(lazy(() => import('../pages/mng/cpc/bws/CLPBWSM97220')));
 const CLPBWSM97320 = Loadable(lazy(() => import('../pages/mng/cpc/bws/CLPBWSM97320')));
 
+//제휴처 관리
+const CLPBWSM97510 = Loadable(lazy(() => import('../pages/mng/cpc/cop/CLPBWSM97510')));
 
 
 //운영 관리(크로센트) ==================================================================================
