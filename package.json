@@ -15,6 +15,7 @@
     "chart.js": "^3.9.1",
     "cloud-portal-design-token": "^0.0.5",
     "file-saver": "^2.0.5",
+    "formik": "^2.2.9",
     "immer": "^9.0.15",
     "primeicons": "^6.0.1",
     "primereact": "^8.6.1",
