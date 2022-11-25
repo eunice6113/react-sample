@@ -10,13 +10,15 @@ interface IQuestion {
     handleSurveyQuestionChange: Function;
     questionTypeOptions: any,
     measureNumOpt: any,
-    updateOption: Function;
-    deltOption: Function;
-    addOption: Function;
+    updateOption?: Function;
+    deltOption?: Function;
+    addOption?: Function;
     handleSurveyQuestionChkChange: Function;
-    handleSurveyMeasureChange: Function;
-    duplicate: Function;
-    delt: Function;
+    handleSurveyMeasureChange?: Function;
+    duplicate?: Function;
+    delt?: Function;
+    formik?:any;
+    arrayHelpers?:any;
 }
 
 const Questionnaire: React.FC<IQuestion> = ({
@@ -25,13 +27,15 @@ const Questionnaire: React.FC<IQuestion> = ({
     handleSurveyQuestionChange,
     questionTypeOptions,
     measureNumOpt,
-    updateOption,
-    deltOption,
-    addOption,
-    handleSurveyQuestionChkChange,
-    handleSurveyMeasureChange,
-    duplicate,
-    delt,
+    updateOption = ()=>{},
+    deltOption = ()=>{},
+    addOption = ()=>{},
+    handleSurveyQuestionChkChange = ()=>{},
+    handleSurveyMeasureChange = ()=>{},
+    duplicate = ()=>{},
+    delt = ()=>{},
+    arrayHelpers,
+    formik,
 }) => {
 
 
