@@ -1,0 +1,9 @@
+.p-datatable.bwCodePop tr th, 
+.p-datatable.bwCodePop tr td {
+    text-align: center;
+}
+
+.p-datatable.bwCodePop .p-datatable-tbody > tr > td:nth-child(2) {
+    color: var(--brand-primary);
+    text-decoration: underline;
+}

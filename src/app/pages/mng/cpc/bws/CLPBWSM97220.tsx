@@ -6,13 +6,7 @@ import { useBasePage } from '../../../../shared/hooks/base-page.hook';
 import { MODE } from '../../../../shared/config/commonCode';
 import './CLPBWSM97220.css';
 import ViewTemplate from '../../../../shared/components/template/ViewTemplate';
-import { Dialog } from 'primereact/dialog';
-import { useState } from 'react';
-import { DataTable } from 'primereact/datatable';
-import { bwsCodePopDummyData } from '../../../../shared/demo/data/bwsCodePopDummyData';
-import { paginator } from '../../../../shared/utils/table-paginator';
-import { Column } from 'primereact/column';
-
+import BwsDialog from '../../../../shared/components/dialog/bws-dialog/BwsDialog';
 
 //업무시스템 등록
 const CLPBWSM97220:React.FC = () => {
@@ -75,46 +69,7 @@ const CLPBWSM97220:React.FC = () => {
             }
         ]
     }
-    //dialog
-    const [displayBasic2, setDisplayBasic2] = useState(false);
-    const onClick = (name:any, position?:any) => {
-        setDisplayBasic2(true)
-    }
-
-    const onHide = (name:string) => {
-        setDisplayBasic2(false)
-    }
-
-    const renderFooter = (name:any) => {
-        return (
-            <div className='buttonGrp d-flex justify-center'>
-                
-                <Button label="닫기" onClick={() => onHide(name)} autoFocus className="md" />
-            </div>
-        );
-    }
-
-    //table
-    const [first, setFirst] = React.useState(0);
-    const [rows, setRows] = React.useState(10);
-
-    const onCustomPage = (event:any) => {
-        setFirst(event.first);
-        setRows(event.rows);
-    }
-    const headerTemplate = [
-        {
-            field: 'code',
-            header: '코드',
-            sortable: false,
-        },
-        {
-            field: 'name',
-            header: '코드명',
-            sortable: false,
-        },
-        
-    ]
+       
     const contentsInfo = {
         title: '등록 내용',
         mode: mode,
@@ -128,17 +83,7 @@ const CLPBWSM97220:React.FC = () => {
                         editingValue: 
                         <div className='d-flex'>
                             <InputText placeholder='코드명으로 검색하세요.'  style={{ width: '200px' }} />
-                            <Button type='button' className='md ml10' label='조회' onClick={() => onClick('displayBasic2')} />
-                            <Dialog header="업무시스템 공통팝업" visible={displayBasic2}  style={{ width: '450px' }} footer={renderFooter('displayBasic2')} onHide={() => onHide('displayBasic2')}>
-                                <DataTable value={bwsCodePopDummyData} paginator paginatorTemplate={paginator} 
-                                    className="bwCodePop"
-                                    first={first} rows={rows} 
-                                    onPage={onCustomPage} responsiveLayout='scroll'>
-                                    {headerTemplate.map((col, index) => (
-                                        <Column key={col.header} field={col.field} header={col.header} ></Column>
-                                    ))}
-                                </DataTable>
-                            </Dialog>
+                            <BwsDialog />
                         </div>,
                     },
                 ]
