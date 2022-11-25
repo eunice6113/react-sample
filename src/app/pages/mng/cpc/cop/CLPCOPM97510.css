@@ -1,0 +1,26 @@
+.p-datatable.partnerList tr th, 
+.p-datatable.partnerList tr td {
+    text-align: center;
+}
+.p-datatable.partnerList .p-datatable-tbody > tr > td:nth-child(2) {
+    color: var(--brand-primary);
+}
+.p-datatable.partnerList tr th:first-child {
+    width: 2%;
+}
+.p-datatable.partnerList tr th:nth-child(2) {
+    width: 18%;
+}
+.p-datatable.partnerList tr th:nth-child(3) {
+    width: 10%;
+}
+.p-datatable.partnerList tr th:nth-child(4) {
+    width: 20%;
+}
+.p-datatable.partnerList tr th:nth-child(5) {
+    width: 10%;
+}
+.p-datatable.partnerList tr th:nth-child(6) {
+    width: 20%;
+}
+

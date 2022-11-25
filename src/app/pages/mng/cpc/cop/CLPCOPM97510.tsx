@@ -1,19 +1,18 @@
 import * as React from 'react';
 import { Dropdown, Button, InputText } from "primereact";
 import { BasePage } from '../../../../shared/components/base/BasePage';
-import './CLPBWSM97110.css';
+import './CLPCOPM97510.css';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
-import { businessSystemDummyData } from '../../../../shared/demo/data/businessSystemDummyData';
+import { partnerDummyData } from '../../../../shared/demo/data/partnerDummyData';
 import { SearchParams } from '../../../../core/models/search-params';
-import { Calendar } from 'primereact/calendar';
 import { paginator } from '../../../../shared/utils/table-paginator';
 import { useBasePage } from '../../../../shared/hooks/base-page.hook';
 
 import { useState } from 'react';
 
-//업무시스템 관리
-const CLPBWSM97110:React.FC = () => {
+//제휴처 관리
+const CLPCOPM97510:React.FC = () => {
     const { goPage, goBack } = useBasePage()
 
     //table page length
@@ -39,8 +38,8 @@ const CLPBWSM97110:React.FC = () => {
      //select option dummy data
      const options1 = [
         { name: '전체', code: 'NY' },
-        { name: '업무시스템', code: 'RM' },
-        { name: '등록자', code: 'LDN' },
+        { name: '제휴처명', code: 'RM' },
+        { name: '담당자명', code: 'LDN' },
     ];
    
     const handleChange = (prop: keyof SearchParams, value:any) => {
@@ -51,45 +50,43 @@ const CLPBWSM97110:React.FC = () => {
         setFirst(event.first);
         setRows(event.rows);
     }
-
-    
-    const goDetail = ( e:any ) => {
-        console.log('clicked row =>', e.index)
-        goPage(`/cpc/bws/${e.index}`);
-    }
+   
     // 삭제 버튼
     const deletBtn = (event:any) => {
     }
 
     //등록 버튼
     const register = (event:any) => {
-        goPage(`/cpc/bws/register`);
+        goPage(`/cpc/cop/register`);
     }
-
-    // api 등록 버튼
-    const apiRegister = (event:any) => {
-        goPage(`/cpc/bws/apiRegister`);
-    }
-
   
+    const goDetail = ( e:any ) => {
+        console.log('clicked row =>', e.index)
+        goPage(`/cpc/cop/${e.index}`);
+    }
     const headerTemplate = [
         {
-            field: 'code',
-            header: '업무시스템코드',
-            sortable: false,
-        },
-        {
             field: 'name',
-            header: '업무시스템명',
+            header: '제휴처명',
             sortable: false, 
         },
         {
-            field: 'service',
-            header: '서비스',
+            field: 'bsnsLcnmb',
+            header: '사업자등록번호',
             sortable: false,
         },
         {
-            field: 'author',
+            field: 'managerName',
+            header: '담당자',
+            sortable: false,
+        },
+        {
+            field: 'contact',
+            header: '담당자 연락처',
+            sortable: false,
+        },
+        {
+            field: 'registration',
             header: '등록직원',
             sortable: false,
         },
@@ -112,9 +109,6 @@ const CLPBWSM97110:React.FC = () => {
 
                     <InputText className='searchTxt' placeholder='검색어를 입력해주세요' value={values.searchValue} onChange={(e) => handleChange('searchValue', e.target.value)} />
 
-                    <Calendar dateFormat='yy.mm.dd' value={values.fromDate} onChange={(e) => handleChange('fromDate', e.value)} showIcon />
-                    <span className='mt5'>~</span>
-                    <Calendar dateFormat='yy.mm.dd' value={values.toDate} onChange={(e) => handleChange('toDate', e.value)} showIcon />
                     <Button label='조회' />
                 </div>
 
@@ -122,12 +116,12 @@ const CLPBWSM97110:React.FC = () => {
                     <p>총 <span className='pageNm'>{pages}</span>개</p>
                     <Button className='ml-auto outline' label='삭제' onClick={deletBtn} />
                     <Button className='ml8 outline' label='등록' icon='pi pi-pencil' onClick={register} />
-                    <Button className='ml8 outline' label='API등록' icon='pi pi-pencil' onClick={apiRegister} />
 
                 </div>
 
-                <DataTable value={businessSystemDummyData} paginator paginatorTemplate={paginator} 
-                    className="businessSystemList"
+                <DataTable value={partnerDummyData} paginator paginatorTemplate={paginator} 
+                    className="partnerList"
+                    onRowClick={(e) => goDetail(e)}
                     selection={selectedProducts12} 
                     onSelectionChange={e => setSelectedProducts12(e.value)} 
                     dataKey="no"
@@ -145,4 +139,4 @@ const CLPBWSM97110:React.FC = () => {
       
         </BasePage>)
 }
-export default CLPBWSM97110;
+export default CLPCOPM97510;

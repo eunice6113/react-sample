@@ -2,6 +2,10 @@
 .p-datatable.businessSystemList tr td {
     text-align: center;
 }
+.p-datatable.businessSystemList .p-datatable-tbody > tr > td:nth-child(3) {
+    color: var(--brand-primary);
+}
+
 .p-datatable.businessSystemList tr th:first-child {
     width: 2%;
 }

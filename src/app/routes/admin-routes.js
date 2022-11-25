@@ -105,7 +105,14 @@ const CLPBWSM97220 = Loadable(lazy(() => import('../pages/mng/cpc/bws/CLPBWSM972
 const CLPBWSM97320 = Loadable(lazy(() => import('../pages/mng/cpc/bws/CLPBWSM97320')));
 
 //제휴처 관리
-const CLPBWSM97510 = Loadable(lazy(() => import('../pages/mng/cpc/cop/CLPBWSM97510')));
+const CLPCOPM97510 = Loadable(lazy(() => import('../pages/mng/cpc/cop/CLPCOPM97510')));
+const CLPCOPM97620 = Loadable(lazy(() => import('../pages/mng/cpc/cop/CLPCOPM97620')));
+const CLPCOPM97630 = Loadable(lazy(() => import('../pages/mng/cpc/cop/CLPCOPM97630')));
+
+//제휴인증 관리
+const CLPCRTM97810 = Loadable(lazy(() => import('../pages/mng/cpc/crt/CLPCRTM97810')));
+const CLPCRTM97920 = Loadable(lazy(() => import('../pages/mng/cpc/crt/CLPCRTM97920')));
+const CLPCRTM97930 = Loadable(lazy(() => import('../pages/mng/cpc/crt/CLPCRTM97930')));
 
 
 //운영 관리(크로센트) ==================================================================================
@@ -375,15 +382,39 @@ const adminRoutes = [
           {path: 'list', name:'사용자 접속이력 관리', element: <CLPSNCM00140 />},
         ],
       },
-      {
-        path: 'cpc', 
-        name: '업무시스템 관리', 
+      { path: 'cpc', 
+        name: '제휴인증 관리', 
         children: [
-          {path: 'bws', name:'업무시스템 관리', element: <CLPBWSM97110 />},
-          {path: 'bws/register', name:'업무시스템 등록', element: <CLPBWSM97220 />},
-          {path: 'bws/apiRegister', name:'API 등록', element: <CLPBWSM97320 />},
+          {
+            path: 'bws', 
+            name: '업무시스템 관리', 
+            children: [
+              {path: '', name:'업무시스템 관리', element: <CLPBWSM97110 />},
+              {path: 'register', name:'업무시스템 등록', element: <CLPBWSM97220 />},
+              {path: 'apiRegister', name:'API 등록', element: <CLPBWSM97320 />},
+            ],
+          },
+          {
+            path: 'cop', 
+            name: '제휴처 관리', 
+            children: [
+              {path: '', name:'제휴처 관리', element: <CLPCOPM97510 />},
+              {path: ':id', name:'제휴처 상세/수정', element: <CLPCOPM97620 />},
+              {path: 'register', name:'제휴처 등록', element: <CLPCOPM97630 />},
+            ],
+          },
+          {
+            path: 'crt', 
+            name: '제휴인증 관리', 
+            children: [
+              {path: '', name:'제휴인증 관리', element: <CLPCRTM97810 />},
+              {path: ':id', name:'제휴인증 상세/수정', element: <CLPCRTM97920 />},
+              {path: 'register', name:'제휴인증 등록', element: <CLPCRTM97930 />},
+            ],
+          },
         ],
       },
+      
     ]
   },
   {

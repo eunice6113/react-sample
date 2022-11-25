@@ -4,19 +4,18 @@ import { BasePage } from '../../../../shared/components/base/BasePage';
 import ViewButtonsTemplate from '../../../../shared/components/template/ViewButtonsTemplate';
 import { useBasePage } from '../../../../shared/hooks/base-page.hook';
 import { MODE } from '../../../../shared/config/commonCode';
-import './CLPBWSM97220.css';
+import './CLPCOPM97620.css';
 import ViewTemplate from '../../../../shared/components/template/ViewTemplate';
-import BwsDialog from '../../../../shared/components/dialog/bws-dialog/BwsDialog';
 
-//업무시스템 등록
-const CLPBWSM97220:React.FC = () => {
+//업무시스템 상세/수정
+const CLPCOPM97620:React.FC = () => {
     const { goPage, goBack, } = useBasePage()
 
-    const [mode, setMode] = React.useState<'view' | 'edit' | 'register'>('register');
+    const [mode, setMode] = React.useState<'view' | 'edit' | 'register'>('view');
 
     //목록 버튼
     const list = () => {
-        goPage('/cpc/bws')
+        goPage('/cpc/cop')
     }
 
     //삭제 버튼
@@ -71,7 +70,7 @@ const CLPBWSM97220:React.FC = () => {
     }
        
     const contentsInfo = {
-        title: '등록 내용',
+        title: '상세 내용',
         mode: mode,
         hasRequired: true,
         rows: [
@@ -79,16 +78,72 @@ const CLPBWSM97220:React.FC = () => {
                 cols: [
                     {
                         required: true,
-                        key: '업무시스템', 
-                        editingValue: 
-                        <div className='d-flex'>
-                            <InputText placeholder='코드명으로 검색하세요.'  style={{ width: '200px' }} />
-                            <BwsDialog />
-                        </div>,
+                        key: '제휴처 명', 
+                        value:'경리나라',
+                        editingValue: <InputText placeholder='제휴처 명을 입력해주세요.' />
                     },
-                ]
+                ],
             },
-            
+            {
+                cols: [
+                    {
+                        required: true,
+                        key: '사업자등록번호', 
+                        value:'123-456-7890',
+                        editingValue: <InputText placeholder='사업자등록번호를 입력해주세요.' />
+                    },
+                ],
+            },
+            {
+                cols: [
+                    {
+                        required: true,
+                        key: '담당자', 
+                        value:'홍길동',
+                        editingValue: <InputText placeholder='담당자를 입력해주세요.' />
+                    },
+                ],
+            },
+            {
+                cols: [
+                    {
+                        required: true,
+                        key: '담당자 연락처', 
+                        value:'02-123-4567',
+                        editingValue: <InputText placeholder='담당자 연락처를 입력해주세요.' />
+                    },
+                ],
+            },
+            {
+                cols: [
+                    {
+                        required: true,
+                        key: '담당자 이메일', 
+                        value:'cloud@ibk.co.kr',
+                        editingValue: <InputText placeholder='담당자 이메일을 입력해주세요.' />
+                    },
+                ],
+            },
+            {
+                cols: [
+                    {
+                        required: false,
+                        key: '대표자명', 
+                        value:'김대표',
+                        editingValue: <InputText placeholder='대표자명을 입력해주세요.' />
+                    },
+                ],
+            },
+            {
+                cols: [
+                    {
+                        required: false,
+                        key: '대표자 연락처', 
+                        value:'02-123-4567',
+                        editingValue: <InputText placeholder='대표자 연락처를 입력해주세요.' />
+                    },
+                ],
+            },
         ]
     }
 
@@ -119,4 +174,4 @@ const CLPBWSM97220:React.FC = () => {
         />
     </BasePage>)
 }
-export default CLPBWSM97220;
+export default CLPCOPM97620;

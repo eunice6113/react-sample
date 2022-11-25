@@ -4,29 +4,18 @@ import { BasePage } from '../../../../shared/components/base/BasePage';
 import ViewButtonsTemplate from '../../../../shared/components/template/ViewButtonsTemplate';
 import { useBasePage } from '../../../../shared/hooks/base-page.hook';
 import { MODE } from '../../../../shared/config/commonCode';
-import './CLPBWSM97320.css';
+import './CLPCRTM97930.css';
 import ViewTemplate from '../../../../shared/components/template/ViewTemplate';
-import { useState } from 'react';
-import { DataTable } from 'primereact/datatable';
-import { paginator } from '../../../../shared/utils/table-paginator';
-import { Column } from 'primereact/column';
-import { bwsApiDummyData } from '../../../../shared/demo/data/bwsApiDummyData';
-import BwsDialog from '../../../../shared/components/dialog/bws-dialog/BwsDialog';
-
 
 //업무시스템 등록
-const CLPBWSM97220:React.FC = () => {
+const CLPCRTM97930:React.FC = () => {
     const { goPage, goBack, } = useBasePage()
 
     const [mode, setMode] = React.useState<'view' | 'edit' | 'register'>('register');
-    const [selectedProducts12, setSelectedProducts12] = useState(null);
-    
-    //table page length
-    let pages = 10;
 
     //목록 버튼
     const list = () => {
-        goPage('/cpc/bws')
+        goPage('/cpc/cop')
     }
 
     //삭제 버튼
@@ -61,15 +50,6 @@ const CLPBWSM97220:React.FC = () => {
         }
     }
 
-    //행추가
-    const addRow = () => {}
-    //행삭제
-    const deletRow = () =>{}
-    //저장
-    const save = () => {
-
-    }
-
     //api 읽어와서 업데이트 할 내용
     const authorInfo = {
         title: '등록자 정보',
@@ -88,17 +68,7 @@ const CLPBWSM97220:React.FC = () => {
             }
         ]
     }
-    
-    
-
-    //table
-    const [first, setFirst] = React.useState(0);
-    const [rows, setRows] = React.useState(10);
-
-    const onCustomPage = (event:any) => {
-        setFirst(event.first);
-        setRows(event.rows);
-    }
+       
     const contentsInfo = {
         title: '등록 내용',
         mode: mode,
@@ -108,35 +78,74 @@ const CLPBWSM97220:React.FC = () => {
                 cols: [
                     {
                         required: true,
-                        key: '업무시스템', 
-                        editingValue: 
-                        <div className='d-flex'>
-                            <InputText placeholder='코드명으로 검색하세요.'  style={{ width: '200px' }} />
-                            <BwsDialog />
-                        </div>,
+                        key: '제휴처 명', 
+                        value:'경리나라',
+                        editingValue: <InputText placeholder='제휴처 명을 입력해주세요.' />
                     },
-                ]
+                ],
             },
-            
+            {
+                cols: [
+                    {
+                        required: true,
+                        key: '사업자등록번호', 
+                        value:'123-456-7890',
+                        editingValue: <InputText placeholder='사업자등록번호를 입력해주세요.' />
+                    },
+                ],
+            },
+            {
+                cols: [
+                    {
+                        required: true,
+                        key: '담당자', 
+                        value:'홍길동',
+                        editingValue: <InputText placeholder='담당자를 입력해주세요.' />
+                    },
+                ],
+            },
+            {
+                cols: [
+                    {
+                        required: true,
+                        key: '담당자 연락처', 
+                        value:'02-123-4567',
+                        editingValue: <InputText placeholder='담당자 연락처를 입력해주세요.' />
+                    },
+                ],
+            },
+            {
+                cols: [
+                    {
+                        required: true,
+                        key: '담당자 이메일', 
+                        value:'cloud@ibk.co.kr',
+                        editingValue: <InputText placeholder='담당자 이메일을 입력해주세요.' />
+                    },
+                ],
+            },
+            {
+                cols: [
+                    {
+                        required: false,
+                        key: '대표자명', 
+                        value:'김대표',
+                        editingValue: <InputText placeholder='대표자명을 입력해주세요.' />
+                    },
+                ],
+            },
+            {
+                cols: [
+                    {
+                        required: false,
+                        key: '대표자 연락처', 
+                        value:'02-123-4567',
+                        editingValue: <InputText placeholder='대표자 연락처를 입력해주세요.' />
+                    },
+                ],
+            },
         ]
     }
-    const headerTemplateApi = [
-        {
-            field: 'no',
-            header: 'API 순번',
-            sortable: false,
-        },
-        {
-            field: 'name',
-            header: 'API명',
-            sortable: false, 
-        },
-        {
-            field: 'url',
-            header: 'URL',
-            sortable: false,
-        },
-    ]
 
     return(
     <BasePage>
@@ -145,28 +154,6 @@ const CLPBWSM97220:React.FC = () => {
 
         {/* 등록 내용 */}
         <ViewTemplate {...contentsInfo} />
-
-        <div className='toolbar mb10 mt20'>
-            <p>총 <span className='pageNm'>{pages}</span>개</p>
-            <Button className='ml-auto outline' label='행추가'icon='pi pi-plus' onClick={addRow} />
-            <Button className='outline ml8' label='행삭제'icon='pi pi-minus' onClick={deletRow} />
-            <Button className='outline ml8' label='저장' icon='pi pi-save' onClick={save}/>
-        </div>
-        <DataTable value={bwsApiDummyData} paginator paginatorTemplate={paginator} 
-            className="bwsApi"
-            selection={selectedProducts12} 
-            onSelectionChange={e => setSelectedProducts12(e.value)} 
-            dataKey="no"
-            first={first} rows={rows} 
-            onPage={onCustomPage} responsiveLayout='scroll'>
-
-            <Column selectionMode="multiple" headerStyle={{ width: '3em' }}></Column>
-            
-            {headerTemplateApi.map((col, index) => (
-                <Column key={col.header} field={col.field} header={col.header} ></Column>
-            ))}
-
-        </DataTable>
 
         {/* 
             버튼영역 
@@ -185,8 +172,6 @@ const CLPBWSM97220:React.FC = () => {
             cancel={cancel}
             confirm={confirm}
         />
-        
-               
     </BasePage>)
 }
-export default CLPBWSM97220;
+export default CLPCRTM97930;

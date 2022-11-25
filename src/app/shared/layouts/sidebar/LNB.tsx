@@ -288,9 +288,9 @@ const LNB: React.FC<IProps> = ({open, children}) => {
                     className: getClsName('/cpc/cop')
                 },
                 {
-                    label:'결재내역(승인/반려)',
-                    url: '/snc/list',
-                    className: getClsName('/snc/list')
+                    label:'제휴인증 관리',
+                    url: '/cpc/crt',
+                    className: getClsName('/cpc/crt')
                 },
             ]
         },

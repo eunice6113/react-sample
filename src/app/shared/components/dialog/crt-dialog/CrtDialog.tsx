@@ -1,16 +1,16 @@
 import * as React from 'react';
 import { Button, InputText } from 'primereact';
-import './bws-dialog.css';
+import './crt-dialog.css';
 import { useState } from 'react';
 import { Dialog } from 'primereact/dialog';
 import { DataTable } from 'primereact/datatable';
-import { bwsCodePopDummyData } from '../../../../shared/demo/data/bwsCodePopDummyData';
+import { crtPopDummyData } from '../../../../shared/demo/data/crtPopDummyData';
 import { paginator } from '../../../../shared/utils/table-paginator';
 import { Column } from 'primereact/column';
 import { SearchParams } from '../../../../core/models/search-params';
 
 //업무시스템 조회 팝업  
-const BwsDialog: React.FC = () => {
+const CrtDialog: React.FC = () => {
 
     //검색 조건
     const [values, setValues] = React.useState<SearchParams>({
@@ -60,13 +60,13 @@ const BwsDialog: React.FC = () => {
             sortable: false,
         },
         {
-            field: 'code',
-            header: '코드',
+            field: 'name',
+            header: '제휴처명',
             sortable: false,
         },
         {
-            field: 'name',
-            header: '코드명',
+            field: 'num',
+            header: '사업자번호',
             sortable: false,
         },
         
@@ -76,14 +76,14 @@ const BwsDialog: React.FC = () => {
     return(
         <>
             <Button type='button' className='md ml10' label='검색' onClick={() => onClick('displayBasic2')} />
-            <Dialog header="업무시스템 조회" visible={displayBasic2}  style={{ width: '450px' }} footer={renderFooter('displayBasic2')} onHide={() => onHide('displayBasic2')}>
+            <Dialog header="제휴처 조회" visible={displayBasic2}  style={{ width: '450px' }} footer={renderFooter('displayBasic2')} onHide={() => onHide('displayBasic2')}>
                  {/* 검색영역 */}
                  <div className='searchBar mt0 mb10'>
                     <InputText className='searchTxt' placeholder='검색어를 입력해주세요' value={values.searchValue} onChange={(e) => handleChange('searchValue', e.target.value)} />
                     <Button label='검색' />
                 </div>
 
-                <DataTable value={bwsCodePopDummyData} paginator paginatorTemplate={paginator} 
+                <DataTable value={crtPopDummyData} paginator paginatorTemplate={paginator} 
                     className="bwCodePop"
                     first={first} rows={rows} 
                     onPage={onCustomPage} responsiveLayout='scroll'>
@@ -95,5 +95,5 @@ const BwsDialog: React.FC = () => {
         </>
     )
 }
-export default BwsDialog
+export default CrtDialog
 

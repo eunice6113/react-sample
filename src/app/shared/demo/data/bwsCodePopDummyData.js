@@ -1,9 +1,9 @@
-//[결재내역]
+//[업무시스템 조회]
 export const bwsCodePopDummyData = [
     {
         no: 1,
         code: 'HJP',
-        name: '홈페이지',
+        
     },
     {
         no: 2,
