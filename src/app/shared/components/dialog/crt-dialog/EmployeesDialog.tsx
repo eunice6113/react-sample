@@ -1,16 +1,16 @@
 import * as React from 'react';
 import { Button, InputText } from 'primereact';
-import './crt-dialog.css';
+import './employees-dialog.css';
 import { useState } from 'react';
 import { Dialog } from 'primereact/dialog';
 import { DataTable } from 'primereact/datatable';
-import { crtPopDummyData } from '../../../../shared/demo/data/crtPopDummyData';
+import { employeesDummyData } from '../../../../shared/demo/data/employeesDummyData';
 import { paginator } from '../../../../shared/utils/table-paginator';
 import { Column } from 'primereact/column';
 import { SearchParams } from '../../../../core/models/search-params';
 
 //업무시스템 조회 팝업  
-const CrtDialog: React.FC = () => {
+const EmployeesDialog: React.FC = () => {
 
     //검색 조건
     const [values, setValues] = React.useState<SearchParams>({
@@ -61,12 +61,12 @@ const CrtDialog: React.FC = () => {
         },
         {
             field: 'name',
-            header: '제휴처명',
+            header: '직원번호',
             sortable: false,
         },
         {
             field: 'num',
-            header: '사업자번호',
+            header: '직원명',
             sortable: false,
         },
         
@@ -76,15 +76,15 @@ const CrtDialog: React.FC = () => {
     return(
         <>
             <Button type='button' className='md ml10' label='검색' onClick={() => onClick('displayBasic2')} />
-            <Dialog header="제휴처 조회" visible={displayBasic2}  style={{ width: '450px' }} footer={renderFooter('displayBasic2')} onHide={() => onHide('displayBasic2')}>
+            <Dialog header="직원 조회" visible={displayBasic2}  style={{ width: '450px' }} footer={renderFooter('displayBasic2')} onHide={() => onHide('displayBasic2')}>
                  {/* 검색영역 */}
                  <div className='searchBar mt0 mb10'>
                     <InputText className='searchTxt' placeholder='검색어를 입력해주세요' value={values.searchValue} onChange={(e) => handleChange('searchValue', e.target.value)} />
                     <Button label='검색' />
                 </div>
 
-                <DataTable value={crtPopDummyData} paginator paginatorTemplate={paginator} 
-                    className="bwCodePop"
+                <DataTable value={employeesDummyData} paginator paginatorTemplate={paginator} 
+                    className="employeesPop"
                     first={first} rows={rows} 
                     onPage={onCustomPage} responsiveLayout='scroll'>
                     {headerTemplate.map((col, index) => (
@@ -95,5 +95,5 @@ const CrtDialog: React.FC = () => {
         </>
     )
 }
-export default CrtDialog
+export default EmployeesDialog
 

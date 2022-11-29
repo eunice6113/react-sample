@@ -1,0 +1,9 @@
+.p-datatable.employeesPop tr th, 
+.p-datatable.employeesPop tr td {
+    text-align: center;
+}
+
+.p-datatable.employeesPop .p-datatable-tbody > tr > td:nth-child(2) {
+    /* color: var(--brand-primary);
+    text-decoration: underline; */
+}

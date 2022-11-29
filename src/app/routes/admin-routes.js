@@ -114,6 +114,10 @@ const CLPCRTM97810 = Loadable(lazy(() => import('../pages/mng/cpc/crt/CLPCRTM978
 const CLPCRTM97920 = Loadable(lazy(() => import('../pages/mng/cpc/crt/CLPCRTM97920')));
 const CLPCRTM97930 = Loadable(lazy(() => import('../pages/mng/cpc/crt/CLPCRTM97930')));
 
+//제휴처 사용자현황
+const CLPCPUM98010 = Loadable(lazy(() => import('../pages/mng/cpc/cpu/CLPCPUM98010')));
+const CLPCPUM98120 = Loadable(lazy(() => import('../pages/mng/cpc/cpu/CLPCPUM98120')));
+
 
 //운영 관리(크로센트) ==================================================================================
 /*
@@ -410,6 +414,14 @@ const adminRoutes = [
               {path: '', name:'제휴인증 관리', element: <CLPCRTM97810 />},
               {path: ':id', name:'제휴인증 상세/수정', element: <CLPCRTM97920 />},
               {path: 'register', name:'제휴인증 등록', element: <CLPCRTM97930 />},
+            ],
+          },
+          {
+            path: 'cpu', 
+            name: '제휴인증 관리', 
+            children: [
+              {path: '', name:'제휴인증 관리', element: <CLPCPUM98010 />},
+              {path: ':id', name:'제휴처 사용자 현황', element: <CLPCPUM98120 />},
             ],
           },
         ],

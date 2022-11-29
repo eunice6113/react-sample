@@ -120,7 +120,7 @@ const CLPBWSM97110:React.FC = () => {
 
                 <div className='toolbar mb10'>
                     <p>총 <span className='pageNm'>{pages}</span>개</p>
-                    <Button className='ml-auto outline' label='삭제' onClick={deletBtn} />
+                    <Button className='ml-auto outline' label='삭제'icon='pi pi-trash' onClick={deletBtn} />
                     <Button className='ml8 outline' label='등록' icon='pi pi-pencil' onClick={register} />
                     <Button className='ml8 outline' label='API등록' icon='pi pi-pencil' onClick={apiRegister} />
 

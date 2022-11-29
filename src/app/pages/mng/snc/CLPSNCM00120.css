@@ -50,14 +50,14 @@
     text-align: center;
 }
 .p-datatable.asign tr th:first-child {
-    width: 13%;
+    width: 15%;
     color:gray;
 }
 .p-datatable.asign tr th:nth-child(2) {
-    width: 26%;
+    width: 25%;
 }
 .p-datatable.asign tr th:nth-child(3) {
-    width: 26%;
+    width: 25%;
 }
 .p-datatable.asign tr th:nth-child(4) {
     width: 26%;

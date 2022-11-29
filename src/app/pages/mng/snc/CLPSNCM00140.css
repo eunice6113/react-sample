@@ -16,13 +16,13 @@
     width: 3%;
 }
 .p-datatable.approvalList tr th:nth-child(3) {
-    width: 7%;
+    width: 10%;
 }
 .p-datatable.approvalList tr th:nth-child(4) {
     width: 9%;
 }
 .p-datatable.approvalList tr th:nth-child(5) {
-    width: 19%;
+    width: 22%;
 }
 .p-datatable.approvalList tr th:nth-child(6) {
     width: 15%;
@@ -31,10 +31,10 @@
     width: 15%;
 }
 .p-datatable.approvalList tr th:nth-child(8) {
-    width: 15%;
+    width: 12%;
 }
 .p-datatable.approvalList tr th:nth-child(9) {
-    width: 15%;
+    width: 12%;
 }
 .request {
      display: flex;

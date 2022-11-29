@@ -4,84 +4,71 @@ import { BasePage } from '../../../../shared/components/base/BasePage';
 import ViewButtonsTemplate from '../../../../shared/components/template/ViewButtonsTemplate';
 import { useBasePage } from '../../../../shared/hooks/base-page.hook';
 import { MODE } from '../../../../shared/config/commonCode';
-import './CLPBWSM97320.css';
+import './CLPCPUM98120.css';
 import ViewTemplate from '../../../../shared/components/template/ViewTemplate';
 import { useState } from 'react';
 import { DataTable } from 'primereact/datatable';
 import { paginator } from '../../../../shared/utils/table-paginator';
 import { Column } from 'primereact/column';
-import { bwsApiDummyData } from '../../../../shared/demo/data/bwsApiDummyData';
+import { userDummyData } from '../../../../shared/demo/data/userDummyData';
+import { SearchParams } from '../../../../core/models/search-params';
 
 
 //업무시스템 등록
-const CLPBWSM97220:React.FC = () => {
+const CLPCPUM98120:React.FC = () => {
     const { goPage, goBack, } = useBasePage()
 
     const [mode, setMode] = React.useState<'view' | 'edit' | 'register'>('register');
     const [selectedProducts12, setSelectedProducts12] = useState(null);
     
+    //검색 조건
+    const [values, setValues] = React.useState<SearchParams>({
+        type1: undefined,
+        type2: undefined,
+        searchValue: '',
+        fromDate: undefined,
+        toDate: undefined,
+    });
+
     //table page length
     let pages = 10;
 
+    //삭제 버튼
+    const deleteBtn = () => {
+    }
+
     //목록 버튼
     const list = () => {
-        goPage('/cpc/bws')
+        goPage('/cpc/cpu')
     }
-
-    //삭제 버튼
-    const remove = () => {
-        console.log('삭제')
-    }
-
-    //수정 버튼
-    const edit = () => {
-        setMode('edit');
-
-        console.log('mode =>', mode)
-    }
-    
-    //취소 버튼
-    const cancel = () => {
-        console.log('취소')
-
-        if(mode === MODE.REGISTER) {
-            goBack();
-        } else if(mode === MODE.EDIT) {
-            setMode('view')
-        }
-    }
-
-    //확인 버튼
-    const confirm = () => {
-        if(mode === MODE.REGISTER) {
-            goBack();
-        } else if(mode === MODE.EDIT) {
-            setMode('view')
-        }
-    }
-
-    //행추가
-    const addRow = () => {}
-    //행삭제
-    const deletRow = () =>{}
-    //저장
-    const save = () => {
-
-    }
+ 
+    //select option dummy data
+    const options1 = [
+        { name: '전체', code: 'NY' },
+        { name: '제휴처ID', code: 'RM' },
+        { name: '사용자ID', code: 'LDN' },
+    ];
+    const handleChange = (prop: keyof SearchParams, value:any) => {
+        setValues({ ...values, [prop]: value });
+    };
 
     //api 읽어와서 업데이트 할 내용
     const authorInfo = {
-        title: '등록자 정보',
+        colgroups: ['10%','20%','10%','20%','10%','20%'],
         rows: [
             {
                 cols: [
                     {
-                        key: '등록자', 
-                        value: '신재문(42483)'
+                        key: '제휴처', 
+                        value: '경리나라'
                     },
                     {
-                        key: '등록일시', 
-                        value: '2023.03.02. 15:00:00'
+                        key: '업무시스템', 
+                        value: '아이원잡'
+                    },
+                    {
+                        key: '사용서비스', 
+                        value: '기업회원'
                     },
                 ]
             }
@@ -98,40 +85,17 @@ const CLPBWSM97220:React.FC = () => {
         setFirst(event.first);
         setRows(event.rows);
     }
-    const contentsInfo = {
-        title: '등록 내용',
-        rows: [
-            {
-                cols: [
-                    {
-                        key: '코드', 
-                        value: 'HJP'
-                    },
-                    {
-                        key: '코드명', 
-                        value: '아이원잡'
-                    },
-                ]
-                
-            },
-            
-        ]
-    }
+    
     const headerTemplateApi = [
         {
-            field: 'no',
-            header: 'API 순번',
+            field: 'partnerID',
+            header: '제휴 ID',
             sortable: false,
         },
         {
-            field: 'name',
-            header: 'API명',
+            field: 'userID',
+            header: '사용자ID',
             sortable: false, 
-        },
-        {
-            field: 'url',
-            header: 'URL',
-            sortable: false,
         },
     ]
 
@@ -140,16 +104,22 @@ const CLPBWSM97220:React.FC = () => {
         {/* 등록자 정보 */}
         <ViewTemplate {...authorInfo} />
 
-        {/* 등록 내용 */}
-        <ViewTemplate {...contentsInfo} />
+        <div className='searchBar'>
+            <Dropdown value={values.type1} options={options1} onChange={(e) => handleChange('type1', e.value)} 
+                optionLabel='name' placeholder='전체' />
+            
 
-        <div className='toolbar mb10 mt20'>
-            <p>총 <span className='pageNm'>{pages}</span>개</p>
-            <Button className='ml-auto outline' label='행추가'icon='pi pi-plus' onClick={addRow} />
-            <Button className='outline ml8' label='행삭제'icon='pi pi-minus' onClick={deletRow} />
-            <Button className='outline ml8' label='저장' icon='pi pi-save' onClick={save}/>
+            <InputText className='searchTxt' placeholder='검색어를 입력해주세요' value={values.searchValue} onChange={(e) => handleChange('searchValue', e.target.value)} />
+
+            <Button label='조회' />
         </div>
-        <DataTable value={bwsApiDummyData} paginator paginatorTemplate={paginator} 
+
+        <div className='toolbar mb10'>
+            <p>총 <span className='pageNm'>{pages}</span>개</p>
+            <Button className='ml-auto outline' label='삭제' icon='pi pi-trash' onClick={deleteBtn} />
+        </div>
+
+        <DataTable value={userDummyData} paginator paginatorTemplate={paginator} 
             className="bwsApi"
             selection={selectedProducts12} 
             onSelectionChange={e => setSelectedProducts12(e.value)} 
@@ -175,15 +145,10 @@ const CLPBWSM97220:React.FC = () => {
             confirm={confirm} 수정모드 > 확인 버튼
         */}
         <ViewButtonsTemplate 
-            mode={mode}
             list={list}
-            edit={edit}
-            remove={remove}
-            cancel={cancel}
-            confirm={confirm}
         />
         
                
     </BasePage>)
 }
-export default CLPBWSM97220;
+export default CLPCPUM98120;

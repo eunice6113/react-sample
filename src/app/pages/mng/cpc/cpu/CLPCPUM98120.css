@@ -1,0 +1,13 @@
+.p-datatable.bwsApi tr th, 
+.p-datatable.bwsApi tr td {
+    text-align: center !important;
+}
+.p-datatable.bwsApi tr th:first-child {
+    width: 2%;
+}
+.p-datatable.bwsApi tr th:nth-child(2) {
+    width: 38%;
+}
+.p-datatable.bwsApi tr th:nth-child(3) {
+    width: 40%;
+}

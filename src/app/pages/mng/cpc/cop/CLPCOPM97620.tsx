@@ -127,7 +127,7 @@ const CLPCOPM97620:React.FC = () => {
             {
                 cols: [
                     {
-                        required: false,
+                        required: true,
                         key: '대표자명', 
                         value:'김대표',
                         editingValue: <InputText placeholder='대표자명을 입력해주세요.' />

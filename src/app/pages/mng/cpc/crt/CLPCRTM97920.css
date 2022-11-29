@@ -1,0 +1,20 @@
+.p-dropdown:not([multiple]).dateSelect{
+    width:80px !important;
+}
+
+.p-datatable.crtApitList tr th, 
+.p-datatable.crtApitList tr td {
+    text-align: center !important;
+}
+.p-datatable.crtApitList tr th:first-child {
+    width: 5%;
+}
+.p-datatable.crtApitList tr th:nth-child(2) {
+    width: 15%;
+}
+.p-datatable.crtApitList tr th:nth-child(3) {
+    width: 20%;
+}
+.p-datatable.crtApitList tr th:nth-child(4) {
+    width: 60%;
+}

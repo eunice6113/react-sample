@@ -3,7 +3,7 @@
     text-align: center;
 }
 .p-datatable.tfc tr th:first-child {
-    width: 10%;
+    width: 5%;
     color:gray;
 }
 .p-datatable.tfc tr th:nth-child(2) {
@@ -13,10 +13,10 @@
     width: 10%;
 }
 .p-datatable.tfc tr th:nth-child(4) {
-    width: 15%;
+    width: 10%;
 }
 .p-datatable.tfc tr th:nth-child(5) {
-    width: 10%;
+    width: 15%;
 }
 .p-datatable.tfc tr th:nth-child(6) {
     width: 15%;
@@ -25,5 +25,5 @@
     width: 10%;
 }
 .p-datatable.tfc tr th:nth-child(8) {
-    width: 10%;
+    width: 15%;
 }

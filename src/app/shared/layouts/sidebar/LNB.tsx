@@ -292,6 +292,11 @@ const LNB: React.FC<IProps> = ({open, children}) => {
                     url: '/cpc/crt',
                     className: getClsName('/cpc/crt')
                 },
+                {
+                    label:'제휴처 사용자 현황',
+                    url: '/cpc/cpu',
+                    className: getClsName('/cpc/cpu')
+                },
             ]
         },
     ];
